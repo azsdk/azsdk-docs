@@ -1,7 +1,7 @@
 # Installation Guide
 
 **Release Version: 2.1.xx**  
->**Pre-requisites**: PowerShell 5.0 or higher. Azure PowerShell 3.8.0.
+>**Pre-requisites**: PowerShell 5.0 or higher. Azure PowerShell 3.8.0. Azure Powershell 4.0 currently not supported.
 
 	
 1. First verify that prerequisites are already installed:  
