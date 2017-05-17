@@ -1,7 +1,7 @@
 # Installation Guide
 
-**Release Version: 2.0.17xxxx.yy**  
->**Pre-requisites**: PowerShell 5.0 or higher. Azure PowerShell 3.3.0 or higher.
+**Release Version: 2.1.xx**  
+>**Pre-requisites**: PowerShell 5.0 or higher. Azure PowerShell 3.8.0.
 
 	
 1. First verify that prerequisites are already installed:  
@@ -12,13 +12,17 @@
     ```PowerShell
 	Get-Module -ListAvailable AzureRm 	
     ```
-     The output should look like below (version for AzureRM should be > 3.3.0):  
+     The output should look like below (version for AzureRM should be 3.8.0 as shown in below image):  
    ![AzureRM Version](../Images/00_AzureRM_Version.png)  
-    		
-	If you don't get any output (or the version is older), please install Azure PowerShell modules from [here](https://docs.microsoft.com/en-us/PowerShell/azure/install-azurerm-ps?view=azurermps-3.7.0).
-	
+   
+
 2. Install the AzSDK security PS module  
 	  
 ```PowerShell
-  Install-Module AzSDK -Scope CurrentUser  
+  Install-Module AzSDK -Scope CurrentUser
 ```
+
+Use `-AllowClobber` and `-Force` option if you are already having a different version of AzureRM installed on your machine
+
+>**Note:** Currently AzSDK doesn't work with AzureRM 4.0 or greater. We are working towards that. Until then you need to have AzureRM 3.8 and it can co-exist with AzureRM 4.0.
+
