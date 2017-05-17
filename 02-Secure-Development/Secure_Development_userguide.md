@@ -1,9 +1,9 @@
 # Secure Development
 
 ### Contents
-### [Security Verification Tests (SVT)](Secure_Development_userguide.md#security-verification-tests-svt)
+### [Security Verification Tests (SVT)](Secure_Development_userguide.md#security-verification-tests-svt-1)
 
-- [Overview](02-Secure-Development/Secure_Development_userguide.md#overview)
+- [Overview](Secure_Development_userguide.md#overview)
 - [Execute SVTs for all controls in all resources in a given subscription](Secure_Development_userguide.md#execute-svts-for-all-controls-in-all-resources-in-a-given-subscription)
 - [Execute SVTs for specific resource groups (or tagged resources)](Secure_Development_userguide.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for specific resource](Secure_Development_userguide.md#execute-svts-for-specific-resource)
