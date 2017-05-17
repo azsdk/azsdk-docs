@@ -38,7 +38,7 @@ If you have completed the above steps then you are all set to get started with t
 [Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 ### Getting started with Secure DevOps Kit for Azure  
 
-For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](Readme.md#complete-feature-set-of-secure-devops-kit-for-azure).  
+For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](README.md#complete-feature-set-of-secure-devops-kit-for-azure).  
 
 #### The two basic use cases:  
 
