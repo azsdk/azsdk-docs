@@ -38,7 +38,7 @@ If you have completed the above steps then you are all set to get started with t
 [Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 ### Getting started with Secure DevOps Kit for Azure  
 
-For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](Readme.md#complete-feature-set-of-secure-devops-kit-for-azure).  
+For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](README.md#complete-feature-set-of-secure-devops-kit-for-azure).  
 
 #### The two basic use cases:  
 
@@ -65,7 +65,7 @@ As you get familiar with and begin to use the 'downstream' capabilities (CICD, C
 [Alerting & Monitoring](05-Alerting-and-Monitoring/Readme.md) | <ul><li>OMS Solution for AzSDK containing:<ul><li>Security dashboard views covering security state/actions</li><li>Alerts with pertinent search queries</li></ul></li></ul>
 [Security Telemetry](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 ### What do you want to use the secure devops kit for?
 As you can see from the summary description above, the "Secure DevOps Kit for Azure" (we will call it AzSDK to be brief hereafter), can be used by many different stakeholders. So depending on your role in the DevOps ecosystem, one or more of the below scenarios may apply to you. The skillset needed to use the capabilities of the kit and the prerequisites you need to have on your machine will vary based on your scenario. Here are a few sample stakeholders and some points about *how* they may try to use the AzSDK:  
 
