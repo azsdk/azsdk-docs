@@ -1,8 +1,8 @@
 # Alerting & Monitoring (AM)
 
-> This page provides a gist of the feature area and capabilities delivered by the features. For user guide/help on individual features see the sub-pages underneath this.
-
 ![Alert_Monitoing](../Images/Alerting_and_Monitoring.png)
+
+> This page provides a gist of the feature area and capabilities delivered by the features. For user guide/help on individual features see the sub-pages underneath this.
 
 The Alerting & Monitoring package will enhance our current capability of security alerts and monitoring in the following ways 
 1. 	 Ability to alert on various actions on PaaS resources. We plan to start with most frequently used and critical services such as storage, SQL, key vault, etc.

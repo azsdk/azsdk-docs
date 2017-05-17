@@ -33,6 +33,6 @@ For controls that are marked 'Failed' or 'Verify', there is usually additional i
 
 ![00_AzSDK_ServicesSecurity_Status__OP_Log](../Images/00_AzSDK_ServicesSecurity_Status_OP_Log.png)  
 
-> Note: Timestamps are used to disambiguate multiple invocations of the cmdlets.  
+> **Note:** Timestamps are used to disambiguate multiple invocations of the cmdlets.  
 
 You have completed this getting started guide successfully. To get more details and understand in depth, please refer [here.](../02-Secure-Development/Secure_Development_userguide.md)
