@@ -22,7 +22,8 @@ Outcomes of the SVT execution can also be routed to an OMS workspace configured 
 
 ### Install AzSDK extension on your VSO
 
-This extesion is currently kept as private. If you are interesed in enabling this extension on you VSO. Please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request:Enable AsSDK extension for VSO">AzSDK Support</a> with your VSO instance url. We shall share the extension with your instance.
+This extesion is currently kept as private. If you are interesed in enabling this extension on your VSO instance, please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request: Enable AsSDK extension for VSO">AzSDK Support</a> with your VSO instance url. 
+Once we share the extension with your instance, your vso admin can enbale it for you.
 
 ### Walkthrough
 This part assumes that you are familiar with VS build tasks and pipelines at a basic level. To demonstrate the capability of the feature, we will use a basic MVC Web App that is checked into our trial repository. Our goal is to show how SVTs can be injected into the build/release workflow so that security testing for Azure subscription and resources is seamlessly integrated into CICD.
