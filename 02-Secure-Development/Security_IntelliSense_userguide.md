@@ -5,7 +5,7 @@
 - [What is Security IntelliSense?](Security_IntelliSense_userguide.md#what-is-security-intellisense)
 - [How do I enable Security IntelliSense on my dev box?](Security_IntelliSense_userguide.md#how-do-i-enable-security-intellisense-on-my-dev-box)
 - [Is there a sample I can use to see how it works?](Security_IntelliSense_userguide.md#is-there-a-sample-i-can-use-to-see-how-it-works)
-#### [Rules]Security_IntelliSense_userguide.md#rules-1)
+#### [Rules](Security_IntelliSense_userguide.md#rules-1)
 - [What 'secure coding' rules are currently covered?](Security_IntelliSense_userguide.md#what-secure-coding-rules-are-currently-covered)
 - [How are the rules updated? Do I need to refresh the plugin periodically?](Security_IntelliSense_userguide.md#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically)
 - [Can I add my own rules over and above the default set?](Security_IntelliSense_userguide.md#can-i-add-my-own-rules-over-and-above-the-default-set)
@@ -120,6 +120,7 @@ For a complete list of Security IntelliSense rules please go [here](Security_Int
 ### Can I change the 'recommended' code for a rule? (e.g., CBC v. GCM mode)
 - This is in our backlog. We will add it in a future sprint.
 
+[Back to top…](Security_IntelliSense_userguide.md#contents)
 
 ### Actions:
 ### What should I do to remove the extension?
