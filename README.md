@@ -65,7 +65,7 @@ As you get familiar with and begin to use the 'downstream' capabilities (CICD, C
 [Alerting & Monitoring](05-Alerting-and-Monitoring/Readme.md) | <ul><li>OMS Solution for AzSDK containing:<ul><li>Security dashboard views covering security state/actions</li><li>Alerts with pertinent search queries</li></ul></li></ul>
 [Security Telemetry](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 ### What do you want to use the secure devops kit for?
 As you can see from the summary description above, the "Secure DevOps Kit for Azure" (we will call it AzSDK to be brief hereafter), can be used by many different stakeholders. So depending on your role in the DevOps ecosystem, one or more of the below scenarios may apply to you. The skillset needed to use the capabilities of the kit and the prerequisites you need to have on your machine will vary based on your scenario. Here are a few sample stakeholders and some points about *how* they may try to use the AzSDK:  
 
