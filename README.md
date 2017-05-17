@@ -1,5 +1,5 @@
 
-# Secure DevOps Kit for Azure (AzSDK)
+# Secure DevOps Kit for Azure (AzSDK) - Preview
 ## Content
 - [Overview](README.md#overview)  
 - [Setting up `Secure DevOps Kit for Azure`](README.md#setting-up-secure-devops-kit-for-azure)

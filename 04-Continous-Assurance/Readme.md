@@ -13,4 +13,4 @@ This will be accomplished through one or more tools that cover the following -
 - 	 Support for 'auto-heal' in for critical configuration settings.
 - 	 Operational support for important security hygiene activities 
 	
-To get more details, please refer [here](Continuous_Assurance_userguide.md).
+For more details, please refer [here](Continuous_Assurance_userguide.md).
