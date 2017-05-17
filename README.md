@@ -1,12 +1,12 @@
 
 # Secure DevOps Kit for Azure (AzSDK)
 ## Content
-- [Overview](Readme.md#overview)  
-- [Setting up `Secure DevOps Kit for Azure`](Readme.md#setting-up-secure-devops-kit-for-azure)
-- [Getting started with `Secure DevOps Kit for Azure`](Readme.md#getting-started-with-secure-devops-kit-for-azure)
-- [Complete feature set of `Secure DevOps Kit for Azure`](Readme.md#complete-feature-set-of-secure-devops-kit-for-azure)  
-- [What do you want to use the secure devops kit for?](Readme.md#what-do-you-want-to-use-the-secure-devops-kit-for)  
-- [References](Readme.md#references)  
+- [Overview](README.md#overview)  
+- [Setting up `Secure DevOps Kit for Azure`](README.md#setting-up-secure-devops-kit-for-azure)
+- [Getting started with `Secure DevOps Kit for Azure`](README.md#getting-started-with-secure-devops-kit-for-azure)
+- [Complete feature set of `Secure DevOps Kit for Azure`](README.md#complete-feature-set-of-secure-devops-kit-for-azure)  
+- [What do you want to use the secure devops kit for?](README.md#what-do-you-want-to-use-the-secure-devops-kit-for)  
+- [References](README.md#references)  
 
 ----------------------------------------------
 ### Overview
@@ -20,7 +20,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is
 
 ![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.png)
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)  
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)  
 
 ### Setting up Secure DevOps Kit for Azure
 1. You can follow the [installation guide](00a-Setup/Readme.md) and install the AzSDK on your system.  
@@ -35,7 +35,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
 If you have completed the above steps then you are all set to get started with the AzSDK.  
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 ### Getting started with Secure DevOps Kit for Azure  
 
 For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](Readme.md#complete-feature-set-of-secure-devops-kit-for-azure).  
@@ -52,7 +52,7 @@ By leveraging the extensive degree of automation that AzSDK has to offer, abilit
 
 As you get familiar with and begin to use the 'downstream' capabilities (CICD, Continuous Compliance, OMS support, etc.), the power of security automation and the seamless end-to-end experience that the AzSDK unleashes will become more evident.  
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 
 ### Complete feature set of Secure DevOps Kit for Azure
 
@@ -80,7 +80,7 @@ As you can see from the summary description above, the "Secure DevOps Kit for Az
 
 >  Note that, increasingly, in a DevOps culture, some of the roles listed in the left column above blend together. So, for instance, the same person who is writing code may also be involved in the CICD pipeline setup or the deployment stages of a solution. So please consider the roles above as functional responsibilities as opposed to hard segregations of stakeholders.
 
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 
 ### References
 gallery link  
@@ -90,5 +90,5 @@ vso extension link
 tcp portal  
 Support Alias
   
-[Back to top...](Readme.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
 
