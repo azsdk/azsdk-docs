@@ -150,7 +150,7 @@ Edit your copy of this file (e.g., MySetupParams.json) and change the location, 
 	    
 ![05_Setting_OMS_Workspace_OMSSetup_Json](../Images/05_Setting_OMS_Workspace_OMSSetup_Json.png)
 
-|       |      |
+|ParameterName|Comments|
 | ----- | ---- | 
 |omsWorkspaceLocation|location of the workspace, without space|
 |omsResourcegroup|name of the resource group where the OMS Workspace is in|
@@ -242,7 +242,7 @@ Just like the subscription param file above, edit the following values - resourc
 
 ![05_Setting_OMS_Workspace_App_Params_Json_Value](../Images/05_Setting_OMS_Workspace_App_Params_Json_Value.png)
 	
-|       |      |
+|ParameterName|Comments|
 | ----- | ---- | 
 |omsWorkspaceLocation|location of the workspace, without space|
 |omsResourcegroup|name of the resource group where the OMS Workspace is in|
