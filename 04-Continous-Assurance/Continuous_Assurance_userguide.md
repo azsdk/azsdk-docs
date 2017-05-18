@@ -8,6 +8,7 @@
 - [Fetch details of an existing Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
 - [FAQ](Continuous_Assurance_userguide.md#faq)
 
+-----------------------------------------------------------------
 ### Overview 
 The basic idea behind Continuous Assurance (CA) is to create the ability to check for "drift" from what is considered a secure snapshot of a system. Support for Continuous Assurance lets us treat security truly as a 'state' as opposed to a 'point in time' achievement. 
 
@@ -29,7 +30,7 @@ To get started, we need the following:
 3. *Target OMS workspace ID and sharedKey. (the OMS workspace can be in a different subscription, see note below)
 
 
-**Note**: CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace you will use to view the security state of your subscription and applications (If you don't have an OMS repository please follow the steps in [Setting up the AzSDK OMS Solution]() ). This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. (In gist, use whatever workspace that is being used to monitor other aspects like availability, performance, etc. for your application.)
+**\*Note**: CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace you will use to view the security state of your subscription and applications (If you don't have an OMS repository please follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Alert_Montoring_userguide.md) ). This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. (In gist, use whatever workspace that is being used to monitor other aspects like availability, performance, etc. for your application.)
 
 **Step-1: Setup**  
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
@@ -188,5 +189,5 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### FAQ
 #### Troubleshooting
-Please reach out to us by mailing [TBD] if you face any issues with this feature.  
+Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature.  
 [Back to top…](Continuous_Assurance_userguide.md#contents)

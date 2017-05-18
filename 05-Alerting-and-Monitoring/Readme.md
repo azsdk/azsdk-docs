@@ -10,6 +10,6 @@ The Alerting & Monitoring package will enhance our current capability of securit
 3. 	 Application centric view of alerts
 4. 	 Enable event flow into enterprise SIEM systems
 
-**Note**: Both of the above are available in the currently released bits. We have 'pilot-tested' the former with the AzSDK team[TBD]. For the latter, we expect that application teams will need some handholding to enable and start using the feature. We intend to enhance the usability and documentation in upcoming releases.
+**Note**: Both of the above are available in the currently released bits. We have 'pilot-tested' the former with the AzSDK DevOps team. For the latter, we expect that application teams will need some handholding to enable and start using the feature. We intend to enhance the usability and documentation in upcoming releases.
 
 To get more details, please refer [here](Alert_Montoring_userguide.md).

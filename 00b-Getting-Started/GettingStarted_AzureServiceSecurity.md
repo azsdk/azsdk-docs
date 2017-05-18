@@ -21,7 +21,7 @@ Basically, the AzSDK command is scanning all the Azure resources in the given su
 
 As each rule scan is conducted, the command prints out information about the specific security check being performed. 
 
-Once the execution is complete, it will open up the output folder for you. It has a single CSV file which provides the consolidated security report of all the resources that were evaluated. It also has a detailed LOG file for every resource that was evaluated. To make these logs more convenient to use, they are grouped under the separate folders as per the resource groups under which the resources themselved are organized in your subscription. 
+Once the execution is complete, it will open up the output folder for you. It has a single CSV file which provides the consolidated security report of all the resources that were evaluated. It also has a detailed LOG file for every resource that was evaluated. To make these logs more convenient to use, they are grouped under the separate folders as per the resource groups under which the resources themself are organized in your subscription. 
 
 ![00_AzSDK_ServiceSecurity_OP_Folder](../Images/00_AzSDK_ServiceSecurity_OP_Folder.png)  
 

@@ -304,7 +304,7 @@ Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Insights/AlertRules/Acti
 |Error Description	|Comments|
 | --------------  | ------- |
 |Error: Please enter valid subscription id!|	Provided subscription id is incorrect|
-|Error Occurred! Try running the command with -Debug option for more details. |Failed to setup the policy. Share the details of the errors to [TBD]|
+|Error Occurred! Try running the command with -Debug option for more details. |Failed to setup the policy. Share the details of the errors to AzSDKSupExt@microsoft.com|
 
 [Back to top…](Readme.md#contents)
 
@@ -411,9 +411,9 @@ We have covered for the below resource types so far:
 |Error Description	|Comments|
 | ----------------- |--------|
 |Error: Please enter valid subscription id! |Provided subscription id is incorrect|
-|Error Occurred! Try running the command with -Debug option for more details.	|Failed to setup the policy. Share the details of the errors to [TBD] |
+|Error Occurred! Try running the command with -Debug option for more details.	|Failed to setup the policy. Share the details of the errors to AzSDKSupExt@microsoft.com |
 
-Reach out to [TBD] for any further help  
+Reach out to AzSDKSupExt@microsoft.com for any further help  
 
 [Back to top…](Readme.md#contents)
 
