@@ -6,7 +6,7 @@ If you have just installed the Secure DevOps Kit for Azure (aka AzSDK) and are n
 
 Thereafter you can explore the individual features deeply using the table of contents below which has pointers to full help on individual features by area.
 
- If you have not installed the DevOps Kit yet, follow the instructions in the [installation guide](../00a-Setup/Readme.md) and then come back here.
+If you have not installed the DevOps Kit yet, follow the instructions in the [installation guide](../00a-Setup/Readme.md) and then come back here.
 
 The overall set of features in the Secure DevOps Kit for Azure are organized by the 6 areas as shown in the table below:  
 
