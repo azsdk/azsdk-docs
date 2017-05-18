@@ -29,7 +29,7 @@ To get started, we need the following:
 3. *Target OMS workspace ID and sharedKey. (the OMS workspace can be in a different subscription, see note below)
 
 
-***Note**: CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace you will use to view the security state of your subscription and applications (If you don't have an OMS repository please follow the steps in [Setting up the AzSDK OMS Solution]() ). This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. (In gist, use whatever workspace that is being used to monitor other aspects like availability, performance, etc. for your application.)
+**Note**: CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace you will use to view the security state of your subscription and applications (If you don't have an OMS repository please follow the steps in [Setting up the AzSDK OMS Solution]() ). This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. (In gist, use whatever workspace that is being used to monitor other aspects like availability, performance, etc. for your application.)
 
 **Step-1: Setup**  
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
