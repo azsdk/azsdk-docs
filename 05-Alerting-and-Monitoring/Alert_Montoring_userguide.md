@@ -217,18 +217,6 @@ The solution view contains multiple blades representing alerts, various types of
 	
 ![05_Setting_OMS_Workspace_Solution_View](../Images/05_Setting_OMS_Workspace_Solution_View.png)
 
-**8(c)** You can also see the "Saved Searches" installed if you click on the "Favorites" (star) icon just under the "Log Search" title in the Log Search pane:
-	
-![05_Setting_OMS_Workspace_Saved_Searches](../Images/05_Setting_OMS_Workspace_Saved_Searches.png)
-
-**8(d)** The Alerts that have been configured by the AzSDK OMS Solution Pack can be view in the "Alerts" tab in the Settings  pane:
-	
-![05_Setting_OMS_Workspace_Alert_View](../Images/05_Setting_OMS_Workspace_Alert_View.png)
-
-Alert Details, Schedule, EmailID, etc.
-	
-![05_Setting_OMS_Workspace_Edit_Alert_Rule](../Images/05_Setting_OMS_Workspace_Edit_Alert_Rule.png)
-
 **Step-9 (Ops Team):** AzSDK OMS Solution Pack - Application View(s)
 After setting up the Subscription view, one or more applications from *that* subscription can be configured for AzSDK monitoring. 
 
