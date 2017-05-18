@@ -1,10 +1,10 @@
 # OMS Solution for AzSDK
  ### Contents
-- Overview
-- Routing AzSDK events to OMS
-- Contents of the AzSDK OMS Solution
-- Setting up the AzSDK OMS Solution (Step by Step)
-- Next Steps
+- [Overview](Alert_Montoring_userguide.md#overview)
+- [Routing AzSDK events to OMS](Alert_Montoring_userguide.md#routing-azsdk-events-to-oms)
+- [Contents of the AzSDK OMS Solution](Alert_Montoring_userguide.md#contents-of-the-azsdk-oms-solution)
+- [Setting up the AzSDK OMS Solution (Step by Step)](Alert_Montoring_userguide.md#setting-up-the-azsdk-oms-solution-step-by-step)
+- [Next Steps](Alert_Montoring_userguide.md#next-steps)
 
 --------------------------
 ### Overview 
