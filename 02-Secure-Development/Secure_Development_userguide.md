@@ -145,7 +145,7 @@ This list continues to grow so best way to confirm is to look at the output of t
  ```PowerShell  
 Get-AzSDKSupportedResourceTypes  
  ```    
->  We regularly add SVT coverage for more Azure features. Please write to us (mailto:TBD) if you are looking for SVTs for a service not listed here.  
+>  We regularly add SVT coverage for more Azure features. Please write to us (mailto:AzSDKSupExt@microsoft.com) if you are looking for SVTs for a service not listed here.  
 
 #### What do the different columns in the status report mean?
 Status report will be in CSV format and will contain below columns 
@@ -168,10 +168,10 @@ Note that not all security checks are automatable. The 'non-automated' checks (t
 - 	Recommendation - Recommended steps to implement a fix for a failed control.  
 
 #### How can I find out what to do for controls that are marked as 'manual'?
-Refer [TBD] for details on the security controls defined by AzSDK for Azure features. You can also email to [TBD] or reach out to your security point of contact for any queries.  
+Refer [TBD] for details on the security controls defined by AzSDK for Azure features. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
 
 #### How can I implement fixes for the failed ones which have no auto-fix available?
-Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to [TBD] or reach out to your security point of contact for any queries.  
+Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
 
 #### Troubleshooting
 |Error	|Comments|

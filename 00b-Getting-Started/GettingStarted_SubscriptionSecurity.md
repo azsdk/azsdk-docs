@@ -7,7 +7,7 @@ This package adds-on to the exiting Azure capabilities like Security Center, IAM
 
 **Step 1**: Run the below command by replacing with your Azure SubscriptionId
 ```PowerShell  
-Get-AzSDKSubscriptionSecurityStatus [-SubscriptionId] <String>
+Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
 ```  
 
 You will start seeing output such as the following in the PowerShell console. You could see the realtime progress as it scans each security control on your subscription.
@@ -34,7 +34,7 @@ We can now examine the CSV file to see the control summary. (It opens by default
 
 ![00_AzSDK_Security_Status_OP_CSV](../Images/00_AzSDK_Security_Status_OP_CSV.PNG)  
 
-For controls that are marked 'Failed' or 'Verify', there is usually additional information present in the LOG file to help understand why a control was marked as 'Failed' (or what needs verification if it was marked as 'Verify'). For instance, below, it is telling me that there were more number of admins/owners were found in my subscription than the approved limit. (Just as FYI, all such policy/config info is present in JSON-based rule files that each command uses in the background. These files are downloaded 'live' from a central location for command execution. A copy of the same rule files are also present in the PS folder corresponding to each AzSDK module…which helps if, for some reason, the central server is not available.)  
+For controls that are marked 'Failed' or 'Verify', there is usually additional information present in the LOG file to help understand why a control was marked as 'Failed' (or what needs verification if it was marked as 'Verify'). For instance, below, it is telling me that there were more number of admins/owners were found in my subscription than the approved limit. (Just as FYI, all such policy/config info is present in JSON-based rule files that each command uses in the background. These files are downloaded 'live' from a central location for command execution. A copy of the same rule files are also present in the PS folder corresponding to each AzSDK module…which helps, if for some reason the central server is not available.)  
 
 ![00_AzSDK_Security_Status__OP_Log](../Images/00_AzSDK_Security_Status__OP_Log.png)  
 
