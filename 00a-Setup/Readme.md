@@ -16,7 +16,7 @@
    ![AzureRM Version](../Images/00_AzureRM_Version.png)  
    
 
-2. Install the AzSDK security PS module  
+2. Install the AzSDK security PS module:  
 	  
 ```PowerShell
   Install-Module AzSDK -Scope CurrentUser
