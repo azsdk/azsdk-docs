@@ -20,7 +20,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is
 
 ![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.png)
 
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)  
+[Back to top...](README.md#content)  
 
 ### Setting up Secure DevOps Kit for Azure
 1. You can follow the [installation guide](00a-Setup/Readme.md) and install the AzSDK on your system.  
@@ -35,7 +35,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted
 
 If you have completed the above steps then you are all set to get started with the AzSDK.  
 
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#content)
 ### Getting started with Secure DevOps Kit for Azure  
 
 For the first time users, we would encourage to go through this section to become more familiar with the toolkit. It wouldn't take more than 30 mins to go through the getting started guide. Thereafter, you can explore the individual features in-depth following section [*Complete feature set of Secure DevOps Kit for Azure*](README.md#complete-feature-set-of-secure-devops-kit-for-azure).  
@@ -52,20 +52,20 @@ By leveraging the extensive degree of automation that AzSDK has to offer, abilit
 
 As you get familiar with and begin to use the 'downstream' capabilities (CICD, Continuous Compliance, OMS support, etc.), the power of security automation and the seamless end-to-end experience that the AzSDK unleashes will become more evident.  
 
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#content) 
 
 ### Complete feature set of Secure DevOps Kit for Azure
 
 |Feature Area | Secure DevOps Kit Feature|
 |-------------|--------------------------|
-[Secure the subscription](01-Subscription-Security-(SS)/Readme.md) | <ul><li>Subscription Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li>  </li> <li>ARM Policy Configuration</li> <li>Azure Security Center Configuration</li><li>Access control (IAM) Hygiene</li>  </ul> </li></ul>
+[Secure the subscription](01-Subscription-Security-(SS)/Readme.md) | <ul><li>Subscription Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li><li>ARM Policy Configuration</li><li>Azure Security Center Configuration</li><li>Access control (IAM) Hygiene</li>  </ul> </li></ul>
 [Enable secure development](02-Secure-Development/Readme.md) | <ul><li>Security Verification Tests (SVT) </li><li>Security IntelliSense- VS Extension </li></ul>
 [Integrate security into CICD](03-Security-In-CICD/Readme.md) | <ul><li>AzSDK VSO Extension-executes SVTs in a CICD pipeline </li></ul>
 [Continuous Assurance](04-Continous-Assurance/Readme.md) | <ul><li>Security scanning via Azure Automation Runbooks</li></ul>
 [Alerting & Monitoring](05-Alerting-and-Monitoring/Readme.md) | <ul><li>OMS Solution for AzSDK containing:<ul><li>Security dashboard views covering security state/actions</li><li>Alerts with pertinent search queries</li></ul></li></ul>
 [Security Telemetry](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
 
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#content) 
 ### What do you want to use the secure devops kit for?
 As you can see from the summary description above, the "Secure DevOps Kit for Azure" (we will call it AzSDK to be brief hereafter), can be used by many different stakeholders. So depending on your role in the DevOps ecosystem, one or more of the below scenarios may apply to you. The skillset needed to use the capabilities of the kit and the prerequisites you need to have on your machine will vary based on your scenario. Here are a few sample stakeholders and some points about *how* they may try to use the AzSDK:  
 
@@ -80,7 +80,7 @@ As you can see from the summary description above, the "Secure DevOps Kit for Az
 
 >  Note that, increasingly, in a DevOps culture, some of the roles listed in the left column above blend together. So, for instance, the same person who is writing code may also be involved in the CICD pipeline setup or the deployment stages of a solution. So please consider the roles above as functional responsibilities as opposed to hard segregations of stakeholders.
 
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#content) 
 
 ### References
 - AzSDK Module <a href="https://www.powershellgallery.com/packages/AzSDK/">@PSGallery</a>
@@ -89,5 +89,5 @@ As you can see from the summary description above, the "Secure DevOps Kit for Az
 - Visual Studio Online CICD Build/Release Extension - Private (Please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request: Enable AsSDK extension for VSO">AzSDK Support</a>)
 - For any other issues or feedback please drop a mail to <a href="mailto:azsdksupext@microsoft.com">AzSDK Support</a>
   
-[Back to top...](README.md#secure-devops-kit-for-azure-azsdk)
+[Back to top...](README.md#content) 
 
