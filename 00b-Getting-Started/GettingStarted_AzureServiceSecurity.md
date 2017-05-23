@@ -7,7 +7,7 @@ It includes Security Verification Tests (SVT) for all the prominent features in 
 
 **Step 1**: Run the below command by replacing with your Azure SubscriptionId  
 ```PowerShell
-   Get-AzSDKAzureServicesSecurityStatus [-SubscriptionId] <String>
+   Get-AzSDKAzureServicesSecurityStatus [-SubscriptionId] <SubscriptionId>
 ```
 You can also narrow down your scan to a particular resource group or you can even make use of 'tags' parameter to scan only certain resources. More details can be found [here.](../02-Secure-Development/Secure_Development_userguide.md#how-do-i-check-for-specific-resource-groups-or-tagged-resources-only)  
 
