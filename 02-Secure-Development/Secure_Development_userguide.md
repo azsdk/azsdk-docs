@@ -219,31 +219,31 @@ Description about the attestation status values:
 #### What Azure resource types that can be checked?
 Below resource types can be checked for validating the security controls 
 
-|Resource Name	|Resource Type|
-| ------------- | ----------- |
-|AnalysisService |Microsoft.AnalysisServices/servers|
-|AppService |Microsoft.Web/sites|
-|Batch |Microsoft.Batch/batchAccounts|
-|CDN |Microsoft.Cdn/profiles|
-|CloudService |Microsoft.ClassicCompute/domainNames|
-|DataFactory |Microsoft.DataFactory/dataFactories|
-|DataLakeAnalytics |Microsoft.DataLakeAnalytics/accounts|
-|DataLakeStore |Microsoft.DataLakeStore/accounts|
-|ERvNet |Microsoft.Network/virtualNetworks|
-|EventHub |Microsoft.Eventhub/namespaces|
-|KeyVault |Microsoft.KeyVault/vaults|
-|LogicApps |Microsoft.Logic/Workflows|
-|NotificationHub |Microsoft.NotificationHubs/namespaces/notificationHubs|
-|ODG |Microsoft.Web/connectionGateways|
-|RedisCache |Microsoft.Cache/Redis|
-|Search |Microsoft.Search/searchServices|
-|ServiceBus |Microsoft.ServiceBus/namespaces|
-|ServiceFabric |Microsoft.ServiceFabric/clusters|
-|SQLDatabase |Microsoft.Sql/servers|
-|StorageAccount |Microsoft.Storage/storageAccounts|
-|TrafficManager |Microsoft.Network/trafficmanagerprofiles|
-|VirtualMachine |Microsoft.Compute/virtualMachines|
-|VirtualNetwork |Microsoft.Network/virtualNetworks|
+| Resource Name |Resource Type Name	|Resource Type|
+|-------| ------------- | ----------- |
+|Analysis Services |AnalysisService |Microsoft.AnalysisServices/servers|
+|App Services|AppService |Microsoft.Web/sites|
+|Batch accounts |Batch |Microsoft.Batch/batchAccounts|
+|CDN profiles |CDN |Microsoft.Cdn/profiles|
+|Cloud Services|CloudService |Microsoft.ClassicCompute/domainNames|
+|Data Factories |DataFactory |Microsoft.DataFactory/dataFactories|
+|Data Lake Analytics|DataLakeAnalytics |Microsoft.DataLakeAnalytics/accounts|
+|Data Lake Store|DataLakeStore |Microsoft.DataLakeStore/accounts|
+|Express Route-connected Virtual Networks|ERvNet |Microsoft.Network/virtualNetworks|
+|Event Hubs|EventHub |Microsoft.Eventhub/namespaces|
+|Key Vaults|KeyVault |Microsoft.KeyVault/vaults|
+|Logic Apps|LogicApps |Microsoft.Logic/Workflows|
+|Notification Hubs|NotificationHub |Microsoft.NotificationHubs/namespaces/notificationHubs|
+|On-premises Data Gateways |ODG |Microsoft.Web/connectionGateways|
+|Redis Caches |RedisCache |Microsoft.Cache/Redis|
+|Search services |Search |Microsoft.Search/searchServices|
+|Service Bus |ServiceBus |Microsoft.ServiceBus/namespaces|
+|Service Fabric clusters |ServiceFabric |Microsoft.ServiceFabric/clusters|
+|SQL Databases|SQLDatabase |Microsoft.Sql/servers|
+|Storage Accounts|StorageAccount |Microsoft.Storage/storageAccounts|
+|Traffic Manager profiles |TrafficManager |Microsoft.Network/trafficmanagerprofiles|
+|Virtual Machines|VirtualMachine |Microsoft.Compute/virtualMachines|
+| Virtual Networks|VirtualNetwork |Microsoft.Network/virtualNetworks|
 
 This list continues to grow so best way to confirm is to look at the output of the following command:  
  ```PowerShell  
