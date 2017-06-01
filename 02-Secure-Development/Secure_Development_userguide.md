@@ -241,6 +241,7 @@ Below resource types can be checked for validating the security controls
 |ServiceFabric |Microsoft.ServiceFabric/clusters|
 |SQLDatabase |Microsoft.Sql/servers|
 |StorageAccount |Microsoft.Storage/storageAccounts|
+|TrafficManager |Microsoft.Network/trafficmanagerprofiles|
 |VirtualMachine |Microsoft.Compute/virtualMachines|
 |VirtualNetwork |Microsoft.Network/virtualNetworks|
 
