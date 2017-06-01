@@ -126,7 +126,7 @@ To host all the Continuous Assurance artifacts
 - Storage account (Format : azsdkYYYYMMDDHHMMSS) :- To store the daily results of CA scans. The storage account is named with a timestamp-suffix applied to 'azsdk'(e.g. azsdk20170420111140)
 - Azure AD App and Service Principal :- This is used as the runtime identification of the automation runbook. Adds SPN to 'Reader' role on the subscription and contributor role on the resource group containing Automation Account.
 - Automation Account (Name : AzSDKContinuousAssurance) :- Creates the following assets within the Automation Account,
-   - Runbook (Name : Continuous_Compliance_Runbook) - To download/update Azure/AzSDK modules and scan subscription/app resource groups  
+   - Runbook (Name : Continuous_Assurance_Runbook) - To download/update Azure/AzSDK modules and scan subscription/app resource groups  
    - Variables 
       - AppResourceGroupNames 
       - OMSWorkspaceId 
@@ -175,8 +175,13 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 2. Run the '**Remove-AzSDKContinuousAssurance**' command as below. 
 
 ```PowerShell
-Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
+Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorageReports] 
 ```
+|Param Name |Purpose |Required?	|Default value	|Comments|
+|-----|-----|-----|----|-----|
+|SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
+|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete whole storage container where reports are stored. |FALSE |None||	
+
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
