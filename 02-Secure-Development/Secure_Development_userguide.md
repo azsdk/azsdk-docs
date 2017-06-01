@@ -222,22 +222,27 @@ Below resource types can be checked for validating the security controls
 |Resource Name	|Resource Type|
 | ------------- | ----------- |
 |AnalysisService |Microsoft.AnalysisServices/servers|
-|AppService 	|Microsoft.Web/sites|
-|Batch 	|Microsoft.Batch/batchAccounts|
-|DataFactory 	|Microsoft.DataFactory/dataFactories|
-|DataLakeAnalytics 	|Microsoft.DataLakeAnalytics/accounts|
-|DataLakeStore 	|Microsoft.DataLakeStore/accounts|
-|ERvNet 	|Microsoft.Network/virtualNetworks|
-|EventHub 	|Microsoft.Eventhub/namespaces|
-|KeyVault 	|Microsoft.KeyVault/vaults|
-|LogicApps 	|Microsoft.Logic/Workflows|
-|NotificationHub 	|Microsoft.NotificationHubs/namespaces/notificationHubs|
-|Search 	|Microsoft.Search/searchServices|
-|ServiceBus 	|Microsoft.ServiceBus/namespaces|
-|SQLDatabase 	|Microsoft.Sql/servers|
-|StorageAccount 	|Microsoft.Storage/storageAccounts|
-|VirtualMachine 	|Microsoft.Compute/virtualMachines|
-|VirtualNetwork 	|Microsoft.Network/virtualNetworks|
+|AppService |Microsoft.Web/sites|
+|Batch |Microsoft.Batch/batchAccounts|
+|CDN |Microsoft.Cdn/profiles|
+|CloudService |Microsoft.ClassicCompute/domainNames|
+|DataFactory |Microsoft.DataFactory/dataFactories|
+|DataLakeAnalytics |Microsoft.DataLakeAnalytics/accounts|
+|DataLakeStore |Microsoft.DataLakeStore/accounts|
+|ERvNet |Microsoft.Network/virtualNetworks|
+|EventHub |Microsoft.Eventhub/namespaces|
+|KeyVault |Microsoft.KeyVault/vaults|
+|LogicApps |Microsoft.Logic/Workflows|
+|NotificationHub |Microsoft.NotificationHubs/namespaces/notificationHubs|
+|ODG |Microsoft.Web/connectionGateways|
+|RedisCache |Microsoft.Cache/Redis|
+|Search |Microsoft.Search/searchServices|
+|ServiceBus |Microsoft.ServiceBus/namespaces|
+|ServiceFabric |Microsoft.ServiceFabric/clusters|
+|SQLDatabase |Microsoft.Sql/servers|
+|StorageAccount |Microsoft.Storage/storageAccounts|
+|VirtualMachine |Microsoft.Compute/virtualMachines|
+|VirtualNetwork |Microsoft.Network/virtualNetworks|
 
 This list continues to grow so best way to confirm is to look at the output of the following command:  
  ```PowerShell  
