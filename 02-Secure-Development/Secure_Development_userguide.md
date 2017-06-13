@@ -149,7 +149,8 @@ AzSDK helps with attestation by letting an application owner capture their respo
 To attest subscription scan controls, run the below command
  ```PowerShell  
 $subscriptionId = <Your SubscriptionId>
-Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -AttestControls NotAttested
+Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -AttestControls NotAttested -DoNotOpenOutputFolder  
+ 
  ``` 
  This command would start the attestation workflow immediately after completing the latest subscription scan. 
  It would show all the relevant information required during attestation like, control severity, description etc. as higlighted in the yellow boxes in the below picture.
