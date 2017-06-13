@@ -8,7 +8,7 @@
 - [Execute SVTs for specific resource groups (or tagged resources)](Secure_Development_userguide.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for specific resource](Secure_Development_userguide.md#execute-svts-for-specific-resource)
 - [Execute SVTs for specific resource type](Secure_Development_userguide.md#execute-svts-for-specific-resource-type)
-- [Attest SVTs controls](Secure_Development_userguide.md#attest-svts-controls)
+- [Attest SVT controls](Secure_Development_userguide.md#attest-svt-controls)
 - [FAQs](Secure_Development_userguide.md#faqs)
 ### [Express Route-connected Virtual Networks (ER-vNet)](Secure_Development_userguide.md#express-route-connected-virtual-networks-er-vnet-1)
 
@@ -117,84 +117,135 @@ The parameters required are:
 
 [Back to top…](Secure_Development_userguide.md#contents)
 
-### Attest SVTs controls
+### Attest SVT controls
 
-Helps address scenarios such as:
-- Control result is **Verify** and attestation has to be performed and recorded
-- Control result is **Failed** and one of the following scenarios applies:
-  - Application team had other mitigations in place or the risk is not significant (NotAnIssue)
-  - Application team understands the risk but is unable to fix it at present (Exception)
+#### Overview
 
-AzSDK helps with attestation by letting an application owner capture their response to the above situation via a 'record attestation' feature. The response is combined with the actual control status to derive an effective control status that is used for downstream consumption. A text justification is also recorded along with data about who performed the attestation. This information is saved in the subscription and used for subsequent AzSDK scans.
+The attestation feature empowers users to support scenarios where human input is required to augment or override the default control 
+evaluation status from the AzSDK. These may be situations such as:
 
-> **Note**: The attested data for controls would be persisted under the user subscription itself, inside a Resource Group called `AzSDKRG`.
+- the AzSDK has generated the list of 'Owners' or 'Contributors' for a resource but someone needs to have a look at the list and ratify that 
+these are indeed the correct people, or
+- the AzSDK has marked a control as failed. However, given the additional contextual knowledge, the application owner wants to ignore the control failure, or
+- the AzSDK has marked a control as failed and the issue is a valid security concern. However, due to other constraints, 
+the application owner wants to defer the fix for later and request a risk ack.
 
-1. Permissions required for Attestation
-   + AzSDKRG is already present
-     + User needs to have owner access on *AzSDKRG* ResourceGroup 
-   + AzSDKRG is not present
-     + User need to have owner access on the Subscription. The command used to Attest the controls, would create the required resources under *AzSDKRG* resource group
-2. Start Attestation
+In all such situations, there is usually a control result that is based on the technical evaluation (e.g., Verify, Failed, etc.) that has to 
+be combined with the user's input in order to determine the overall or effective control result. The user is said to have 'attested' such controls 
+and, after the process is performed once, AzSDK remembers it and generates an effective control result for subsequent control scans _until_ there 
+is a state change.
+
+The attestation feature is implemented via a new switch called *AttestControls* which can be specified in any of the standard security scan cmdlets
+of the AzSDK. When this switch is specified, the AzSDK first performs a scan of the target resource(s) like it is business as usual and, once
+the scan is complete, it enters a special interactive 'attest mode' where it walks through each resource and relevant attestable controls
+and captures inputs from the user and records them in the subscription (along with details about the person who attested, the time, etc.). 
+After this, for all future scans on the resource(s), AzSDK will show the effective control evaluation results. Various options are provided to support
+different attestation scenarios (e.g., expiry of attestations, edit/change/delete previous attestations, attest only a subset of controls, etc.). 
+These are described below. Also, for 'stateful' controls (e.g., "are these the right IP addresses to permit on the firewall?"), the attestation
+state is auto-reset if there is any change in 'state' (e.g., someone added a new IP to the list).
+
+Lastly, due to the governance implications, the ability to attest controls is available to a subset of subscription users. This is described in
+the permissions required section below. 
+
+#### Starting attestation
       
-      Subscription scan command and Azure services scan command now support a new switch called **AttestControls** with three possible options as described in the below table:
+The AzSDK subscription and services scan cmdlets now support a new switch called *AttestControls*. When this switch is specified, 
+AzSDK enters 'attest' mode immediately after a scan is completed. This ensures that attestation is done on the basis of the most current
+control statuses.
 
-      |Attestation Option|Description|
-      |------------------|-----------|
-      |NotAttested|It only shows those controls which doesnt have any attestation associated with.|
-      |AlreadyAttested|It only shows those controls which doesnt have any attestation associated with. You could re-attest or clear the current attestation.|
-      |All|It shows all the controls which are attestable*.|
+All controls that have a technical evaluation status of anything other than 'Passed' (i.e., 'Verify' or 'Failed' or 'Manual' or 'Error') are considered 
+valid targets for attestation.
 
-> **Note**: All the controls whose current execution status is not **Passed** are attestable.
+To manage attestation flow effectively, 4 options are provided for the *AttestControls* switch to specify which subset of controls to target for attestation. These are described below:
 
-To attest subscription scan controls, run the below command
+|Attestation Option|Description|
+|------------------|-----------|
+|NotAttested|Attest only those controls which have not been attested yet.|
+|AlreadyAttested|Attest those controls which have past attestations. To re-attest or clear attestation.|
+|All|Attest all controls which can be attested (including those that have past attestations).|
+|None|N/A.|
+
+For example, to attest controls corresponding to a subscription security scan, run the command below:
  ```PowerShell  
 $subscriptionId = <Your SubscriptionId>
 Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -AttestControls NotAttested -DoNotOpenOutputFolder  
  
  ``` 
- This command would start the attestation workflow immediately after completing the latest subscription scan. 
- It would show all the relevant information required during attestation like, control severity, description etc. as higlighted in the yellow boxes in the below picture.
- It would also show all previous attested details, if the current control already have an associated attestation.
+As shown in the images, the command enters 'attest' mode after completing a scan and does the following:
+
+a) For each resource that was scanned, if a control is a target for attestation, control details (such as description, severity, etc.) and 
+the current evaluation result are displayed (to help the user)
+b) The user gets to choose whether they want to attest the control
+c) If the user chooses to attest, attestation details (attest status, justification, etc.) are captured
+d) This is repeated for all attestable controls and each resource.
+
+ Sample attestation workflow in progress:
  ![02_SVT_Attest_1](../Images/02_SVT_Attest_1.png) 
  
- After the whole attestation workflow is completed, it would show the overall summary at the end as shown below
+ Sample summary of attestation after workflow is completed:
  ![02_SVT_Attest_2](../Images/02_SVT_Attest_2.png) 
 
- The attestation details including justification are also captured in the CSV file as shown below:
+
+ Attestation details corresponding to each control (e.g., justification, user name, etc.) are also captured in the CSV file as shown below:
  ![02_SVT_Attest_3](../Images/02_SVT_Attest_3.png) 
 
- Attestation of Azure services scan controls is also very much similar, you could run the below command to attest the failed controls for a specific resource under a resource group
+ The attestation process for application resources is similar to that for subscriptions. For example, the command below shows how to 
+trigger attestation for a specific resource in an RG:
  ```PowerShell  
 $subscriptionId = <Your SubscriptionId>
 $resourceGroupName = <ResourceGroup Name>
 $resourceName = <ResourceName>
-Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName -AttestControls NotAttested
+Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName -AttestControls NotAttested -DoNotOpenOutputFolder 
  ``` 
 
- Rest of the workflow is very similar to subscription scan attestion workflow as shown above.
 
- 3. Control Attestation table
-    Below table details out of all the possible combinations of control attestations possible through this workflow in AzSDK
+If, for any reason, the attestations of previously attested controls need to be revisited, it can be done by simply changing the 'NotAttested' flag in the commands above with 'AlreadyAttested'.
 
 
-|Control Scan Result  |Attestation Status |Attested Status|Requires Justification |Comments |
+#### How AzSDK determines the effective control result
+
+During the attestation workflow, the user gets to provide attestation (sub)status for each control attested. This basically represents the user's attestation preference w.r.t.
+a specific control (i.e., whether the user wants to override/augment the AzSDK status and treat the control as passed or whether the user agrees with the AzSDK status but wants to defer
+fixing the issue for the time being):
+
+|Attestation Status | Description|
+|-------------------|------------|
+|None               | There is no attestation done for a given control. User can select this option duriung the workflow to skip the attestation|
+|NotAnIssue         | User has verified the control data and attesting it as not a issue with proper justification|
+|NotFixed           | User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan|
+
+
+The following table shows the complete 'state machine' that is used by AzSDK to support control attestation. 
+The columns are described as under:
+- 'Control Scan Result' represents the technical evaluation result 
+- 'Attestation Status' represents the user choice from an attestation standpoint
+- 'Effective Status' reflects the effective control status (combination of technical status and user input)
+- 'Requires Justification' indicates whether the corresponding row requires a justification comment
+- 'Comments' outlines an example scenario that would map to the row
+
+
+
+|Control Scan Result  |Attestation Status |Effective Status|Requires Justification |Comments |
 |---------------------------|-------------------|---------------|-----------------------|---------|
-|Passed                     |None               |Passed         |No                     |No need for attestation|
-|Verify                     |None	            |Verify         |No                     |Data that manually attested from logs.e.g SQL DB firewall IP's|
-|Verify                     |NotAnIssue         |Passed         |Yes                    |Data has been validated. No issue with the controls.e.g.SQL firewall IP's scenario, where all are legitimate IPs|
-|Verify                     |NotFixed           |RiskAck        |Yes                    |Data has been validated and it has to be fixed in future. e.g. , Found deprecated account on your subscription, need to check the dependecies before removal|
-|Failed                     |None	            |Failed         |No                     |Fixable control no need of attestation. e.g. enbaling auditing on your SQL DB|	 
-|Failed                     |NotAnIssue         |Passed         |Yes                    |Control not relevant as per business needs.e.g turn on backup for your non critical AppService|
-|Failed                     |NotFixed           |RiskAck        |Yes                    |e.g.Enabling AAD auth for your AppService|
-|Error                      |None	            |Error          |No                     |Manually verification of the control is still pending|
-|Error                      |NotAnIssue         |Passed         |Yes                    |Manually verified the control and passing as required by security guidelines|
-|Error                      |NotFixed           |RiskAck        |Yes                    |Manually verified the control and issue has to be fixed|
-|Manual                     |None	            |Manual         |No                     |Manually verification of the control is still pending| 
-|Manual                     |NotAnIssue         |Passed         |Yes                    |Manually verified the control and passing as required by security guidelines|
-|Manual                     |NotFixed           |RiskAck        |Yes                    |Manually verified the control and issue has to be fixed|
+|Passed                     |None               |Passed         |No                     |No need for attestation. Control has passed outright!|
+|Verify                     |None	            |Verify         |No                     |User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.|
+|Verify                     |NotAnIssue         |Passed         |Yes                    |User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.|
+|Verify                     |NotFixed           |RiskAck        |Yes                    |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Failed                     |None	            |Failed         |No                     |Control has failed but has not been attested. Perhaps a fix is in the works...|	 
+|Failed                     |NotAnIssue         |Passed         |Yes                    |Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service|
+|Failed                     |NotFixed           |RiskAck        |Yes                    |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
+|Error                      |None	            |Error          |No                     |There was an error during evaluation. Manual verification is needed and is still pending.|
+|Error                      |NotAnIssue         |Passed         |Yes                    |There was an error during evaluation. However, control has been manually verified by the user.|
+|Error                      |NotFixed           |RiskAck        |Yes                    |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Manual                     |None	            |Manual         |No                     |The control is not automated and has to be manually verified. Verification is still pending.| 
+|Manual                     |NotAnIssue         |Passed         |Yes                    |The control is not automated and has to be manually verified. User has verified that there's no security concern.|
+|Manual                     |NotFixed           |RiskAck        |Yes                    |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
 
 
-Description about the control results:
+
+<br/>
+
+The following table describes the possible effective control evaluation results (taking attestation into consideration).
 
 |Control Scan Result| Description|
 |-------------------|------------|
@@ -205,15 +256,14 @@ Description about the control results:
 |Manual             |No automation as of now. User needs to validate manually|
 |RiskAck            |Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control|
 
-Description about the attestation status values:
+<br/>
 
-|Attestation Status | Description|
-|-------------------|------------|
-|None               | There is no attestation done for a given control. User can select this option duriung the workflow to skip the attestation|
-|NotAnIssue         | User has verified the control data and attesting it as not a issue with proper justification|
-|NotFixed           | User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan|
+##### Permissions required for Attestation:
+The attestation feature internally stores state in a storage account in a resource group called AzSDKRG. (This RG is also used by other features in the AzSDK for stateful scenarios.)
+If this RG has already been created, then a user needs 'Owner' permission to it.
+If this RG is not present (as is possible when none of the scenarios that internally create this RG have been run yet), then the user needs 'Owner' or 'Contributor' permission to the subscription.
 
-
+> **Note**: The attestation data stored in the AzSDKRG is opaque from an end user standpoint. Any attempts to access/change it may impact correctness of security evaluation results.
 
 
 ### FAQs
