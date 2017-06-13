@@ -195,7 +195,7 @@ trigger attestation for a specific resource in an RG:
 $subscriptionId = <Your SubscriptionId>
 $resourceGroupName = <ResourceGroup Name>
 $resourceName = <ResourceName>
-Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName -AttestControls NotAttested -DoNotOpenOutputFolder 
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName -AttestControls NotAttested -DoNotOpenOutputFolder 
  ``` 
 
 
@@ -252,7 +252,7 @@ The following table describes the possible effective control evaluation results 
 |Passed             |Fully automated control. Azure resource/subscription configuration meeting the AzSDK control requirement|
 |Verfiy             |Semi automated control. It would emit the required data in the log files which can be validated by the user/auditor.e.g. SQL DB IP ranges|
 |Failed             |Fully automated contorl. Azure resource/subscription configuration not meeting the AzSDK control requirement|
-|Error              |Automated contorl. Currently failing due to some exception. User needs to validate manually|
+|Error              |Automated control. Currently failing due to some exception. User needs to validate manually|
 |Manual             |No automation as of now. User needs to validate manually|
 |RiskAck            |Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control|
 
