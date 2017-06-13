@@ -256,9 +256,8 @@ The following table describes the possible effective control evaluation results 
 |Manual             |No automation as of now. User needs to validate manually|
 |RiskAck            |Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control|
 
-<br/>
 
-##### Permissions required for Attestation:
+#### Permissions required for Attestation:
 The attestation feature internally stores state in a storage account in a resource group called AzSDKRG. (This RG is also used by other features in the AzSDK for stateful scenarios.)
 If this RG has already been created, then a user needs 'Owner' permission to it.
 If this RG is not present (as is possible when none of the scenarios that internally create this RG have been run yet), then the user needs 'Owner' or 'Contributor' permission to the subscription.
