@@ -1,6 +1,6 @@
 # Installation Guide
 
-**Release Version: 2.2.xx**  
+**Release Version: 2.3.xx**  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
 	
