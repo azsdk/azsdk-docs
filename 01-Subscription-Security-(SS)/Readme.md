@@ -6,38 +6,38 @@
 
 ### [AzSDK: Subscription Health Scan](Readme.md#azsdk-subscription-health-scan-1)
 - [Overview](Readme.md#overview)
-- [Subscription Health scan - In-depth](Readme.md#subscription-health-scan---in-depth)
-- [Execute subscription health scan command](Readme.md#execute-subscription-health-scan-command)
-- [Target specific controls of subscription health scan](Readme.md#target-specific-controls-of-subscription-health-scan)
+- [Subscription Health Scan - What is covered?](Readme.md#subscription-health-scan---in-depth)
+- [Scan the security health of your subscription](Readme.md#execute-subscription-health-scan-command)
+- [Target specific controls during a subscription health scan](Readme.md#target-specific-controls-of-subscription-health-scan)
 - [FAQs](Readme.md#faqs)
 
 ### [AzSDK: Subscription Security Provisioning](Readme.md#azsdk-subscription-security-provisioning-1)
 - [Overview](Readme.md#overview-1)
-- [Execute subscription security provisioning command](Readme.md#execute-subscription-security-provisioning-command)
-- [Remove AzSDK subscription security provisioning from your subscription](Readme.md#remove-azsdk-subscription-security-provisioning-from-your-subscription)
+- [Provision security for your subscription](Readme.md#execute-subscription-security-provisioning-command)
+- [Remove previously provisioned security settings from your subscription](Readme.md#remove-azsdk-subscription-security-provisioning-from-your-subscription)
 - [FAQs](Readme.md#faqs-1)
 
-### [AzSDK: Subscription AccessControl (IAM)](Readme.md#azsdk-subscription-accesscontrol-iam-1)
+### [AzSDK: Subscription AccessControl Provisioning](Readme.md#azsdk-subscription-accesscontrol-iam-1)
 - [Overview](Readme.md#overview-2)
-- [Setup pre-approved mandatory accounts using AzSDK](Readme.md#setup-pre-approved-mandatory-accounts-using-azsdk)
-- [Remove pre-approved mandatory accounts using AzSDK](Readme.md#remove-pre-approved-mandatory-accounts-using-azsdk)
+- [Setup pre-approved mandatory accounts](Readme.md#setup-pre-approved-mandatory-accounts-using-azsdk)
+- [Remove pre-approved mandatory accounts](Readme.md#remove-pre-approved-mandatory-accounts-using-azsdk)
 
 ### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-suscription-security-alerts)
 - [Overview](Readme.md#overview-3)
-- [Setup AzSDK alert configuration for your subscription](Readme.md#setup-azsdk-alert-configuration-for-your-subscription)
-- [Remove AzSDK alert configuration for your subscription](Readme.md#remove-azsdk-alert-configuration-for-your-subscription)
-- [Setup AzSDK alert for a specific resource group](Readme.md#setup-azsdk-alert-for-a-specific-resource-group)
+- [Configure alerts in your subscription](Readme.md#setup-azsdk-alert-configuration-for-your-subscription)
+- [Remove previously configured alerts from your subscription](Readme.md#remove-azsdk-alert-configuration-for-your-subscription)
+- [Configure alerts scoped to specific resource groups](Readme.md#setup-azsdk-alert-for-a-specific-resource-group)
 - [FAQs](Readme.md#faqs-2)
 
 ### [AzSDK: Azure Security Center (ASC) configuration](Readme.md#azsdk-azure-security-center-asc-configuration-1)
 	
-- [Setup Azure Security Center (ASC) on your subscription as per AzSDK security standards](Readme.md#setup-azure-security-center-asc-on-your-subscription-as-per-azsdk-security-standards)
+- [Setup Azure Security Center (ASC) for your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription-as-per-azsdk-security-standards)
 
 ### [AzSDK: Suscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
 
 - [Overview](Readme.md#overview-4)
-- [Setup AzSDK ARM policies on your subscription](Readme.md#setup-azsdk-arm-policies-on-your-subscription)
-- [Remove AzSDK ARM policies from your subscription](Readme.md#remove-azsdk-arm-policies-from-your-subscription)
+- [Setup ARM policies for your subscription](Readme.md#setup-azsdk-arm-policies-on-your-subscription)
+- [Remove ARM policies from your subscription](Readme.md#remove-azsdk-arm-policies-from-your-subscription)
 - [FAQs](Readme.md#faqs-3)
 
 ----------------------------------------------------------
@@ -45,22 +45,21 @@
 
 ### Overview
  
-The subscription health check script runs a set of automated steps to examine a subscription and flags off conditions that are indications that your subscription may be at a higher risk due to various security issues, misconfigurations or obsolete artifacts/settings. 
+The subscription health check script runs a set of automated scans to examine a subscription and flags 
+off conditions that are indications that your subscription may be at a higher risk due to various security 
+issues, misconfigurations or obsolete artifacts/settings. 
 
 The following aspects of security are checked:
-1. 	 Access control (IAM) configuration - IAM-related issues in the subscription
-2. 	 Alert configuration - configuration of activity alerts for sensitive actions across various service types
-3. 	 Azure Security Center configuration - configuration of ASC (security point of contact, various policy settings, etc.)
+1. 	 Access control configuration - identity and access management related issues in the subscription
+2. 	 Alert configuration - configuration of activity alerts for sensitive actions for the subscription and various cloud resources
+3. 	 Azure Security Center configuration - configuration of ASC (security point of contact, various ASC policy settings, etc.)
 4. 	 ARM Policy and Resource Locks configuration - presence of desired set of ARM policy rules and resource locks. 
 
 [Back to top…](Readme.md#contents)
-### Subscription Health Scan - In-depth  
+### Subscription Health Scan - What is covered?  
  
-The subscription health check script runs a set of automated steps to examine a subscription and flags off conditions that are indications that your subscription may be at a higher risk due to various security issues, misconfigurations or obsolete artifacts/settings. 
-
-The health check script reports progress to the console and summarizes findings at the end. Command outputs control evaluation summary to a CSV file and the details of each control evaluation to a LOG file (under "%LOCALAPPDATA%\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName] ..." folder).
-
-The various security checks performed by the health check script are listed in the table below. The subsequent section explains how to interpret output in the LOG file and how to resolve issues.
+The various security checks performed by the health check script are listed in the table below. 
+The subsequent section explains how to interpret output in the LOG file and how to resolve issues.
 
 |Security rule checked   | Rationale|
 |------------ | -------------|
@@ -82,9 +81,10 @@ The various security checks performed by the health check script are listed in t
 |Do no use any classics resources on a subscription.|You should try to use new AzureRM resources as it would provide better access control and auditing features| 
  
 [Back to top…](Readme.md#contents)
-### Execute subscription health scan command 
+### Scan the security health of your subscription 
 
-The subscription health check script can be run using the following command by replacing with your subscriptionId
+The subscription health check script can be run using the command below after replacing `<SubscriptionId`> 
+ with your subscriptionId
 ```PowerShell
 Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
 ```
@@ -92,22 +92,29 @@ The parameters used are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription 
 
 You need to have at least **Reader** role at the subscription scope to run this command. 
+If you also have access to read the Graph in your tenant, the RBAC information and checking will be richer.
 
-> **Note**: The step that checks for presence of Management Certificates will fail while running as a "Reader". Unfortunately, the only way to check for those is if you are running as a Co-Administrator - which is itself a bad practice. This is a limitation of the ASM/ARM API and has been reported to the PG.
+
+> **Note**: The check for presence of Management Certificates will cannot be performed just with "Reader" privilege. 
+> This check only works if you are running as a Co-Administrator - which is itself a bad practice. Hence, in most
+> situations, the outcome of this will be listed as 'Verify'.
 
 [Back to top…](Readme.md#contents)
-### Target specific controls of subscription health scan
+### Target specific controls during a subscription health scan
 
-The subscription health check script support multiple parameters as specified below
-The parameters used are:
+The subscription health check supports multiple parameters as specified below:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription 
-- FilterTags  - Comma seperated tags to filter the security controls. e.g.: RBAC, SOX, AuthN etc.
-- ExcludeTags - Comma seperated tags to exclude the security controls. e.g.: RBAC, SOX, AuthN etc.
-- ControlIds  - Comma seperated AzSDK control id's to filter the security controls. e.g. Azure_Subscription_AuthZ_Limit_Admin_Owner_Count.
+- FilterTags  - Comma-seperated tags to filter the security controls. E.g., RBAC, SOX, AuthN, etc.
+- ExcludeTags - Comma-seperated tags to exclude the security controls. E.g., RBAC, SOX, AuthN, etc.
+- ControlIds  - Comma-seperated AzSDK control id's to filter security controls. E.g., Azure_Subscription_AuthZ_Limit_Admin_Owner_Count, Azure_Subscription_Config_Azure_Security_Center, etc.
 ```PowerShell
 Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> [-ControlIds <ControlIds>] [-FilterTags <FilterTags>] [-ExcludeTags <ExcludeTags>]
 ```
-These different parameters would enable you to execute subscription health scan in different flavours, scan only SOX relevant controls or AuthZ related controls or exclude best practices or even execute a specifc control. Below are some examples:
+These different parameters would enable you to execute different 'flavors' of subscription health scan. 
+For example, they will let you scan only SOX relevant controls or AuthZ related controls or 
+exclude best practices or even execute one specifc control. 
+<!-- #TODO# Ability to check for High and Critical only controls-->
+Here are some examples:
 
 1. Execute only SOX related controls
 ```PowerShell
@@ -131,27 +138,27 @@ Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> -ControlIds
 You can clean up unwanted admins/owners through portal by following below instructions:
 1. Cleaning up classic administrators 
     * Logon to [https://manage.windowsazure.com/](https://manage.windowsazure.com/)
-	* Navigate to the Settings tab followed by click ad ministrators tab to list all the administrators as shown below  
+	* Navigate to the Settings tab followed by click administrators tab to list all the administrators as shown below  
       ![Remove Classic Adminstrator_1](../Images/01_Remove_Classic_Adminstrator_1.png)
-    * Select the account that has be removed and click on the Remove icon on the bottom ribbon as show in the below figure  
+    * Select the account that has to be removed and click on the Remove icon on the bottom ribbon as show in the below figure  
       ![Remove Classic Adminstrator_2](../Images/01_Remove_Classic_Adminstrator_2.png)
-    * Perform this operation for all the accounts that has to be removed from the subscription.
+    * Perform this operation for all classic admin accounts that have to be removed.
 
 2. Cleaning up subscription owners  
     * Logon to [https://portal.azure.com/](https://portal.azure.com/)
     * Navigate to the below path for your subscription  
       ![Remove Subscription Owner](../Images/01_Remove_Subscription_Owner.png)
-    * Select the account that has to be removed and in the extended menu of each account row, you should see remove user button. This should remove the account from the subscription
-    * Perform the same operation on the account that has to be removed the subscription.
+    * Select the account that has to be removed and, in the extended menu of each account row, you should see remove user button. Clicking this should remove the account from the subscription
+    * Perform the same operation on all owners that have to be removed.
     
-#### How to clean up Management Certificates on a subscription?
+#### How to clean up Management Certificates from a subscription?
 You can clean up management certificates through portal by follwing below instructions:
 * Logon to [https://manage.windowsazure.com/](https://manage.windowsazure.com/)
-* Navigate to the Settings tab followed by click Management certificates tab to list all the certificates as shown below  
+* Navigate to the Settings tab and then select the Management Crtificates tab to list all the certificates as shown below  
      ![Remove Management Certificates_1](../Images/01_Remove_Management_Certificates_1.png)
-* Select the certificate that has be removed and click on the Delete button on the bottom ribbon as shown in the below   
+* Select the certificate that has be removed and click on Delete button on the bottom ribbon as shown below
      ![Remove Management Certificates_2](../Images/01_Remove_Management_Certificates_2.png)
-* Perform this operation for every management certificate on subscription.  
+* Perform this operation for every management certificate that has to be removed.  
 
 [Back to top…](Readme.md#contents)
 
@@ -159,60 +166,90 @@ You can clean up management certificates through portal by follwing below instru
 ## AzSDK: Subscription Security Provisioning
 
 ### Overview
-The Subscription Security (SS) Provisioning script is a master script that, in turn, invokes multiple other scripts to setup up all of the following in the target subscription:
+The Subscription Security Provisioning script is a master script that, in turn, invokes multiple other 
+scripts to setup up all of the following in the target subscription:
 - A set of mandatory accounts that are required for central scanning/audit/compliance functions.
-- A group of Azure activity alerts for activities deemed to be critical and high severity.
-- A baseline set of ARM Policies corresponding to certain actions that are considered insecure.
+- A group of subscription and resource activity alerts for activities with significant security implications.
+- A baseline set of ARM policies corresponding to certain actions that are considered insecure.
 - Default enterprise policy settings for Azure Security Center (ASC).
-- Security contact information (in Azure Security Center).
+- Security contact information in ASC.
 
 [Back to top…](Readme.md#contents)
-### Execute subscription security provisioning command
-The Subscription Security setup script can be run by providing the subscriptionID and security contact E-mails (comma separated values)
+### Provision security for your subscription
+The Subscription Security setup script can be run by providing the subscriptionID, security contact 
+E-mails (comma separated values) and a contact phone number.
 ```PowerShell
-Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactEmails <SecurityContactEmails>
+Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactEmails <SecurityContactEmails> -SecurityPhoneNumber <SecurityPoCPhoneNumber>
 ```
-When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such as alerts, RBAC, ARM policies, etc. Anything that is considered 'mandatory' is not removed.  
+When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
+as alerts, RBAC, ARM policies, etc.  
+
 
 [Back to top…](Readme.md#contents)
 ### Remove AzSDK subscription security provisioning from your subscription
-The subscription setup created by the above command can be removed by running:
+The subscription setup created by the provisioning command can be removed by running:
 ```PowerShell
 Remove-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -Tags <TagNames>
 ```
-This command cleans up all the configured AzSDK alerts. It also removes AzSDK IAM accounts and AzSDK ARM policies based on the specified tags. This command doesnt touch the Azure Security Center related settings.
+This command cleans up various security provisioning that was previously done using the Set-AzSDKSubscriptionSecurity 
+command such as alerts, access control (RBAC) settings, ARM policies, etc.
+
+This command does not effect the Azure Security Center related settings (whether they were previously configured
+by AzSDK or directly by the user).
+
+To remove access control related configuration, it is mandatory to use the '-Tags' parameter. If this
+parameter is not specified, no RBAC deprovisioning will be done. Typically you would want to specify
+the tags which were used when setting up RBAC. If you did not specify any tags during provisioning then,
+by default, only the accounts marked as 'Mandatory' would get provisioned. Typically, you should not have
+to remove those accounts but if you must you can do so using '-Tags "Mandatory"' in the command.
+
 
 [Back to top…](Readme.md#contents)
 ### FAQs
 
 #### Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?
-Yes, each of the components of the overall subscription provisioning setup can be individually run/controlled. 
+Yes, each of the components of the overall subscription provisioning setup can be individually 
+run/controlled. 
 You can run cmdlets in isolation for the following:
 1. RBAC roles/permissions
 2. Alerts
 3. ARM Policy
-4. Azure Security Center Configuration
+4. Azure Security Center configuration
 
 [Back to top…](Readme.md#contents)
 	
 ------------------------------------------------------------
-## AzSDK: Subscription AccessControl (IAM)
+## AzSDK: Subscription Access Control Provisioning
 
 ### Overview
-The subscription IAM provisioning script will setup certain permissions in the subscription that enable central security and compliance teams to perform automated scans and manual review/assessment activities in the subscription. This basically involves addition of some common accounts (service principal or security groups) to one or more roles in the subscription. The script also supporting provisioning of some optional accounts based on the scenarios that the subscription is used for.  
+The subscription access control provisioning script will setup certain permissions in the subscription 
+that enable central security and compliance teams to perform automated scans and manual review/assessment 
+activities in the subscription. This basically involves addition of some common accounts (service principals 
+or security groups) to one or more roles in the subscription. The script also supports provisioning of 
+some optional accounts based on the scenarios that the subscription is used for. (The specific accounts
+and the roles they are deployed into are configurable by the central security team in your organization.) 
 
 [Back to top…](Readme.md#contents)
-### Setup pre-approved mandatory accounts using AzSDK
-The subscription IAM provisioning script can be run using the following command (by specifying the subscriptionId for the subscription in which you want to provision the various roles):
+### Setup pre-approved mandatory accounts
+The subscription access control provisioning script can be run using the following command (by specifying 
+the subscriptionId for the subscription in which you want to provision the various roles):
 ```PowerShell
 Set-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> 
 ```
-The subscription IAM provisioning script ensures that certain central accounts and roles are setup in your subscription.
+The subscription access control provisioning script ensures that certain central accounts and roles are 
+setup in your subscription.
 
 [Back to top…](Readme.md#contents)
-### Remove pre-approved mandatory accounts using AzSDK
+### Remove previously provisioned accounts
 
-Accounts which are tagged as 'mandatory' cannot be removed via AzSDK. Only the other accounts can be removed by specifying a tag to indicate which ones.
+The Remove-AzSDKSubscriptionRBAC command can be used to remove access control (RBAC) settings that were
+previously provisioned using AzSDK.
+
+To remove access control related configuration, it is mandatory to use the '-Tags' parameter. If this
+parameter is not specified, no RBAC deprovisioning will be done. Typically you would want to specify
+the tags which were used when setting up RBAC. If you did not specify any tags during provisioning then,
+by default, only the accounts marked as 'Mandatory' would get provisioned. Typically, you should not have
+to remove those accounts but if you must you can do so using '-Tags "Mandatory"' in the command.
 
 Run the below command with the subscriptionId which you want to remove RBAC accounts from:
 ```PowerShell
@@ -221,11 +258,15 @@ Remove-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> -Tags <TagName>
 [Back to top…](Readme.md#contents)
 
 ----------------------------------------------------------
-## AzSDK: Suscription Security Alerts
+## AzSDK: Suscription Activity Alerts
 
 #### Subscription Activity Alerts (based on Azure Insights)
 
-> **Note**: The alerts setup covered on this page uses the native 'Insights-based' alerts mechanism offered by the Azure PG. In the 'Alerting & Monitoring' section, we also cover support for OMS-based alerts which enable similar scenarios (and more). We have found that both approaches are in use across LoB application teams.
+> **Note**: The alerts setup covered on this page uses the native 'Insights-based' alerts mechanism 
+offered by the Azure PG. In the 'Alerting & Monitoring' section, we also cover support for OMS-based 
+alerts which enable similar scenarios (and more). We have found that both approaches are in use across 
+LoB application teams.
+
 ### Overview
 This module helps setup and manage subscription and resource activity-based alerts in your Azure subscription. These alerts can be configured against actions that get recorded in Azure Audit Logs. These activity logs are natively generated upon resource activity by various ARM-based log providers (which are typically correspond to the different resource types in Azure). 
 
@@ -236,7 +277,7 @@ In the context of this script, we have triaged the 200 or so activities that gen
 The basic script flow configures these alerts after taking an email id as input. After the alerts are setup, whenever a particular activity happens (e.g., adding a new person in the "Owners" group or modifying user defined routes on a virtual network), the configured email ID receives an email notification.  
  
 [Back to top…](Readme.md#contents)
-### Setup AzSDK alert configuration for your subscription
+### Configure alerts for your subscription
 You can setup alerts for a subscription using the following command:
 ```PowerShell
 Set-AzSDKAlerts -SubscriptionId <subscriptionid> -SecurityContactEmails <SecurityContactEmails>
@@ -250,7 +291,7 @@ As noted above, by default alerts are configured for activities that are deemed 
 |SecurityContactEmails	|Email address of Security Point of Contact, can be a mail enabled security group or a distribution list |pattif@contoso.com, davidchew@contoso.net|
 
 [Back to top…](Readme.md#contents)
-### Remove AzSDK alert configuration for your subscription
+### Remove previously configured alerts from your subscription
 - Steps to remove all the alerts configured by AzSDK:  
 Run the below command:
 ```PowerShell
@@ -270,7 +311,7 @@ Remove-AzSDKAlerts -SubscriptionId <SubscriptionID> -Tags <TagNames>
 Remove-AzSDKAlerts -SubscriptionId <SubscriptionId> -DeleteResourceGroup 
 ```
 [Back to top…](Readme.md#contents)
-### Setup AzSDK alert for a specific resource group
+### Configure alerts scoped to specific resource groups
 You may be interested in enabling alerts but only for resources within a particular (target) resource group. This may be done using the -TargetResourceGroup parameter. 
 
 Run the below command
@@ -311,7 +352,7 @@ Get-AzureRmLog | where {$_.OperationName -eq "Microsoft.Insights/AlertRules/Acti
 ----------------------------------------------------------
 ## AzSDK: Azure Security Center (ASC) configuration
 
-### Setup Azure Security Center (ASC) on your subscription as per AzSDK security standards
+### Setup Azure Security Center (ASC) on your subscription
 
 The Set-AzSDKAzureSecurityCenterPolicies provisions the following for Azure Security Center (ASC) configuration:
 1. Configure Azure Security Center by enabling all policies and rules.
@@ -343,7 +384,7 @@ Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <subscriptionId>
 The native ARM Policy feature in Azure can be used control access to resources by explicitly auditing or denying access to certain operations on them. The ARM Policy setup script in the AzSDK uses this feature to define and deploy some broadly applicable security policies in the subscription. By using the setup script (either standalone or through the overall SS-Provisioning script), you can be assured that the subscription is compliant with respect to the core set of policies expected to be in place by AzSDK.
 
 [Back to top…](Readme.md#contents)
-### Setup AzSDK ARM policies on your subscription
+### Setup ARM policies on your subscription
 You can install the ARM policies via the Set-AzSDKARMPolicies cmdlet as below:
 1. Login to your Azure Subscription using below command
 	
@@ -362,7 +403,7 @@ Set-AzSDKARMPolicies -SubscriptionId <subscriptionid>
 |SubscriptionId 	|Subscription ID against which these alerts would be setup	|
 
 [Back to top…](Readme.md#contents)
-### Remove AzSDK ARM policies from your subscription
+### Remove ARM policies from your subscription
 Use the following command to remove the ARM policies setup via the AzSDK 
 
 ```PowerShell
