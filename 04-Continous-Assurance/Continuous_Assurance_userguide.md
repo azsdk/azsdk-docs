@@ -2,7 +2,7 @@
 ### Contents
 - [Overview](Continuous_Assurance_userguide.md#overview)
 - [Setting up Continuous Assurance - Step by Step](Continuous_Assurance_userguide.md#setting-up-continuous-assurance---step-by-step)
-- [Baseline Continuous Assurance - how it works (under the covers)](Continuous_Assurance_userguide.md#baseline-continuous-assurance---how-it-works-under-the-covers)
+- [Continuous Assurance - how it works (under the covers)](Continuous_Assurance_userguide.md#continuous-assurance---how-it-works-under-the-covers)
 - [Update existing Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#update-existing-continuous-assurance-automation-account)
 - [Remove Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#remove-continuous-assurance-automation-account)
 - [Fetch details of an existing Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
@@ -10,29 +10,47 @@
 
 -----------------------------------------------------------------
 ### Overview 
-The basic idea behind Continuous Assurance (CA) is to create the ability to check for "drift" from what is considered a secure snapshot of a system. Support for Continuous Assurance lets us treat security truly as a 'state' as opposed to a 'point in time' achievement. 
+The basic idea behind Continuous Assurance (CA) is to setup the ability to check for "drift" from what is considered a secure 
+snapshot of a system. Support for Continuous Assurance lets us treat security truly as a 'state' as opposed to a 'point in time' 
+achievement. This is particularly important in today's context when 'continuous change' has become a norm.
 
 There can be two types of drift: 
 1. Drift involving 'baseline' configuration:
 This involves settings that have a fixed number of possible states (often pre-defined/statically determined ones). For instance, a SQL DB can have TDE encryption turned ON or OFF…or a Storage Account may have auditing turned ON however the log retention period may be less than 365 days. 	 
 2. Drift involving 'stateful' configuration: There are settings which cannot be constrained within a finite set of well-known states. For instance, the IP addresses configured to have access to a SQL DB can be any (arbitrary) set of IP addresses. In such scenarios, usually human judgment is initially required to determine whether a particular configuration should be considered 'secure' or not. However, once that is done, it is important to ensure that there is no "stateful drift" from the attested configuration. (E.g., if, in a troubleshooting session, someone adds the IP address of a developer machine to the list, the Continuous Assurance feature should be able to identify the drift and generate notifications/alerts or even trigger 'auto-remediation' depending on the severity of the change). 
 
-**Note-1**: At present, the AzSDK supports the first kind of drift tracking. In H2, we will be focusing on 'stateful drift'. Besides, drift tracking, we will also be adding support for two other aspects of "staying compliant". First of them is the simple concept that if new, more secure options become available for a feature, it should be possible to detect that a particular application or solution can benefit from it and notify/alert the owners concerned. In a way this can be thought of as facilitating "positive" security drift. The other aspect is about supporting "operational hygiene". In this area, we will add the ability to systematically remind an app team about the security hygiene tasks that they need to periodically perform (key rotation, access reviews,  removing inactive/dormant power users, etc.).
+Besides 'drift tracking' there are also two other aspects of "staying secure" in operations. First of them is 
+the simple concept that if new, more secure options become available for a feature, it should be possible to detect that 
+a particular application or solution can benefit from them and notify/alert the owners concerned. In a way this can be thought 
+of as facilitating "positive" security drift. The other aspect is about supporting "operational hygiene". In this area, 
+we will add the ability to remind an app team about the security hygiene tasks that they need to periodically 
+perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
-**Note-2**: If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) before 5th May, 2017; you require to run 'Install-AzSDKContinuousAssurance' command again by following steps in 'Setting up Continuous Assurance - Step by Step' section below to install new version.
+>**Note**: If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2, 
+you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
+
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Setting up Continuous Assurance - Step by Step
 In this section, we will walk through the steps of setting up a subscription and application(s) for Continuous Assurance coverage. 
 To get started, we need the following:
-1. User must have 'Owner' access to the Subscription.
-2. Decide a name for the Azure Active Directory(AD) Application that will be created in the above subscription. This AAD App would be exported with user's self-signed certificate. For runbook authentication, connection asset named AzureRunAsConnection would be created in Automation Account which holds the applicationId, tenantId, subscriptionId, and certificate thumbprint. 
-3. *Target OMS workspace ID and sharedKey. (the OMS workspace can be in a different subscription, see note below)
+1. The user setting up Continuous Assurance needs to have 'Owner' access to the subscription. (This is necessary because during setup, 
+AzSDK adds the automation account as a 'Reader' to the subscription.)
+
+2. Target OMS WorkspaceID* and SharedKey. (The OMS workspace can be in a different subscription, see note below)
 
 
-**\*Note**: CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace you will use to view the security state of your subscription and applications (If you don't have an OMS repository please follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Alert_Montoring_userguide.md) ). This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. (In gist, use whatever workspace that is being used to monitor other aspects like availability, performance, etc. for your application.)
+> **\*Note** CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace 
+you will use to view the security state of your subscription and applications (If you don't have an OMS repository please 
+follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Alert_Montoring_userguide.md) ). 
+This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. 
+Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. 
+(Ideally, you should use the same workspace that is being used to monitor other aspects like availability, performance, etc. 
+for your application.)
+
 
 **Step-1: Setup**  
+0. Setup the latest version of the AzSDK following the installation instructions for your organization. (For MSIT use http://aka.ms/azsdkdocs).
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Install-AzSDKContinuousAssurance**' command with required parameters given in below table. 
 
@@ -42,23 +60,41 @@ To get started, we need the following:
 	        -ResourceGroupNames <ResourceGroupNames> `
 	        -OMSWorkspaceId <OMSWorkspaceId> `
 	        -OMSSharedKey <OMSSharedKey> `
-	        -AzureADAppName <AzureADAppName>
+	        [-AzureADAppName <AzureADAppName>]
 ```
 
 |Param Name|Purpose|Required?|Default value|Comments|
 |----|----|----|----|----|
 |SubscriptionId|Subscription ID of the Azure subscription in which an Automation Account for Continuous Assurance will be created |TRUE|None||
-|AutomationAccountLocation|The location in which this cmdlet creates the Automation Account|FALSE|EastUS2|To obtain valid locations, use the Get-AzureRMLocation cmdlet|
+|AutomationAccountLocation|(Optional) The location in which this cmdlet creates the Automation Account|FALSE|EastUS2|To obtain valid locations, use the Get-AzureRMLocation cmdlet|
 |ResourceGroupNames|Comma separated list of resource groups within which the application resources are contained.|TRUE|None||
 |OMSWorkspaceId|Workspace ID of OMS which is used to monitor security scan results|TRUE|None||
 |OMSSharedKey|Shared key of OMS which is used to monitor security scan results|TRUE|None||
-|AzureADAppName|Name for the Azure Active Directory(AD) Application that will be created in the subscription for running the runbook|TRUE|None||
+|AzureADAppName|(Optional) Name for the Azure Active Directory(AD) Application that will be created in the subscription for running the runbooks. |FALSE|None||
 
-The above command triggers the process of setting up various artifacts in the application subscription. 
+**More about the 'AzureAdAppName' parameter:**
 
-**Note**: Completion of this one-time setup activity can take up to 2 hours. (This is because one of the things that setup does is download and add PowerShell modules for Azure PS library and for AzSDK. This is a slow and sometimes flaky process and, as a result, the setup internally retries failed downloads. The PG is aware of this challenge and are working on a resolution.)
+The AzureADAppName parameter is optional. This represents the runtime account that will be used by the
+CA runbook to scan the subscription/resources. 
+- If the user does not specify a parameter, then CA will: 
+    - Find if there is an existing AAD app (from a previous attempt to setup CA) in the subscription that can be reused.
+    - Else, create a fresh Azure AD app on behalf of the user (in this case the user must have permission to create apps in the tenant).
+- If the user specifies an AzureADAppName, then CA will try to find the AAD application corresponding to that 
+name and attempt to use it (in this case the user must have 'Owner' permission on the specified app name). 
+
+Here's a quick summary of the permissions required for the user who sets up CA:
+- "Owner" access on the subscription
+- Ability to create an AAD app in the tenant (this app is used as the runtime account for scanning via the CA runbook)
+- "Owner" acceess to the AAD app if the user specifies one (or CA internally finds a previously created one)
 
 
+**Note-1**: Completion of this one-time setup activity can take up to 2 hours. (This is because one of the things that setup does 
+is download and add PowerShell modules for Azure PS library and for AzSDK. This is a slow and sometimes flaky process and, 
+as a result, the setup internally retries failed downloads. The Azure Automation product team is aware of this challenge and are working on a resolution.)
+
+
+**Note-2**: Due to the complexity of various dependent activities involved, there are multiple places where CA setup can get tripped up. 
+It is important to verify that everything has worked without hiccups. Please review and ascertain each of the "Verifying" steps below carefully.
 
 
 **Step-2: Verifying that CA Setup is complete**  
@@ -82,7 +118,7 @@ The above command triggers the process of setting up various artifacts in the ap
 
  ![04_CA_Run_as_Account](../Images/04_CA_Run_as_Account.png)
 
-**Step-3: Verifying that all required modules are downloaded successfully (After two hours of installation)**
+**Step-3: Verifying that all required modules are downloaded successfully (after about two hours of starting the installation)**
 
 **1**: Click on the 'Modules' tile for the Automation Account. 'AzSDK' module should be listed there. 'Status' column value for all modules should be 'Available' as below.
 
@@ -113,11 +149,14 @@ Let us verify that the runbook output is generated as expected and that the OMS 
 	
  ![04_CA_OMS](../Images/04_CA_OMS.PNG)
 
-Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard for visibility of security state. Please follow the steps in the OMS solution setup (in Alerting & Monitoring sub-section of this notebook) to enable that part.
+Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard 
+for visibility of security state. Please follow the steps in the OMS solution setup (in Alerting & Monitoring sub-section of 
+this notebook) to enable that part.
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
-### Baseline Continuous Assurance - how it works (under the covers)
-The baseline CA feature is about tracking baseline configuration drift. This is achieved by enabling support for running AzSDK SVTs/SS-Health via automation runbook. 
+### Continuous Assurance - how it works (under the covers)
+The CA feature is about tracking configuration drift. This is achieved by enabling support for running AzSDK 
+SVTs/SS-Health via automation runbook. 
 
 The CA installation script that sets up CA creates the following resources in your subscription:
 
@@ -145,9 +184,18 @@ About 63 assets are created overall.
 
 #### Next Steps
 Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard for visibility of security state.
+Occasionally, you may also feel the need to tweak the configuration of CA. See the "Update" section below about how to do that.
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Update existing Continuous Assurance Automation Account
+The '**Update-AzSDKContinuousAssurance**' command can be used to make changes to a previously setup CA configuration.
+For instance, you may use it to:
+- update the target resource groups to include in the scanning
+- switch the OMS workspace information that CA should use to send control evaluation events to
+- use a different AAD SPN for the runbooks 
+- etc.
+
+To do any or all of these:
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Update-AzSDKContinuousAssurance**' command with required parameters given in below table. 
 
@@ -163,11 +211,11 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |Param Name|Purpose|Required?|Default value|Comments
 |----|----|----|----|----|
 |SubscriptionId|Subscription ID of the Azure subscription in which Automation Account exists |TRUE|None||
-|ResourceGroupNames|Add this parameter if you want to update the comma separated list of resource groups within which the application resources are contained|FALSE|None||
-|OMSWorkspaceId|Add this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
-|OMSSharedKey|Add this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
-|AzureADAppName|Add this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
-|UpdateCertificate|Add this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
+|ResourceGroupNames|Use this parameter if you want to update the comma separated list of resource groups within which the application resources are contained. The previously configured list of RGs will be replaced with the one provided here.|FALSE|None||
+|OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
+|OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
+|AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
+|UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Remove Continuous Assurance Automation Account
@@ -180,7 +228,8 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
 |SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
-|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete whole storage container where reports are stored. |FALSE |None||	
+|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. 
+This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||	
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
