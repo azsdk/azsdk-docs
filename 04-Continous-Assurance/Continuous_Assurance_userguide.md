@@ -212,11 +212,10 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |----|----|----|----|----|
 |SubscriptionId|Subscription ID of the Azure subscription in which Automation Account exists |TRUE|None||
 |ResourceGroupNames|Use this parameter if you want to update the comma separated list of resource groups within which the application resources are contained. The previously configured list of RGs will be replaced with the one provided here.|FALSE|None||
-|OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None|There is an issue while updating OMSWorkspaceId using this parameter in current release (Version:2.2.0), this is a known issue. You can update OMSWorkspaceId from Azure Portal by navigating to 'AzSDKContinuousAssurance' Automation Account --> Variables --> Select OMSWorkspaceId --> Edit |
+|OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
 |UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
-
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Remove Continuous Assurance Automation Account

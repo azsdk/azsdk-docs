@@ -273,6 +273,7 @@ Below resource types can be checked for validating the security controls
 |-------| ------------- | ----------- |
 |Analysis Services |AnalysisService |Microsoft.AnalysisServices/servers|
 |App Services|AppService |Microsoft.Web/sites|
+|Automation Accounts |Automation|Microsoft.Automation/automationAccounts |
 |Batch accounts |Batch |Microsoft.Batch/batchAccounts|
 |CDN profiles |CDN |Microsoft.Cdn/profiles|
 |Cloud Services|CloudService |Microsoft.ClassicCompute/domainNames|
@@ -291,6 +292,7 @@ Below resource types can be checked for validating the security controls
 |Service Fabric clusters |ServiceFabric |Microsoft.ServiceFabric/clusters|
 |SQL Databases|SQLDatabase |Microsoft.Sql/servers|
 |Storage Accounts|StorageAccount |Microsoft.Storage/storageAccounts|
+|Stream Analytics jobs| StreamAnalytics|Microsoft.StreamAnalytics/streamingjobs|
 |Traffic Manager profiles |TrafficManager |Microsoft.Network/trafficmanagerprofiles|
 |Virtual Machines|VirtualMachine |Microsoft.Compute/virtualMachines|
 | Virtual Networks|VirtualNetwork |Microsoft.Network/virtualNetworks|
