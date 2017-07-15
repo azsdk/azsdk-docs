@@ -2,7 +2,7 @@
 
 ![Alert_Monitoring](../Images/Alerting_and_Monitoring.png)
 
-> This page provides a gist of the feature area and capabilities delivered. For details, please refer [here](Alert_Montoring_userguide.md).
+> This page provides a gist of the feature area and capabilities delivered. For details, please refer [here](Alert_Monitoring_userguide.md).
 
 Features in the Alerting & Monitoring area empower dev ops team with following: 
 1. 	 Provide a single pane of glass view of cloud security across the different stages of dev ops.

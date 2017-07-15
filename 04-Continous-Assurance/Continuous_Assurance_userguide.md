@@ -47,7 +47,7 @@ AzSDK adds the automation account as a 'Reader' to the subscription.)
 
 > **\*Note** CA leverages an OMS repository for aggregating security scan results, you must determine which OMS workspace 
 you will use to view the security state of your subscription and applications (If you don't have an OMS repository please 
-follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Alert_Montoring_userguide.md) ). 
+follow the steps in [Setting up the AzSDK OMS Solution](../05-Alerting-and-Monitoring/Alert_Monitoring_userguide.md) ). 
 This can be a single workspace that is shared by multiple applications which may themselves be in different subscriptions. 
 Alternately, you can have an OMS workspace that is dedicated to monitoring a single application as well. 
 (Ideally, you should use the same workspace that is being used to monitor other aspects like availability, performance, etc. 
