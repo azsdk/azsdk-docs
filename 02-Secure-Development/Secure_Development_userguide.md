@@ -8,7 +8,7 @@
 - [Execute SVTs for specific resource groups (or tagged resources)](Secure_Development_userguide.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for specific resource](Secure_Development_userguide.md#execute-svts-for-specific-resource)
 - [Execute SVTs for specific resource type](Secure_Development_userguide.md#execute-svts-for-specific-resource-type)
-- [Attest SVT controls](Secure_Development_userguide.md#attest-svt-controls)
+- [Control Attestation](Secure_Development_userguide.md#control-attestation)
 - [FAQs](Secure_Development_userguide.md#faqs)
 ### [Express Route-connected Virtual Networks (ER-vNet)](Secure_Development_userguide.md#express-route-connected-virtual-networks-er-vnet-1)
 
@@ -16,14 +16,22 @@
 ## Security Verification Tests (SVT)
 >  **Prerequisites:**
 > For all commands in this feature it is assumed that you have:
-> 1. Logged in to your Azure account.
-> 2. Selected a subscription.
-> 3. Imported the latest version of the AzSDK module using Import-Module as described in the Installation Guide.
+> 1. Logged in to your Azure account using Login-AzureRmAccount from a PowerShell ISE.
+> 2. Selected a subscription using Set-AzureRmContext.
+
 
 ### Overview
-Security Verifications Tests (or SVTs) represent the core of security testing functionality of the AzSDK. For all the prominent features in Azure (e.g., Web Apps, Storage, SQL DB, Key Vault, etc.), the AzSDK contains cmdlets that can perform a set of automated checks against Azure resources of those types. These checks are based on security standards and best practices as applicable for HBI data at Microsoft. In general, these are likely to be applicable for most scenarios the involve processing sensitive data.
+Security Verifications Tests (or SVTs) represent the core of security testing functionality of the 
+AzSDK. For all the prominent features in Azure (e.g., Web Apps, Storage, SQL DB, Key Vault, etc.), 
+the AzSDK ccan perform automated security checks against Azure resources of those types. 
+These checks are based on security standards and best practices as applicable for sensitive corporate 
+data at Microsoft. In general, these are likely to be applicable for most scenarios that involve 
+processing sensitive data in other environments.
 
-An SVT for a particular resource type basically examines a resource of that type within a specified resource group and runs the set of security checks. The outcome of the analysis is printed as a summary on the console and a CSV and a LOG file are also generated for subsequent use.
+An SVT for a particular resource type basically examines a resource of that type within a specified 
+resource group and runs a set of security control checks pertinent to that resource type. 
+The outcome of the analysis is printed on the console during SVT execution and a CSV and a LOG file are 
+also generated for subsequent use.
 
 The CSV file and LOG file are generated under a subscription-specific sub-folder in the folder  
 *%LOCALAPPDATA%\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]*  
@@ -31,17 +39,23 @@ E.g.
 C:\Users\UserName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]\20170331_142819
 
 There are multiple ways that SVTs can be executed:
-1. Run against all resources in a subscription. This is the simplest approach and simply enumerates all resources in a specific subscription and runs security checks against all the known resource types found.
-2. Run against all resources in resource group(s). In this approach, you can target resource group(s) and simply enumerates all resources in resource group(s) and runs security checks against all the known resource types found.
-3. Run against a specific resource. In this approach, you can target a specific resource.
-4. Run against a specific resource type. In this approach, you can target a specific resource type and have to use the correct resource type value.
+1. Scan all resources in a subscription. This is the simplest approach and simply enumerates 
+all resources in a specific subscription and runs security checks against all the known resource 
+types found.
+2. Scan all resources in specific resource group(s). In this option, you can target resources
+within one or more resource group. The AzSDK simply enumerates all resources in the resource group(s) 
+and runs security checks..
+3. Scan a specific resource. In this approach, you can target a specific (individual) resource.
+4. Scan a specific resource type. In this approach, you can target a specific resource type (e.g., Storage)
+by specifying the 'resource type' value.
 	
-All the options are described below.  
+These options are described with examples below.  
 
 [Back to top…](Secure_Development_userguide.md#contents)
 
-### Execute SVTs for all controls in all resources in a given subscription
-The below cmdlet checks security control state and generates a status report of all Azure resources in a given subscription:  
+### Execute SVTs for all controls of all resources in a given subscription
+The cmdlet below checks security control state and generates a status report of all Azure resources 
+in a given subscription:  
 
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId>
@@ -49,25 +63,31 @@ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId>
 		
 The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription.  
+
+>**Note** Although this command is simple, it may take time proportionate to the number of 
+>resources in your subscription and may not be ideal for 'shared' subscriptions. Typically, 
+>you would want to scan a specific application (organized under one or more resource groups or 
+>using tags). The subsequent options provide ability to narrow down the scope of the scan.
     
 [Back to top…](Secure_Development_userguide.md#contents)  
 ### Execute SVTs for specific resource groups (or tagged resources) 
- Below cmdlet generate the status report of all Azure resources under a specific subscription and resource group:
+The cmdlet below scans all Azure resources in the specified resource groups within a subscription and 
+generates a status report:
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames>
 ```
 	
 The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
-- ResourceGroupNames – Name of the container that holds related resources under an Azure subscription. Comma separated values are allowed.
+- ResourceGroupNames – Comma separated list of resource groups that hold related resources for an Azure subscription.
 	
- Below cmdlet generate the status report of all tagged resources under a specific subscription:  
-1. For Single Tag
+The cmdlet below scans all resources with specific tag names/values under a given subscription:  
+1. Single Tag
 ```PowerShell
     Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -TagName <TagName> -TagValue <TagValue>
 ```
 		
-2. For Multiple Tags
+2. Multiple Tags
 ```PowerShell
     Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -Tag <TagHashset>
 ```
@@ -79,22 +99,24 @@ The parameters required are:
 - Tag – The tag filter for Azure resource. The expected format is @{tagName1=$null} or @{tagName = 'tagValue'; tagName2='value1'}.  
 
 [Back to top…](Secure_Development_userguide.md#contents)
-### Execute SVTs for specific resource
- Below cmdlet generate the status report for an Azure resource under a specific subscription and resource group:
+### Execute the SVT for a specific resource
+The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupName> -ResourceName <ResourceName>
 ```
 	
 The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
-- ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. 
+- ResourceGroupNames – Name of the resource group that holds the individual resource to be scanned.
 - ResourceName – Name of the resource. 
 
-> **Note**: In the command above, 'ResourceName' should be the short name as used in Azure and shown in the portal (as opposed to the fully qualified domain name (FQDN) which may apply to some resource types such as storage blobs or SQL DB).  
+> **Note**: In the command above, 'ResourceName' should be the short name as used in Azure 
+> and shown in the portal (as opposed to the fully qualified domain name (FQDN) which may 
+> apply to some resource types such as storage blobs or SQL DB).  
 
 [Back to top…](Secure_Development_userguide.md#contents)
-### Execute SVTs for specific resource type
-Below cmdlet generate the status report for an Azure resource type under a specific subscription and resource group [optional]:
+### Execute SVTs for a specific resource type
+The cmdlet below scans all resources for a specific Azure resource type in a subscription (and a resource group [optional]):
 1. 	Using Azure resource type
 ```PowerShell
  Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceType <ResourceType>
@@ -105,7 +127,7 @@ The parameters required are:
 - [Optional] ResourceGroupNames  – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
 - ResourceType – Resource type as defined by Azure. E.g.: Microsoft.KeyVault/vaults. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported types.
 
-2. Using friendly resource type name
+2. Using a user-friendly resource type name
 ```PowerShell
  Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupName>] -ResourceTypeName <ResourceTypeName>
 ```
@@ -117,7 +139,7 @@ The parameters required are:
 
 [Back to top…](Secure_Development_userguide.md#contents)
 
-### Attest SVT controls
+### Control Attestation
 
 #### Overview
 
@@ -257,7 +279,7 @@ The following table describes the possible effective control evaluation results 
 |RiskAck            |Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control|
 
 
-#### Permissions required for Attestation:
+#### Permissions required for attesting controls:
 The attestation feature internally stores state in a storage account in a resource group called AzSDKRG. (This RG is also used by other features in the AzSDK for stateful scenarios.)
 If this RG has already been created, then a user needs 'Owner' permission to it.
 If this RG is not present (as is possible when none of the scenarios that internally create this RG have been run yet), then the user needs 'Owner' or 'Contributor' permission to the subscription.
@@ -338,31 +360,19 @@ Refer the recommendations provided in the output CSV file for the security contr
 --------------------------------------
 # Express Route-connected Virtual Networks (ER-vNet)
 
-**Note:**  
-This is basic documentation for the "preview" feature. We will enhance this in the next sprint as we finalize the checks that are performed and incorporate feedback.
 
-**Context:**  
-Various teams currently request Express Route connectivity through the new myER portal. This process basically enables the CloudMS team to provision a special virtual network in the requesting team (client's) subscription with a virtual network which is connected to the Microsoft corporate ExpressRoute circuit. The ExpressRoute circuit itself is housed in a central (provider) subscription and the provisioned virtual network connects to it via a virtual network gateway. The CloudMS team creates a special resource group called "ERNetwork" (or "ERNetwork-DMZ" if you requested a connection to the enterprise DMZ and not corpnet) in the client subscription and this resource group is used to house and subsequently manage all resources that the provisioning process deploys (the vNet, the subnets, the gateway, the DNS configurations, etc.) Users in the subscription with appropriate RBAC can now deploy virtual machines in the vNet that is created and these virtual machines will be able to get onto the corporate network via the ExpressRoute connection.
-Please see the writeups at the link below for more:
-  [TBD]
-
-Note: This feature applies to the ARM-model of Express Route connectivity setup (and not the old ASM-based model).
-
-**Requirement**  
-Because the vNet in the ERNetwork resource group is corpnet (or DMZ) connected, users/owners in the client subscription have to manage the networking resources that are involved in the ExpressRoute connectivity carefully. Various errors and misconfigurations can lead to gaps in enterprise network security. The CloudMS/NIS teams expect that the following discipline is observed by users of this service:
-  [TBD]
-
-A tool called "ScanPro" has been used to scan all subscriptions that have been provisioned with ER connectivity. 
-
-However, we would like application teams that have ER-connectivity in their subscriptions to be more proactive and include automation in their regular suite of tests to check for security concerns with the ER-setup.
-
-The current (preview) release of this feature can be invoked after installing the DevOps kit (per Installation Guide) and then (after logging in to Azure) running the following simple cmdlet:
+**Summary**  
+The following cmdlet can be used to scan the secure configuration of an ExpressRoute-connected virtual network (referred to as ERVnet below):
 
 ```PowerShel
  Get-AzSDKExpressRouteNetworkSecurityStatus -SubscriptionId <SubscriptionId>
 ```
 
-Just like other SVTs, this will create a summary ".CSV" file of the control evaluation and a detailed ".LOG" file that includes more information about each control and the outcome.
+This cmdlet assumes that the vNet connected to ExpressRoute circuit is in a ResourceGroup named 'ERNetwork' or 'ERNetwork-DMZ'. 
+If you have the vNet in a different resource group then the `-ResourceGroup` parameter can be used.
+
+Just like other SVTs, this will create a summary ".CSV" file of the control evaluation and a detailed
+".LOG" file that includes more information about each control and the outcome.
 
 The following core checks are currently performed by this utility:
 - There should not be any Public IPs (i.e., NICs with PublicIP) on ER-vNet VMs.
@@ -375,10 +385,8 @@ The following core checks are currently performed by this utility:
 - Only internal load balancers (ILBs) may be used inside an ER-vNet.
 
 Additionally the following other 'protective' checks are also done: 
-- Ensuring that the resource lock that's setup to keep these resources from being deleted is intact.
+- Ensuring that the resource lock that is setup to keep these resources from being deleted is intact.
 - Ensuring that the RBAC permissions for the account used to track compliance are intact.
 - Setting up alerts to fire for any of the above actions in the subscription.
 	
-The above set of checks were designed in close collaboration with CloudMS and NIS teams.  
-
 [Back to top…](Secure_Development_userguide.md#contents)

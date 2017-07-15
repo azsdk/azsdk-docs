@@ -1,6 +1,6 @@
 # Alerting & Monitoring
 
-![Alert_Monitoing](../Images/Alerting_and_Monitoring.png)
+![Alert_Monitoring](../Images/Alerting_and_Monitoring.png)
 
 > This page provides a gist of the feature area and capabilities delivered. For details, please refer [here](Alert_Montoring_userguide.md).
 

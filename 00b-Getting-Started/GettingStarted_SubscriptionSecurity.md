@@ -60,7 +60,7 @@ this helps if, for some reason, the central server is not available.)
 
 > **Note**: Timestamps are used to disambiguate multiple invocations of the cmdlets.  
  
-You have completed this part of the Getting Started Guide successfully. 
+Congratulations! You have completed this part of the Getting Started Guide successfully!!
 
 **Next steps** 
 As next steps you can explore one of the following:

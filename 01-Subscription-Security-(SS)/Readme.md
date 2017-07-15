@@ -6,8 +6,8 @@
 
 ### [AzSDK: Subscription Health Scan](Readme.md#azsdk-subscription-health-scan-1)
 - [Overview](Readme.md#overview)
-- [Subscription Health Scan - What is covered?](Readme.md#subscription-health-scan---in-depth)
 - [Scan the security health of your subscription](Readme.md#execute-subscription-health-scan-command)
+- [Subscription Health Scan - What is covered?](Readme.md#subscription-health-scan---in-depth)
 - [Target specific controls during a subscription health scan](Readme.md#target-specific-controls-of-subscription-health-scan)
 - [FAQs](Readme.md#faqs)
 
@@ -41,6 +41,7 @@
 - [FAQs](Readme.md#faqs-3)
 
 ----------------------------------------------------------
+<!-- #TODO# Use single file with #Includes for other content. -->
 ## AzSDK: Subscription Health Scan
 
 ### Overview
@@ -54,6 +55,31 @@ The following aspects of security are checked:
 2. 	 Alert configuration - configuration of activity alerts for sensitive actions for the subscription and various cloud resources
 3. 	 Azure Security Center configuration - configuration of ASC (security point of contact, various ASC policy settings, etc.)
 4. 	 ARM Policy and Resource Locks configuration - presence of desired set of ARM policy rules and resource locks. 
+
+[Back to top…](Readme.md#contents)
+### Scan the security health of your subscription 
+
+The subscription health check script can be run using the command below after replacing `<SubscriptionId`> 
+ with your subscriptionId
+```PowerShell
+Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
+```
+The parameters used are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription 
+
+You need to have at least **Reader** role at the subscription scope to run this command. 
+If you also have access to read the Graph in your tenant, the RBAC information and checking will be richer.
+
+
+> **Note**: The check for presence of Management Certificates cannot be performed just with "Reader" privilege. 
+> This check only works if you are running as a Co-Administrator. This is in itself a bad practice. Hence, in most
+> situations, the user running the subscription health check will likely not be a co-admin and, because we will not be
+> able to actually perform the check, the outcome of this control will be listed as 'Manual'.
+> In general, in any scenario where the runtime account used to run an AzSDK cmdlet does not have enough access to evaluate
+> a control, the evaluation status is marked as "Manual" in the report. Basically, for such controls, someone with the
+> correct access needs to manually verify the control and record the information through the "Control Attestation" feature.
+> (A common situation for this is in respect to "Graph Access" which is not available by default to SPNs.)
+
 
 [Back to top…](Readme.md#contents)
 ### Subscription Health Scan - What is covered?  
@@ -78,26 +104,37 @@ The subsequent section explains how to interpret output in the LOG file and how 
 |ARM policies should be used to limit certain actions in the subscription that may impact security.| The AzSDK subscription security setup configures a set of ARM policies which result in audit log entries upon actions that violate the policies. (For instance, an entry is generated if someone creates a v1 resource in a subscription.) The health check script checks for the presence of these policies are present in a subscription.(Note that ARM policies are specific to ARM operations on resources and different than ASC policies mentioned in the ASC check above. ASC policies are more general things such as 'enable auto-patchin', etc.)|
 |Alerts must be configured for critical actions on subscription and resources.| The AzSDK subscription security setup configures Insights-based alerts for sensitive operations in the subscription. These use the Azure Monitor feature to generate email notifications when sensitive actions happen in a subscription (e.g., if someone adds a new person to the Owners group or if a new certificate is uploaded to a web site). The health check script verifies if all such alerts as defined in the AzSDK alert configuration have been configured on a subscription.(Note that the AzSDK supports setting up alerts via OMS as well. This is an alternate mechanism that may be used. In the OMS-based approach, Azure activity logs are piped into an OMS workspace and alerts are configured on the OMS side based on various conditions.)|
 |Do not use custom-defined RBAC roles.|Custom RBAC role definitions are usually tricky to get right. A lot of threat modeling goes in when the product team works on and defines the different out-of-box security roles. As much as possible, teams should use the out-of-box roles for their RBAC needs. Using custom roles is treated as an exception and requires a rigorous review.| 
-|Do no use any classics resources on a subscription.|You should try to use new AzureRM resources as it would provide better access control and auditing features| 
+|Do no use any classic resources on a subscription.|You should use new AzureRM (v2) resources as the ARM model provides stronger access control (RBAC) and auditing features.| 
  
+
 [Back to top…](Readme.md#contents)
-### Scan the security health of your subscription 
+### Subscription Health Scan - How to fix findings?
 
-The subscription health check script can be run using the command below after replacing `<SubscriptionId`> 
- with your subscriptionId
-```PowerShell
-Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId>
-```
-The parameters used are:
-- SubscriptionId – Subscription ID is the identifier of your Azure subscription 
+All cmdlets in AzSDK generate outputs which are organized as under: 
+- summary information of the control evaluation (pass/fail) status in a CSV file, 
+- detailed control evaluation log in a LOG file and
+- a few other anciliary files for additional support
 
-You need to have at least **Reader** role at the subscription scope to run this command. 
-If you also have access to read the Graph in your tenant, the RBAC information and checking will be richer.
+The overall layout and files in the output folder are also described in the README.txt file present in the root output folder.
 
+To address findings, you should do the following:
+1. See the summary of control evaluation first in the CSV file. (Open the CSV in XLS. Use "Format as Table", "Hide Columns", "Filter", etc.)
+2. Review controls that are marked as "Failed", "Verify" or "Manual"
+3. The 'Recommendation' column for each control in the XLS will tell you the command/steps needed to resolve the issue.
+4. The LOG file contains details about *why* AzSDK has flagged each control as "Failed" or "Verify".
+5. Use the following approach based on control status:
+    - For "Failed" controls, look at the LOG file and use the Recommendation field to address the issue. (e.g., If the 'external accounts (LiveId)' control
+has failed, the list of such external accounts found is displayed in the LOG file. Remove these using
+the cmdlet mentioned in the Recommendation field.)
+    - For "Verify" controls, look at the LOG file to get the supporting information that should help you to decide whether to consider
+the control as "Passed" or not. (e.g., For an RBAC control, you should look at the actual list of users and confirm that it is appropriate. 
+Then use the "Control Attestation" feature to record your attestation.)
+    - For "Manual" controls, follow the steps using the Recommendation field in the CSV. (There will not be anything in the LOG file for "Manual" controls.) 
 
-> **Note**: The check for presence of Management Certificates will cannot be performed just with "Reader" privilege. 
-> This check only works if you are running as a Co-Administrator - which is itself a bad practice. Hence, in most
-> situations, the outcome of this will be listed as 'Verify'.
+For provisioning related failures (e.g., you don't have central accounts correctly configured), you should use the
+corresponding provisioning cmdlet as described in respective sections below. (E.g., `Set-AzSDKSubscriptionRBAC` for
+provisioning mandatory accounts).
+
 
 [Back to top…](Readme.md#contents)
 ### Target specific controls during a subscription health scan
@@ -197,11 +234,11 @@ command such as alerts, access control (RBAC) settings, ARM policies, etc.
 This command does not effect the Azure Security Center related settings (whether they were previously configured
 by AzSDK or directly by the user).
 
-To remove access control related configuration, it is mandatory to use the '-Tags' parameter. If this
-parameter is not specified, no RBAC deprovisioning will be done. Typically you would want to specify
-the tags which were used when setting up RBAC. If you did not specify any tags during provisioning then,
-by default, only the accounts marked as 'Mandatory' would get provisioned. Typically, you should not have
-to remove those accounts but if you must you can do so using '-Tags "Mandatory"' in the command.
+To remove access control related configuration, it is mandatory to use the `-Tags` parameter. If this
+parameter is not specified, previously setup RBAC will not be deprovisioned will be done. 
+Typically you would want to specify the tags which were used when setting up RBAC. If you did not specify 
+any tags during provisioning then, by default, only the accounts marked as 'Mandatory' would get provisioned. Typically, you should not have
+to remove those accounts but if you must you can do so using `-Tags "Mandatory"` in the command.
 
 
 [Back to top…](Readme.md#contents)
@@ -211,10 +248,10 @@ to remove those accounts but if you must you can do so using '-Tags "Mandatory"'
 Yes, each of the components of the overall subscription provisioning setup can be individually 
 run/controlled. 
 You can run cmdlets in isolation for the following:
-1. RBAC roles/permissions
-2. Alerts
-3. ARM Policy
-4. Azure Security Center configuration
+1. RBAC roles/permissions - Set-AzSDKSubscriptionRBAC
+2. Alerts - Set-AzSDKAlerts
+3. ARM Policy - Set-AzSDKARMPolicies
+4. Azure Security Center configuration - Set-AzSDKAzureSecurityCenterPolicies
 
 [Back to top…](Readme.md#contents)
 	
@@ -367,8 +404,12 @@ The Set-AzSDKAzureSecurityCenterPolicies provisions the following for Azure Secu
 2. Login into your Azure Account using Login-AzureRmAccount.
 3. Run the below command with the subscriptionId on which you want to configure Azure Security Center.
 ```PowerShell
-Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <subscriptionId>  
+Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <SubscriptionId> `
+        -SecurityContactEmails <ContactEmails> `
+        -SecurityPhoneNumber <ContactPhone>
 ```
+        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
+        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
 >**Note:** The Get-AzSDKSubscriptionSecurityStatus (see the SS-Health Check page) master script can be used to check Azure Security Center settings (amongst other things). That script checks for the following w.r.t. Azure Security Center: 
 >1.  All ASC policies are configured per expectation.
 >2. There are no pending ASC tasks.
