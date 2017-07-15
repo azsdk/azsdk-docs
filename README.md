@@ -1,5 +1,5 @@
 
-# Secure DevOps Kit for Azure (AzSDK) - Preview
+# Secure DevOps Kit for Azure (AzSDK)
 ## Content
 - [Overview](README.md#overview)  
 - [Setting up `Secure DevOps Kit for Azure`](README.md#setting-up-secure-devops-kit-for-azure)
@@ -13,10 +13,10 @@
 The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is a collection of scripts, tools, extensions, automations, etc. that caters to the end to end Azure subscription and resource security needs for dev ops teams using extensive automation and smoothly integrating security into native dev ops workflows helping accomplish secure dev ops with these 6 focus areas:
 1. **`Secure the subscription`:** A secure cloud subscription provides a core foundation upon which subsequent development and deployment activities can be conducted. An engineering team should have the capabilities to deploy and configure security in the subscription including elements such as alerts, ARM policies, RBAC, Security Center policies, JEA, Resource Locks, etc. Likewise, it should be possible to check that all settings are in conformance to a secure baseline.
 2. **`Enable secure development`:** During the coding and early development stages, developers should have the ability to write secure code and to test the secure configuration of their cloud applications. Just like *build verification tests* (BVTs), we introduce the concept of *security verification tests* (SVTs) which can check for security of various resource types in Azure.
-3. **`Integrate security into CICD`:** Test automation is a core tenet of devops. We emphasize this by providing the ability to run SVTs as part of the VSO CICD pipeline. These SVTs can be used to ensure that the target subscription used to deploy a cloud application and the Azure resources the application is built upon are all setup in a secure manner. 
+3. **`Integrate security into CICD`:** Test automation is a core tenet of devops. We emphasize this by providing the ability to run SVTs as part of the VSTS CICD pipeline. These SVTs can be used to ensure that the target subscription used to deploy a cloud application and the Azure resources the application is built upon are all setup in a secure manner. 
 4. **`Continuous Assurance`:** In the constantly changing dev ops environment, it is important to move away from the mindset of security being a milestone. We have to treat security as a *continuously varying state* of a system. This is made possible through capabilities that enable *continuous assurance* using a combination of automation runbooks, schedules, etc.
 5. **`Alerting & Monitoring`:** Visibility of security status is important for individual application teams and also for central enterprise teams. We provide solutions that cater to the needs of both. Moreover, the solution spans across all stages of dev ops in effect bridging the gap between the *dev* team and the *ops* team from a security standpoint through the single, integrated views it generates.
-6. **`Security Telemetry`:** Lastly, underlying all activities in the kit is a telemetry framework that generates events capturing usage, adoption, evaluation results, etc. This allows us to make measured improvements to security targeting areas of high risk and maximum usage before others.  
+S6. **`Security Telemetry`:** Lastly, underlying all activities in the kit is a telemetry framework that generates events capturing usage, adoption, evaluation results, etc. This allows us to make measured improvements to security targeting areas of high risk and maximum usage before others.  
 
 ![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.png)
 
@@ -26,7 +26,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is
 1. You can follow the [installation guide](00a-Setup/Readme.md) and install the AzSDK on your system.  
 2. After the installation is complete, please make sure that you are logged into your Azure subscription in Powershell ISE.
 
-> A quick note is due here about use of PowerShell (and PowerShell ISE). The AzSDK heavily uses PowerShell-based functions and modules to accomplish security configuration, provisioning and for running security scans and test cases. Some of our first time users of the AzSDK occasionally also get a first exposure to PowerShell/PowerShell ISE as part of the AzSDK first use experience. Given how extensively PowerShell is used (and useful) across various activities in Azure, we highly encourage you to work past the initial challenges. Several people (including some members of our own team) were new to PowerShell just a few weeks ago. However, once they got past the initial bumps, it has been smooth sailing.  
+T> A quick note is due here about use of PowerShell (and PowerShell ISE). The AzSDK heavily uses PowerShell-based functions and modules to accomplish security configuration, provisioning and for running security scans and test cases. Some of our first time users of the AzSDK occasionally also get a first exposure to PowerShell/PowerShell ISE as part of the AzSDK first use experience. Given how extensively PowerShell is used (and useful) across various activities in Azure, we highly encourage you to work past the initial challenges. Several people (including some members of our own team) were new to PowerShell just a few weeks ago. However, once they got past the initial bumps, it has been smooth sailing.  
 
 3. Also, because by default PowerShell allows only signed scripts to run, you __may__ have to run the following command so that the AzSDK cmdlets are allowed to execute:  
 ```Powershell 
@@ -60,7 +60,7 @@ As you get familiar with and begin to use the 'downstream' capabilities (CICD, C
 |-------------|--------------------------|
 [Secure the subscription](01-Subscription-Security-(SS)/Readme.md) | <ul><li>Subscription Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li><li>ARM Policy Configuration</li><li>Azure Security Center Configuration</li><li>Access control (IAM) Hygiene</li>  </ul> </li></ul>
 [Enable secure development](02-Secure-Development/Readme.md) | <ul><li>Security Verification Tests (SVT) </li><li>Security IntelliSense- VS Extension </li></ul>
-[Integrate security into CICD](03-Security-In-CICD/Readme.md) | <ul><li>AzSDK VSO Extension-executes SVTs in a CICD pipeline </li></ul>
+[Integrate security into CICD](03-Security-In-CICD/Readme.md) | <ul><li>AzSDK VS Extension-executes SVTs in a CICD pipeline </li></ul>
 [Continuous Assurance](04-Continous-Assurance/Readme.md) | <ul><li>Security scanning via Azure Automation Runbooks</li></ul>
 [Alerting & Monitoring](05-Alerting-and-Monitoring/Readme.md) | <ul><li>OMS Solution for AzSDK containing:<ul><li>Security dashboard views covering security state/actions</li><li>Alerts with pertinent search queries</li></ul></li></ul>
 [Security Telemetry](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
@@ -86,7 +86,7 @@ As you can see from the summary description above, the "Secure DevOps Kit for Az
 - AzSDK Module <a href="https://www.powershellgallery.com/packages/AzSDK/">@PSGallery</a>
 - AzSDK Security Controls Portal @https://aka.ms/azsdkosstcp
 - Security IntelliSense <a href="https://marketplace.visualstudio.com/items?itemName=AzSDKTeam.SecurityIntelliSense-Preview">@VisualStudio Marketplace</a>
-- Visual Studio Online CICD Build/Release Extension - Private (Please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request: Enable AsSDK extension for VSO">AzSDK Support</a>)
+- Visual Studio Online CICD Build/Release Extension - Private (Please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request: Enable AsSDK extension for VSTS">AzSDK Support</a>)
 - For any other issues or feedback please drop a mail to <a href="mailto:azsdksupext@microsoft.com">AzSDK Support</a>
   
 [Back to top...](README.md#content) 
