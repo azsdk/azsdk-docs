@@ -2,7 +2,7 @@
  ### Contents
 - [Overview](Alert_Monitoring_userguide.md#overview)
 - [Routing AzSDK events to OMS](Alert_Monitoring_userguide.md#routing-azsdk-events-to-oms)
-- [Contents of the AzSDK OMS Solution](Alert_Monitoring_userguide.md#contents-of-the-azsdk-oms-solution)
+- [Components of the AzSDK OMS Solution](Alert_Monitoring_userguide.md#components-of-the-azsdk-oms-solution)
 - [Setting up the AzSDK OMS Solution (Step by Step)](Alert_Monitoring_userguide.md#setting-up-the-azsdk-oms-solution-step-by-step)
 - [Next Steps](Alert_Monitoring_userguide.md#next-steps)
 
