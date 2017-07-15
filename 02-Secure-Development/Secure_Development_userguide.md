@@ -6,8 +6,8 @@
 - [Overview](Secure_Development_userguide.md#overview)
 - [Execute SVTs for all controls in all resources in a given subscription](Secure_Development_userguide.md#execute-svts-for-all-controls-in-all-resources-in-a-given-subscription)
 - [Execute SVTs for specific resource groups (or tagged resources)](Secure_Development_userguide.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
-- [Execute SVTs for specific resource](Secure_Development_userguide.md#execute-svts-for-specific-resource)
-- [Execute SVTs for specific resource type](Secure_Development_userguide.md#execute-svts-for-specific-resource-type)
+- [Execute SVTs for a specific resource](Secure_Development_userguide.md#execute-svts-for-a-specific-resource)
+- [Execute SVTs for a specific resource type](Secure_Development_userguide.md#execute-svts-for-a-specific-resource-type)
 - [Control Attestation](Secure_Development_userguide.md#control-attestation)
 - [FAQs](Secure_Development_userguide.md#faqs)
 ### [Express Route-connected Virtual Networks (ER-vNet)](Secure_Development_userguide.md#express-route-connected-virtual-networks-er-vnet-1)
@@ -99,7 +99,7 @@ The parameters required are:
 - Tag – The tag filter for Azure resource. The expected format is @{tagName1=$null} or @{tagName = 'tagValue'; tagName2='value1'}.  
 
 [Back to top…](Secure_Development_userguide.md#contents)
-### Execute the SVT for a specific resource
+### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupName> -ResourceName <ResourceName>
