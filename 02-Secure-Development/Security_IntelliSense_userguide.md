@@ -10,7 +10,7 @@
 - [How are the rules updated? Do I need to refresh the plugin periodically?](Security_IntelliSense_userguide.md#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically)
 - [Can I add my own rules over and above the default set?](Security_IntelliSense_userguide.md#can-i-add-my-own-rules-over-and-above-the-default-set)
 - [Can I 'mask' a particular rule or rules?](Security_IntelliSense_userguide.md#can-i-mask-a-particular-rule-or-rules)
-- [Can I change the 'recommended' code for a rule?](Security_IntelliSense_userguide.md#can-i-change-the-recommended-code-for-a-rule-eg-cbc-v-gcm-mode)
+- [Can I change the 'recommended' code for a rule?](Security_IntelliSense_userguide.md#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode)
 #### [Actions](Security_IntelliSense_userguide.md#actions-1)
 - [What should I do to remove the extension?](Security_IntelliSense_userguide.md#what-should-i-do-to-remove-the-extension)
 - [What default compiler actions are configured?](Security_IntelliSense_userguide.md#what-default-compiler-actions-are-configured)
