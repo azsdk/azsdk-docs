@@ -20,6 +20,8 @@
 > Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later
 
 
+<!-- #TODO# check links at top of each main page. --> 
+ 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 
 ### Basics:
@@ -29,11 +31,11 @@ Security IntelliSense augments standard Visual Studio IntelliSense feature with 
 
 In the current drop, we have support for the following features:
 - About 80 rules that cover a variety of scenarios such as: 
-   - various Azure-API related secure coding situations.
-   - ADAL-based authentication 
+   - various Azure PaaS API related secure coding rules
+   - ADAL-based authentication best practices
    - Common Crypto errors
-   - Classic App Sec and Web App Sec
-- Rule are auto-updated without needing to reinstall the plug-in. The plug-in periodically checks if new rules have been published to a central rule store and updates its local rule set based on that.
+   - Classic App Sec and Web App Sec issues
+- Rule are auto-updated without needing to reinstall the plug-in. The plug-in periodically checks if new rules have been published to a central rule store and updates its local rule set based on that. 
 
 The screenshots below show the core functionality at work:
 - Error and warning indications for incorrect and possibly vulnerable code:
@@ -48,7 +50,8 @@ The screenshots below show the core functionality at work:
 [Back to top…](Security_IntelliSense_userguide.md#contents)  
 
 ### How do I enable Security IntelliSense on my dev box?
-- Open Visual Studio 2015
+- Open Visual Studio 2015 or 2017
+
 - Go to **Tools** -> **Extensions and Updates** -> In the left sidebar select **Online** -> **Visual Studio Gallery** and search for **Security IntelliSense** in the right sidebar
 
 ![02_SecIntel_VSGallery_Download](../Images/02_SecIntel_VSGallery_Download.png)
@@ -59,20 +62,26 @@ The screenshots below show the core functionality at work:
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 ### Is there a sample I can use to see how it works?
-- We hosted a sample project at GitHub, run below command to clone the repo. If you don't have git setup in your machine, please visit https://git-scm.com/downloads to download
+- We have a sample project on GitHub that you can use. Run the command below to clone the repo. 
+If you don't have Git setup in your machine, please visit https://git-scm.com/downloads to download it.
 	
 ``` 
     git clone https://github.com/azsdk/azsdk-secintel-samples
 ```
 	
-- After cloning the repo, navigate to **azsdk-secintel-samples** -> **SecIntelSample** and open the **SecIntelSample.sln** in Visual Studio (after completing the Security IntelliSense extension installation per steps from above).
-- Do a "Build Sample" once so that Nuget packages needed get downloaded.
+- After cloning the repo, navigate to **azsdk-secintel-samples** -> **SecIntelSample** and 
+open the **SecIntelSample.sln** in Visual Studio (after completing the Security IntelliSense 
+extension installation per steps from above).
 - Build the solution (this will fetch any requisite Nuget packages)
-- Go to View->Solution Explorer and then open one of demo files such as "CryptoSample.cs" in the VS editor. 
-   - You should see SecIntel in action -- i.e., code that is in violation of the rules in use for the SecIntel VSIX plugin will appear as red-squigglies (errors) and green-squigglies (warnings).  
+- Go to View->Solution Explorer and then open one of demo files (e.g., "CryptoSample.cs") in the VS editor. 
+   - You should see SecIntel in action -- i.e., code that is in violation of the rules in use for 
+   the SecIntel VSIX plugin will appear as red-squigglies (errors) and green-squigglies (warnings).  
    ![02_SecIntel_Suggestion](../Images/02_SecIntel_Suggestion.png)
 
-- Note: In the currently implemented behavior of the extension, 'errors' don’t actually fail the build. We will change this behavior in an upcoming sprint. After that anything that is considered an 'error' will start failing the build. This will be a useful feature when integrating with CICD pipelines.
+- Note: In the currently implemented behavior of the extension, 'errors' don’t actually fail the build. 
+We will change this behavior in an upcoming sprint. After that anything that is considered an 'error' will start failing 
+the build. This will be a useful feature when integrating with CICD pipelines.
+<!-- #TODO# is it controllable by clients? -->
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 
@@ -104,12 +113,18 @@ For a complete list of Security IntelliSense rules please go [here](Security_Int
 	
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 ### How are the rules updated? Do I need to refresh the plugin periodically?
-- Rule are auto-updated without the need to reinstall the plugin. Currently we have defined 5 different rule templates upon which individual rules are based. We have the ability to deploy new rules that use the existing templates silently in the background. 
-- Once in a while we might add entirely new 'rule templates'. When that happens, a new version of the extension will need to be downloaded. When that happens will include a notification of the same in our release announcements.
+- Rule are auto-updated without the need to reinstall the plugin. Currently we have 
+defined 5 different rule templates upon which individual rules are based. We have the ability to 
+deploy new rules that use the existing templates silently in the background. 
+- Once in a while we might add entirely new 'rule templates'. When that happens, a new version of 
+the extension will need to be downloaded. When that happens will include a notification of the same 
+in our release announcements.
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 ### Can I add my own rules over and above the default set?
-- This will be included in the next month. It is a natural extension of the current behavior. We will merely need to include support for a locally managed rules file which has rules that adhere to the supported rule templates.
+- This will be included in the next month. It is a natural extension of the current behavior. We 
+will merely need to include support for a locally managed rules file which has rules that adhere to 
+the supported rule templates.
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
 
@@ -117,7 +132,7 @@ For a complete list of Security IntelliSense rules please go [here](Security_Int
 - This is in our backlog. We will add it in a future sprint.
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
-### Can I change the 'recommended' code for a rule? (e.g., CBC v. GCM mode)
+### Can I change the 'recommended' code for a rule? (e.g., I want to recommend GCM instead of CBC mode)
 - This is in our backlog. We will add it in a future sprint.
 
 [Back to top…](Security_IntelliSense_userguide.md#contents)
@@ -125,7 +140,8 @@ For a complete list of Security IntelliSense rules please go [here](Security_Int
 ### Actions:
 ### What should I do to remove the extension?
 -  Go to "Tools" -> "Extensions and Updates" menu option in Visual Studio and search for "Security".
-   - If you have the extension installed, you will see a screen such as below with options to "Disable" or "Uninstall" the extension.
+   - If you have the extension installed, you will see a screen such as below with options to 
+   "Disable" or "Uninstall" the extension.
 - Click "Uninstall" and restart Visual Studio.
 ![02_SecIntel_VSGallery](../Images/02_SecIntel_VSGallery.png)  
 

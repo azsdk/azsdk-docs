@@ -10,29 +10,34 @@
 
 -----------------------------------------------------------------
 ### Overview 
-The basic idea behind Continuous Assurance (CA) is to setup the ability to check for "drift" from what is considered a secure 
-snapshot of a system. Support for Continuous Assurance lets us treat security truly as a 'state' as opposed to a 'point in time' 
-achievement. This is particularly important in today's context when 'continuous change' has become a norm.
+The basic idea behind Continuous Assurance (CA) is to setup the ability to check for "drift" from what is 
+considered a secure snapshot of a system. Support for Continuous Assurance lets us treat security truly as 
+a 'state' as opposed to a 'point in time' achievement. This is particularly important in today's context 
+when 'continuous change' has become a norm.
 
 There can be two types of drift: 
 1. Drift involving 'baseline' configuration:
-This involves settings that have a fixed number of possible states (often pre-defined/statically determined ones). For instance, a SQL DB can have TDE encryption turned ON or OFF…or a Storage Account may have auditing turned ON however the log retention period may be less than 365 days. 	 
-2. Drift involving 'stateful' configuration: There are settings which cannot be constrained within a finite set of well-known states. For instance, the IP addresses configured to have access to a SQL DB can be any (arbitrary) set of IP addresses. In such scenarios, usually human judgment is initially required to determine whether a particular configuration should be considered 'secure' or not. However, once that is done, it is important to ensure that there is no "stateful drift" from the attested configuration. (E.g., if, in a troubleshooting session, someone adds the IP address of a developer machine to the list, the Continuous Assurance feature should be able to identify the drift and generate notifications/alerts or even trigger 'auto-remediation' depending on the severity of the change). 
+This involves settings that have a fixed number of possible states (often pre-defined/statically determined 
+ones). For instance, a SQL DB can have TDE encryption turned ON or OFF…or a Storage Account may have 
+auditing turned ON however the log retention period may be less than 365 days. 	 
+2. Drift involving 'stateful' configuration: There are settings which cannot be constrained within a finite 
+set of well-known states. For instance, the IP addresses configured to have access to a SQL DB can be any (arbitrary) set of IP addresses. In such scenarios, usually human judgment is initially required to determine whether a particular configuration should be considered 'secure' or not. However, once that is done, it is important to ensure that there is no "stateful drift" from the attested configuration. (E.g., if, in a troubleshooting session, someone adds the IP address of a developer machine to the list, the Continuous Assurance feature should be able to identify the drift and generate notifications/alerts or even trigger 'auto-remediation' depending on the severity of the change). 
 
-Besides 'drift tracking' there are also two other aspects of "staying secure" in operations. First of them is 
-the simple concept that if new, more secure options become available for a feature, it should be possible to detect that 
+Besides 'drift tracking' there are also two other aspects of "staying secure" in operations. First of them 
+is the simple concept that if new, more secure options become available for a feature, it should be possible to detect that 
 a particular application or solution can benefit from them and notify/alert the owners concerned. In a way this can be thought 
 of as facilitating "positive" security drift. The other aspect is about supporting "operational hygiene". In this area, 
 we will add the ability to remind an app team about the security hygiene tasks that they need to periodically 
 perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
->**Note**: If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2, 
+>**Note:** If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2, 
 you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
 
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Setting up Continuous Assurance - Step by Step
 In this section, we will walk through the steps of setting up a subscription and application(s) for Continuous Assurance coverage. 
+
 To get started, we need the following:
 1. The user setting up Continuous Assurance needs to have 'Owner' access to the subscription. (This is necessary because during setup, 
 AzSDK adds the automation account as a 'Reader' to the subscription.)
