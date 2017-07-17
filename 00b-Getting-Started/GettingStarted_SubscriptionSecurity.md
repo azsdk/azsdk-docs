@@ -33,7 +33,7 @@ As the rules are checked, in the background AzSDK collates the following:
 - detailed control evaluation log in a LOG file and
 - a few other anciliary files for additional support
 
-(The overall layout and files in the output folder are also described in the ReadMe.txt file present there.)
+> **Note:** The overall layout and files in the output folder are also described in the **ReadMe.txt** file present in the root output folder (the one that is opened automatically). 
 
 Typically, you'd want to see the summary of control evaluation first. For that, we need to examine the CSV file. 
 When you double-click the CSV file, it opens in XLS. You can use "Format as Table", "Hide Columns", "Filter", etc., to quickly look at controls that have "Failed" or ones that are marked "Verify". 
@@ -46,9 +46,9 @@ in the 'Recommendation' column of the CSV file.
 ![00_AzSDK_Security_Status_OP_CSV](../Images/00_AzSDK_Security_Status_OP_CSV.PNG)  
 
 For controls that are marked 'Failed' or 'Verify', there is usually additional information 
-in the LOG file to help understand why a control was assessed as 'Failed' (or what needs verification 
-if it was marked as 'Verify'). For instance, in the picture below, AzSDK is telling us that there 
-were more number of 
+in the Detailed.LOG file in the <subscription-name> folder to help understand why a control was assessed as 'Failed' 
+(or what needs verification if it was marked as 'Verify'). For instance, in the picture below, AzSDK is telling us that 
+there were more number of 
 admins/owners in the subscription than the approved limit. (Just as FYI, all such 
 policy/config info is present in JSON-based rule files that each command uses in the background. 
 These files are downloaded 'live' from a central location for command execution. Copies of these control 
