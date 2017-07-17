@@ -223,7 +223,7 @@ Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactE
         - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
 
 When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
-as alerts, RBAC, ARM policies, etc.  
+as alerts, RBAC, ARM policies, etc. It also *overwrites* the contact emails and contact phone previously set in Azure Security Center.
 
 
 [Back to top…](Readme.md#contents)
@@ -414,7 +414,10 @@ Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <SubscriptionId> `
 ```
         - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
         - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
->**Note:** The Get-AzSDKSubscriptionSecurityStatus (see the SS-Health Check page) master script can be used to check Azure Security Center settings (amongst other things). That script checks for the following w.r.t. Azure Security Center: 
+
+This command will *overwrite* the contact emails and contact phone previously set in Azure Security Center.
+
+>**Note:** The Get-AzSDKSubscriptionSecurityStatus cmdlet can be used to check Azure Security Center settings (amongst other things). That script checks for the following w.r.t. Azure Security Center: 
 >1.  All ASC policies are configured per expectation.
 >2. There are no pending ASC tasks.
 >3. There are no pending ASC recommendations.  
