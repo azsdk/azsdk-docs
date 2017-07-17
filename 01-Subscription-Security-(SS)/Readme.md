@@ -31,7 +31,7 @@
 
 ### [AzSDK: Azure Security Center (ASC) configuration](Readme.md#azsdk-azure-security-center-asc-configuration-1)
 	
-- [Setup Azure Security Center (ASC) for your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription-as-per-azsdk-security-standards)
+- [Setup Azure Security Center (ASC) on your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription)
 
 ### [AzSDK: Suscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
 
@@ -218,6 +218,10 @@ E-mails (comma separated values) and a contact phone number.
 ```PowerShell
 Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactEmails <SecurityContactEmails> -SecurityPhoneNumber <SecurityPoCPhoneNumber>
 ```
+
+        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
+        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
+
 When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
 as alerts, RBAC, ARM policies, etc.  
 
