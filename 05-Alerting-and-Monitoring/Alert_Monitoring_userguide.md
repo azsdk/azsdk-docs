@@ -285,18 +285,19 @@ The solution view contains multiple blades representing alerts, various types of
 
 The above example is just the out-of-box view created by the AzSDK OMS Solution. 
 You can setup/configure various other views based on your monitoring needs.
+
 Below are other such sample views, which provide visibility of Azure security controls across devops stages.
 
-At this point, we can confirm that the ad hoc security scan we ran in Steps 4, 5 above generated data for the application security control status by looking at the view (by clicking the tile above).
+In the view below, the highlighted blade shows security health in ad hoc usage ("SDL") mode. These are events that are generated when a user runs AzSDK scans from their desktop after configuring OMS settings via Set-AzSDKOMSSettings (as in Steps 4, 5 above).
 
 ![05_Setting_OMS_Workspace_App_Specific_View_Details_1](../Images/05_Setting_OMS_Workspace_App_Specific_View_Details_1.png)
 
 <!-- #TODO# Rework the story for build/CICD health. --> 
-If you also have CICD integration setup, you can trigger a new deployment and also start seeing the AzSDK control evaluation results from CICD in the OMS workspace (as shown below):
+If you also have CICD integration setup, the AzSDK control evaluation results from the AzSDK_SVTs CICD extension will also start getting routed to OMS. In the view below, the highlighted blade shows security health in build/CICD stages.
 
 ![05_Setting_OMS_Workspace_App_Specific_View_Details_2](../Images/05_Setting_OMS_Workspace_App_Specific_View_Details_2.png)
 
-Lastly, if you also setup continuous assurance (AzSDK CC runbooks), you will also see activity in the first blade as shown below:
+Lastly, if you also setup continuous assurance (via Set-AzSDKContinuousAssurance), you will also see activity in the first blade as shown below:
 
 ![05_Setting_OMS_Workspace_App_Specific_View_Details_3](../Images/05_Setting_OMS_Workspace_App_Specific_View_Details_3.png)
 	
@@ -318,6 +319,5 @@ scenario may involve a storage blob that is so critical that you want to be aler
 control fails for it in *any* stage of the devops loop.)
 <!-- #TODO# - Configure the 'auto-correct' runbook for one or more critical resources -->
 
-<!-- #TODO# - fix the 'Montoring' name... 'Alerting_and_Monitoring_userguide' -->
 [Back to top…](Alert_Monitoring_userguide.md#contents)
 
