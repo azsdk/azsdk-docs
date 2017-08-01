@@ -25,6 +25,8 @@ Currently AzSDK Jenkins Plugin is not hosted on Jenkins community repositories. 
 After successful installation you can start using plugin.  
  
 ![03_Install_Plugin](../Images/03_Install_Plugin.png)
+
+[Back to top...](Security_In_CICD_Jenkins_userguide.md#security-verification-tests-svts-in-jenkins-pipeline)
 ### Run SVT on resources in Jenkins pipeline
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
@@ -65,14 +67,12 @@ After successful installation you can start using plugin.
 
 ![03_Save_Job](../Images/03_Save_Job.png)
 - #### Step-7: Trigger build and you will be able to see the SVT scan result in Console Output
-	
-	
- 
- 
- 
+
 ![03_Trigger_Build_1](../Images/03_Trigger_Build_1.png)  
 ![03_Trigger_Build_2](../Images/03_Trigger_Build_2.png)	  
 ![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	
+
+[Back to top...](Security_In_CICD_Jenkins_userguide.md#security-verification-tests-svts-in-jenkins-pipeline)
 > 	Note :
 > 	- Currently build does not stop on failure of SVTs 
 > 	- All SVT reports are exported to Jenkins Server Machine.
