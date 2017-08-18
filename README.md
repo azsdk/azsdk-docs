@@ -16,7 +16,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is
 3. **`Integrate security into CICD`:** Test automation is a core tenet of devops. We emphasize this by providing the ability to run SVTs as part of the VSTS CICD pipeline. These SVTs can be used to ensure that the target subscription used to deploy a cloud application and the Azure resources the application is built upon are all setup in a secure manner. 
 4. **`Continuous Assurance`:** In the constantly changing dev ops environment, it is important to move away from the mindset of security being a milestone. We have to treat security as a *continuously varying state* of a system. This is made possible through capabilities that enable *continuous assurance* using a combination of automation runbooks, schedules, etc.
 5. **`Alerting & Monitoring`:** Visibility of security status is important for individual application teams and also for central enterprise teams. We provide solutions that cater to the needs of both. Moreover, the solution spans across all stages of dev ops in effect bridging the gap between the *dev* team and the *ops* team from a security standpoint through the single, integrated views it generates.
-6. **`Security Telemetry`:** Lastly, underlying all activities in the kit is a telemetry framework that generates events capturing usage, adoption, evaluation results, etc. This allows us to make measured improvements to security targeting areas of high risk and maximum usage before others.  
+6. **`Cloud Risk Governance`:** Lastly, underlying all activities in the kit is a telemetry framework that generates events capturing usage, adoption, evaluation results, etc. This allows us to make measured improvements to security targeting areas of high risk and maximum usage before others.  
 
 ![Secure_DevOps_Kit_for_Azure](Images/Secure_DevOps_Kit_Azure.png)
 
@@ -63,7 +63,7 @@ As you get familiar with and begin to use the 'downstream' capabilities (CICD, C
 [Integrate security into CICD](03-Security-In-CICD/Readme.md) | <ul><li>AzSDK VS Extension-executes SVTs in a CICD pipeline </li></ul>
 [Continuous Assurance](04-Continous-Assurance/Readme.md) | <ul><li>Security scanning via Azure Automation Runbooks</li></ul>
 [Alerting & Monitoring](05-Alerting-and-Monitoring/Readme.md) | <ul><li>OMS Solution for AzSDK containing:<ul><li>Security dashboard views covering security state/actions</li><li>Alerts with pertinent search queries</li></ul></li></ul>
-[Security Telemetry](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
+[Cloud Risk Governance](06-Security-Telemetry/Readme.md) | <ul><li>Control/usage telemetry through Insights</li></ul>
 
 [Back to top...](README.md#content) 
 ### What do you want to use the secure devops kit for?
