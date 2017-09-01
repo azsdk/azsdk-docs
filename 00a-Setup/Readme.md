@@ -2,7 +2,7 @@
 > <h4>IMPORTANT:</h4> If you are from MSIT, please install via instructions at http://aka.ms/azsdkdocs so that IT-specific policies get setup for you. <u>Do not</u> use this page.
 
 
-**Release Version: 2.4.xx**  
+**Release Version: 2.5.xx**  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
 	
@@ -65,7 +65,7 @@ PowerShell works with the concept of 'sessions'. Each PowerShell ISE or command 
 The above error message is an indication that an AzSDK cmdlet is being run in a PowerShell session that already had an older version of AzureRm loaded in memory (which may be due to something as simple as doing a Login-AzureRmAccount and *then* installing AzSDK in that session). In most circumstances, one of the following remedies should work:
 - Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 4.1.0*" before running anything else (e.g., Login-AzureRmAccount)
 - Close the PS session and open a new one. In the new session, do an "*Import-Module AzSDK*" before running anything else. (This will force-load the correct version of AzureRm that AzSDK needs.). 
-  - If you suspect that you may have multiple versions of AzSDK itself installed, then use "*Import-Module AzSDK -RequiredVersion 2.4.0*" (July release).  
+  - If you suspect that you may have multiple versions of AzSDK itself installed, then use "*Import-Module AzSDK -RequiredVersion 2.5.0*" (August release).  
 
 #### Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."
 The AzSDK depends upon AzureRm PowerShell modules. AzureRm modules are created/maintained by the Azure product team and provide the core PowerShell libraries to interact with different Azure services. For example, you'd use the AzureRm Storage module to create/work with a storage account, etc.  
