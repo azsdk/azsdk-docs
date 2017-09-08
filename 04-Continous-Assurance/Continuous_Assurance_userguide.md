@@ -217,7 +217,7 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |----|----|----|----|----|
 |SubscriptionId|Subscription ID of the Azure subscription in which Automation Account exists |TRUE|None||
 |ResourceGroupNames|Use this parameter if you want to update the comma separated list of resource groups within which the application resources are contained. The previously configured list of RGs will be replaced with the one provided here.|FALSE|None||
-|OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None|There is an issue while updating OMSWorkspaceId using this parameter in current release (Version:2.2.0), this is a known issue. You can update OMSWorkspaceId from Azure Portal by navigating to 'AzSDKContinuousAssurance' Automation Account --> Variables --> Select OMSWorkspaceId --> Edit |
+|OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
 |UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
@@ -248,6 +248,44 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### FAQ
+
+#### What permission do I need to setup CA?
+You need to be 'Owner' on the subscription.
+This is required because, during CA setup, we add RBAC access to an Azure AD App (SPN) that's utilized for running the 'security scan' runbooks in Azure Automation. Only an'Owner' for a subscription has the right to change subscription RBAC.  
+
+#### Is it possible to setup CA if there is no OMS workspace?
+No. The intent of CA is to scan regularly and be able to monitor the outcomes for security drift. Out of the box, AzSDK CA uses OMS for the monitoring capabilities. (Basically, AzSDK sends control evaluation results to a connected OMS workspace.)  
+
+#### Which OMS workspace should I use for my team when setting up CA?
+Check with your service offering leader/org's cloud lead.
+You would typically use one of the following options:
+- Utilize a workspace is shared across a related set of services from your SO
+- Create a new OMS workspace and use that exclusively for your service ('free' tier is OK for just AzSDK use cases)
+- Utilize an IT-wide shared workspace  
+
+#### Why does CA setup ask for resource groups?
+CA supports scanning a subscription and a set of cloud resources that make up an application. These cloud resources are assumed to be hosted within one or more resource groups. A typical CA installation takes both the subscription info and resource groups info.
+
+#### How can I find out if CA was previously setup in my subscription?
+You can check using the "Get-AzSDKContinuousAssurance" cmdlet. If CA is correctly setup, it will show a list of artifacts that are deployed during CA setup (e.g., Automation Account, Connections, Schedules, OMS workspace info, etc.). If CA has not been setup, you will see a message indicating so.
+
+#### How can I tell that my CA setup has worked correctly?
+There are 2 important things you should do to verify this:
+Run the Get-AzSDKContinuousAssurance and confirm that the output tells you as in the previous question.
+Verify that the runbooks have actually started scanning your subscription and resource groups. You can check for this in OMS.
+  
+#### Is providing resource groups mandatory?
+We would like teams to, at a minimum, provide the list of resource groups that cover the most critical components of their application. It is unlikely that you will just have a subscription but no important resources inside it. Still, if you absolutely can't provide a resource group, then specify the "AzSDKR"' as the resource group when setting up CA. This resource group is used internally by AzSDK for CA so is guaranteed to exist in each subscription.
+Note that you can also provide **"*"** as an option (to request CA to scan all resource groups). However, there are some hard limits for automation runbook run times... so this option may not quite work if you have more than 100 resources in the subscription. If you do provide **"*"** as an option, CA will automatically grow/shrink the resource group list as you add/delete resource groups in your subscription.
+  
+#### What if I need to change the resource groups after a few weeks?
+That is easy! Just run the Update-AzSDKContinuousAssurance cmdlet with the new list of resource groups you would like monitored.
+  
+#### Do I need to also setup AzSDK OMS solution?
+This part is not mandatory for CA itself to work.
+However, setting up the AzSDK OMS solution is recommended as it will help you get a richer view of continuous assurance for your subscription and resources as scanned by CA. Secondly, it will give you several out-of-box artefacts to assist with security monitoring for your service. For instance, you will start getting email alerts if any of the high or critical severity controls from AzSDK fail in your service.  
+
 #### Troubleshooting
-Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature.  
+Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature. 
+
 [Back to top…](Continuous_Assurance_userguide.md#contents)
