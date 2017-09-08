@@ -5,6 +5,7 @@
 **Release Version: 2.5.xx**  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
+> - AzureRM Version 4.1.0
 	
 1. First verify that prerequisites are already installed:  
     Ensure that you have PowerShell version 5.0 or higher by typing **$PSVersionTable** in the PowerShell ISE console window and looking at the PSVersion in the output as shown below.) 
@@ -23,19 +24,6 @@ AzSDK depends on a specific version of AzureRM and installs that during the inst
 
 ------------------------------------------------
 ### FAQs
-
-#### How to run AzSDK commands when both AzureRM 4.0 and AzureRM 3.8 are present?
-**Approach 1:**
-1. Open a new PowerShell session. 
-2. Run any of the AzSDK commands directly “Get-AzSDKAzureServicesSecurityStatus”.  
->Note: If you try to login first and then PS would by default load 4.0.1 which would start failing with 3.8.0
-
-**Approach 2:**
-1. Open a new PowerShell session
-2. Import-Module -Name AzureRM -RequiredVersion 3.8.0
-3. Login-AzureRmAccount
-4. Run any AzSDK commands.
-
 #### Should I run PowerShell ISE as administrator or regular user?
 Please run PowerShell ISE as a regular user. The AzSDK has been thoroughly tested to run in normal user (non-elevated) mode. As much as possible, please do not launch your PS sessions in "Administrator" mode. There is nothing that the AzSDK does that needs elevated privileges on the local system. Even the installation command itself uses a '-Scope CurrentUser' parameter internally.  
 
@@ -50,6 +38,29 @@ To resolve this issue run the following command in your PS console:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 The execution policy setting will be remembered and all future PS consoles opened in non-Admin (CurrentUser) mode will apply the 'RemoteSigned' execution policy.
+
+#### Error message: "PackageManagement\Install-Package: cannot process argument transformation on parameter 'InstalledModuleInfo'..."
+If you have installed AzureRM PowerShell using Azure SDK in your machine, it typically get installed in Program Files. You could run the below command to confirm
+```PowerShell
+ Get-Module -Name AzureRM* -ListAvailable 
+```
+If this is the case, then you need to remove the Azure PowerShell modules installed through Azure SDK completely from the Program Files. You could also take back up in case if you need. 
+AzSDK also need AzureRM modules. But it would download from PSGallery instead of from Azure SDK. This downloading of AzureRM modules from PS Gallery would conflict with AzureRM modules installed through Azure SDK. 
+After cleanup, If you again the run the below command, it would fetch AzureRM version 4.1.0 by default into the current user scope instead of in Program Files. 
+```PowerShell
+Install-Module AzSDK -Scope CurrentUser -AllowClobber 
+```
+In case you still need to use the other version of AzureRm (that you removed), you can install it from PS Gallery using the command below: 
+```PowerShell
+Install-Module AzureRM -Scope CurrentUser -AllowClobber -RequiredVersion <versionNumber e.g. “3.8.0” >
+```
+> Note: If *"-AllowClobber"* option is not available in your version of PS, then replace that with *"-Force"*
+
+If you happen to have multiple versions of AzureRM, then it depends on which version of the module loads first in the PS session. In that case, to avoid confusion, close the installer PS session and in a new PS session run the following first:
+```PowerShell
+Import-Module AzSDK
+```
+Then you can run one or more AzSDK commands or other AzureRm commands. The *"Import-Module"* ensures that the right version of AzureRM gets loaded into the current session.
 
 #### Error message: "WARNING: The version '3.x.y' of module 'AzureRM.Profile' is currently in use. Retry the operation after closing..."
 If you see multiple warning such as the above during setup, it is likely that one or more PowerShell instances are running and have AzureRm modules loaded which are conflicting with the AzSDK installation. In such as case, it is best to ensure that all PS sessions (including the current one) are closed and start the installer in a fresh PS ISE session.
@@ -70,4 +81,4 @@ The above error message is an indication that an AzSDK cmdlet is being run in a 
 #### Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."
 The AzSDK depends upon AzureRm PowerShell modules. AzureRm modules are created/maintained by the Azure product team and provide the core PowerShell libraries to interact with different Azure services. For example, you'd use the AzureRm Storage module to create/work with a storage account, etc.  
 
-The AzSDK setup (when you use the "iwr..." command) installs the required version of AzureRm. It is possible that this is the first time your system is being setup for AzureRm. In such a situation, you will get a 'data collection' related notice/warning from AzureRm. You can choose to 'accept' or 'decline' permission to collect data. The AzSDK functionality will not be affected by that.  
+The AzSDK setup installs the required version of AzureRm. It is possible that this is the first time your system is being setup for AzureRm. In such a situation, you will get a 'data collection' related notice/warning from AzureRm. You can choose to 'accept' or 'decline' permission to collect data. The AzSDK functionality will not be affected by that.  
