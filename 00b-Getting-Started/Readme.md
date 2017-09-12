@@ -34,7 +34,7 @@ in the table below:
 |Get-AzSDKExpressRouteNetworkSecurityStatus	|Validate secure configuration of ER-connected vNets. Also validates custom/supporting protections |Reader on ERNetwork, Reader on sub.|
 |Get-AzSDKSubscriptionSecurityStatus|Scans an Azure subscription for security best practices and configuration baselines for things such as alerts, ARM policy, RBAC, ASC, etc.|Reader on subscription|
 |Get-AzSDKSupportedResourceTypes|Lists the currently supported Azure service types in AzSDK. Basically, all resources in this list have SVTs available and these SVTs will be invoked whenever Get-AzSDKAzureServicesSecurityStatus is run.|None.|
-|Install-AzSDKContinuousAssurance|Sets up continuous assurance for a subscription. This creates various artifacts such as…|Owner on subscription.|
+|Install-AzSDKContinuousAssurance|Sets up continuous assurance for a subscription. This creates various artifacts such as resource group, storage account and automation account| Owner on subscription.|
 |Install-AzSDKOMSSolution|Creates and deploys an OMS view in a subscription that has an OMS workspace. The OMS view provides visibility to application state across dev ops stages. It also creates alerts, common search queries, etc.	|Reader on subscription.|
 |Remove-AzSDKAlerts|Removes the alerts configured by AzSDK.|Owner on subscription.|
 |Remove-AzSDKARMPolicies|Removes the ARM policy configured by AzSDK.|Owner on subscription.|
