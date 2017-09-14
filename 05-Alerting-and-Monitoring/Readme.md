@@ -21,7 +21,7 @@ Out of box, this can be accomplished via Operations Management Suite (OMS) by le
 Solution in the AzSDK.
 
 However, if a team would rather leverage a different system for their log analytics, the AzSDK also
-supports routing events to other downstream systems through connectors for Event Hubs and Webhooks.
+supports routing events to other downstream systems through connectors for Event Hubs and Webhooks.  
 [Back to top…](Alert_Monitoring_userguide.md#contents)
 
 ### Routing AzSDK events to OMS
