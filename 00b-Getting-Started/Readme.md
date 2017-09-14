@@ -45,12 +45,12 @@ in the table below:
 |Set-AzSDKARMPolicies|Sets up a core set of ARM policies in a subscription.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.|
 |Set-AzSDKAzureSecurityCenterPolicies|Sets up ASC policies and security points of contact. <br>This is internally called by Set-AzSDKSubscriptionSecurity.|Reader on subscription.|
 |Set-AzSDKEventHubSettings|Configures AzSDK to send scan results to the provided EventHub. Currently available only in 'ad hoc' or 'SDL' mode.|NA|	
-|Set-AzSDKLocalControlTelemetrySettings|Configures AzSDK telemetry settings.	TBD - Mo.|NA|
+|Set-AzSDKLocalControlTelemetrySettings|The command configures the AzSDK toolkit to send data to the given Applications Insights account from user's machine.|NA|
 |Set-AzSDKOMSSettings|Configures AzSDK to send scan results to the provided OMS workspace. Events can be sent to OMS from 'ad hoc'/SDL mode (via this configuration) or from CICD by specifying OMS settings in a variable or from CA by specifying OMS settings in the CA installation command.|Reader on subscription.|
 |Set-AzSDKPolicySettings|Configures the server URL that is used by AzSDK to download controls and config JSON. If this is not called, AzSDK runs in an 'org-neutral' mode using a generic policy. Once this command is called, AzSDK gets provisioned with the URL of a server/CDN where it can download control/config JSON from.|Reader on subscription.|
 |Set-AzSDKSubscriptionRBAC|Sets up RBAC for a subscription. Configures "mandatory" accounts by default and function/scenario specific accounts if additional "tags" are provided.|Owner on subscription.|
 |Set-AzSDKSubscriptionSecurity|Master command that takes combined inputs and invokes the individual setup commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
-|Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anon' level telemetry. The other levels supported are 'TODO-Mo' and 'Full'.<br>Typically, when AzSDK is provisioned to run in an enterprise environment (you have server URL, TM backend, etc.) set up, you would want this to be 'Full. |NA|	
+|Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anonymous' level telemetry. The other levels supported is 'None'. |NA|	
 |Set-AzSDKWebhookSettings|Configures AzSDK to send scan results to the provided webhook. Currently available only in 'ad hoc' or 'SDL' mode.<br>This capability can be used to receive AzSDK scan results in arbitrary downstream systems. (E.g., Splunk)|NA|
 |Update-AzSDKContinuousAssurance|Changes the parameters with which CA is currently setup. Can be used to change Resource Groups, OMS Workspace ID, OMS Shared Key, Connection in Run as Account, Update/Renew Certificate in Run as Account.|Reader on subscription.|
 
