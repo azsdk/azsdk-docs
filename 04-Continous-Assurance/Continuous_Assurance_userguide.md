@@ -107,19 +107,15 @@ It is important to verify that everything has worked without hiccups. Please rev
 
  ![04_CA_Overview_Screen](../Images/04_CA_Overview_Screen.png)
 
-**2:** Click on the 'Assets' tile for the Automation Account and select 'Modules'. It should show 'Status' column value for all modules as 'Available' (The counts shown may vary).
-
- ![04_CA_Modules](../Images/04_CA_Modules.png)
-	
-**3:** Click on 'Runbooks' tile. It should show the following runbook:
+**2:** Click on 'Runbooks' tile. It should show the following runbook:
 
  ![04_CA_RunBooks](../Images/04_CA_RunBooks.png)
 
-**4:** Click on 'Schedules' tile. It should show the scheduling details of runbook. You can change the schedule timings according to your need. Default schedule is created as below. First job will run ten minutes after the installation:
+**3:** Click on 'Schedules' tile. It should show the scheduling details of runbook. You can change the schedule timings according to your need. Default schedule is created as below. First job will run ten minutes after the installation:
 
  ![04_CA_Schedule](../Images/04_CA_Schedule.png)
 
-**5:** Click on 'Run As Accounts' tile. It should show the following account:
+**4:** Click on 'Run As Accounts' tile. It should show the following account:
 
  ![04_CA_Run_as_Account](../Images/04_CA_Run_as_Account.png)
 
