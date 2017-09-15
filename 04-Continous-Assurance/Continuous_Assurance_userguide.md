@@ -30,7 +30,7 @@ of as facilitating "positive" security drift. The other aspect is about supporti
 we will add the ability to remind an app team about the security hygiene tasks that they need to periodically 
 perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
->**Note:** If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2, 
+>**Note:** If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2.0, 
 you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
 
 
@@ -40,7 +40,7 @@ In this section, we will walk through the steps of setting up a subscription and
 
 To get started, we need the following:
 1. The user setting up Continuous Assurance needs to have 'Owner' access to the subscription. (This is necessary because during setup, 
-AzSDK adds the automation account as a 'Reader' to the subscription.)
+AzSDK adds the service principal runtime account as a 'Reader' to the subscription.)
 
 2. Target OMS WorkspaceID* and SharedKey. (The OMS workspace can be in a different subscription, see note below)
 
@@ -181,8 +181,8 @@ To host all the Continuous Assurance artifacts
       AzureRunAsCertificate - This certificate gets expired after six months of installation  
       AzureRunAsConnection - This connection is created using service principal with a AzureRunAsCertificate
    - Two schedules to trigger the runbook :-
-      - Scan_Schedule - This is to trigger job to scan subscription and app resource groups
-      - Next_Run_Schedule - This is temporary schedule created by runbook to retry download of modules
+      - CA_Scan_Schedule - This is to trigger job to scan subscription and app resource groups
+      - CA_Helper_Schedule - This is temporary schedule created by runbook to retry download of modules
    - Modules - Downloaded by the runbook
    
 About 63 assets are created overall.
@@ -210,7 +210,8 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
     [-OMSWorkspaceId <OMSWorkspaceId>] `
     [-OMSSharedKey <OMSSharedKey>] `
     [-AzureADAppName <AzureADAppName>] `
-    [-UpdateCertificate]
+    [-FixRuntimeAccount] `
+    [-FixModules]
 ```
 
 |Param Name|Purpose|Required?|Default value|Comments
@@ -220,8 +221,8 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
-|UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
-
+|FixRuntimeAccount|Use this switch to fix CA runtime account in case of below issues.<ol><li>Runtime account deleted<br>(Permissions required: Subscription owner)</li><li>Runtime account permissions missing<br>(Permissions required: Subscription owner and AD App owner)</li><li>Certificate deleted/expired<br>(Permissions required: Subscription owner and AD App owner)</li></ol>|FALSE|None||
+|FixModules|Use this switch in case 'AzureRm.Automation' module extraction fails in CA Automation Account.|FALSE|None||
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Remove Continuous Assurance Automation Account
@@ -234,13 +235,13 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
 |SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
-|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. 
-This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||	
+|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||	
 
 [Back to top…](Continuous_Assurance_userguide.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Get-AzSDKContinuousAssurance**' command as below. 
+3. Result will display the current status of CA in your subscription. If CA is not working as expected, it will display remediation steps else it will display a message indicating CA is in health state. 
 ```PowerShell
 Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> 
 ```
