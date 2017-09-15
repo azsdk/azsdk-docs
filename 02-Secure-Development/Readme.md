@@ -3,32 +3,31 @@
 ![Secure_Development](../Images/Secure_Development.png)
 
 ### Contents
-### [Security Verification Tests (SVT)](Secure_Development_userguide.md#security-verification-tests-svt-1)
+### [Security Verification Tests (SVT)](Readme.md#security-verification-tests-svt-1)
 
-- [Overview](Secure_Development_userguide.md#overview)
-- [Execute SVTs for all controls in all resources in a given subscription](Secure_Development_userguide.md#execute-svts-for-all-controls-in-all-resources-in-a-given-subscription)
-- [Execute SVTs for specific resource groups (or tagged resources)](Secure_Development_userguide.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
-- [Execute SVTs for a specific resource](Secure_Development_userguide.md#execute-svts-for-a-specific-resource)
-- [Execute SVTs for a specific resource type](Secure_Development_userguide.md#execute-svts-for-a-specific-resource-type)
-- [Control Attestation](Secure_Development_userguide.md#control-attestation)
-- [FAQs](Secure_Development_userguide.md#faqs)
-### [Express Route-connected Virtual Networks (ER-vNet)](Secure_Development_userguide.md#express-route-connected-virtual-networks-er-vnet-1)
+- [Overview](Readme.md#overview)
+- [Execute SVTs for all controls in all resources in a given subscription](Readme.md#execute-svts-for-all-controls-of-all-resources-in-a-given-subscription)
+- [Execute SVTs for specific resource groups (or tagged resources)](Readme.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
+- [Execute SVTs for a specific resource](Readme.md#execute-svts-for-a-specific-resource)
+- [Execute SVTs for a specific resource type](Readme.md#execute-svts-for-a-specific-resource-type)
+- [Control Attestation](Readme.md#control-attestation)
+- [FAQs](Readme.md#faqs)
+### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
 
-### Security IntelliSense (Dev-SecIntel)
-#### [Basics](Security_IntelliSense_userguide.md#basics-1)
-- [What is Security IntelliSense?](Security_IntelliSense_userguide.md#what-is-security-intellisense)
-- [How do I enable Security IntelliSense on my dev box?](Security_IntelliSense_userguide.md#how-do-i-enable-security-intellisense-on-my-dev-box)
-- [Is there a sample I can use to see how it works?](Security_IntelliSense_userguide.md#is-there-a-sample-i-can-use-to-see-how-it-works)
-#### [Rules](Security_IntelliSense_userguide.md#rules-1)
-- [What 'secure coding' rules are currently covered?](Security_IntelliSense_userguide.md#what-secure-coding-rules-are-currently-covered)
-- [How are the rules updated? Do I need to refresh the plugin periodically?](Security_IntelliSense_userguide.md#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically)
-- [Can I add my own rules over and above the default set?](Security_IntelliSense_userguide.md#can-i-add-my-own-rules-over-and-above-the-default-set)
-- [Can I 'mask' a particular rule or rules?](Security_IntelliSense_userguide.md#can-i-mask-a-particular-rule-or-rules)
-- [Can I change the 'recommended' code for a rule?](Security_IntelliSense_userguide.md#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode)
-#### [Actions](Security_IntelliSense_userguide.md#actions-1)
-- [What should I do to remove the extension?](Security_IntelliSense_userguide.md#what-should-i-do-to-remove-the-extension)
-- [What default compiler actions are configured?](Security_IntelliSense_userguide.md#what-default-compiler-actions-are-configured)
-- [Can I customize actions for my dev box / team? (E.g. change Error -> Warnings etc.)](Security_IntelliSense_userguide.md#can-i-customize-actions-for-my-dev-box--team-eg-change-error---warnings-etc)
+### [Security IntelliSense (Dev-SecIntel)](Readme.md#security-intellisense-dev-secintel-1)
+#### [Basics](Readme.md#basics-1)
+- [What is Security IntelliSense?](Readme.md#what-is-security-intellisense)
+- [How do I enable Security IntelliSense on my dev box?](Readme.md#how-do-i-enable-security-intellisense-on-my-dev-box)
+- [Is there a sample I can use to see how it works?](Readme.md#is-there-a-sample-i-can-use-to-see-how-it-works)
+- [What 'secure coding' rules are currently covered?](Readme.md#what-secure-coding-rules-are-currently-covered)
+- [How are the rules updated? Do I need to refresh the plugin periodically?](Readme.md#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically)
+- [Can I add my own rules over and above the default set?](Readme.md#can-i-add-my-own-rules-over-and-above-the-default-set)
+- [Can I 'mask' a particular rule or rules?](Readme.md#can-i-mask-a-particular-rule-or-rules)
+- [Can I change the 'recommended' code for a rule?](SReadme.md#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode)
+#### [Actions](Readme.md#actions-1)
+- [What should I do to remove the extension?](Readme.md#what-should-i-do-to-remove-the-extension)
+- [What default compiler actions are configured?](Readme.md#what-default-compiler-actions-are-configured)
+- [Can I customize actions for my dev box / team? (E.g. change Error -> Warnings etc.)](Readme.md#can-i-customize-actions-for-my-dev-box--team-eg-change-error---warnings-etc)
 
 -----------------------------------------------------------------
 ## Security Verification Tests (SVT)
@@ -69,7 +68,7 @@ by specifying the 'resource type' value.
 	
 These options are described with examples below.  
 
-[Back to top…](Secure_Development_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Execute SVTs for all controls of all resources in a given subscription
 The cmdlet below checks security control state and generates a status report of all Azure resources 
@@ -87,7 +86,7 @@ The parameters required are:
 >you would want to scan a specific application (organized under one or more resource groups or 
 >using tags). The subsequent options provide ability to narrow down the scope of the scan.
     
-[Back to top…](Secure_Development_userguide.md#contents)  
+[Back to top…](Readme.md#contents)  
 ### Execute SVTs for specific resource groups (or tagged resources) 
 The cmdlet below scans all Azure resources in the specified resource groups within a subscription and 
 generates a status report:
@@ -116,7 +115,7 @@ The parameters required are:
 - TagValue – Value to identify the resources.
 - Tag – The tag filter for Azure resource. The expected format is @{tagName1=$null} or @{tagName = 'tagValue'; tagName2='value1'}.  
 
-[Back to top…](Secure_Development_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
@@ -132,7 +131,7 @@ The parameters required are:
 > and shown in the portal (as opposed to the fully qualified domain name (FQDN) which may 
 > apply to some resource types such as storage blobs or SQL DB).  
 
-[Back to top…](Secure_Development_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Execute SVTs for a specific resource type
 The cmdlet below scans all resources for a specific Azure resource type in a subscription (and a resource group [optional]):
 1. 	Using Azure resource type
@@ -155,7 +154,7 @@ The parameters required are:
 - [Optional] ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
 - ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values.  
 
-[Back to top…](Secure_Development_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Control Attestation
 
@@ -373,7 +372,7 @@ Refer the recommendations provided in the output CSV file for the security contr
 |Subscription xxxx was not found in tenant. Please verify that the subscription exists in this tenant…."|	Provide the valid Subscription Id to the 'Subscription' parameter while running the cmdlets that accept subscription id as the parameter.|
 |File xxxx cannot be loaded because the execution of scripts is disabled on this system… "|	By default, PowerShell restricts execution of all scripts. Execute below cmdlet to fix this issue: **Set-ExecutionPolicy -ExecutionPolicy Unrestricted** |  
 
-[Back to top…](Secure_Development_userguide.md#secure-development)
+[Back to top…](Readme.md#contents)
 
 --------------------------------------
 # Express Route-connected Virtual Networks (ER-vNet)
@@ -407,7 +406,7 @@ Additionally the following other 'protective' checks are also done:
 - Ensuring that the RBAC permissions for the account used to track compliance are intact.
 - Setting up alerts to fire for any of the above actions in the subscription.
 	
-[Back to top…](Secure_Development_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 # Security IntelliSense (Dev-SecIntel)
 --------------------------------------------------------------
@@ -416,7 +415,7 @@ Additionally the following other 'protective' checks are also done:
 
 <!-- #TODO# check links at top of each main page. --> 
  
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Basics:
 
@@ -441,7 +440,7 @@ The screenshots below show the core functionality at work:
 	(E.g., Instead of Random, the RNGCryptoServiceProvider class should be used in a crypto context.)  
 ![02_SecIntel_Ex_2](../Images/02_SecIntel_Ex_2.png)  
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)  
+[Back to top…](Readme.md#contents)  
 
 ### How do I enable Security IntelliSense on my dev box?
 - Open Visual Studio 2015 or 2017
@@ -454,7 +453,7 @@ The screenshots below show the core functionality at work:
 - After download completes, in the pop-up click **Install**
 - After installation completes, **restart Visual Studio**
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Is there a sample I can use to see how it works?
 - We have a sample project on GitHub that you can use. Run the command below to clone the repo. 
 If you don't have Git setup in your machine, please visit https://git-scm.com/downloads to download it.
@@ -477,7 +476,7 @@ We will change this behavior in an upcoming sprint. After that anything that is 
 the build. This will be a useful feature when integrating with CICD pipelines.
 <!-- #TODO# is it controllable by clients? -->
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Rules:
 
@@ -505,7 +504,7 @@ The following are some of the rules we support in current build (some are 'warni
 
 For a complete list of Security IntelliSense rules please go [here](Security_IntelliSense_rules_list.md)
 	
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### How are the rules updated? Do I need to refresh the plugin periodically?
 - Rule are auto-updated without the need to reinstall the plugin. Currently we have 
 defined 5 different rule templates upon which individual rules are based. We have the ability to 
@@ -514,22 +513,22 @@ deploy new rules that use the existing templates silently in the background.
 the extension will need to be downloaded. When that happens will include a notification of the same 
 in our release announcements.
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Can I add my own rules over and above the default set?
 - This will be included in the next month. It is a natural extension of the current behavior. We 
 will merely need to include support for a locally managed rules file which has rules that adhere to 
 the supported rule templates.
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Can I 'mask' a particular rule or rules?
 - This is in our backlog. We will add it in a future sprint.
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Can I change the 'recommended' code for a rule? (e.g., I want to recommend GCM instead of CBC mode)
 - This is in our backlog. We will add it in a future sprint.
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
 ### Actions:
 ### What should I do to remove the extension?
@@ -539,12 +538,12 @@ the supported rule templates.
 - Click "Uninstall" and restart Visual Studio.
 ![02_SecIntel_VSGallery](../Images/02_SecIntel_VSGallery.png)  
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### What default compiler actions are configured?
 - Most of the rules configured are of severity "Warning"
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Can I customize actions for my dev box / team? (E.g. change Error -> Warnings etc.)
 - Currently we do not support it. We have it in our pipeline to support it.  
 
-[Back to top…](Security_IntelliSense_userguide.md#contents)
+[Back to top…](Readme.md#contents)
