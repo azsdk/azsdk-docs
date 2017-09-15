@@ -2,15 +2,15 @@
 
 ![Continous_Assurance](../Images/Continous_Assurance.png)
 
-# Baseline Continuous Assurance
+## Baseline Continuous Assurance
 ### Contents
-- [Overview](Continuous_Assurance_userguide.md#overview)
-- [Setting up Continuous Assurance - Step by Step](Continuous_Assurance_userguide.md#setting-up-continuous-assurance---step-by-step)
-- [Continuous Assurance - how it works (under the covers)](Continuous_Assurance_userguide.md#continuous-assurance---how-it-works-under-the-covers)
-- [Update existing Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#update-existing-continuous-assurance-automation-account)
-- [Remove Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#remove-continuous-assurance-automation-account)
-- [Fetch details of an existing Continuous Assurance Automation Account](Continuous_Assurance_userguide.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
-- [FAQ](Continuous_Assurance_userguide.md#faq)
+- [Overview](Readme.md#overview)
+- [Setting up Continuous Assurance - Step by Step](Readme.md#setting-up-continuous-assurance---step-by-step)
+- [Continuous Assurance - how it works (under the covers)](Readme.md#continuous-assurance---how-it-works-under-the-covers)
+- [Update existing Continuous Assurance Automation Account](Readme.md#update-existing-continuous-assurance-automation-account)
+- [Remove Continuous Assurance Automation Account](Readme.md#remove-continuous-assurance-automation-account)
+- [Fetch details of an existing Continuous Assurance Automation Account](Readme.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
+- [FAQ](Readme.md#faq)
 
 -----------------------------------------------------------------
 ### Overview 
@@ -38,7 +38,7 @@ perform (key rotation, access reviews,  removing inactive/dormant power users, e
 you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
 
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Setting up Continuous Assurance - Step by Step
 In this section, we will walk through the steps of setting up a subscription and application(s) for Continuous Assurance coverage. 
 
@@ -162,7 +162,7 @@ Once CA is setup in the subscription, an app team can start leveraging the OMS S
 for visibility of security state. Please follow the steps in the OMS solution setup (in Alerting & Monitoring sub-section of 
 this notebook) to enable that part.
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Continuous Assurance - how it works (under the covers)
 The CA feature is about tracking configuration drift. This is achieved by enabling support for running AzSDK 
 SVTs/SS-Health via automation runbook. 
@@ -195,7 +195,7 @@ About 63 assets are created overall.
 Once CA is setup in the subscription, an app team can start leveraging the OMS Solution from AzSDK as a one-stop dashboard for visibility of security state.
 Occasionally, you may also feel the need to tweak the configuration of CA. See the "Update" section below about how to do that.
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Update existing Continuous Assurance Automation Account
 The '**Update-AzSDKContinuousAssurance**' command can be used to make changes to a previously setup CA configuration.
 For instance, you may use it to:
@@ -227,7 +227,7 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
 
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Remove Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Remove-AzSDKContinuousAssurance**' command as below. 
@@ -241,7 +241,7 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 |DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. 
 This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||	
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Get-AzSDKContinuousAssurance**' command as below. 
@@ -250,7 +250,7 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 ```
 **Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSDK release.
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 ### FAQ
 
 #### What permission do I need to setup CA?
@@ -292,5 +292,5 @@ However, setting up the AzSDK OMS solution is recommended as it will help you ge
 #### Troubleshooting
 Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature. 
 
-[Back to top…](Continuous_Assurance_userguide.md#contents)
+[Back to top…](Readme.md#contents)
 
