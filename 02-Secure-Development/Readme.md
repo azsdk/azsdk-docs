@@ -361,7 +361,7 @@ Note that not all security checks are automatable. The 'non-automated' checks (t
 - 	Recommendation - Recommended steps to implement a fix for a failed control.  
 
 #### How can I find out what to do for controls that are marked as 'manual'?
-Refer [TBD] for details on the security controls defined by AzSDK for Azure features. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
+Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
 
 #### How can I implement fixes for the failed ones which have no auto-fix available?
 Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  
