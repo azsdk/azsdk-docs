@@ -344,7 +344,7 @@ Remove-AzSDKAlerts -SubscriptionId <SubscriptionID> -Tags <TagNames>
 |SubscriptionID	|Subscription ID against which these alerts would be setup|
 |Tags |Comma-separated alert tag names which needs to be removed|
 
-**Note**: This command cleans up all alerts in the resource group [TBD]. This resource group is used internally by AzSDK as a container for the alert objects it registers. As a result, it is advisable to not add other alerts (or other types of resources) to this RG.
+**Note**: This command cleans up all alerts in the resource group 'AzSDKAlertsRG'. This resource group is used internally by AzSDK as a container for the alert objects it registers. As a result, it is advisable to not add other alerts (or other types of resources) to this RG.
    
 - Steps to clean all the alerts:  
     You could simply delete the resource group under which all the Azsdk alerts are configured by running below command.
