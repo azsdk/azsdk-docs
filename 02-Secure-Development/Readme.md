@@ -18,11 +18,12 @@
 - [What is Security IntelliSense?](Readme.md#what-is-security-intellisense)
 - [How do I enable Security IntelliSense on my dev box?](Readme.md#how-do-i-enable-security-intellisense-on-my-dev-box)
 - [Is there a sample I can use to see how it works?](Readme.md#is-there-a-sample-i-can-use-to-see-how-it-works)
+#### [Rules](Readme.md#rules)
 - [What 'secure coding' rules are currently covered?](Readme.md#what-secure-coding-rules-are-currently-covered)
 - [How are the rules updated? Do I need to refresh the plugin periodically?](Readme.md#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically)
 - [Can I add my own rules over and above the default set?](Readme.md#can-i-add-my-own-rules-over-and-above-the-default-set)
 - [Can I 'mask' a particular rule or rules?](Readme.md#can-i-mask-a-particular-rule-or-rules)
-- [Can I change the 'recommended' code for a rule?](SReadme.md#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode)
+- [Can I change the 'recommended' code for a rule?](Readme.md#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode)
 #### [Actions](Readme.md#actions-1)
 - [What should I do to remove the extension?](Readme.md#what-should-i-do-to-remove-the-extension)
 - [What default compiler actions are configured?](Readme.md#what-default-compiler-actions-are-configured)
@@ -266,8 +267,6 @@ Additionally the following other 'protective' checks are also done:
 
 <!-- #TODO# check links at top of each main page. --> 
  
-[Back to top…](Readme.md#contents)
-
 ### Basics:
 
 ### What is Security IntelliSense?
