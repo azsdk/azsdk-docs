@@ -76,10 +76,10 @@ AccountId | User or App (in CICD / CC) identity executed the scan
 AccountType | User / ServicePrincipal
 ActualVerificationResult | Irrespective of attestation, what is the current actual result for the control scanned
 AttestationStatus | Whether the control was attested or not
+AzureEnv | Azure Environment
 ControlId | Mutable descriptive control string identifier
 ControlIntId | Immutable internal control identifier
 ControlSeverity | Severity of the control that was scanned
-ControlVersion | Version of the controls that was used for scanning
 Feature | Name of the Azure feature. Eg. Storage
 FeatureGroup | Service or Subscription. Whether the scan performed was on service related controls or subscription related
 InfoVersion | More of schema version for the event properties
@@ -88,13 +88,15 @@ NestedResourceName | Name of the nested resource
 ResourceGroup | Name of the resource group in which the resource scanned is part of
 ResourceId | Azure URI for the resource scanned
 ResourceName | Name of the resource that was scanned
-RunIdentifier | Unique identifier for the run. All the scans from the same run with have same RunIdentifier
+RunIdentifier | Internal identifier for the run. All the scans from the same run with have same RunIdentifier. But there is a possibility for two runs having same RunIdentifier. Please use <b>UniqueRunIdentifier</b> property for correlations
 ScanKind | <ul><li>**SubCore** - Partial or Complete<ul><li>**Partial** - All controls were not scanned</li><li>**Complete** - All controls were scanned</li></ul></li><li>**Services** - Partial or ResourceGroup or Complete<ul><li>**Partial** - All controls or all resources in a resource group or subscription was not scanned</li><li>**ResourceGroup** - All resources that belong to a resource group was scanned against all applicable controls</li><li>**Subscription** - All resources that belong to a subscription was scanned against all applicable controls</li></ul></li></ul>
+ScannerModuleName | Mostly it is AzSDK, sometimes if preview version is used it will be AzSDKPreview
 ScannerVersion | PowerShell module version
 ScanSource | Source of the scan - SpotCheck or VSO or Runbook <ul><li>**SpotCheck** (SDL) - An ad-hoc scan ran from an user machine.</li><li>**VSO** (CICD) - Scan ran from Visual Studio Online as part of release pipeline</li><li>**Runbook** (CC) - Scan ran from Runbook as part of regular schedule</li></ul>
 SubscriptionId | Subscription id
 SubscriptionName | Subscription name
 TenantId | Tenant to which the user / app that ran the scan belongs to
+UniqueRunIdentifier | Globally unique identifier for the run. All the scans from the same run with have same UniqueRunIdentifier
 VerificationResult | Result of the scan with attestation if any
 
 [Back to top...](#contents)
@@ -205,11 +207,5 @@ Set-AzSDKUsageTelemetryLevel -Level None
 ``` PowerShell
 Set-AzSDKUsageTelemetryLevel -Level Anonymous
 ```
-
-[Back to top...](#contents)
-
-## FAQs
-
-TODO
 
 [Back to top...](#contents)
