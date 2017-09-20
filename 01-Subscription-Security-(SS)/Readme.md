@@ -6,27 +6,28 @@
 
 ### [AzSDK: Subscription Health Scan](Readme.md#azsdk-subscription-health-scan-1)
 - [Overview](Readme.md#overview)
-- [Scan the security health of your subscription](Readme.md#execute-subscription-health-scan-command)
-- [Subscription Health Scan - What is covered?](Readme.md#subscription-health-scan---in-depth)
-- [Target specific controls during a subscription health scan](Readme.md#target-specific-controls-of-subscription-health-scan)
+- [Scan the security health of your subscription](Readme.md#scan-the-security-health-of-your-subscription)
+- [Subscription Health Scan - What is covered?](Readme.md#subscription-health-scan---what-is-covered)
+- [Subscription Health Scan - How to fix findings?](Readme.md#subscription-health-scan---how-to-fix-findings)
+- [Target specific controls during a subscription health scan](Readme.md#target-specific-controls-during-a-subscription-health-scan)
 - [FAQs](Readme.md#faqs)
 
 ### [AzSDK: Subscription Security Provisioning](Readme.md#azsdk-subscription-security-provisioning-1)
 - [Overview](Readme.md#overview-1)
-- [Provision security for your subscription](Readme.md#execute-subscription-security-provisioning-command)
+- [Provision security for your subscription](Readme.md#provision-security-for-your-subscription)
 - [Remove previously provisioned security settings from your subscription](Readme.md#remove-azsdk-subscription-security-provisioning-from-your-subscription)
 - [FAQs](Readme.md#faqs-1)
 
-### [AzSDK: Subscription AccessControl Provisioning](Readme.md#azsdk-subscription-accesscontrol-iam-1)
+### [AzSDK: Subscription AccessControl Provisioning](Readme.md#azsdk-subscription-access-control-provisioning)
 - [Overview](Readme.md#overview-2)
-- [Setup pre-approved mandatory accounts](Readme.md#setup-pre-approved-mandatory-accounts-using-azsdk)
-- [Remove pre-approved mandatory accounts](Readme.md#remove-pre-approved-mandatory-accounts-using-azsdk)
+- [Setup pre-approved mandatory accounts](Readme.md#setup-pre-approved-mandatory-accounts)
+- [Remove pre-approved mandatory accounts](Readme.md#remove-previously-provisioned-accounts)
 
-### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-suscription-security-alerts)
+### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-suscription-activity-alerts)
 - [Overview](Readme.md#overview-3)
-- [Configure alerts in your subscription](Readme.md#setup-azsdk-alert-configuration-for-your-subscription)
-- [Remove previously configured alerts from your subscription](Readme.md#remove-azsdk-alert-configuration-for-your-subscription)
-- [Configure alerts scoped to specific resource groups](Readme.md#setup-azsdk-alert-for-a-specific-resource-group)
+- [Configure alerts in your subscription](Readme.md#configure-alerts-for-your-subscription)
+- [Remove previously configured alerts from your subscription](Readme.md#remove-previously-configured-alerts-from-your-subscription)
+- [Configure alerts scoped to specific resource groups](Readme.md#configure-alerts-scoped-to-specific-resource-groups)
 - [FAQs](Readme.md#faqs-2)
 
 ### [AzSDK: Azure Security Center (ASC) configuration](Readme.md#azsdk-azure-security-center-asc-configuration-1)
@@ -36,8 +37,8 @@
 ### [AzSDK: Suscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
 
 - [Overview](Readme.md#overview-4)
-- [Setup ARM policies for your subscription](Readme.md#setup-azsdk-arm-policies-on-your-subscription)
-- [Remove ARM policies from your subscription](Readme.md#remove-azsdk-arm-policies-from-your-subscription)
+- [Setup ARM policies for your subscription](Readme.md#setup-arm-policies-on-your-subscription)
+- [Remove ARM policies from your subscription](Readme.md#remove-arm-policies-from-your-subscription)
 - [FAQs](Readme.md#faqs-3)
 
 ----------------------------------------------------------
@@ -175,8 +176,8 @@ Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> -ControlIds
 You can clean up unwanted admins/owners through portal by following below instructions:
 1. Cleaning up classic administrators 
     * Logon to [https://manage.windowsazure.com/](https://manage.windowsazure.com/)
-	* Navigate to the Settings tab followed by click administrators tab to list all the administrators as shown below  
-      ![Remove Classic Adminstrator_1](../Images/01_Remove_Classic_Adminstrator_1.png)
+     - Navigate to the Settings tab followed by click administrators tab to list all the administrators as shown below    
+       ![Remove Classic Adminstrator_1](../Images/01_Remove_Classic_Adminstrator_1.png)
     * Select the account that has to be removed and click on the Remove icon on the bottom ribbon as show in the below figure  
       ![Remove Classic Adminstrator_2](../Images/01_Remove_Classic_Adminstrator_2.png)
     * Perform this operation for all classic admin accounts that have to be removed.
@@ -294,7 +295,7 @@ to remove those accounts but if you must you can do so using '-Tags "Mandatory"'
 
 Run the below command with the subscriptionId which you want to remove RBAC accounts from:
 ```PowerShell
-Remove-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> -Tags <TagName>
+Remove-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> [-Tags <TagName>]
 ```		
 [Back to top…](Readme.md#contents)
 
