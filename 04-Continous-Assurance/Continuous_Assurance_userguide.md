@@ -178,7 +178,7 @@ To host all the Continuous Assurance artifacts
       AzureRunAsConnection - This connection is created using service principal with a AzureRunAsCertificate
    - Two schedules to trigger the runbook :-
       - CA_Scan_Schedule - This is to trigger job to scan subscription and app resource groups
-      - CA_Helper_Schedule - This is temporary schedule created by runbook to retry download of modules
+      - CA_Helper_Schedule - This is a temporary schedule created by runbook to retry download of modules
    - Modules - Downloaded by the runbook
    
 About 63 assets are created overall.
