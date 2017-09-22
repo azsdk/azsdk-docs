@@ -76,4 +76,4 @@ Congratulations! You have completed this section of the Getting Started guide su
 
 **Next steps** 
 To get more details and understand SVTs and other secure development features of the AzSDK further, 
-please refer [here.](../02-Secure-Development/Secure_Development_userguide.md)
+please refer [here.](../02-Secure-Development/Readme.md)
