@@ -26,12 +26,7 @@ The "Secure DevOps Kit for Azure" (will be referred to as 'AzSDK' henceforth) is
 1. You can follow the [installation guide](00a-Setup/Readme.md) and install the AzSDK on your system.  
 2. After the installation is complete, please make sure that you are logged into your Azure subscription in Powershell ISE.
 
-T> A quick note is due here about use of PowerShell (and PowerShell ISE). The AzSDK heavily uses PowerShell-based functions and modules to accomplish security configuration, provisioning and for running security scans and test cases. Some of our first time users of the AzSDK occasionally also get a first exposure to PowerShell/PowerShell ISE as part of the AzSDK first use experience. Given how extensively PowerShell is used (and useful) across various activities in Azure, we highly encourage you to work past the initial challenges. Several people (including some members of our own team) were new to PowerShell just a few weeks ago. However, once they got past the initial bumps, it has been smooth sailing.  
-
-3. Also, because by default PowerShell allows only signed scripts to run, you __may__ have to run the following command so that the AzSDK cmdlets are allowed to execute:  
-```Powershell 
-Set-ExecutionPolicy -ExecutionPolicy Unrestricted
-```
+> A quick note is due here about use of PowerShell (and PowerShell ISE). The AzSDK heavily uses PowerShell-based functions and modules to accomplish security configuration, provisioning and for running security scans and test cases. Some of our first time users of the AzSDK occasionally also get a first exposure to PowerShell/PowerShell ISE as part of the AzSDK first use experience. Given how extensively PowerShell is used (and useful) across various activities in Azure, we highly encourage you to work past the initial challenges. Several people (including some members of our own team) were new to PowerShell just a few weeks ago. However, once they got past the initial bumps, it has been smooth sailing.  
 
 If you have completed the above steps then you are all set to get started with the AzSDK.  
 
