@@ -11,7 +11,7 @@
 - [Next Steps](Readme.md#next-steps)
 
 --------------------------
-### Overview 
+### Overview: 
 The Alerting & Monitoring features of AzSDK empower dev ops teams with the following capabilities:
 - a single pane of glass view of cloud security across dev ops stages
 - visibility to control status for their Azure subscription and critical enterprise/application resources
