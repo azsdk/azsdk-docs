@@ -11,6 +11,7 @@
 - [Execute SVTs for specific resource groups (or tagged resources)](Readme.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for a specific resource](Readme.md#execute-svts-for-a-specific-resource)
 - [Execute SVTs for a specific resource type](Readme.md#execute-svts-for-a-specific-resource-type)
+- [Execute SVTs in Baseline mode](Readme.md#execute-svts-in-baseline-mode) 
 - [FAQs](Readme.md#faqs)
 
 ### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
@@ -157,6 +158,32 @@ The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
 - [Optional] ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
 - ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values.  
+
+[Back to top…](Readme.md#contents)
+
+### Execute SVTs in Baseline mode 
+In 'baseline mode' a centrally defined 'control baseline' is used as the target control set for scanning.
+The cmdlet below scans azure resources in a subscription in Baseline mode and generates a status report:
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UseBaselineControls
+```
+	
+The parameters required are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
+- UseBaselineControls – UseBaselineControls is the flag used to enable scanning of resources in Baseline mode.
+
+Below Control Ids are validated for the azure resources in Baseline mode 
+
+| Resource Tye |Control IDs|
+|-------| ------------- |
+|AppService| Azure_AppService_DP_Dont_Allow_HTTP_Access, Azure_AppService_Config_Disable_Remote_Debugging, Azure_AppService_AuthN_Use_AAD_for_Client_AuthN|
+|CloudService| Azure_CloudService_DP_DontAllow_HTTP_Access_InputEndpoints, Azure_CloudService_SI_Auto_OSUpdate, Azure_CloudService_SI_Enable_AntiMalware, Azure_CloudService_SI_Disable_RemoteDesktop_Access, Azure_CloudService_AuthN_Use_AAD_for_Client_AuthN|
+|ERvNet|Azure_ERvNet_NetSec_Dont_Use_PublicIPs, Azure_ERvNet_NetSec_Dont_Enable_IPForwarding_for_NICs, Azure_ERvNet_NetSec_Dont_Add_UDRs_on_Subnets, Azure_ERvNet_NetSec_Dont_Add_VPN_Gateways, Azure_ERvNet_NetSec_Dont_Use_VNet_Peerings, Azure_ERvNet_NetSec_Use_Only_Internal_Load_Balancers |
+|LoadBalancer |Azure_LoadBalancer_NetSec_Justify_PublicIPs |
+|SQLDatabase |Azure_SQLDatabase_DP_Enable_TDE, Azure_SQLDatabase_Audit_Enable_Threat_Detection_Server, Azure_SQLDatabase_Audit_Enable_Threat_Detection_DB |
+|Storage| Azure_Storage_AuthN_Dont_Allow_Anonymous, Azure_Storage_DP_Encrypt_At_Rest_Blob, Azure_Storage_DP_Encrypt_At_Rest_File, Azure_Storage_DP_Encrypt_In_Transit|
+|VirtualMachine|Azure_VirtualMachine_SI_Missing_OS_Patches, Azure_VirtualMachine_SI_Enable_Antimalware_Windows, Azure_VirtualMachine_NetSec_Dont_Open_Management_Ports, Azure_VirtualMachine_NetSec_Justify_PublicIPs |
+|VirtualNetwork |Azure_VNet_NetSec_Justify_PublicIPs |
 
 [Back to top…](Readme.md#contents)
 
