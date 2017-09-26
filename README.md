@@ -53,7 +53,7 @@ As you get familiar with and begin to use the 'downstream' capabilities (CICD, C
 
 |Feature Area | Secure DevOps Kit Feature|
 |-------------|--------------------------|
-[Secure the subscription](01-Subscription-Security-(SS)/Readme.md) | <ul><li>Subscription Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li><li>ARM Policy Configuration</li><li>Azure Security Center Configuration</li><li>Access control (IAM) Hygiene</li>  </ul> </li></ul>
+[Secure the subscription](01-Subscription-Security/Readme.md) | <ul><li>Subscription Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li><li>ARM Policy Configuration</li><li>Azure Security Center Configuration</li><li>Access control (IAM) Hygiene</li>  </ul> </li></ul>
 [Enable secure development](02-Secure-Development/Readme.md) | <ul><li>Security Verification Tests (SVT) </li><li>Security IntelliSense- VS Extension </li></ul>
 [Integrate security into CICD](03-Security-In-CICD/Readme.md) | <ul><li>AzSDK VS Extension-executes SVTs in a CICD pipeline </li></ul>
 [Continuous Assurance](04-Continous-Assurance/Readme.md) | <ul><li>Security scanning via Azure Automation Runbooks</li></ul>

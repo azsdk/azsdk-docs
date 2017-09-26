@@ -1,4 +1,4 @@
-# AzSDK Subscription Security Package(SS)
+# AzSDK Subscription Security Package
 
 ![Subscription_Security](../Images/Subscription_Security.JPG)
 

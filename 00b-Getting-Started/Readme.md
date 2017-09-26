@@ -17,7 +17,7 @@ in the table below:
 
 |Feature Area | Secure DevOps Kit Feature|
 |-------------|--------------------------|
-[Subscription Security](../01-Subscription-Security-(SS)/Readme.md) | <ul><li>Subscription Security Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li>  </li> <li>ARM Policy Configuration</li> <li>Azure Security Center (ASC) Configuration</li><li>Access control (RBAC) Hygiene</li>  </ul> </li></ul>
+[Subscription Security](../01-Subscription-Security/Readme.md) | <ul><li>Subscription Security Health Check</li> <li>Subscription Provisioning<ul><li> Alerts Configuration</li>  </li> <li>ARM Policy Configuration</li> <li>Azure Security Center (ASC) Configuration</li><li>Access control (RBAC) Hygiene</li>  </ul> </li></ul>
 [Secure Development](../02-Secure-Development/Readme.md) | <ul><li>Security Verification Tests (SVTs) </li><li>Security IntelliSense VS Editor Extension </li></ul>
 [Security in CICD](../03-Security-In-CICD/Readme.md) | <ul><li>AzSDK-SVTs VSTS extension for injecting security tests in a CICD pipeline </li></ul>
 [Continuous Assurance](../04-Continous-Assurance/Readme.md) | <ul><li>Security scanning of Azure subscription and applications via automation runbooks</li></ul>
