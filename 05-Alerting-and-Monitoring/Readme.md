@@ -9,10 +9,10 @@
 - [Setting up the AzSDK OMS Solution (Step by Step)](Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)
 - [Next Steps](Readme.md#next-steps)
 - [Appendix](Readme.md#Appendix)
-  - [Creating an OMS workspace](Readme.md#[A]-creating-an-oms-workspace)
-  - [Testing OMS connectivity](Readme.md#[B]-testing-oms-connectivity)
-  - [Routing AzSDK events to OMS](Readme.md#[C]-routing-azsdk-events-to-oms)
-  - [Leveraging other OMS Solutions from the Solutions Gallery](Readme.md#[D]-leveraging-other-oms-solutions-from-the-solutions-gallery)
+  - [Creating an OMS workspace](Readme.md#a-creating-an-oms-workspace)
+  - [Testing OMS connectivity](Readme.md#b-testing-oms-connectivity)
+  - [Routing AzSDK events to OMS](Readme.md#c-routing-azsdk-events-to-oms)
+  - [Leveraging other OMS Solutions from the Solutions Gallery](Readme.md#d-leveraging-other-oms-solutions-from-the-solutions-gallery)
 
 --------------------------
 ### Overview: 
@@ -51,14 +51,14 @@ This section will walk you through the step-by-step experience of setting up the
 Note that for the OMS solution to display anything, you have to configure AzSDK in SDL or CICD or
 CA mode to send events to the target OMS workspace as mentioned in the "Routing Events to OMS..." section above.
 
-If you do not have an OMS workspace yet, see [Appendix](Readme.md#APPENDIX) to create one.
+If you do not have an OMS workspace yet, see [Appendix](Readme.md#Appendix) to create one.
 
 The rest of this section assumes that:
 a) you have an OMS worskpace**
 b) you have setup AzSDK to send events to that workspace (from one or more of SDL, CICD, CA stages)
 c) some AzSDK scans have run in respective stages and events are already present in the OMS workspace
 
-If you need help for any of the above, see the respective section in the [Appendix](Readme.md#APPENDIX) at the bottom.
+If you need help for any of the above, see the respective section in the [Appendix](Readme.md#Appendix) at the bottom.
 
 ** The OMS product team has recently made several improvements to the underlying store and have also adopted
 a new query language. This write-up assumes that you are using the new/updated OMS workspace and
@@ -238,8 +238,8 @@ for "Continuous Assurance".)
 
 [Back to top…](Readme.md#contents)
 
-
-## APPENDIX ##
+--------------------------
+## Appendix ##
 ### [A] Creating an OMS workspace ###
 **Step-1 (Ops team):** Create a new OMS workspace.
 
