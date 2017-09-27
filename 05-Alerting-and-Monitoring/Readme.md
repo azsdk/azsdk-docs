@@ -99,7 +99,7 @@ Click on "Settings" (gear wheel on the top band) for the OMS workspace and navig
 "Connected Sources -> Windows Servers" as shown in the image below:
 
 
-![05_Setting_OMS_Workspace_Primary_Key](../Images/05_OMS_wsid_shrKey.png)
+![05_Setting_OMS_Workspace_Primary_Key](../Images/05_OMS_WsId_ShrKey.png)
 
 
 **[1-c]**
@@ -269,7 +269,7 @@ address confirmation such as the one below:
 **Step-3 (Ops Team):** Capture the WorkspaceID and PrimaryKey for the workspace by clicking on 
 "Settings" for the OMS workspace and navigating to "Connected Sources -> Windows Servers".
 
-![05_Setting_OMS_Workspace_Primary_Key](../Images/05_OMS_wsid_shrKey.png)
+![05_Setting_OMS_Workspace_Primary_Key](../Images/05_OMS_WsId_ShrKey.png)
 
 
 
