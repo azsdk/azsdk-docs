@@ -212,14 +212,14 @@ via webhooks/runbooks. (For instance, if you know that a particular storage acco
 you can define a search query and a respective alert for any hint of abnormal activity on that storage account.) 
 
 ***Implement 'auto-correction' scripts***
-For critial resources which you want to never go out of compliance, you can implement 'auto-correct' scripts 
+For critical resources which you want to never go out of compliance, you can implement 'auto-correct' scripts 
 using search queries to define the condition that should trigger corrective action. For most controls which are 
 'auto-correctable', the AzSDK can help you generate the 'auto-correct' script by using the -GenerateFixScript flag
 in the AzSDK scan commands such as Get-AzSDKAzureServicesSecurityStatus.
 
 ***Create views application-centric views***
 You can start by cloning the default view and make modifications to the queries underpinning the individual blades 
-to make your own custom views. For exampe, you can modify the cloned view to monitor specific applications using the AzSDK OMS solution. 
+to make your own custom views. For example, you can modify the cloned view to monitor specific applications using the AzSDK OMS solution. 
 This can be done simply by filtering the default queries underpinning the blades by resource groups corresponding to 
 one or more applications. You could monitor all apps via different blades in the same view or create multiple views - 
 one for each application.
