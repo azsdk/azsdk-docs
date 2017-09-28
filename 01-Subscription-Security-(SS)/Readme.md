@@ -287,8 +287,8 @@ setup in your subscription.
 The Remove-AzSDKSubscriptionRBAC command can be used to remove access control (RBAC) settings that were
 previously provisioned using AzSDK.
 
-To remove access control related configuration, it is mandatory to use the '-Tags' parameter. If this
-parameter is not specified, no RBAC deprovisioning will be done. Typically you would want to specify
+To remove access control related configuration, use the '-Tags' parameter. If this
+parameter is not specified, only the deprecated accounts will be deleted from the subscription. Typically you would want to specify
 the tags which were used when setting up RBAC. If you did not specify any tags during provisioning then,
 by default, only the accounts marked as 'Mandatory' would get provisioned. Typically, you should not have
 to remove those accounts but if you must you can do so using '-Tags "Mandatory"' in the command.
