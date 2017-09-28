@@ -111,14 +111,14 @@ Run the below commands in PS after replacing the various '<>' with
     $omsSubId ='<oms subscription id>'   #subscription hosting the OMS workspace
     $omsWSId ='<oms workspace id>'
     $omsRGName ='<oms resource group name>'     #RG where the OMS workspace is hosted (See 1-a)
-    $omsViewName = '<a unique name for your monitoring view>'     #E.g., MyApp-View-1
+    $azSdkViewName = '<unique_name_for_your_AzSDK_view>' #This will identify the tile for AzSDK view in OMS. E.g., MyApp-View-1
 
 
     #This command will deploy the AzSDK view in the OMS workspace. Happy monitoring!  
     Install-AzSDKOMSSolution -OMSSubscriptionId $omsSubId `
                     -OMSResourceGroup $omsRGName `
                     -OMSWorkspaceId $omsWSId `
-                    -UniqueName $omsViewName
+                    -ViewName $azSdkViewName
 ```
 
 The table below explains the different parameters used by Install-AzSDKOMSSolution cmdlet:
