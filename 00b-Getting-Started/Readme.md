@@ -41,6 +41,8 @@ in the table below:
 |Remove-AzSDKContinuousAssurance (RCA)|Removes the AzSDK CA setup (including, optionally, the container being used for storing reports).|Reader on subscription.|
 |Remove-AzSDKSubscriptionRBAC (RRB)|Removes the RBAC setup by AzSDK. By default "mandatory" central accounts are not removed and "deprecated" accounts are always removed.|Owner on subscription.|
 |Remove-AzSDKSubscriptionSecurity (RSS)|Removes the configuration done via Set-AzSDKSubscriptionSecurity. It invokes the individual remove commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
+|Repair-AzSDKAzureServicesSecurity (RRS)|||
+|Repair-AzSDKSubscriptionSecurity (RSS)|||
 |Set-AzSDKAlerts (SAL)|Sets up activity alerts for the subscription. Includes alerts for subscription and resource specific activities. Alerts can be scopes to subscription or RGs.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.
 |Set-AzSDKARMPolicies (SAP)|Sets up a core set of ARM policies in a subscription.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.|
 |Set-AzSDKAzureSecurityCenterPolicies (SSC)|Sets up ASC policies and security points of contact. <br>This is internally called by Set-AzSDKSubscriptionSecurity.|Reader on subscription.|
@@ -52,7 +54,8 @@ in the table below:
 |Set-AzSDKSubscriptionSecurity (SSS)|Master command that takes combined inputs and invokes the individual setup commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
 |Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anonymous' level telemetry. The other levels supported is 'None'. |NA|	
 |Set-AzSDKWebhookSettings|Configures AzSDK to send scan results to the provided webhook. Currently available only in 'ad hoc' or 'SDL' mode.<br>This capability can be used to receive AzSDK scan results in arbitrary downstream systems. (E.g., Splunk)|NA|
+|Uninstall-AzSDKOMSetup|||
 |Update-AzSDKContinuousAssurance (UCA)|Changes the parameters with which CA is currently setup. Can be used to change Resource Groups, OMS Workspace ID, OMS Shared Key, Connection in Run as Account, Update/Renew Certificate in Run as Account.|Reader on subscription.|
-
+|Update-AzSDKSubscriptionSecurity (USS)|||
 
 
