@@ -65,4 +65,4 @@ Congratulations! You have completed this part of the Getting Started Guide succe
 **Next steps** 
 As next steps you can explore one of the following:
 1) try the Getting Started guide for scanning your application for security issues [here](./GettingStarted_AzureServiceSecurity.md) or
-2) get more details and understand subscription security checks in depth [here](../01-Subscription-Security-(SS)/Readme.md).
+2) get more details and understand subscription security checks in depth [here](../01-Subscription-Security/Readme.md).
