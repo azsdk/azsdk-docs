@@ -28,31 +28,31 @@ in the table below:
 
 |Command|What it does|	Role/Permission|
 |----|----|-----|
-|Get-AzSDKAzureServicesSecurityStatus|Scans a set of RGs (or the entire subscription)|Reader on subscription or respective RGs|
-|Get-AzSDKContinuousAssurance|Validates the status of Continuous Assurance automation account including the condition of various artifacts such as storage account, schedules, runbooks, SPN/connection, required modules, etc.|Reader on subscription.|
-|Get-AzSDKControlsStatus|Single cmdlet that combines Get-AzSDKSubscriptionSecurityStatus, Get-AzSDKAzureServicesSecurityStatus|Union of permissions.|
-|Get-AzSDKExpressRouteNetworkSecurityStatus	|Validate secure configuration of ER-connected vNets. Also validates custom/supporting protections |Reader on ERNetwork, Reader on sub.|
-|Get-AzSDKSubscriptionSecurityStatus|Scans an Azure subscription for security best practices and configuration baselines for things such as alerts, ARM policy, RBAC, ASC, etc.|Reader on subscription|
+|Get-AzSDKAzureServicesSecurityStatus (GRS)|Scans a set of RGs (or the entire subscription)|Reader on subscription or respective RGs|
+|Get-AzSDKContinuousAssurance (GCA)|Validates the status of Continuous Assurance automation account including the condition of various artifacts such as storage account, schedules, runbooks, SPN/connection, required modules, etc.|Reader on subscription.|
+|Get-AzSDKControlsStatus (GCS)|Single cmdlet that combines Get-AzSDKSubscriptionSecurityStatus, Get-AzSDKAzureServicesSecurityStatus|Union of permissions.|
+|Get-AzSDKExpressRouteNetworkSecurityStatus (GES)|Validate secure configuration of ER-connected vNets. Also validates custom/supporting protections |Reader on ERNetwork, Reader on sub.|
+|Get-AzSDKSubscriptionSecurityStatus (GSS)|Scans an Azure subscription for security best practices and configuration baselines for things such as alerts, ARM policy, RBAC, ASC, etc.|Reader on subscription|
 |Get-AzSDKSupportedResourceTypes|Lists the currently supported Azure service types in AzSDK. Basically, all resources in this list have SVTs available and these SVTs will be invoked whenever Get-AzSDKAzureServicesSecurityStatus is run.|NA.|
-|Install-AzSDKContinuousAssurance|Sets up continuous assurance for a subscription. This creates various artifacts such as resource group, storage account and automation account| Owner on subscription.|
-|Install-AzSDKOMSSolution|Creates and deploys an OMS view in a subscription that has an OMS workspace. The OMS view provides visibility to application state across dev ops stages. It also creates alerts, common search queries, etc.	|Reader on subscription.|
-|Remove-AzSDKAlerts|Removes the alerts configured by AzSDK.|Owner on subscription.|
-|Remove-AzSDKARMPolicies|Removes the ARM policy configured by AzSDK.|Owner on subscription.|
-|Remove-AzSDKContinuousAssurance|Removes the AzSDK CA setup (including, optionally, the container being used for storing reports).|Reader on subscription.|
-|Remove-AzSDKSubscriptionRBAC|Removes the RBAC setup by AzSDK. By default "mandatory" central accounts are not removed and "deprecated" accounts are always removed.|Owner on subscription.|
-|Remove-AzSDKSubscriptionSecurity|Removes the configuration done via Set-AzSDKSubscriptionSecurity. It invokes the individual remove commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
-|Set-AzSDKAlerts|Sets up activity alerts for the subscription. Includes alerts for subscription and resource specific activities. Alerts can be scopes to subscription or RGs.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.
-|Set-AzSDKARMPolicies|Sets up a core set of ARM policies in a subscription.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.|
-|Set-AzSDKAzureSecurityCenterPolicies|Sets up ASC policies and security points of contact. <br>This is internally called by Set-AzSDKSubscriptionSecurity.|Reader on subscription.|
-|Set-AzSDKEventHubSettings|Configures AzSDK to send scan results to the provided EventHub. Currently available only in 'ad hoc' or 'SDL' mode.|NA|	
+|Install-AzSDKContinuousAssurance (ICA)|Sets up continuous assurance for a subscription. This creates various artifacts such as resource group, storage account and automation account| Owner on subscription.|
+|Install-AzSDKOMSSolution (IOM)|Creates and deploys an OMS view in a subscription that has an OMS workspace. The OMS view provides visibility to application state across dev ops stages. It also creates alerts, common search queries, etc.	|Reader on subscription.|
+|Remove-AzSDKAlerts (RAL)|Removes the alerts configured by AzSDK.|Owner on subscription.|
+|Remove-AzSDKARMPolicies (RAP)|Removes the ARM policy configured by AzSDK.|Owner on subscription.|
+|Remove-AzSDKContinuousAssurance (RCA)|Removes the AzSDK CA setup (including, optionally, the container being used for storing reports).|Reader on subscription.|
+|Remove-AzSDKSubscriptionRBAC (RRB)|Removes the RBAC setup by AzSDK. By default "mandatory" central accounts are not removed and "deprecated" accounts are always removed.|Owner on subscription.|
+|Remove-AzSDKSubscriptionSecurity (RSS)|Removes the configuration done via Set-AzSDKSubscriptionSecurity. It invokes the individual remove commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
+|Set-AzSDKAlerts (SAL)|Sets up activity alerts for the subscription. Includes alerts for subscription and resource specific activities. Alerts can be scopes to subscription or RGs.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.
+|Set-AzSDKARMPolicies (SAP)|Sets up a core set of ARM policies in a subscription.<br>This is internally called by Set-AzSDKSubscriptionSecurity.|Owner on subscription.|
+|Set-AzSDKAzureSecurityCenterPolicies (SSC)|Sets up ASC policies and security points of contact. <br>This is internally called by Set-AzSDKSubscriptionSecurity.|Reader on subscription.|
+|Set-AzSDKEventHubSettings |Configures AzSDK to send scan results to the provided EventHub. Currently available only in 'ad hoc' or 'SDL' mode.|NA|	
 |Set-AzSDKLocalControlTelemetrySettings|The command configures the AzSDK toolkit to send data to the given Applications Insights account from user's machine.|NA|
 |Set-AzSDKOMSSettings|Configures AzSDK to send scan results to the provided OMS workspace. Events can be sent to OMS from 'ad hoc'/SDL mode (via this configuration) or from CICD by specifying OMS settings in a variable or from CA by specifying OMS settings in the CA installation command.|Reader on subscription.|
 |Set-AzSDKPolicySettings|Configures the server URL that is used by AzSDK to download controls and config JSON. If this is not called, AzSDK runs in an 'org-neutral' mode using a generic policy. Once this command is called, AzSDK gets provisioned with the URL of a server/CDN where it can download control/config JSON from.|Reader on subscription.|
-|Set-AzSDKSubscriptionRBAC|Sets up RBAC for a subscription. Configures "mandatory" accounts by default and function/scenario specific accounts if additional "tags" are provided.|Owner on subscription.|
-|Set-AzSDKSubscriptionSecurity|Master command that takes combined inputs and invokes the individual setup commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
+|Set-AzSDKSubscriptionRBAC (SRB)|Sets up RBAC for a subscription. Configures "mandatory" accounts by default and function/scenario specific accounts if additional "tags" are provided.|Owner on subscription.|
+|Set-AzSDKSubscriptionSecurity (SSS)|Master command that takes combined inputs and invokes the individual setup commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
 |Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anonymous' level telemetry. The other levels supported is 'None'. |NA|	
 |Set-AzSDKWebhookSettings|Configures AzSDK to send scan results to the provided webhook. Currently available only in 'ad hoc' or 'SDL' mode.<br>This capability can be used to receive AzSDK scan results in arbitrary downstream systems. (E.g., Splunk)|NA|
-|Update-AzSDKContinuousAssurance|Changes the parameters with which CA is currently setup. Can be used to change Resource Groups, OMS Workspace ID, OMS Shared Key, Connection in Run as Account, Update/Renew Certificate in Run as Account.|Reader on subscription.|
+|Update-AzSDKContinuousAssurance (UCA)|Changes the parameters with which CA is currently setup. Can be used to change Resource Groups, OMS Workspace ID, OMS Shared Key, Connection in Run as Account, Update/Renew Certificate in Run as Account.|Reader on subscription.|
 
 
 
