@@ -330,7 +330,7 @@ As noted above, by default alerts are configured for activities that are deemed 
 |Config Param Name	|Purpose	|Comments|
 | ----------------  | --------- | ------ |
 |SubscriptionId 	|Subscription ID against which the alerts would be setup| |
-|SecurityContactEmails	|Email address of Security Point of Contact, can be a mail enabled security group or a distribution list |pattif@contoso.com, davidchew@contoso.net|
+|SecurityContactEmails	|Email address of Security Point of Contact, can be a mail enabled security group or a distribution list |abc@contoso.com, xyz@contoso.net|
 |SecurityPhoneNumbers	|Phone numbers of Security Point of Contact. Note that only the country code '1' is currently supported for SMS. |425-1234567,425-1234568|
 
 [Back to top…](Readme.md#contents)
