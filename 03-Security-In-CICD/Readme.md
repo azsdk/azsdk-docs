@@ -273,7 +273,7 @@ Currently AzSDK CICD Plugin is not been published on repositories, However you c
 ![03_Install_Plugin](../Images/03_Install_Plugin.png)
 After successful installation, let's use Plugin to scan Azure Resources.  
 
-[Back to top...](Readme.md#contents))
+[Back to top...](Readme.md#contents)
 
 ### Run AzSDK SVT on Azure Resources from Jenkins pipeline
 	
