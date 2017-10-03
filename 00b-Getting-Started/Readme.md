@@ -55,7 +55,7 @@ in the table below:
 |Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anonymous' level telemetry. The other levels supported is 'None'. |NA|	
 |Set-AzSDKWebhookSettings|Configures AzSDK to send scan results to the provided webhook. Currently available only in 'ad hoc' or 'SDL' mode.<br>This capability can be used to receive AzSDK scan results in arbitrary downstream systems. (E.g., Splunk)|NA|
 |Uninstall-AzSDKOMSetup|||
-|Update-AzSDKContinuousAssurance (UCA)|Changes the parameters with which CA is currently setup. Can be used to change Resource Groups, OMS Workspace ID, OMS Shared Key, Connection in Run as Account, Update/Renew Certificate in Run as Account.|Owner on subscription.|
+|Update-AzSDKContinuousAssurance (UCA)|Updates various parameters that were used when CA was originally setup. This command can be used to change things like target resource groups that were scanned, OMS workspaceID and sharedKey, run as account used by CA for scanning, update/renew certificate credential as run as account. | Owner on subscription.|
 |Update-AzSDKSubscriptionSecurity (USS)||Owner on subscription.|
 
 
