@@ -34,7 +34,7 @@
 	
 - [Setup Azure Security Center (ASC) on your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription)
 
-### [AzSDK: Suscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
+### [AzSDK: Subscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
 
 - [Overview](Readme.md#overview-4)
 - [Setup ARM policies for your subscription](Readme.md#setup-arm-policies-on-your-subscription)
@@ -300,7 +300,7 @@ Remove-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> [-Tags <TagName>]
 [Back to top…](Readme.md#contents)
 
 ----------------------------------------------------------
-## AzSDK: Suscription Activity Alerts
+## AzSDK: Subscription Activity Alerts
 
 #### Subscription Activity Alerts (based on Azure Insights)
 
@@ -423,7 +423,7 @@ This command will *overwrite* the contact emails and contact phone previously se
 [Back to top…](Readme.md#contents)  
 
 ----------------------------------------------------------
-## AzSDK: Suscription Security - ARM Policy
+## AzSDK: Subscription Security - ARM Policy
 
 ### Overview
 The native ARM Policy feature in Azure can be used control access to resources by explicitly auditing or denying access to certain operations on them. The ARM Policy setup script in the AzSDK uses this feature to define and deploy some broadly applicable security policies in the subscription. By using the setup script (either standalone or through the overall Provisioning script), you can be assured that the subscription is compliant with respect to the core set of policies expected to be in place by AzSDK.
