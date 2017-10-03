@@ -1,19 +1,24 @@
 
+# Security Verification Tests (SVTs)
 
 ![Security_In_CICD](../Images/Security_In_CICD.jpg)
 
 > **Notes** 
 > - We also plan to support miniaturized ARM templates which can be combined with existing templates and, subsequently, to analyze 'ARM template equivalence' from a security standpoint.
-> - We have built a PoC for a similar CICD extension for Jenkins for AzSDK. Documentation for the Jenkins extension will be added soon.
- <!-- #TODO# Jenkins doc --> 
  
 ## Contents
+## [Security Verification Tests (SVTs) in CICD Pipeline](Readme.md#security-verification-tests-svts-in-cicd-pipeline)
 - [Overview](Readme.md#overview) 
 - [Enable AzSDK extension for your VSTS](Readme.md#enable-azsdk-extension-for-your-vsts) 
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
 - [Remediating Failures and Next Steps](Readme.md#remediating-failures-and-next-steps)
+
+## [Security Verification Tests (SVTs) in the Jenkins Pipeline](Readme.md#security-verification-tests-svts-in-the-jenkins-pipeline)
+- [Import AzSDK CICD Plugin in the Jenkins](Readme.md#import-azsdk-cicd-plugin-in-the-jenkins)
+- [Run AzSDK SVT on Azure Resources from Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
+
 ------------------------------------------------------------------
 # Security Verification Tests (SVTs) in CICD Pipeline
 ### Overview 
@@ -250,11 +255,10 @@ conditions (e.g., back to back SVT failures) etc.
 > This document assumes that you are familiar with the Jenkins pipeline at a basic level. To get the basics and setup Jenkins you can refer [article](https://jenkins.io/doc/).
 	
 Walkthrough is divided into two parts:
-1. [Import AzSDK CICD Plugin in the Jenkins](Security_In_CICD_Jenkins_userguide.md#import-azsdk-plugin-in-jenkins)
-2. [Run SVT on resources in the Jenkins pipeline](Security_In_CICD_Jenkins_userguide.md#run-svt-on-resources-in-jenkins-pipeline)
+1. [Import AzSDK CICD Plugin in the Jenkins](Readme.md#import-azsdk-plugin-in-jenkins)
+2. [Run SVT on resources in the Jenkins pipeline](Readme.md#run-svt-on-resources-in-jenkins-pipeline)
 	
-> Note : AzSDK Plugin requires PowerShell to be present on the Jenkins Server. Therefore, the Plugin is currently supported for Windows machines only.
-> 	
+> Note : AzSDK Plugin requires PowerShell to be present on the Jenkins Server. Therefore, the Plugin is currently supported for Windows machines only.	
 
 ### Import AzSDK CICD Plugin in the Jenkins
 	
@@ -264,14 +268,13 @@ Currently AzSDK CICD Plugin is not been published on repositories, However you c
 	
  Go to Home Page --> Manage Jenkins --> Manage Plugins -->  Select Advanced --> Upload Plugin file "[AzSDK_CICD_Jenkins_Plugin.hpi](https://sadevopstoolkit.blob.core.windows.net/jenkinplugin/AzSDK_CICD_Jenkins_Plugin.hpi)"
 
-
 ![03_Upload_Plugin](../Images/03_Upload_Plugin.png)  
-
-
  
 ![03_Install_Plugin](../Images/03_Install_Plugin.png)
 After successful installation, let's use Plugin to scan Azure Resources.  
-[Back to top...](Security_In_CICD_Jenkins_userguide.md#security-verification-tests-svts-in-jenkins-pipeline)
+
+[Back to top...](Readme.md#contents))
+
 ### Run AzSDK SVT on Azure Resources from Jenkins pipeline
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
@@ -282,7 +285,6 @@ To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azu
     <br/>b. Fill out the details Subscription Id, Client ID, Client	Secret, OAuth 2.0 Token Endpoint and ID.
     <br/>c. Click on "Verify Service Principal" to validate SPN details are correct 
     <br/>d. Click Ok.
-	
 	
 - #### Step-2: Create a Jenkins Job or open an existing one.
 		
@@ -318,9 +320,9 @@ To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azu
 
 ![03_Trigger_Build_1](../Images/03_Trigger_Build_1.png)  
 ![03_Trigger_Build_2](../Images/03_Trigger_Build_2.png)	  
-![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	
+![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	  
 
-[Back to top...](Security_In_CICD_Jenkins_userguide.md#security-verification-tests-svts-in-jenkins-pipeline)
+[Back to top...](Readme.md#contents)
 > 	Note :
 > 	- Currently task is configured to not stop if SVT fails.
 > 	- All SVT reports are exported to Jenkins Server Machine at location "%LocalAppData%\Microsoft\AzSDKLogs".
