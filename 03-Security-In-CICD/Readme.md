@@ -93,7 +93,7 @@ When the pipeline executes, SVTs will scan the specified set of resources.
 
 Along with input parameter, you can check for below options
 <br/>**Enable OMS Logging:** Switch to enable this task to publish SVT evalution results to an OMS workspace. Steps to configure OMS credential are explained in Step-4
-<br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed idividual controls in the task summary output.
+<br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed individual controls in the task summary output.
 <br/>**Use Preview Modules of AzSDK:** Switch to toggle use of preview drop of AzSDK SVTs. By default it is configured to use latest bits of AzSDK.
 ![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.png)
 
