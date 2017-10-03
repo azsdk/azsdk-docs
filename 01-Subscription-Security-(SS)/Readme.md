@@ -346,7 +346,7 @@ Remove-AzSDKAlerts -SubscriptionId <SubscriptionID> -Tags <TagNames>
 |SubscriptionID	|Subscription ID against which these alerts would be setup|
 |Tags |Comma-separated alert tag names which needs to be removed|
 
-**Note**: This command cleans up all alerts in the resource group 'AzSDKRG'. This resource group is used internally by as a container for AzSDK objects. As a result, it is advisable to not add other alerts (or other types of resources) to this RG.
+**Note**: This command cleans up all alerts in the resource group 'AzSDKRG'. This resource group is used internally as a container for AzSDK objects. As a result, it is advisable to not add other alerts (or other types of resources) to this RG.
 
 [Back to top…](Readme.md#contents)
 ### Configure alerts scoped to specific resource groups
