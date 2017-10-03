@@ -30,7 +30,7 @@ of as facilitating "positive" security drift. The other aspect is about supporti
 we will add the ability to remind an app team about the security hygiene tasks that they need to periodically 
 perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
->**Note:** If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2.0, 
+>**Note:** If you have already installed Continuous Assurance using a version prior to 2.2.0, 
 you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
 
 
@@ -237,7 +237,8 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Get-AzSDKContinuousAssurance**' command as below. 
-3. Result will display the current status of CA in your subscription. If CA is not working as expected, it will display remediation steps else it will display a message indicating CA is in health state. 
+3. Result will display the current status of CA in your subscription. If CA is not working as expected, it will display remediation steps else it will display a message indicating CA is in healthy state. 
+4. Once you follow the remediation steps, run the command again to check if anything is still missing in CA setup. Follow the remediation steps accordingly until the CA state becomes healthy. 
 ```PowerShell
 Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> 
 ```
