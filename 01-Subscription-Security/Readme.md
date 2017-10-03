@@ -1,4 +1,4 @@
-# AzSDK Subscription Security Package(SS)
+# AzSDK Subscription Security Package
 
 ![Subscription_Security](../Images/Subscription_Security.JPG)
 
@@ -426,7 +426,7 @@ This command will *overwrite* the contact emails and contact phone previously se
 ## AzSDK: Suscription Security - ARM Policy
 
 ### Overview
-The native ARM Policy feature in Azure can be used control access to resources by explicitly auditing or denying access to certain operations on them. The ARM Policy setup script in the AzSDK uses this feature to define and deploy some broadly applicable security policies in the subscription. By using the setup script (either standalone or through the overall SS-Provisioning script), you can be assured that the subscription is compliant with respect to the core set of policies expected to be in place by AzSDK.
+The native ARM Policy feature in Azure can be used control access to resources by explicitly auditing or denying access to certain operations on them. The ARM Policy setup script in the AzSDK uses this feature to define and deploy some broadly applicable security policies in the subscription. By using the setup script (either standalone or through the overall Provisioning script), you can be assured that the subscription is compliant with respect to the core set of policies expected to be in place by AzSDK.
 
 [Back to top…](Readme.md#contents)
 ### Setup ARM policies on your subscription
