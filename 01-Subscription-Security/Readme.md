@@ -41,7 +41,7 @@
 - [Remove ARM policies from your subscription](Readme.md#remove-arm-policies-from-your-subscription)
 - [FAQs](Readme.md#faqs-3)
 
-### [AzSDK: Update all AzSDK packages](Readme.md#azsdk-update-all-azsdk-packages)
+### [AzSDK: Update all AzSDK packages](Readme.md#azsdk-update-all-azsdk-packages-1)
 - [Update AzSDK packages](Readme.md#update-azsdk-packages)
 
 
@@ -520,3 +520,5 @@ Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
 |SubscriptionId 	|Subscription ID in which AzSDK compliance would be upgraded	|
 
 > **Note**: This command is useful only for updating subscription's AzSDK compliance from older to newer version. You would require to onboard AzSDK in your subscription first and then only you can use this command to keep it updated over the time.
+
+[Back to top…](Readme.md#contents)
