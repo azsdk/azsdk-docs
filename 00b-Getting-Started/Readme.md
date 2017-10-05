@@ -54,8 +54,8 @@ in the table below:
 |Set-AzSDKSubscriptionSecurity (SSS)|Master command that takes combined inputs and invokes the individual setup commands for RBAC, ARM policy, Alerts and ASC.|Owner on subscription.|
 |Set-AzSDKUsageTelemetryLevel|Command to switch the default TM level for AzSDK. The generic version of AzSDK comes with 'Anonymous' level telemetry. The other levels supported is 'None'. |NA|	
 |Set-AzSDKWebhookSettings|Configures AzSDK to send scan results to the provided webhook. Currently available only in 'ad hoc' or 'SDL' mode.<br>This capability can be used to receive AzSDK scan results in arbitrary downstream systems. (E.g., Splunk)|NA|
-|Uninstall-AzSDKOMSetup|||
+|Uninstall-AzSDKOMSetup|This command can be used to uninstall the old AzSDK OMS solution (setup using AzSDK version 2.4.0 or before) from the OMS subscription. From version 2.5.0 onwards, the AzSDK OMS solution just deploys a view which can be directly deleted from the OMS workspace.|Reader on subscription.|
 |Update-AzSDKContinuousAssurance (UCA)|Updates various parameters that were used when CA was originally setup. This command can be used to change things like target resource groups that were scanned, OMS workspaceID and sharedKey, run as account used by CA for scanning, update/renew certificate credential as run as account. | Owner on subscription.|
-|Update-AzSDKSubscriptionSecurity (USS)||Owner on subscription.|
+|Update-AzSDKSubscriptionSecurity (USS)|This command can be used to update various security baseline elements and bring your subscription up to speed from a baseline policy compliance of subscription security controls. It updates one or more of the following elements after checking the ones that are out of date - alerts, Security Center, ARM policy, RBAC (mandatory accounts and deprecated accounts), continuous assurance runbook, etc.|Owner on subscription.|
 
 
