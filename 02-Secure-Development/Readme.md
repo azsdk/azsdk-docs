@@ -12,6 +12,7 @@
 - [Execute SVTs for a specific resource type](Readme.md#execute-svts-for-a-specific-resource-type)
 - [Execute SVTs in Baseline mode](Readme.md#execute-svts-in-baseline-mode) 
 - [Execute SVTs using "-UsePartialCommits" switch](Readme.md#execute-svts-using--usepartialcommits-switch)
+- [Understand the scan reports](Readme.md#understand-the-scan-reports)
 - [FAQs](Readme.md#faqs)
 
 ### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
