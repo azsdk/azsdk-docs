@@ -503,3 +503,12 @@ Reach out to AzSDKSupExt@microsoft.com for any further help
 
 [Back to top…](Readme.md#contents)
 
+## AzSDK: Update all AzSDK packages 
+
+### Overview
+AzSDK team is constantly enhancing AzSDK features so it is quite possible that newer AzSDK version shows your subscription as non-compliant even if you have already set your subscription compliant to AzSDK (Alerts, ASC, ARM Policies, CA etc.) using older version. In this case, you can run below single command to upgrade all AzSDK packages (ARM Policies, Alerts, ASC, RBAC, Continuous Assurance).  
+
+```PowerShell
+Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
+```
+> **Note**: This command is useful only for updating subscription's AzSDK compliance from older to newer version. You would require to onboard AzSDK in your subscription first and then only you can use this command to keep it updated over the time.
