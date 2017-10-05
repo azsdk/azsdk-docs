@@ -23,7 +23,7 @@ cloud resources that constitute the application.
  
 The AzSDK also supports other ways of representing an application.
 For instance, you can also make use of the 'tags' parameter to scan only resources with 
-a specific tag value. More details can be found [here.](../02-Secure-Development/Secure_Development_userguide.md#how-do-i-check-for-specific-resource-groups-or-tagged-resources-only)  
+a specific tag value. More details can be found [here.](../02-Secure-Development/Readme.md#execute-svts-for-specific-resource-groups-or-tagged-resources)  
 
 When the command runs, you will start seeing output such as the following in the PowerShell console. 
 Time required for execution will depend on the number of resources that are being scanned.    
