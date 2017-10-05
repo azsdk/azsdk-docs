@@ -327,7 +327,7 @@ The screenshots below show the core functionality at work:
 If you don't have Git setup in your machine, please visit https://git-scm.com/downloads to download it.
 	
 ``` 
-    git clone https://github.com/azsdk/azsdk-secintel-samples
+    git clone https://github.com/azsdk/azsdk-secintel-samples.git
 ```
 	
 - After cloning the repo, navigate to **azsdk-secintel-samples** -> **SecIntelSample** and 
