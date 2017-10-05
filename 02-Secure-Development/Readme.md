@@ -11,6 +11,7 @@
 - [Execute SVTs for specific resource groups (or tagged resources)](Readme.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for a specific resource](Readme.md#execute-svts-for-a-specific-resource)
 - [Execute SVTs for a specific resource type](Readme.md#execute-svts-for-a-specific-resource-type)
+- [Execute SVTs in Baseline mode](Readme.md#execute-svts-in-baseline-mode) 
 - [FAQs](Readme.md#faqs)
 
 ### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
@@ -157,6 +158,19 @@ The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
 - [Optional] ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.
 - ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values.  
+
+[Back to top…](Readme.md#contents)
+
+### Execute SVTs in Baseline mode 
+In 'baseline mode' a centrally defined 'control baseline' is used as the target control set for scanning.
+The cmdlet below scans azure resources in a subscription in Baseline mode and generates a status report:
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UseBaselineControls
+```
+	
+The parameters required are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
+- UseBaselineControls – UseBaselineControls is the flag used to enable scanning of resources in Baseline mode.
 
 [Back to top…](Readme.md#contents)
 
