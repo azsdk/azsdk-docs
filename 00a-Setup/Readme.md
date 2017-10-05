@@ -1,5 +1,5 @@
 # Installation Guide
-> <h4>IMPORTANT:</h4> If you are from MSIT, please install via instructions at http://aka.ms/azsdkdocs so that IT-specific policies get setup for you. <u>Do not</u> use this page.
+> <h4>IMPORTANT:</h4> If you are from CSE, please install the AzSDK via instructions at http://aka.ms/azsdkdocs so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
 **Release Version: 2.5.xx**  
