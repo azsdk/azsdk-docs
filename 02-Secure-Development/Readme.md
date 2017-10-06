@@ -13,6 +13,7 @@
 - [Execute SVTs in Baseline mode](Readme.md#execute-svts-in-baseline-mode) 
 - [Execute SVTs using "-UsePartialCommits" switch](Readme.md#execute-svts-using--usepartialcommits-switch)
 - [Understand the scan reports](Readme.md#understand-the-scan-reports)
+- [Generate output report in PDF format](Readme.md#generate-output-report-in-pdf-format)
 - [FAQs](Readme.md#faqs)
 
 ### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
@@ -226,6 +227,28 @@ You can use these outputs as follows -
 6. Rerun the cmdlet and verify that the controls you tried to fix are passing now.
 
 [Back to top…](Readme.md#contents)
+
+### Generate output report in PDF format
+The Get-AzSDKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDG format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate pdf report:  
+
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -GeneratePDF <PdfOrientation>
+```
+		
+The parameters required are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription.  
+- GeneratePDF - This accepts either 'None', 'Portrait' or 'Landscape' as inputs.
+
+If you execute SVTs using above command, a new pdf file with name 'SecurityReport' will get generated in the root output logs folder.
+
+The PDF report consists of following sections:
+- *Basic Details* - It consists of basic details like subscription id, name, AzSDK Version, Date of generation, user, command executed etc.
+- *Security Report Summary* -It displays the security status of all the controls Ids which gets scanned.
+- *Powershell Output* -It displays the raw PS console output captured during execution of SVTs.
+- *Detailed Output* -It displays the detailed/raw output log of controls evaluated.
+
+[Back to top…](Readme.md#contents)
+
 
 
 ### FAQs
