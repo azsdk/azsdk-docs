@@ -14,7 +14,7 @@
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
 
-## [Security Verification Tests (SVTs) in Jenkins Pipeline](Readme.md#security-verification-tests-svts-in-the-jenkins-pipeline)
+## [Security Verification Tests (SVTs) in Jenkins pipeline](Readme.md#security-verification-tests-svts-in-the-jenkins-pipeline)
 - [Import AzSDK CICD Plugin in Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
 - [Run AzSDK SVT on Azure Resources from Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
 
