@@ -18,7 +18,6 @@
 - [Walkthrough](Readme.md#walkthrough-1)
   - [Adding SVTs in the Jenkins pipeline](Readme.md#adding-svts-in-the-jenkins-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly-1)
-  
 - [Remediating Failures and Next Steps](Readme.md#remediating-failures-and-next-steps)
 ------------------------------------------------------------------
 ### Overview 
