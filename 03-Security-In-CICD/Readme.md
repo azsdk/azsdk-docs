@@ -9,14 +9,16 @@
 ## Contents
 - [Overview](Readme.md#overview) 
 ## [Security Verification Tests (SVTs) in VSTS pipeline](Readme.md#security-verification-tests-svts-in-VSTS-pipeline)
-- [Enable AzSDK extension for your VSTS](Readme.md#enable-azsdk-extension-for-your-vsts) 
+- [Enable AzSDK extension for your VSTS](Readme.md#enable-azsdk-extension-for-your-vsts)
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
 
 ## [Security Verification Tests (SVTs) in Jenkins pipeline](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
-- [Import AzSDK CICD Plugin in Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
-- [Run AzSDK SVT on Azure Resources from Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
+- [Enable AzSDK extension for your Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
+- [Walkthrough](Readme.md#walkthrough)
+  - [Adding SVTs in the Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
+  - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
 
 - [Remediating Failures and Next Steps](Readme.md#remediating-failures-and-next-steps)
 ------------------------------------------------------------------
@@ -240,18 +242,12 @@ what we have seen in the case of ad hoc SVT runs:
 [Back to top...](Readme.md#contents)
 
 # Security Verification Tests (SVTs) in Jenkins pipeline
-> Prerequisites :  
-> This document assumes that you are familiar with Jenkins pipeline at a basic level. To get the basics and setup Jenkins you can refer [article](https://jenkins.io/doc/).
-	
-Walkthrough is divided into two parts:
-1. [Import AzSDK CICD Plugin in Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
-2. [Run SVT on resources in Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
 	
 > Note : AzSDK Plugin requires PowerShell to be present on Jenkins Server. Therefore, the Plugin is currently supported for Windows machines only.	
 
-### Import AzSDK CICD Plugin in Jenkins
+### Enable AzSDK extension for your Jenkins
 	
-Currently AzSDK CICD Plugin is not been published on repositories, However you can use Jenkins Web UI to upload this Plugin([AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi) file) to Jenkins or place it in '$JENKINS_HOME/Plugins' location.
+Currently AzSDK CICD extension/Plugin has not been published on Jenkins repository, However you can use Jenkins Web UI to upload this Plugin([AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi) file) to Jenkins or place it in '$JENKINS_HOME/Plugins' location.
 	
 **Step to upload Plugin using Jenkins Web UI**
 	
@@ -260,11 +256,14 @@ Currently AzSDK CICD Plugin is not been published on repositories, However you c
 ![03_Upload_Plugin](../Images/03_Upload_Plugin.png)  
  
 ![03_Install_Plugin](../Images/03_Install_Plugin.png)
- <br/>Plugin is successfully imported, Now let's use Plugin to scan Azure Resources.  
+ <br/>Plugin is successfully imported. Now let's use Plugin to scan Azure Resources.  
 
 [Back to top...](Readme.md#contents)
 
-### Run AzSDK SVT on Azure Resources from Jenkins pipeline
+### Walkthrough
+This part assumes that you are familiar with Jenkins pipeline at a basic level. To get the basics and setup Jenkins you can refer [article](https://jenkins.io/doc/).
+
+### Adding SVTs in the Jenkins pipeline
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
 
@@ -305,16 +304,20 @@ To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azu
 - #### Step-6: Save the Job 
 
 	![03_Save_Job](../Images/03_Save_Job.png)
-- #### Step-7: Trigger build and you will be able to see the SVT scan result in 'Console Output'
-
+### Verifying that the SVTs have been added and configured correctly
+**Step-1:** Trigger the build.
 	![03_Trigger_Build_1](../Images/03_Trigger_Build_1.png)  
+**Step-2:** Verify that the build has started. 
 	![03_Trigger_Build_2](../Images/03_Trigger_Build_2.png)	  
+**Step-3:** View the 'Console Output'.
 	![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	  
-
+**Step-4:** See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
+This is no different than the "ad hoc SVT run" scenarios. Note, how the SVT outputs the location 
+of the "CSV" file and the "LOG" file at the end of the run.
+	![03_Output_Folder](../Images/03_Output_Folder.png) 
 [Back to top...](Readme.md#contents)
 > 	Note :
 > 	- Currently task is configured to not stop if SVT fails.
-> 	- All SVT reports are exported to Jenkins Server Machine at location "%LocalAppData%\Microsoft\AzSDKLogs".
 
 ### Remediating failures and next steps
 Once you have the CSV file and the LOG file for the SVTs execution, the process of understanding and 
