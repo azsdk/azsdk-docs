@@ -244,7 +244,7 @@ what we have seen in the case of ad hoc SVT runs:
 > This document assumes that you are familiar with Jenkins pipeline at a basic level. To get the basics and setup Jenkins you can refer [article](https://jenkins.io/doc/).
 	
 Walkthrough is divided into two parts:
-1. [Import AzSDK CICD Plugin in Jenkins](Readme.md#import-azsdk-cicd-plugin-in-the-jenkins)
+1. [Import AzSDK CICD Plugin in Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
 2. [Run SVT on resources in Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
 	
 > Note : AzSDK Plugin requires PowerShell to be present on Jenkins Server. Therefore, the Plugin is currently supported for Windows machines only.	
