@@ -13,13 +13,11 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
-
 ## [Security Verification Tests (SVTs) in Jenkins pipeline](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
-- [Enable AzSDK extension for your Jenkins](Readme.md#import-azsdk-cicd-plugin-in-jenkins)
-- [Walkthrough](Readme.md#walkthrough)
-  - [Adding SVTs in the Jenkins pipeline](Readme.md#run-azsdk-svt-on-azure-resources-from-jenkins-pipeline)
-  - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
-
+- [Enable AzSDK extension for your Jenkins](Readme.md#enable-azsdk-extension-for-your-jenkins)
+- [Walkthrough](Readme.md#walkthrough-1)
+  - [Adding SVTs in the Jenkins pipeline](Readme.md#adding-svts-in-the-jenkins-pipeline)
+  - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly-1)
 - [Remediating Failures and Next Steps](Readme.md#remediating-failures-and-next-steps)
 ------------------------------------------------------------------
 ### Overview 
@@ -266,13 +264,13 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 ### Adding SVTs in the Jenkins pipeline
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
-
-To run the SVT, AzSDK need SPN/application which has reader on resource group.
-To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal).<br/> Configure SPN details using below steps
-    <br/>a. Go to Home Page -->  Credentials --> System --> Global Credentials  --> Click on "Add Credentials" --> Select credential type "Microsoft Azure Service Principal"
-    <br/>b. Fill out the details Subscription Id, Client ID, Client	Secret, OAuth 2.0 Token Endpoint and ID.
-    <br/>c. Click on "Verify Service Principal" to validate SPN details are correct 
-    <br/>d. Click Ok.
+	To run the SVT, AzSDK need SPN/application which has reader on resource group.
+	To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-	service-principal-portal).  
+	Configure SPN details using below steps
+    1. Go to Home Page -->  Credentials --> System --> Global Credentials  --> Click on "Add Credentials" --> Select credential type "Microsoft Azure Service Principal"
+    2. Fill out the details Subscription Id, Client ID, Client	Secret, OAuth 2.0 Token Endpoint and ID.
+    3. Click on "Verify Service Principal" to validate SPN details are correct 
+    4. Click Ok.
 	
 - #### Step-2: Create a Jenkins Job or open an existing one.
 		
@@ -314,7 +312,7 @@ To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azu
 **Step-4:** See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
 This is no different than the "ad hoc SVT run" scenarios. Note, how the SVT outputs the location 
 of the "CSV" file and the "LOG" file at the end of the run.
-	![03_Output_Folder](../Images/03_Output_Folder.png) 
+	![03_AzSDK_Logs](../Images/03_AzSDK_Logs.png) 
 [Back to top...](Readme.md#contents)
 > 	Note :
 > 	- Currently task is configured to not stop if SVT fails.
