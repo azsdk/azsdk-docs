@@ -11,6 +11,10 @@ pointers to full help on individual features by feature area.
 
 > **Note:** If you have not installed the DevOps Kit yet, follow the instructions in the [installation guide](../00a-Setup/Readme.md) and then come back here.
 
+> **PowerShell Tips for AzSDK:** 
+> If you are new to PowerShell, then you will find several useful tips in our [PowerShell tips for new AzSDK Users](GettingStarted_PowerShellTipsAzSDK.md) guide 
+> handy to accelerate your initial learning curve for PowerShell competencies needed to use AzSDK effectively.
+
 The overall set of features in the Secure DevOps Kit for Azure are organized by the 6 areas as shown 
 in the table below:  
 
