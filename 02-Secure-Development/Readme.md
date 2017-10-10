@@ -177,17 +177,12 @@ The parameters required are:
 [Back to top…](Readme.md#contents)
 
 ### Execute SVTs using "-UsePartialCommits" switch
-The Get-AzSDKAzureServicesSecurityStatus command now supports checkpointing via a "-UsePartialCommits" switch. When this switch is used, the command periodically persists scan progress to disk. That way, if the scan is interrupted or an error occurs, a future retry can resume from the last saved state. This capability also helps in CA scans where Azure currently suspends 'long running' automation jobs by default.The cmdlet below checks security control state via a "-UsePartialCommits" switch:  
+The Get-AzSDKAzureServicesSecurityStatus command now supports checkpointing via a "-UsePartialCommits" switch. When this switch is used, the command periodically persists scan progress to disk. That way, if the scan is interrupted or an error occurs, a future retry can resume from the last saved state. This capability also helps in Continuous Assurance scans where Azure currently suspends 'long running' automation jobs by default.The cmdlet below checks security control state via a "-UsePartialCommits" switch:  
 
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UsePartialCommits
 ```
 		
-The parameters required are:
-- SubscriptionId – Subscription ID is the identifier of your Azure subscription.  
-- UsePartialCommits -UsePartialCommits is the switch used for checkpointing scans.
-
-
 [Back to top…](Readme.md#contents)
 
 ### Understand the scan reports
@@ -208,6 +203,8 @@ E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscription
 > **Note**: By default, cmdlets open this folder upon completion of the cmdlet (we assume you'd be interested in examining the control evaluation status, etc.)
 
 The contents of the output folder are organized as under:  
+![02_Output_Log_Folder](../Images/02_Output_Log_Folder.PNG)
+
 - *\SecurityReport-\<timestamp>.csv*- This is the summary CSV file listing all applicable controls and their evaluation status. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.  
 - *\\\<Resource_Group_or_Subscription_Name>* - This corresponds to the resource-group or subscription that was evaluated  
 	- *\\\<resourceType>.log*- This is the detailed/raw output log of controls evaluated  
@@ -215,6 +212,7 @@ The contents of the output folder are organized as under:
 	- *\PowerShellOutput.log* - This is the raw PS console output captured in a file.  
 	- *\EnvironmentDetails.log* - This is the log file containing environment data of current PowerShell session.  
 	- *\SecurityEvaluationData.json* - This is the detailed security data for each control that was evaluated. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.
+	![02_Etc_Folder_Structure](../Images/02_Etc_Folder_Structure.PNG)
 - *\FixControlScripts* - This folder contains scripts to fix the failed controls. The folder is generated only when 'GenerateFixScript' switch is passed and one or more failed controls support automated fixing.  
 	- *\README.txt* - This is the help file which describes about the 'FixControlScripts' folder.
 
@@ -229,7 +227,7 @@ You can use these outputs as follows -
 [Back to top…](Readme.md#contents)
 
 ### Generate output report in PDF format
-The Get-AzSDKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDG format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate pdf report:  
+The Get-AzSDKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDF format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate PDF report:  
 
 ```PowerShell
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -GeneratePDF <PdfOrientation>
@@ -239,7 +237,7 @@ The parameters required are:
 - SubscriptionId – Subscription ID is the identifier of your Azure subscription.  
 - GeneratePDF - This accepts either 'None', 'Portrait' or 'Landscape' as inputs.
 
-If you execute SVTs using above command, a new pdf file with name 'SecurityReport' will get generated in the root output logs folder.
+If you execute SVTs using above command, a new PDF file with name 'SecurityReport' will get generated in the root output logs folder.
 
 The PDF report consists of following sections:
 - *Basic Details* - It consists of basic details like subscription id, name, AzSDK Version, Date of generation, user, command executed etc.
