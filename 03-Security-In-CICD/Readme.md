@@ -305,18 +305,14 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 [Back to top...](Readme.md#contents)
 ### Verifying that the SVTs have been added and configured correctly
 **Step-1:** Trigger the build.
-
 	![03_Trigger_Build_1](../Images/03_Trigger_Build_1.png)  
-**Step-2:** Verify that the build has started. 
-
+**Step-2:** Verify that the build has started.
 	![03_Trigger_Build_2](../Images/03_Trigger_Build_2.png)	  
 **Step-3:** View the 'Console Output'.
-
 	![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	  
 **Step-4:** See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
 This is no different than the "ad hoc SVT run" scenarios. SVT outputs the location 
 of the "CSV" file and the "LOG" file at the end of the run.
-
 	![03_AzSDK_Logs](../Images/03_AzSDK_Logs.png) 
 [Back to top...](Readme.md#contents)
 > 	Note :
