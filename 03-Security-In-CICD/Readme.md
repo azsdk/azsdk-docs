@@ -13,7 +13,7 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
-## [Security Verification Tests (SVTs) in Jenkins pipeline](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
+## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
 - [Enable AzSDK extension for your Jenkins](Readme.md#enable-azsdk-extension-for-your-jenkins)
 - [Walkthrough](Readme.md#walkthrough-1)
   - [Adding SVTs in the Jenkins pipeline](Readme.md#adding-svts-in-the-jenkins-pipeline)
@@ -239,27 +239,27 @@ what we have seen in the case of ad hoc SVT runs:
 
 [Back to top...](Readme.md#contents)
 
-# Security Verification Tests (SVTs) in Jenkins pipeline
+# Security Verification Tests (SVTs) in Jenkins pipeline (Preview)
 	
-> Note : AzSDK Plugin requires PowerShell to be present on Jenkins Server. Therefore, the Plugin is currently supported for Windows machines only.	
+> Note : AzSDK plugin requires PowerShell to be present on Jenkins Server. Therefore, the plugin is currently supported for Windows machines only.	
 
 ### Enable AzSDK extension for your Jenkins
 	
-Currently AzSDK CICD extension/Plugin has not been published on Jenkins repository, However you can use Jenkins Web UI to upload this Plugin([AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi) file) to Jenkins or place it in '$JENKINS_HOME/Plugins' location.
+Currently AzSDK CICD extension/plugin has not been published on Jenkins repository, However you can use Jenkins Web UI to upload this plugin([AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi) file) to Jenkins or place it in '$JENKINS_HOME/plugins' location.
 	
-**Step to upload Plugin using Jenkins Web UI**
+**Step to upload plugin using Jenkins Web UI**
 	
- Go to Home Page --> Manage Jenkins --> Manage Plugins -->  Select Advanced --> Upload Plugin file "[AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi)"
+ Go to Home Page --> Manage Jenkins --> Manage plugins -->  Select Advanced --> Upload plugin file "[AzSDK_CICD_Jenkins_Plugin.hpi](Assets/AzSDK_CICD_Jenkins_Plugin.hpi)"
 
-![03_Upload_Plugin](../Images/03_Upload_Plugin.png)  
+![03_Upload_plugin](../Images/03_Upload_Plugin.png)  
  
-![03_Install_Plugin](../Images/03_Install_Plugin.png)
- <br/>Plugin is successfully imported. Now let's use Plugin to scan Azure Resources.  
+![03_Install_plugin](../Images/03_Install_Plugin.png)
+ <br/>Plugin is successfully imported. Now let's use plugin to scan Azure Resources.  
 
 [Back to top...](Readme.md#contents)
 
 ### Walkthrough
-This part assumes that you are familiar with Jenkins pipeline at a basic level. To get the basics and setup Jenkins you can refer [article](https://jenkins.io/doc/).
+This part assumes that you are familiar with Jenkins pipeline at a basic level. To explore more on Jenkins, refer: [article](https://jenkins.io/doc/).
 
 ### Adding SVTs in the Jenkins pipeline
 	
