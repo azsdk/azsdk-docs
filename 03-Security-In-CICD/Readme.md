@@ -2,9 +2,6 @@
 # Security Verification Tests (SVTs)
 
 ![Security_In_CICD](../Images/Security_In_CICD.jpg)
-
-> **Notes** 
-> - We also plan to support miniaturized ARM templates which can be combined with existing templates and, subsequently, to analyze 'ARM template equivalence' from a security standpoint.
  
 ## Contents
 - [Overview](Readme.md#overview) 
@@ -265,8 +262,8 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 	
 - #### Step-1: Configure Service Principal (SPN) credentials
 	To run the SVT, AzSDK need SPN/application which has reader on resource group.
-	To create SPN and assign role, refer [link](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal).  
-	Configure SPN details using below steps
+	To set up an identity for the app(i.e. SPN) and assign reader role on resource group, refer: [article](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal).  
+	You can configure details of SPN using below steps under Jenkins Global Credentials 
     1. Go to Home Page -->  Credentials --> System --> Global Credentials  --> Click on "Add Credentials" --> Select credential type "Microsoft Azure Service Principal"
     2. Fill out the details Subscription Id, Client ID, Client	Secret, OAuth 2.0 Token Endpoint and ID.
     3. Click on "Verify Service Principal" to validate SPN details are correct 
@@ -304,15 +301,20 @@ This part assumes that you are familiar with Jenkins pipeline at a basic level. 
 	![03_Save_Job](../Images/03_Save_Job.png)
 [Back to top...](Readme.md#contents)
 ### Verifying that the SVTs have been added and configured correctly
-**Step-1:** Trigger the build.
+- #### Step-1: Trigger the build.
+
 	![03_Trigger_Build_1](../Images/03_Trigger_Build_1.png)  
-**Step-2:** Verify that the build has started.
+- #### Step-2: Verify that the build has started.
+
 	![03_Trigger_Build_2](../Images/03_Trigger_Build_2.png)	  
-**Step-3:** View the 'Console Output'.
+- #### Step-3: View the 'Console Output'.
+
 	![03_Trigger_Build_3](../Images/03_Trigger_Build_3.png)	  
-**Step-4:** See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
-This is no different than the "ad hoc SVT run" scenarios. SVT outputs the location 
-of the "CSV" file and the "LOG" file at the end of the run.
+- #### Step-4: See the summary "CSV" and detailed "LOG" output files for the AzSDK SVTs.
+
+	This is no different than the "ad hoc SVT run" scenarios. SVT outputs the location 
+	of the "CSV" file and the "LOG" file at the end of the run.
+	
 	![03_AzSDK_Logs](../Images/03_AzSDK_Logs.png) 
 [Back to top...](Readme.md#contents)
 > 	Note :
