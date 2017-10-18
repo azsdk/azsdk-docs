@@ -223,9 +223,10 @@ E-mails (comma separated values) and a contact phone number.
 ```PowerShell
 Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactEmails <SecurityContactEmails> -SecurityPhoneNumber <SecurityPoCPhoneNumber>
 ```
-
-        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
-        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
+|Config Param Name	|Purpose	|
+| --------------- | -------- |
+|SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
+|SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
 When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
 as alerts, RBAC, ARM policies, etc. It also *overwrites* the contact emails and contact phone previously set in Azure Security Center.
@@ -413,8 +414,11 @@ Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <SubscriptionId> `
         -SecurityContactEmails <ContactEmails> `
         -SecurityPhoneNumber <ContactPhone>
 ```
-        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
-        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
+|Config Param Name	|Purpose	|
+| --------------- | -------- |
+|SubscriptionId 	|Subscription ID against which ASC would be setup	|
+|SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
+|SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
 This command will *overwrite* the contact emails and contact phone previously set in Azure Security Center.
 
@@ -507,18 +511,18 @@ Reach out to AzSDKSupExt@microsoft.com for any further help
 
 [Back to top…](Readme.md#contents)
 
-## AzSDK: Update all AzSDK packages 
+## AzSDK: Update subscription security baseline configuration 
 
-### Update AzSDK packages
-AzSDK team is constantly enhancing AzSDK features so it is quite possible that newer AzSDK version shows your subscription as non-compliant even if you have already set your subscription compliant to AzSDK (Alerts, ASC, ARM Policies, CA etc.) using older version. In this case, you can run below single command to upgrade all AzSDK packages (ARM Policies, Alerts, ASC, RBAC, Continuous Assurance).  
+### Update subscription security baseline configuration
+AzSDK team is constantly improving subscription security capabilities so it is possible that newer AzSDK version has enhanced baselines for ASC, Alerts, ARM policies, CA runbook etc. This is where below command can help you to update your baseline configuration for different features (ARM Policies, Alerts, ASC, Access control, Continuous Assurance runbook).  
 
 ```PowerShell
 Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
 ```
 |Config Param Name	|Purpose	|
 | --------------- | -------- |
-|SubscriptionId 	|Subscription ID in which AzSDK compliance would be upgraded	|
+|SubscriptionId 	|Subscription for which AzSDK subscription security baseline would be upgraded	|
 
-> **Note**: This command is useful only for updating subscription's AzSDK compliance from older to newer version. You would require to onboard AzSDK in your subscription first and then only you can use this command to keep it updated over the time.
+> **Note**: This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
 
 [Back to top…](Readme.md#contents)
