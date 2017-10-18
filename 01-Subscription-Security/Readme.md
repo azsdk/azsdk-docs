@@ -23,7 +23,7 @@
 - [Setup pre-approved mandatory accounts](Readme.md#setup-pre-approved-mandatory-accounts)
 - [Remove pre-approved mandatory accounts](Readme.md#remove-previously-provisioned-accounts)
 
-### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-subscription-activity-alerts)
+### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-subscription-activity-alerts-1)
 - [Overview](Readme.md#overview-3)
 - [Configure alerts in your subscription](Readme.md#configure-alerts-for-your-subscription)
 - [Remove previously configured alerts from your subscription](Readme.md#remove-previously-configured-alerts-from-your-subscription)
@@ -41,7 +41,7 @@
 - [Remove ARM policies from your subscription](Readme.md#remove-arm-policies-from-your-subscription)
 - [FAQs](Readme.md#faqs-3)
 
-### [AzSDK: Update subscription security baseline configuration](Readme.md#azsdk-update-subscription-security-baseline-configuration)
+### [AzSDK: Update subscription security baseline configuration](Readme.md#azsdk-update-subscription-security-baseline-configuration-1)
 - [Update subscription security baseline configuration](Readme.md#update-subscription-security-baseline-configuration)
 
 
