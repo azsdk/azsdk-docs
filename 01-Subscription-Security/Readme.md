@@ -23,7 +23,7 @@
 - [Setup pre-approved mandatory accounts](Readme.md#setup-pre-approved-mandatory-accounts)
 - [Remove pre-approved mandatory accounts](Readme.md#remove-previously-provisioned-accounts)
 
-### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-suscription-activity-alerts)
+### [AzSDK: Subscription Activity Alerts](Readme.md#azsdk-subscription-activity-alerts)
 - [Overview](Readme.md#overview-3)
 - [Configure alerts in your subscription](Readme.md#configure-alerts-for-your-subscription)
 - [Remove previously configured alerts from your subscription](Readme.md#remove-previously-configured-alerts-from-your-subscription)
@@ -34,12 +34,16 @@
 	
 - [Setup Azure Security Center (ASC) on your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription)
 
-### [AzSDK: Suscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
+### [AzSDK: Subscription Security - ARM Policy](Readme.md#azsdk-subscription-security---arm-policy-1)
 
 - [Overview](Readme.md#overview-4)
 - [Setup ARM policies for your subscription](Readme.md#setup-arm-policies-on-your-subscription)
 - [Remove ARM policies from your subscription](Readme.md#remove-arm-policies-from-your-subscription)
 - [FAQs](Readme.md#faqs-3)
+
+### [AzSDK: Update all AzSDK packages](Readme.md#azsdk-update-all-azsdk-packages-1)
+- [Update AzSDK packages](Readme.md#update-azsdk-packages)
+
 
 ----------------------------------------------------------
 <!-- #TODO# Use single file with #Includes for other content. -->
@@ -219,9 +223,10 @@ E-mails (comma separated values) and a contact phone number.
 ```PowerShell
 Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactEmails <SecurityContactEmails> -SecurityPhoneNumber <SecurityPoCPhoneNumber>
 ```
-
-        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
-        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
+|Config Param Name	|Purpose	|
+| --------------- | -------- |
+|SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
+|SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
 When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
 as alerts, RBAC, ARM policies, etc. It also *overwrites* the contact emails and contact phone previously set in Azure Security Center.
@@ -300,7 +305,7 @@ Remove-AzSDKSubscriptionRBAC -SubscriptionId <subscriptionId> [-Tags <TagName>]
 [Back to top…](Readme.md#contents)
 
 ----------------------------------------------------------
-## AzSDK: Suscription Activity Alerts
+## AzSDK: Subscription Activity Alerts
 
 #### Subscription Activity Alerts (based on Azure Insights)
 
@@ -409,8 +414,11 @@ Set-AzSDKAzureSecurityCenterPolicies -SubscriptionId <SubscriptionId> `
         -SecurityContactEmails <ContactEmails> `
         -SecurityPhoneNumber <ContactPhone>
 ```
-        - ContactEmails should be a comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')
-        - ContactPhone should be a single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')
+|Config Param Name	|Purpose	|
+| --------------- | -------- |
+|SubscriptionId 	|Subscription ID against which ASC would be setup	|
+|SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
+|SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
 This command will *overwrite* the contact emails and contact phone previously set in Azure Security Center.
 
@@ -423,7 +431,7 @@ This command will *overwrite* the contact emails and contact phone previously se
 [Back to top…](Readme.md#contents)  
 
 ----------------------------------------------------------
-## AzSDK: Suscription Security - ARM Policy
+## AzSDK: Subscription Security - ARM Policy
 
 ### Overview
 The native ARM Policy feature in Azure can be used control access to resources by explicitly auditing or denying access to certain operations on them. The ARM Policy setup script in the AzSDK uses this feature to define and deploy some broadly applicable security policies in the subscription. By using the setup script (either standalone or through the overall Provisioning script), you can be assured that the subscription is compliant with respect to the core set of policies expected to be in place by AzSDK.
@@ -503,3 +511,18 @@ Reach out to AzSDKSupExt@microsoft.com for any further help
 
 [Back to top…](Readme.md#contents)
 
+## AzSDK: Update subscription security baseline configuration 
+
+### Update subscription security baseline configuration
+AzSDK team is constantly improving subscription security capabilities so it is possible that newer AzSDK version has enhanced baselines for ASC, Alerts, ARM policies, CA runbook etc. This is where below command can help you to update your baseline configuration for different features (ARM Policies, Alerts, ASC, Access control, Continuous Assurance runbook).  
+
+```PowerShell
+Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
+```
+|Config Param Name	|Purpose	|
+| --------------- | -------- |
+|SubscriptionId 	|Subscription for which AzSDK subscription security baseline would be upgraded	|
+
+> **Note**: This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
+
+[Back to top…](Readme.md#contents)
