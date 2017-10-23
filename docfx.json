@@ -17,7 +17,9 @@
     "resource": [
       {
         "files": [
-          "Images/**"
+          "Images/**",
+          "carousels/**"
+
         ],
         "exclude": [
           "obj/**",

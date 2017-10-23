@@ -1,0 +1,5 @@
+var data = [
+  { "path": "../Images/CarouselImages/Secure_DevOps_Kit_Azure.png"},
+  { "path": "../Images/CarouselImages/Security_In_CICD.jpg"},
+  { "path": "../Images/CarouselImages/Security_Telemetry.png"}
+]
