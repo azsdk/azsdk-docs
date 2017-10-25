@@ -1,4 +1,6 @@
 - name: Documentation
   href: articles/
+- name: Blog
+  href: Blog.md
 - name: Releases
-  href: Releases.html
+  href: Releases.md

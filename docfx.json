@@ -18,8 +18,8 @@
       {
         "files": [
           "Images/**",
-          "carousels/**"
-
+          "carousels/**",
+          "content/**"
         ],
         "exclude": [
           "obj/**",
@@ -41,7 +41,7 @@
       "_gitUrlPattern": "github",
       "_appLogoPath": "Images/Icons/AzureSecurityDevOps_Logo.png",
       "_appFooter": "Copyright (c) - Microsoft 2017. All rights reserved.",
-      "_appFaviconPath": "Images/AzSDK_Logo.png"
+      "_appFaviconPath": "Images/Icons/AzSDK_Favicon.png"
     },
     "globalMetadataFiles":[],
     "fileMetadataFiles": [],
