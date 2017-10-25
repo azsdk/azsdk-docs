@@ -10,7 +10,7 @@
         ],
         "exclude": [
           "obj/**",
-		      "../Release/_AzSDKWebSite/**"
+          "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
         ]
       }
     ],
@@ -23,11 +23,11 @@
         ],
         "exclude": [
           "obj/**",
-		      "../Release/_AzSDKWebSite/**"
+          "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
         ]
       }
     ],
-    "dest": "../Release/_AzSDKWebSite",
+    "dest": "../AzSDkWebSiteRelease/_AzSDKWebSite",
     "overwrite": [],
     "globalMetadata": {
       "_appTitle": "AzSDK website",
@@ -43,10 +43,10 @@
       "_appFooter": "Copyright (c) - Microsoft 2017. All rights reserved.",
       "_appFaviconPath": "Images/Icons/AzSDK_Favicon.png"
     },
-    "globalMetadataFiles":[],
+    "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-       "../Artifacts/_exported_templates/AzSDKTemplate"
+      "../Artifacts/_exported_templates/AzSDKTemplate"
     ],
     "postProcessors": [],
     "noLangKeyword": false,
