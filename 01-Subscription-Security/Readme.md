@@ -89,29 +89,8 @@ If you also have access to read the Graph in your tenant, the RBAC information a
 [Back to top…](Readme.md#contents)
 ### Subscription Health Scan - What is covered?  
  
-The various security checks performed by the health check script are listed in the table below. 
-The subsequent section explains how to interpret output in the LOG file and how to resolve issues.
-
-|Security rule checked   | Rationale|
-|------------ | -------------|
-|Minimize the number of admin/owners | Each additional person in the Owner/Contributor role increases the attack surface for the entire subscription. The number of members in these roles should be kept to as low as possible.|
-|Mandatory central accounts must be present on the subscription|Certain central accounts are expected to be present in all subscriptions to support enterprise wide functions (e.g., for security scans, cost optimization, etc.). Certain other accounts may also be required depending on special functionality enabled in a subscription (e.g., for Express Route-network support/compliance checks). The script checks for presence of such 'mandatory' and 'scenario-specific' accounts.|
-|Deprecated/stale accounts must not be present on the subscription|Further to the above RBAC check, some accounts were once deployed across subscriptions for some trial/pilot. These accounts should not be retained any more in any role. The script warns about presence of such 'deprecated' accounts as well.|
-|Must not grant access to non-AD/AAD accounts (e.g., LiveId) in the subscription|All access to subscriptions, resource groups or individual resources at Microsoft must be gated via Microsoft corporate AAD (tenant) identities (replicated across from the corporate AD forest). The script checks that non-AD accounts (such as xyz@hotmail.com, pqr@outlook.com, etc.) are not granted permission at any level within a subscription.|
-|Service accounts cannot support MFA and should not be used for subscription activity| Service accounts are typically not multi-factor authentication capable. Quite often, sloppy use of service accounts by teams who own them (e.g., to login interactively on servers) exposes their credentials to attacks such as pass-the-hash, phishing, etc. As a result, using service accounts in any privileged role in a subscription exposes the subscription to credential-theft related risks. (In effect, the subscription becomes accessible after the single-factor protection is compromised…defeating the pervasive multi-factor authentication (MFA) requirement we aim to enforce.)|
-|There should not be more than 2 classic administrators|The v1 (ASM-based) version of Azure resource access model did not have much in terms of RBAC support. As a result, everyone who needed any access on a subscription or its resources had to be added to the Co-administrator role. These individuals are referred to as 'classic' administrators. In the v2 (ARM-based) model, this is not required at all and even the count of 2 classic admins currently permitted is for backward compatibility purposes. (Some Azure services are still migrating onto the ARM-based model so creating/operating on them needs 'classic' admin privilege.)|
-|Use of management certificates is not permitted.|Just like classic admins above, management certificates were used in the v1 model for script/tool based automation on Azure subscriptions. These management certificates are highly risky because the hygiene around protection of the private key for these certificates tends to be lapse. These certificates have no place in the current ARM-based model and should be immediately cleaned up if found on a subscription. (VS-deployment certificates from v1 timeframe are a good example of this.)|
-|Azure Security Center (ASC) must be correctly configured on the subscription.|The Security Center feature in Azure helps with important central settings for the subscription such as configuring a security point of contact. It also supports key policy settings (e.g., is patching configured for VMs?, is threat detection enabled for SQL?, etc.) and alerts about resources which are not compliant to those policy settings. Correctly configuring ASC is critical as it gives a baseline layer of protection for the subscription and commonly used resource types.|
-|Pending Azure Security Center (ASC) alerts must be resolved.|Based on the policies that are enabled in the subscription, Azure Security Center raises alerts (which are typically indicative of resources that are not compliant with some baseline security protection). It is important that these alerts/actions are resolved promptly in order to eliminate the exposure to attacks.|
-|Pending Azure Security Center (ASC) tasks and recommendations must be resolved.| Similar to the ASC alerts above|
-|Service Principal Names (SPNs) should not be Owners/Contributors on the subscription|Just like AD-based service accounts, SPNs have a single credential and most scenarios that use them cannot support multi-factor authentication. As a result, adding SPNs to a subscription in 'Owners' or 'Contributors' roles is risky.|
-|Critical application resources should be protected using a resource lock.|A resource lock protects a resource from getting accidentally deleted. With proper RBAC configuration, it is possible to setup critical resources in a subscription in such a way that people can perform most operations on them but cannot delete them. These protective mechanisms can help ensure that important data is not lost by accidental/malicious deletion of such resources (and ensure that availability is not impacted).
-|ARM policies should be used to limit certain actions in the subscription that may impact security.| The AzSDK subscription security setup configures a set of ARM policies which result in audit log entries upon actions that violate the policies. (For instance, an entry is generated if someone creates a v1 resource in a subscription.) The health check script checks for the presence of these policies are present in a subscription.(Note that ARM policies are specific to ARM operations on resources and different than ASC policies mentioned in the ASC check above. ASC policies are more general things such as 'enable auto-patchin', etc.)|
-|Alerts must be configured for critical actions on subscription and resources.| The AzSDK subscription security setup configures Insights-based alerts for sensitive operations in the subscription. These use the Azure Monitor feature to generate email notifications when sensitive actions happen in a subscription (e.g., if someone adds a new person to the Owners group or if a new certificate is uploaded to a web site). The health check script verifies if all such alerts as defined in the AzSDK alert configuration have been configured on a subscription.(Note that the AzSDK supports setting up alerts via OMS as well. This is an alternate mechanism that may be used. In the OMS-based approach, Azure activity logs are piped into an OMS workspace and alerts are configured on the OMS side based on various conditions.)|
-|Do not use custom-defined RBAC roles.|Custom RBAC role definitions are usually tricky to get right. A lot of threat modeling goes in when the product team works on and defines the different out-of-box security roles. As much as possible, teams should use the out-of-box roles for their RBAC needs. Using custom roles is treated as an exception and requires a rigorous review.| 
-|Do no use any classic resources on a subscription.|You should use new AzureRM (v2) resources as the ARM model provides stronger access control (RBAC) and auditing features.| 
+The various security checks performed by the health check script are listed [here](../02-Secure-Development/ControlCoverage/Feature/SubscriptionCore.md).   
  
-
 [Back to top…](Readme.md#contents)
 ### Subscription Health Scan - How to fix findings?
 
@@ -470,16 +449,7 @@ You can also use native Azure PS commands to do the same. Refer to this MSDN [ar
 Currently "effect" parameter of all the AzSDK policies is configured as "audit". So, in the event of policy violation, it would generate an audit log entry. You should watch for these policy violation audit events in the Azure audit log.
 
 #### Which ARM policies are installed by the setup script?
-The ARM policy configuration script currently enables the following policies in the subscription. Note that the policy level is currently set to 'Audit'.
-
-|PolicyName	|Description|
-| ---------- | --------- |
-|AzSDK_ARMPol_Audit_NonGRS_Storage_SKU	|Policy to audit storage account with Standard LRS replication|
-|AzSDK_ARMPol_Audit_Job_Scheduler_Free_Tier |Policy to audit job scheduler with free tier|
-|AzSDK_ARMPol_Audit_Old_SQL_Version	|Policy to audit SQL server version less than 12.0|
-|AzSDK_ARMPol_Audit_NonHBI_Resource_Create	|Policy to audit any actions on resources other than compute, storage and network type|
-|AzSDK_ARMPol_Audit_Classic_Resource_Create	|Policy to audit creation of classic resources|
-|AzSDK_ARMPol_Audit_SQL_Basic_Create |Policy to audit database with 'Basic' edition type" |
+The ARM policy configuration script currently enables the policies (Refer the list [here](../02-Secure-Development/ControlCoverage/Feature/ARMPolicyList.md)) in the subscription. Note that the policy level is currently set to 'Audit'.  
 
 >Policy definitions exist in the JSON file at this location: 
  C:\Users\SampleUser\Documents\WindowsPowerShell\Modules\AzSDK\2.0.xxxxxx.yy\Framework\Configurations\SubscriptionSecurity\Subscription.ARMPolicies.json
