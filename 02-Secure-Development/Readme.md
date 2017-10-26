@@ -126,7 +126,7 @@ The parameters required are:
 ### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupName> -ResourceName <ResourceName>
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames> -ResourceName <ResourceName>
 ```
 	
 The parameters required are:
@@ -153,7 +153,7 @@ The parameters required are:
 
 2. Using a user-friendly resource type name
 ```PowerShell
- Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupName>] -ResourceTypeName <ResourceTypeName>
+ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceTypeName <ResourceTypeName>
 ```
 	
 The parameters required are:

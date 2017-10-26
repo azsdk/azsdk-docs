@@ -80,17 +80,21 @@ If you also have access to read the Graph in your tenant, the RBAC information a
 > This check only works if you are running as a Co-Administrator. This is in itself a bad practice. Hence, in most
 > situations, the user running the subscription health check will likely not be a co-admin and, because we will not be
 > able to actually perform the check, the outcome of this control will be listed as 'Manual'.
+>
 > In general, in any scenario where the runtime account used to run an AzSDK cmdlet does not have enough access to evaluate
 > a control, the evaluation status is marked as "Manual" in the report. Basically, for such controls, someone with the
 > correct access needs to manually verify the control and record the information through the "Control Attestation" feature.
-> (A common situation for this is in respect to "Graph Access" which is not available by default to SPNs.)
+> A common situation for this is in respect to "Graph Access" which is not available by default to SPNs.
 
 
 [Back to top…](Readme.md#contents)
 ### Subscription Health Scan - What is covered?  
  
-The various security checks performed by the health check script are listed [here](../02-Secure-Development/ControlCoverage/Feature/SubscriptionCore.md).   
- 
+
+The various security checks performed by the health check script are listed in the table [here](../02-Secure-Development/ControlCoverage/Feature/SubscriptionCore.md). 
+
+The next section explains how to interpret output in the LOG file and how to address control failures.
+
 [Back to top…](Readme.md#contents)
 ### Subscription Health Scan - How to fix findings?
 
@@ -154,32 +158,6 @@ Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> -ControlIds
 [Back to top…](Readme.md#contents)
 ### FAQs
 
-#### How to clean up excessive number of admins?
-
-You can clean up unwanted admins/owners through portal by following below instructions:
-1. Cleaning up classic administrators 
-    * Logon to [https://manage.windowsazure.com/](https://manage.windowsazure.com/)
-     - Navigate to the Settings tab followed by click administrators tab to list all the administrators as shown below    
-       ![Remove Classic Adminstrator_1](../Images/01_Remove_Classic_Adminstrator_1.png)
-    * Select the account that has to be removed and click on the Remove icon on the bottom ribbon as show in the below figure  
-      ![Remove Classic Adminstrator_2](../Images/01_Remove_Classic_Adminstrator_2.png)
-    * Perform this operation for all classic admin accounts that have to be removed.
-
-2. Cleaning up subscription owners  
-    * Logon to [https://portal.azure.com/](https://portal.azure.com/)
-    * Navigate to the below path for your subscription  
-      ![Remove Subscription Owner](../Images/01_Remove_Subscription_Owner.png)
-    * Select the account that has to be removed and, in the extended menu of each account row, you should see remove user button. Clicking this should remove the account from the subscription
-    * Perform the same operation on all owners that have to be removed.
-    
-#### How to clean up Management Certificates from a subscription?
-You can clean up management certificates through portal by follwing below instructions:
-* Logon to [https://manage.windowsazure.com/](https://manage.windowsazure.com/)
-* Navigate to the Settings tab and then select the Management Crtificates tab to list all the certificates as shown below  
-     ![Remove Management Certificates_1](../Images/01_Remove_Management_Certificates_1.png)
-* Select the certificate that has be removed and click on Delete button on the bottom ribbon as shown below
-     ![Remove Management Certificates_2](../Images/01_Remove_Management_Certificates_2.png)
-* Perform this operation for every management certificate that has to be removed.  
 
 [Back to top…](Readme.md#contents)
 
