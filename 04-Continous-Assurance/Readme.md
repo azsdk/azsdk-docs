@@ -288,6 +288,63 @@ That is easy! Just run the Update-AzSDKContinuousAssurance cmdlet with the new l
 This part is not mandatory for CA itself to work.
 However, setting up the AzSDK OMS solution is recommended as it will help you get a richer view of continuous assurance for your subscription and resources as scanned by CA. Secondly, it will give you several out-of-box artefacts to assist with security monitoring for your service. For instance, you will start getting email alerts if any of the high or critical severity controls from AzSDK fail in your service.  
 
+#### How much does it cost to setup Continuous Assurance alongwith OMS monitoring solution?
+Using the following ballpark calculations (and service costs as of Q1-FY18), we estimate that a Continuous Assurance
+setup along with an OMS workspace for monitoring will cost a little about $80/year for a typical
+subscription with about 30-40 resources of various types. 
+ 
+The total cost of CA comes to about $2.7 per Azure resource per year. Thus, for a typical cloud app in a subscription
+with around 30 resources, we are looking at a cost of $81/year.
+
+The main/dominant component of the cost is automation runtime (storage/OMS costs are negligible in comparison). 
+ 
+
+###### Assumptions:
+
+- Typical application = 1 subscription + 3 resource groups (RGs) = ~30 resources (10 resources per RG)
+- About 3 min per resource scan (higher side) => max ~100 min runbook time each day
+- Central telemetry DB cost is not included (as in our model that’s not borne by individual app teams)
+		 
+###### (a) Automation Runtime cost: ($80/year)
+
+- Rate = $0.002/min of automation job
+- For a 100 min runbook == $ 0.2 / day  
+			=> $80 / year
+		 
+###### (b) Blob Storage cost:  ($0.14/year)
+			
+- AzSDK CA Storage accumulation = 150KB / resource * 30 =  4.5MB per day
+- Average data for the month = 70MB (let’s take 100MB for simplicity) 
+- Retention Cost: 
+    - Rate = $.03/50TB/month for GRS-cool SKU 
+		=> Average for the year ~ 0.6GB => cost =  $0.03*0.6*12/50000 ~ $4x10^-6/year 
+
+- Access Cost (Listing): 
+	- Rate = $0.2/10000 transactions
+	- Our usage = ~ 1000 per year => $0.02 / year
+   
+- Access Cost (replication+retrieval): 
+    - Rate = $0.1/GB
+	- Our usage = ~ 1.2GB per year = $0.12 / year
+
+- Total Blob Storage Cost (retention + listing + access)
+	- 0.00 + 0.12 + 0.02 = $0.14/year
+ 
+###### (c) OMS storage cost: ($0.34/year)
+
+- Assumes that the team is using OMS for monitoring in general, otherwise, just for AzSDK, free tier is sufficient.
+- Data Upload
+    - Rate = $2.3 / GB / month
+	- Our usage = 10KB / resource scan => 300KB added per day = ~10MB data written for the month  = (2.3*10*12/1000) = $0.27/year
+
+- Retention 
+	- Rate - $0.10 / GB / month
+	- Our usage = 60MB avg/month (at mid-year)  = $0.10 * 0.06 *12 = $0.07/year
+
+- Total OMS Cost (Upload + Retention)  
+     - 0.27+0.07 = $0.34/year
+
+
 #### Troubleshooting
 Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature. 
 
