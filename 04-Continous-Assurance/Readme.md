@@ -293,8 +293,8 @@ Using the following ballpark calculations (and service costs as of Q1-FY18), we 
 setup along with an OMS workspace for monitoring will cost a little about $80/year for a typical
 subscription with about 30-40 resources of various types. 
  
-The total cost of CA comes to about $2.7 per Azure resource per year. Thus, for a typical cloud app in a subscription
-with around 30 resources, we are looking at a cost of $81/year.
+The average cost of AzSDK CA and AzSDK OMS solution per Azure resources comes to about $2.7 per year. (So, assuming
+that a typical app has about 30 resources, we get about $81/year for an application.) 
 
 The main/dominant component of the cost is automation runtime (storage/OMS costs are negligible in comparison). 
  
