@@ -14,7 +14,11 @@
 
 ## Overview
 
-TODO
+The Secure DevOps Kit generates telemetry events from all stages of dev ops. That is, events are generated when an engineer runs a scan ad hoc or when SVTs are run in CICD or subscriptions are scanned via Continuous Assurance (CA). The telemetry can be collected and aggregated across an organization. When combined with other organization metadata (e.g., a mapping of subscriptions to applications or service lines or business groups), this can yield a powerful platform for supporting a data-driven approach cloud risk governance and allow organizations to drive measured and targeted security improvement initiatives in a continuous and incremental fashion (just like the rest of dev ops). The telemetry data from AzSDK can be leveraged in two key ways:
+
+- Application Insights based – called Control Telemetry (will be renamed to Org Telemetry soon). There are two ways possible. One, configure it centrally, two, configure it specifically in end-user's machine
+
+- API based – this is a custom solution using WebAPI and SQL to collect events and enrich it with organizational metadata. This lets an organization track and drive adoption and usage of the AzSDK and provides a window into the org's DevSecOps Maturity. API based telemetry will be release in coming months when we release documents for how organization can customize AzSDK for their needs
 
 [Back to top...](#contents)
 
@@ -26,7 +30,7 @@ Currently the toolkit support App Insights based collector. The ability to set t
 
 ### Organization Level Setup
 
-The setup is done once by a central security team or monitoring team. No action required from the end-users in the organization.
+The setup is done once by a central security team or monitoring team. No action required from the end-users in the organization. The steps for setting up centrally will be available in coming months.
 
 #### Application Insights
 
@@ -92,7 +96,7 @@ RunIdentifier | Internal identifier for the run. All the scans from the same run
 ScanKind | <ul><li>**SubCore** - Partial or Complete<ul><li>**Partial** - All controls were not scanned</li><li>**Complete** - All controls were scanned</li></ul></li><li>**Services** - Partial or ResourceGroup or Complete<ul><li>**Partial** - All controls or all resources in a resource group or subscription was not scanned</li><li>**ResourceGroup** - All resources that belong to a resource group was scanned against all applicable controls</li><li>**Subscription** - All resources that belong to a subscription was scanned against all applicable controls</li></ul></li></ul>
 ScannerModuleName | Mostly it is AzSDK, sometimes if preview version is used it will be AzSDKPreview
 ScannerVersion | PowerShell module version
-ScanSource | Source of the scan - SpotCheck or VSO or Runbook <ul><li>**SpotCheck** (SDL) - An ad-hoc scan ran from an user machine.</li><li>**VSO** (CICD) - Scan ran from Visual Studio Online as part of release pipeline</li><li>**Runbook** (CC) - Scan ran from Runbook as part of regular schedule</li></ul>
+ScanSource | Source of the scan - SpotCheck or VSO or Runbook <ul><li>**SpotCheck** (SDL) - An ad-hoc scan ran from an user machine.</li><li>**VSO** (CICD) - Scan ran from Visual Studio Online as part of release pipeline</li><li>**Runbook** (CA) - Scan ran from Runbook as part of regular schedule</li></ul>
 SubscriptionId | Subscription id
 SubscriptionName | Subscription name
 TenantId | Tenant to which the user / app that ran the scan belongs to
@@ -153,11 +157,11 @@ customEvents
  | top 10 by count_
 ```
 
-#### Subscription that are scanned by Runbooks (CC)
+#### Subscription that are scanned by Runbooks (CA)
 
 ``` AIQL
 customEvents
- | where customDimensions.ScanSource == "SpotCheck"
+ | where customDimensions.ScanSource == "Runbook"
  | distinct tostring(customDimensions.SubscriptionId), tostring(customDimensions.SubscriptionName)
 ```
 
