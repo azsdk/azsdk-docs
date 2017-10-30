@@ -1,4 +1,4 @@
-﻿# Getting started with "The Secure DevOps Kit for Azure" Video Library!
+# Getting started with "The Secure DevOps Kit for Azure" Video Library!
 <div class="videoContainer">
     <div class="videoContent">
         <h3 class="videoTitle"><a name="#SecurityDevOpsKitForAzure"></a>Security DevOps Kit for Azure</h3>

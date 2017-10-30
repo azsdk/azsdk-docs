@@ -8,8 +8,8 @@ The "Secure DevOps Kit for Azure" integrates security into native Dev Ops workfl
 ### v1.1 (Pre-release)
 -----------
 1. Added support for a single master command to update multiple security elements in subscriptions (alerts, ASC, ARM policy, CA, etc.)  [Read More](01-Subscription-Security/Readme.md)
-2. Upgraded the activity alert support to use the latest PG framework for alert ‘action groups’
-3. Expanded coverage of the ‘fix controls’ feature to tier-1 services
+2. Upgraded the activity alert support to use the latest PG framework for alert â€˜action groupsâ€™
+3. Expanded coverage of the â€˜fix controlsâ€™ feature to tier-1 services
 4. Included a new feature (preview) for scanning multiple subscriptions via a single continuous assurance setup 
 
 ### References
