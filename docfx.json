@@ -10,7 +10,7 @@
         ],
         "exclude": [
           "obj/**",
-          "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
+		      "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
         ]
       }
     ],
@@ -23,7 +23,7 @@
         ],
         "exclude": [
           "obj/**",
-          "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
+		      "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
         ]
       }
     ],
@@ -39,14 +39,14 @@
         "apiSpecFolder": "azsdk-docs"
       },
       "_gitUrlPattern": "github",
-      "_appLogoPath": "Images/Icons/AzureSecurityDevOps_Logo.png",
+      "_appLogoPath": "Images/Icons/AzSDK_Logo.png",
       "_appFooter": "Copyright (c) - Microsoft 2017. All rights reserved.",
       "_appFaviconPath": "Images/Icons/AzSDK_Favicon.png"
     },
-    "globalMetadataFiles": [],
+    "globalMetadataFiles":[],
     "fileMetadataFiles": [],
     "template": [
-      "../Artifacts/_exported_templates/AzSDKTemplate"
+       "../Artifacts/_exported_templates/AzSDKTemplate"
     ],
     "postProcessors": [],
     "noLangKeyword": false,
