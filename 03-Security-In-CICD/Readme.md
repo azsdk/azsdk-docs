@@ -211,6 +211,7 @@ pic below we can see that the release pipeline has failed):
 **Step-4:** Look at the "Issues" to see why the release failed.  
 The summary output shows the cause of failure (in this case it is because the AzSDK SVTs have failed).
 
+
 ![03_Issues_Release_Fail](../Images/03_Issues_Release_Fail.png)
 
 **Step-5:** Look at the complete output log of the AzSDK portion of the release pipeline execution . 
@@ -237,6 +238,21 @@ is named by the target resource group that we used 'mptestrg').
 Opening/extracting the "AzSDK_Logs" ZIP file will reveal a folder structure and files placement identical to 
 what we have seen in the case of ad hoc SVT runs:
 ![03_AzSDK_Logs](../Images/03_AzSDK_Logs.png)
+
+[Back to top...](Readme.md#contents)
+
+
+### FAQs
+#### I have enabled AzSDK_SVTs task in my release pipeline . I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’.  How do I resolve this issue?
+- Go to ‘AzSDK_SVTs’ task in your release definition.
+- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked.
+ 
+#### I have enabled AzSDK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?
+- Go to ‘AzSDK_SVTs’ task in your release definition.
+- Mark the check box ‘Do not auto-update AzSDK’ as checked. 
+- This will help you save some time by not re-installing the AzSDK from scratch in every run.
+> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent.
+
 
 [Back to top...](Readme.md#contents)
 
