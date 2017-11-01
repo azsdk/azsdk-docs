@@ -10,6 +10,7 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
+- [FAQs](Readme.md#faqs)  
 ## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
 - [Enable AzSDK extension for your Jenkins](Readme.md#enable-azsdk-extension-for-your-jenkins)
 - [Walkthrough](Readme.md#walkthrough-1)
@@ -98,6 +99,7 @@ When the pipeline executes, SVTs will scan the specified set of resources.
 Along with input parameter, you can check for below options
 <br/>**Enable OMS Logging:** Switch to enable this task to publish SVT evalution results to an OMS workspace. Steps to configure OMS credential are explained in Step-4
 <br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed individual controls in the task summary output.
+<br/>**Do not auto-update AzSDK:** Switch to toggle auto update of AzSDK and required AzureRM modules on the build server. Keep this un-checked for Hosted VS2017 and while using SVT task fot the first time.
 <br/>**Use Preview Modules of AzSDK:** Switch to toggle use of preview drop of AzSDK SVTs. By default it is configured to use latest bits of AzSDK.
 ![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.png)
 
