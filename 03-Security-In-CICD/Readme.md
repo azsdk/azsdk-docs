@@ -101,7 +101,7 @@ Along with input parameter, you can check for below options
 <br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed individual controls in the task summary output.
 <br/>**Do not auto-update AzSDK:** Switch to toggle auto update of AzSDK and required AzureRM modules on the build server. Keep this un-checked for Hosted VS2017 and while using SVT task fot the first time.
 <br/>**Use Preview Modules of AzSDK:** Switch to toggle use of preview drop of AzSDK SVTs. By default it is configured to use latest bits of AzSDK.
-![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.png)
+![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.PNG)
 
 **Step-4:** (Optional) Setup connectivity from CICD to OMS.  
 > **Note:** You can skip this step in a first pass exploration of CICD integration of SVTs. 
@@ -187,7 +187,7 @@ Linking to the release definition:
 
 **Step-6**: Save the Release Definition.
   
-![03_Save_Release_Defination](../Images/03_Save_Release_Defination.png)  
+![03_Save_Release_Defination](../Images/03_Save_Release_Defination.PNG)  
 
 
 [Back to top...](Readme.md#contents)
