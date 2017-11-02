@@ -554,8 +554,8 @@ westus
 ```
 This basically tells PS to iterate through the collection returned from the left side of the '|' and, for each object, evaluate 
 the expression within the '{ }'. 
-The key players in the equation are the '|' pipe character, the '%' looping character and the "$_" inside the '{ }'. 
-The $_ basically plays the same role as 'i' in a standard for loop or 'thisObject' in a 'foreach' loop.
+The key players in the equation are the '|' pipe character, the '%' looping character and the "$\_" inside the '{ }'. 
+The $\_ basically plays the same role as 'i' in a standard for loop or 'thisObject' in a 'foreach' loop.
 
 Here are a few more examples:
 ```PowerShell
