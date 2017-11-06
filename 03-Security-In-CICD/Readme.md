@@ -10,7 +10,7 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
-## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-1)
+## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-preview-1)
 - [Enable AzSDK extension for your Jenkins](Readme.md#enable-azsdk-extension-for-your-jenkins)
 - [Walkthrough](Readme.md#walkthrough-1)
   - [Adding SVTs in the Jenkins pipeline](Readme.md#adding-svts-in-the-jenkins-pipeline)
