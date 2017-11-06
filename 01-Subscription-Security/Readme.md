@@ -34,7 +34,8 @@
 	
 - [Setup Azure Security Center (ASC) on your subscription](Readme.md#setup-azure-security-center-asc-on-your-subscription)
 
-### [AzSDK: Subscription Security - ARM Policy](Readme.md#azsdk-subscription-security---arm-policy-1)
+
+### [AzSDK: Subscription Security - ARM Policy](Readme.md#azsdk-suscription-security---arm-policy-1)
 
 - [Overview](Readme.md#overview-4)
 - [Setup ARM policies for your subscription](Readme.md#setup-arm-policies-on-your-subscription)
