@@ -121,6 +121,16 @@ Run the below commands in PS after replacing the various '<>' with
                     -ViewName $azSdkViewName
 ```
 
+> Note: If you are on the old model for OMS, you should use the following command instead:
+> ```PowerShell 
+> #Install command for *old* model of OMS
+> Install-AzSDKOMSSolution -OMSSubscriptionId $omsSubId `
+>            -OMSResourceGroup $omsRGName `
+>            -OMSWorkspaceId $omsWSId `
+>            -ViewName $azSdkViewName `
+>            -UseOldModel `
+>            -OMSInstallationOption GenericView 
+> 
 The table below explains the different parameters used by Install-AzSDKOMSSolution cmdlet:
 
 |ParameterName|Comments|

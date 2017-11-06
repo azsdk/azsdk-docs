@@ -1,4 +1,3 @@
-
 # Secure Development
 
 ![Secure_Development](../Images/Secure_Development.png)
@@ -11,6 +10,10 @@
 - [Execute SVTs for specific resource groups (or tagged resources)](Readme.md#execute-svts-for-specific-resource-groups-or-tagged-resources)
 - [Execute SVTs for a specific resource](Readme.md#execute-svts-for-a-specific-resource)
 - [Execute SVTs for a specific resource type](Readme.md#execute-svts-for-a-specific-resource-type)
+- [Execute SVTs in Baseline mode](Readme.md#execute-svts-in-baseline-mode) 
+- [Execute SVTs using "-UsePartialCommits" switch](Readme.md#execute-svts-using--usepartialcommits-switch)
+- [Understand the scan reports](Readme.md#understand-the-scan-reports)
+- [Generate output report in PDF format](Readme.md#generate-output-report-in-pdf-format)
 - [FAQs](Readme.md#faqs)
 
 ### [Express Route-connected Virtual Networks (ER-vNet)](Readme.md#express-route-connected-virtual-networks-er-vnet-1)
@@ -123,7 +126,7 @@ The parameters required are:
 ### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupName> -ResourceName <ResourceName>
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames> -ResourceName <ResourceName>
 ```
 	
 The parameters required are:
@@ -150,7 +153,7 @@ The parameters required are:
 
 2. Using a user-friendly resource type name
 ```PowerShell
- Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupName>] -ResourceTypeName <ResourceTypeName>
+ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceTypeName <ResourceTypeName>
 ```
 	
 The parameters required are:
@@ -159,6 +162,92 @@ The parameters required are:
 - ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values.  
 
 [Back to top…](Readme.md#contents)
+
+### Execute SVTs in Baseline mode 
+In 'baseline mode' a centrally defined 'control baseline' is used as the target control set for scanning.
+The cmdlet below scans azure resources in a subscription in Baseline mode and generates a status report:
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UseBaselineControls
+```
+	
+The parameters required are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription. 
+- UseBaselineControls – UseBaselineControls is the flag used to enable scanning of resources in Baseline mode.
+
+[Back to top…](Readme.md#contents)
+
+### Execute SVTs using "-UsePartialCommits" switch
+The Get-AzSDKAzureServicesSecurityStatus command now supports checkpointing via a "-UsePartialCommits" switch. When this switch is used, the command periodically persists scan progress to disk. That way, if the scan is interrupted or an error occurs, a future retry can resume from the last saved state. This capability also helps in Continuous Assurance scans where Azure currently suspends 'long running' automation jobs by default.The cmdlet below checks security control state via a "-UsePartialCommits" switch:  
+
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UsePartialCommits
+```
+		
+[Back to top…](Readme.md#contents)
+
+### Understand the scan reports
+Each AzSDK cmdlet writes output to a folder whose location is determined as below:
+- AzSDK-Root-Output-Folder = %LocalAppData%\Microsoft\AzSDKLogs  
+	```
+	E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs"
+	```
+- Sub-Folder = Sub_\<Subscription Name>\\\<Timestamp>_\<CommandAbbreviation>  
+	```
+	E.g., "Sub_[yourSubscriptionName]\20170321_183800_GSS"  
+	```	
+Thus, the full path to an output folder might look like:  
+```
+E.g., "C:\Users\userName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]\20170321_183800_GSS\
+```
+	
+> **Note**: By default, cmdlets open this folder upon completion of the cmdlet (we assume you'd be interested in examining the control evaluation status, etc.)
+
+The contents of the output folder are organized as under:  
+![02_Output_Log_Folder](../Images/02_Output_Log_Folder.PNG)
+
+- *\SecurityReport-\<timestamp>.csv*- This is the summary CSV file listing all applicable controls and their evaluation status. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.  
+- *\\\<Resource_Group_or_Subscription_Name>* - This corresponds to the resource-group or subscription that was evaluated  
+	- *\\\<resourceType>.log*- This is the detailed/raw output log of controls evaluated  
+- *\Etc*  
+	- *\PowerShellOutput.log* - This is the raw PS console output captured in a file.  
+	- *\EnvironmentDetails.log* - This is the log file containing environment data of current PowerShell session.  
+	- *\SecurityEvaluationData.json* - This is the detailed security data for each control that was evaluated. This file will be generated only for SVT cmdlets like Get-AzSDKAzureServicesSecurityStatus, Get-AzSDKSubscriptionSecurityStatus etc.
+	![02_Etc_Folder_Structure](../Images/02_Etc_Folder_Structure.PNG)
+- *\FixControlScripts* - This folder contains scripts to fix the failed controls. The folder is generated only when 'GenerateFixScript' switch is passed and one or more failed controls support automated fixing.  
+	- *\README.txt* - This is the help file which describes about the 'FixControlScripts' folder.
+
+You can use these outputs as follows - 
+1. The SecurityReport.CSV file provides a quick glimpse of the control results. Investigate those that say 'Verify' or 'Failed'.  
+2. For 'Failed' or 'Verify' controls, look in the <resourceType>.LOG file (search for 'failed' or by control-id). Understand what caused the control the fail.
+3. For 'Verify' controls, you will also find the SecurityEvaluationData.JSON file handy. 
+4. For some controls, you can also use the 'Recommendation' field in the control output to get the PS command you may need to use.
+5. Make any changes to the subscription/resource configurations based on steps 2, 3 and 4. 
+6. Rerun the cmdlet and verify that the controls you tried to fix are passing now.
+
+[Back to top…](Readme.md#contents)
+
+### Generate output report in PDF format
+The Get-AzSDKAzureServicesSecurityStatus command now supports generating output report in PDF format using "-GeneratePDF" parameter. You can use this parameter to generate output logs in PDF format. You can use this parameter to generate report either in 'portrait'or 'landscape mode'.The cmdlet below can be used to generate PDF report:  
+
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -GeneratePDF <PdfOrientation>
+```
+		
+The parameters required are:
+- SubscriptionId – Subscription ID is the identifier of your Azure subscription.  
+- GeneratePDF - This accepts either 'None', 'Portrait' or 'Landscape' as inputs.
+
+If you execute SVTs using above command, a new PDF file with name 'SecurityReport' will get generated in the root output logs folder.
+
+The PDF report consists of following sections:
+- *Basic Details* - It consists of basic details like subscription id, name, AzSDK Version, Date of generation, user, command executed etc.
+- *Security Report Summary* -It displays the security status of all the controls Ids which gets scanned.
+- *Powershell Output* -It displays the raw PS console output captured during execution of SVTs.
+- *Detailed Output* -It displays the detailed/raw output log of controls evaluated.
+
+[Back to top…](Readme.md#contents)
+
+
 
 ### FAQs
 #### What Azure resource types that can be checked?

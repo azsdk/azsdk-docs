@@ -34,7 +34,7 @@ of as facilitating "positive" security drift. The other aspect is about supporti
 we will add the ability to remind an app team about the security hygiene tasks that they need to periodically 
 perform (key rotation, access reviews,  removing inactive/dormant power users, etc.). These two capabilities are on our backlog for H1-FY18.
 
->**Note:** If you have already installed Continuous Assurance Automation Account (Name: AzSDKCCAutomationAccount) using a version prior to 2.2, 
+>**Note:** If you have already installed Continuous Assurance using a version prior to 2.2.0, 
 you should run 'Install-AzSDKContinuousAssurance' command again by following the steps in the next section.
 
 
@@ -44,7 +44,7 @@ In this section, we will walk through the steps of setting up a subscription and
 
 To get started, we need the following:
 1. The user setting up Continuous Assurance needs to have 'Owner' access to the subscription. (This is necessary because during setup, 
-AzSDK adds the automation account as a 'Reader' to the subscription.)
+AzSDK adds the service principal runtime account as a 'Reader' to the subscription.) 
 
 2. Target OMS WorkspaceID* and SharedKey. (The OMS workspace can be in a different subscription, see note below)
 
@@ -111,19 +111,15 @@ It is important to verify that everything has worked without hiccups. Please rev
 
  ![04_CA_Overview_Screen](../Images/04_CA_Overview_Screen.png)
 
-**2:** Click on the 'Assets' tile for the Automation Account and select 'Modules'. It should show 'Status' column value for all modules as 'Available' (The counts shown may vary).
-
- ![04_CA_Modules](../Images/04_CA_Modules.png)
+**2:** Click on 'Runbooks' tile. It should show the following runbook: 
 	
-**3:** Click on 'Runbooks' tile. It should show the following runbook:
-
  ![04_CA_RunBooks](../Images/04_CA_RunBooks.png)
 
-**4:** Click on 'Schedules' tile. It should show the scheduling details of runbook. You can change the schedule timings according to your need. Default schedule is created as below. First job will run ten minutes after the installation:
+**3:** Click on 'Schedules' tile. It should show the scheduling details of runbook. You can change the schedule timings according to your need. Default schedule is created as below. First job will run ten minutes after the installation: 
 
  ![04_CA_Schedule](../Images/04_CA_Schedule.png)
 
-**5:** Click on 'Run As Accounts' tile. It should show the following account:
+**4:** Click on 'Run As Accounts' tile. It should show the following account:
 
  ![04_CA_Run_as_Account](../Images/04_CA_Run_as_Account.png)
 
@@ -185,8 +181,8 @@ To host all the Continuous Assurance artifacts
       AzureRunAsCertificate - This certificate gets expired after six months of installation  
       AzureRunAsConnection - This connection is created using service principal with a AzureRunAsCertificate
    - Two schedules to trigger the runbook :-
-      - Scan_Schedule - This is to trigger job to scan subscription and app resource groups
-      - Next_Run_Schedule - This is temporary schedule created by runbook to retry download of modules
+      - CA_Scan_Schedule - This is to trigger job to scan subscription and app resource groups 
+      - CA_Helper_Schedule - This is a temporary schedule created by runbook to retry download of modules
    - Modules - Downloaded by the runbook
    
 About 63 assets are created overall.
@@ -214,7 +210,8 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
     [-OMSWorkspaceId <OMSWorkspaceId>] `
     [-OMSSharedKey <OMSSharedKey>] `
     [-AzureADAppName <AzureADAppName>] `
-    [-UpdateCertificate]
+    [-FixRuntimeAccount] ` 
+    [-FixModules] 
 ```
 
 |Param Name|Purpose|Required?|Default value|Comments
@@ -224,7 +221,8 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
-|UpdateCertificate|Use this switch to renew/update certificate. This is useful when certificate gets expired after six months of installation|FALSE|None||
+|FixRuntimeAccount|Use this switch to fix CA runtime account in case of below issues.<ol><li>Runtime account deleted<br>(Permissions required: Subscription owner)</li><li>Runtime account permissions missing<br>(Permissions required: Subscription owner and AD App owner)</li><li>Certificate deleted/expired<br>(Permissions required: Subscription owner and AD App owner)</li></ol>|FALSE|None||
+|FixModules|Use this switch in case 'AzureRm.Automation' module extraction fails in CA Automation Account.|FALSE|None||
 
 
 [Back to top…](Readme.md#contents)
@@ -238,13 +236,14 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
 |SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
-|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. 
-This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||	
+|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||  
 
 [Back to top…](Readme.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Get-AzSDKContinuousAssurance**' command as below. 
+3. Result will display the current status of CA in your subscription. If CA is not working as expected, it will display remediation steps else it will display a message indicating CA is in healthy state.  
+4. Once you follow the remediation steps, run the command again to check if anything is still missing in CA setup. Follow the remediation steps accordingly until the CA state becomes healthy. 
 ```PowerShell
 Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> 
 ```
@@ -288,6 +287,63 @@ That is easy! Just run the Update-AzSDKContinuousAssurance cmdlet with the new l
 #### Do I need to also setup AzSDK OMS solution?
 This part is not mandatory for CA itself to work.
 However, setting up the AzSDK OMS solution is recommended as it will help you get a richer view of continuous assurance for your subscription and resources as scanned by CA. Secondly, it will give you several out-of-box artefacts to assist with security monitoring for your service. For instance, you will start getting email alerts if any of the high or critical severity controls from AzSDK fail in your service.  
+
+#### How much does it cost to setup Continuous Assurance alongwith OMS monitoring solution?
+Using the following ballpark calculations (and service costs as of Q1-FY18), we estimate that a Continuous Assurance
+setup along with an OMS workspace for monitoring will cost a little about $80/year for a typical
+subscription with about 30-40 resources of various types. 
+ 
+The average cost of AzSDK CA and AzSDK OMS solution per Azure resources comes to about $2.7 per year. (So, assuming
+that a typical app has about 30 resources, we get about $81/year for an application.) 
+
+The main/dominant component of the cost is automation runtime (storage/OMS costs are negligible in comparison). 
+ 
+
+###### Assumptions:
+
+- Typical application = 1 subscription + 3 resource groups (RGs) = ~30 resources (10 resources per RG)
+- About 3 min per resource scan (higher side) => max ~100 min runbook time each day
+- Central telemetry DB cost is not included (as in our model that’s not borne by individual app teams)
+		 
+###### (a) Automation Runtime cost: ($80/year)
+
+- Rate = $0.002/min of automation job
+- For a 100 min runbook == $ 0.2 / day  
+			=> $80 / year
+		 
+###### (b) Blob Storage cost:  ($0.14/year)
+			
+- AzSDK CA Storage accumulation = 150KB / resource * 30 =  4.5MB per day
+- Average data for the month = 70MB (let’s take 100MB for simplicity) 
+- Retention Cost: 
+    - Rate = $.03/50TB/month for GRS-cool SKU 
+		=> Average for the year ~ 0.6GB => cost =  $0.03*0.6*12/50000 ~ $4x10^-6/year 
+
+- Access Cost (Listing): 
+	- Rate = $0.2/10000 transactions
+	- Our usage = ~ 1000 per year => $0.02 / year
+   
+- Access Cost (replication+retrieval): 
+    - Rate = $0.1/GB
+	- Our usage = ~ 1.2GB per year = $0.12 / year
+
+- Total Blob Storage Cost (retention + listing + access)
+	- 0.00 + 0.12 + 0.02 = $0.14/year
+ 
+###### (c) OMS storage cost: ($0.34/year)
+
+- Assumes that the team is using OMS for monitoring in general, otherwise, just for AzSDK, free tier is sufficient.
+- Data Upload
+    - Rate = $2.3 / GB / month
+	- Our usage = 10KB / resource scan => 300KB added per day = ~10MB data written for the month  = (2.3*10*12/1000) = $0.27/year
+
+- Retention 
+	- Rate - $0.10 / GB / month
+	- Our usage = 60MB avg/month (at mid-year)  = $0.10 * 0.06 *12 = $0.07/year
+
+- Total OMS Cost (Upload + Retention)  
+     - 0.27+0.07 = $0.34/year
+
 
 #### Troubleshooting
 Please reach out to us at AzSDKSupExt@microsoft.com if you face any issues with this feature. 
