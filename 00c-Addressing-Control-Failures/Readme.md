@@ -189,7 +189,7 @@ If, for any reason, the attestations of previously attested controls need to be 
 [Back to top...](Readme.md#contents)
 ### Bulk attestation
 
-Bulk attestation empowers subscription owners/ security owners to provide common justification for a set of non passed controls. By appending some extra parameters to the existing scanning command would start the attestation in bulk attest mode.
+Bulk attestation empowers subscription/ security owners to provide common justification for a set of non passed controls. By appending some extra parameters to the existing scanning command would start the attestation in bulk attest mode.
 
  ```PowerShell  
 $subscriptionId = <Your SubscriptionId>
@@ -202,17 +202,17 @@ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGr
  ``` 
 |Parameter Name| Description|
 |---|---|
-|BulkAttestControlId | You must provide the controlId value. Bulk attest mode will work one controlId at a time.|
-|AttestControls | This option provides more flexibiltiy to the attesters. Attester could use 'NotAttested' option to attest those resources which are not already attested and could use 'All' option, if user intends to override the existing attestations as well, for the specified controlId. |
-|AttestationStatus | Attester must select one the attestaion reasons (NotAnIssue, WillNotFix, WillFixLater)|
-|JustificationText | Attester must provide the apt justification with proper business reason.|
+|BulkAttestControlId | You must provide the controlId value. Bulk attest mode will work only with one controlId at a time.|
+|AttestControls | This option provides more flexibiltiy to the attesters. Attester could use 'NotAttested' option to attest which are not already attested and also could use 'All' option, if user intends to override the existing attestations as well, for the specified controlId. |
+|AttestationStatus | Attester must select one of the attestaion reasons (NotAnIssue, WillNotFix, WillFixLater)|
+|JustificationText | Attester must provide an apt justification with proper business reason.|
 
-To understand this better, let us take two example scenarios where bulk attest can help
+To understand this better, let us take two example scenarios where bulk attest can help,
 
-*Scenario 1: I have multiple App Services where we have enabled AAD auth at the code. Currently the control is being evaluated as 'Verify'. How can i attest those?*
+*Scenario 1: Our application uses multiple App Services where AAD auth is enabled through code. Currently the control is being evaluated as 'Verify'. How can i attest those?*
 
 In this scenario, the customer has already ran the kit and found out that App Services ControlId 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN' is being evaluated as 'Verify'. 
-User has also manually verified that all these AppServices are enabled with AAD auth through code, and would like to capture his analysis with AzSDK.
+User has also manually verified that all these AppServices are enabled with AAD auth through code, and would like to capture this analysis with AzSDK.
 In this scenario user could use the Bulk attestation mode and be more efficient by simply running the command below:
 
 ```PowerShell  
@@ -220,7 +220,7 @@ $subscriptionId = <Your SubscriptionId>
 $resourceNames = '<Comma separated values for the AppService resource names>' 
 $bulkAttestControlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
 $justificationText = 'Have verified for AAD auth settings for all the App Services. AAD auth has been enabled through code. Attesting all these resources for the AAD auth control.'
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName AppService -ResourceName $resourceName `
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName AppService -ResourceNames $resourceName `
 				-BulkAttestControlId $bulkAttestControlId -AttestControls NotAttested -AttestationStatus NotAnIssue -JustificationText $justificationText
  ``` 
  
@@ -235,7 +235,7 @@ $controlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName AppService -ResourceNames $resourceName -ControlIds $controlId 
  ``` 
 
-*Scenario 2: I have multiple Storage Accounts in my subscription which are used for logging purposes. For all such Storage Accounts my business is fine with LRS scheme. How can i attest those?*
+*Scenario 2: Our application uses multiple Storage Accounts, out of which some of them are used for logging purposes. For all such Storage Accounts my business is fine with LRS scheme. How can i attest those?*
 
 In this scenario, the customer has already ran the kit and found out that for multiple Storage Accounts (which are currently being used for logging) 'Azure_Storage_Deploy_Use_Geo_Redundant' ControlId is failing. Their business is ok to not enable GRS for such storage account. 
 User wants to attest all such storage accounts, and capture his justification with AzSDK. 
@@ -261,7 +261,9 @@ $controlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName Storage -ResourceNames $resourceName -ControlIds $controlId 
  ``` 
 
-**Bulk Clear** In a scenario where user wants to clear the attestation for multiple resources in bulk for a spcified controlId. This can be achieved by running the command below:
+**Bulk Clear:** 
+
+Scenarios where user wants to clear the attestation for multiple resources in bulk, for a spcified controlId. This can be achieved by running the command below:
 
  ```PowerShell  
 $subscriptionId = <Your SubscriptionId>
