@@ -12,6 +12,7 @@
 ### [Control Attestation](Readme.md#control-attestation-1)
 - [Overview](Readme.md#overview-1)  
 - [Starting attestation](Readme.md#starting-attestation)  
+- [Bulk attestation](Readme.md#bulk-attestation)  
 - [How AzSDK determines the effective control result](Readme.md#how-azsdk-determines-the-effective-control-result)  
 - [Permissions required for attesting controls](Readme.md#permissions-required-for-attesting-controls)  
 ----------------------------------------------------------------
@@ -104,6 +105,9 @@ Repair-AzSDKAzureServicesSecurity -ParameterFilePath <ParameterFilePath>
 
 # Control Attestation
 
+> **Note**: Please use utmost discretion when attesting controls. In particular, when choosing to not fix a failing control, you are taking accountability that nothing will go wrong even though security is not correctly/fully configured. 
+> </br>Also, please ensure that you provide an apt justification for each attested control to capture the rationale behind your decision.  
+
 ### Overview
 
 The attestation feature empowers users to support scenarios where human input is required to augment or override the default control 
@@ -183,6 +187,94 @@ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGr
 If, for any reason, the attestations of previously attested controls need to be revisited, it can be done by simply changing the 'NotAttested' flag in the commands above with 'AlreadyAttested'.  
 
 [Back to top...](Readme.md#contents)
+### Bulk attestation
+
+Bulk attestation empowers subscription owners/ security owners to provide common justification for a set of non passed controls. By appending some extra parameters to the existing scanning command would start the attestation in bulk attest mode.
+
+ ```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceGroupName = <ResourceGroup Name>
+$resourceName = <ResourceName>
+$bulkAttestControlId = <AzSDK ControlId string>
+$justificationText = <Your justification text for attestation>
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName `
+				-BulkAttestControlId $bulkAttestControlId -AttestControls NotAttested -AttestationStatus NotAnIssue -JustificationText $justificationText
+ ``` 
+|Parameter Name| Description|
+|---|---|
+|BulkAttestControlId | You must provide the controlId value. Bulk attest mode will work one controlId at a time.|
+|AttestControls | This option provides more flexibiltiy to the attesters. Attester could use 'NotAttested' option to attest those resources which are not already attested and could use 'All' option, if user intends to override the existing attestations as well, for the specified controlId. |
+|AttestationStatus | Attester must select one the attestaion reasons (NotAnIssue, WillNotFix, WillFixLater)|
+|JustificationText | Attester must provide the apt justification with proper business reason.|
+
+To understand this better, let us take two example scenarios where bulk attest can help
+
+*Scenario 1: I have multiple App Services where we have enabled AAD auth at the code. Currently the control is being evaluated as 'Verify'. How can i attest those?*
+
+In this scenario, the customer has already ran the kit and found out that App Services ControlId 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN' is being evaluated as 'Verify'. 
+User has also manually verified that all these AppServices are enabled with AAD auth through code, and would like to capture his analysis with AzSDK.
+In this scenario user could use the Bulk attestation mode and be more efficient by simply running the command below:
+
+```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceNames = '<Comma separated values for the AppService resource names>' 
+$bulkAttestControlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
+$justificationText = 'Have verified for AAD auth settings for all the App Services. AAD auth has been enabled through code. Attesting all these resources for the AAD auth control.'
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName AppService -ResourceName $resourceName `
+				-BulkAttestControlId $bulkAttestControlId -AttestControls NotAttested -AttestationStatus NotAnIssue -JustificationText $justificationText
+ ``` 
+ 
+The above command would record the justification and attestation status for all the specified AppServices against the specified ControlId.
+
+User can re-run the scan command below, to confirm the control result status.
+
+```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceNames = '<Comma separated values for the AppService resource names>' 
+$controlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName AppService -ResourceNames $resourceName -ControlIds $controlId 
+ ``` 
+
+*Scenario 2: I have multiple Storage Accounts in my subscription which are used for logging purposes. For all such Storage Accounts my business is fine with LRS scheme. How can i attest those?*
+
+In this scenario, the customer has already ran the kit and found out that for multiple Storage Accounts (which are currently being used for logging) 'Azure_Storage_Deploy_Use_Geo_Redundant' ControlId is failing. Their business is ok to not enable GRS for such storage account. 
+User wants to attest all such storage accounts, and capture his justification with AzSDK. 
+In this scenario, user could use the Bulk attestation mode and be more efficient by simply running the command below:
+
+```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceNames = '<Comma separated values for the Storage Account resource names>' 
+$bulkAttestControlId = 'Azure_Storage_Deploy_Use_Geo_Redundant'
+$justificationText = 'These Storage Accounts are currently being used for logging purpose. As confirmed from business, we dont need to enable GRS for the same. Attesting all these resources for the GRS control.'
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName Storage -ResourceName $resourceName `
+				-BulkAttestControlId $bulkAttestControlId -AttestControls NotAttested -AttestationStatus NotAnIssue -JustificationText $justificationText
+ ``` 
+ 
+The above command would record the justification and attestation status for all the specified StorageAccounts against the specified ControlId.
+
+User can re-run the scan command below, to confirm the control result status.
+
+```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceNames = '<Comma separated values for the Storage Account resource names>' 
+$controlId = 'Azure_AppService_AuthN_Use_AAD_for_Client_AuthN'
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceTypeName Storage -ResourceNames $resourceName -ControlIds $controlId 
+ ``` 
+
+**Bulk Clear** In a scenario where user wants to clear the attestation for multiple resources in bulk for a spcified controlId. This can be achieved by running the command below:
+
+ ```PowerShell  
+$subscriptionId = <Your SubscriptionId>
+$resourceGroupName = <ResourceGroup Name>
+$resourceName = <ResourceName>
+$bulkAttestControlId = <AzSDK ControlId string>
+$justificationText = <Your justification text for attestation>
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName `
+				-BulkAttestControlId $bulkAttestControlId -AttestControls AlreadyAttested -BulkClear
+ ``` 
+> **Note**: Usage of BulkClear with 'NotAttested' Option of AttestControls param, would result in failure.
+
+[Back to top...](Readme.md#contents)
 ### How AzSDK determines the effective control result
 
 During the attestation workflow, the user gets to provide attestation (sub)status for each control attested. This basically represents the user's attestation preference w.r.t.
@@ -193,7 +285,8 @@ fixing the issue for the time being):
 |---|---|
 |None | There is no attestation done for a given control. User can select this option duriung the workflow to skip the attestation|
 |NotAnIssue | User has verified the control data and attesting it as not a issue with proper justification|
-|NotFixed | User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan|
+|WillNotFix | User has verified the control data and attesting it as not fixed with proper justification|
+|WillFixLater | User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan|
 
 
 The following table shows the complete 'state machine' that is used by AzSDK to support control attestation. 
@@ -204,22 +297,26 @@ The columns are described as under:
 - 'Requires Justification' indicates whether the corresponding row requires a justification comment
 - 'Comments' outlines an example scenario that would map to the row
 
-
+<!--TODO need examples here -->
 |Control Scan Result  |Attestation Status |Effective Status|Requires Justification |Comments |
 |---|---|---|---|---|
 |Passed |None |Passed |No |No need for attestation. Control has passed outright!|
 |Verify |None |Verify |No |User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.|
 |Verify |NotAnIssue |Passed |Yes |User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.|
-|Verify |NotFixed |RiskAck |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Verify |WillNotFix |Exception |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Verify |WillFixLater |RiskAck |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
 |Failed |None |Failed |No |Control has failed but has not been attested. Perhaps a fix is in the works...|	 
 |Failed |NotAnIssue |Passed |Yes |Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service|
-|Failed |NotFixed |RiskAck |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
+|Failed |WillNotFix |RiskAck |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
+|Failed |WillFixLater |RiskAck |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
 |Error |None |Error |No |There was an error during evaluation. Manual verification is needed and is still pending.|
 |Error |NotAnIssue |Passed |Yes |There was an error during evaluation. However, control has been manually verified by the user.|
-|Error |NotFixed |RiskAck |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Error |WillNotFix |RiskAck |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Error |WillFixLater |RiskAck |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
 |Manual |None |Manual |No |The control is not automated and has to be manually verified. Verification is still pending.| 
 |Manual |NotAnIssue |Passed |Yes |The control is not automated and has to be manually verified. User has verified that there's no security concern.|
-|Manual |NotFixed |RiskAck |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Manual |WillNotFix |RiskAck |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Manual |WillFixLater |RiskAck |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
 
   
 <br>
@@ -232,7 +329,8 @@ The following table describes the possible effective control evaluation results 
 |Failed |Fully automated contorl. Azure resource/subscription configuration not meeting the AzSDK control requirement|
 |Error |Automated control. Currently failing due to some exception. User needs to validate manually|
 |Manual |No automation as of now. User needs to validate manually|
-|RiskAck |Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control|
+|Exception |Risk to be acknowledged. It would trainsition to this control if the user is trying to attest a failed control as WillNotFix|
+|Remediate |Risk to be acknowledged with a remediation plan. It would trainsition to this control if the user is trying to attest a failed control as WillFixLater|
 
 [Back to top...](Readme.md#contents)
 ### Permissions required for attesting controls:
