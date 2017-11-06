@@ -216,7 +216,7 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 
 |Param Name|Purpose|Required?|Default value|Comments
 |----|----|----|----|----|
-|SubscriptionId|Subscription ID of the Azure subscription in which Automation Account exists |TRUE|None||
+|SubscriptionId|Subscription ID of the Azure subscription in which CA is configured|TRUE|None||
 |ResourceGroupNames|Use this parameter if you want to update the comma separated list of resource groups within which the application resources are contained. The previously configured list of RGs will be replaced with the one provided here.|FALSE|None||
 |OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
@@ -235,7 +235,7 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 ```
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
-|SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
+|SubscriptionId	|Subscription ID of the Azure subscription in which CA is configured |TRUE |None||	 
 |DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||  
 
 [Back to top…](Readme.md#contents)
@@ -247,6 +247,10 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 ```PowerShell
 Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> 
 ```
+|Param Name |Purpose |Required?	|Default value	|Comments|
+|-----|-----|-----|----|-----|
+|SubscriptionId	|Subscription ID of the Azure subscription in which CA is configured |TRUE |None||
+|ExhaustiveCheck | Add this switch to check health of Azure modules in CA automation account. Commmand will take little longer (few minutes) to run with this parameter |TRUE |None||
 **Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSDK release.
 
 [Back to top…](Readme.md#contents)
