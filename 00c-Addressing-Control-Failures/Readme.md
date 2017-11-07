@@ -267,19 +267,19 @@ The columns are described as under:
 |Verify |None |Verify |No |User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.|
 |Verify |NotAnIssue |Passed |Yes |User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.|
 |Verify |WillNotFix |Exception |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
-|Verify |WillFixLater |RiskAck |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Verify |WillFixLater |Remediate |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
 |Failed |None |Failed |No |Control has failed but has not been attested. Perhaps a fix is in the works...|	 
 |Failed |NotAnIssue |Passed |Yes |Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service|
-|Failed |WillNotFix |RiskAck |Yes |Control has failed. The issue is not benign but the user has some other constraint and cannot fix it. E.g., Need an SPN to be in Owner role at subscription scope.|
-|Failed |WillFixLater |RiskAck |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
+|Failed |WillNotFix |Exception |Yes |Control has failed. The issue is not benign but the user has some other constraint and cannot fix it. E.g., Need an SPN to be in Owner role at subscription scope.|
+|Failed |WillFixLater |Remediate |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
 |Error |None |Error |No |There was an error during evaluation. Manual verification is needed and is still pending.|
 |Error |NotAnIssue |Passed |Yes |There was an error during evaluation. However, control has been manually verified by the user.|
-|Error |WillNotFix |RiskAck |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
-|Error |WillFixLater |RiskAck |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Error |WillNotFix |Exception |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Error |WillFixLater |Remediate |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
 |Manual |None |Manual |No |The control is not automated and has to be manually verified. Verification is still pending.| 
 |Manual |NotAnIssue |Passed |Yes |The control is not automated and has to be manually verified. User has verified that there's no security concern.|
-|Manual |WillNotFix |RiskAck |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
-|Manual |WillFixLater |RiskAck |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Manual |WillNotFix |Exception |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Manual |WillFixLater |Remediate |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
 
   
 <br>
