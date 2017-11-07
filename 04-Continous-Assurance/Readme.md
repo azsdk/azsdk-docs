@@ -250,7 +250,7 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
 |SubscriptionId	|Subscription ID of the Azure subscription in which CA is configured |TRUE |None||
-|ExhaustiveCheck | Add this switch to check health of Azure modules in CA automation account. Commmand will take little longer (few minutes) to run with this parameter |FALSE |None||
+|ExhaustiveCheck | Use this switch to also check health of Azure modules in CA automation account. By default Azure modules health check is not performed because it takes several minutes. |FALSE |None||
 
 **Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSDK release.
 
