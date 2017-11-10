@@ -99,7 +99,7 @@ When the pipeline executes, SVTs will scan the specified set of resources.
 Along with input parameter, you can check for below options
 <br/>**Enable OMS Logging:** Switch to enable this task to publish SVT evalution results to an OMS workspace. Steps to configure OMS credential are explained in Step-4
 <br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed individual controls in the task summary output.
-<br/>**Do not auto-update AzSDK:** Switch to toggle auto update of AzSDK and required AzureRM modules on the build server. Keep this un-checked for Hosted VS2017 and while using SVT task fot the first time.
+<br/>**Do not auto-update AzSDK:** Switch to toggle auto update of AzSDK and required AzureRM modules on the build server. Keep this un-checked for Hosted agent and Hosted VS2017 and while using SVT task fot the first time and if you want to update AZSDK the version of AzSDK. 
 <br/>**Use Preview Modules of AzSDK:** Switch to toggle use of preview drop of AzSDK SVTs. By default it is configured to use latest bits of AzSDK.
 ![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.PNG)
 
@@ -156,8 +156,7 @@ next to it so that it gets masked.
 (You may skip this step in a first-pass exploration of CICD integration of SVTs.) 
 This feature enables you to set up online policies. 
 This enables the CICD extension to use org-specific policies. 
-<!-- #TODO# Clarify. Need IT-specific instructions too! Or it should just work for IT. --> 
-
+To use org-specific policies, you can get your org-specific url from AzSDKSettings.json file under 'OnlinePolicyStoreUrl' parameter. 
 Below, we have added configuration info of 'AzSDKServerURL' used by the AzSDK team.  
 
 The online Policy URL information may be provided using one of the two options below:  
@@ -187,7 +186,7 @@ Linking to the release definition:
 
 **Step-6**: Save the Release Definition.
   
-![03_Save_Release_Defination](../Images/03_Save_Release_Defination.PNG)  
+![03_Save_Release_Definition](../Images/03_Save_Release_Definition.PNG)  
 
 
 [Back to top...](Readme.md#contents)
@@ -245,7 +244,7 @@ what we have seen in the case of ad hoc SVT runs:
 
 
 ### FAQs
-#### I have enabled AzSDK_SVTs task in my release pipeline . I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’.  How do I resolve this issue?
+#### I have enabled AzSDK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?
 - Go to ‘AzSDK_SVTs’ task in your release definition.
 - Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked.
  
@@ -253,7 +252,7 @@ what we have seen in the case of ad hoc SVT runs:
 - Go to ‘AzSDK_SVTs’ task in your release definition.
 - Mark the check box ‘Do not auto-update AzSDK’ as checked. 
 - This will help you save some time by not re-installing the AzSDK from scratch in every run.
-> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent.
+> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
 
 
 [Back to top...](Readme.md#contents)
