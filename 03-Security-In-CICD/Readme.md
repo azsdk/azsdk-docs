@@ -253,7 +253,7 @@ This error typically occurs when AzSDK scan identifies non-compatible AzureRm an
 - Mark the check box ‘Do not auto-update AzSDK’ as checked. 
 - This will help you save some time by not re-installing the AzSDK from scratch in every run. This will skip the module check from PS Gallery and continue to use the installed modules for scan.
 > **Note:** For Non-Hosted agent, it is always recommended to check if latest AzSDK module is present on your machine before marking 'Do not auto-update AzSDK' CheckBox as checked, since scan should always use latest AzSDK module.  
-> > **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
+> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
 
 
 [Back to top...](Readme.md#contents)
