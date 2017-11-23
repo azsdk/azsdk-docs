@@ -10,6 +10,8 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
+- [FAQs](Readme.md#faqs)  
+
 ## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-preview-1)
 - [Enable AzSDK extension for your Jenkins](Readme.md#enable-azsdk-extension-for-your-jenkins)
 - [Walkthrough](Readme.md#walkthrough-1)
@@ -95,8 +97,9 @@ When the pipeline executes, SVTs will scan the specified set of resources.
 Along with input parameter, you can check for below options
 <br/>**Enable OMS Logging:** Switch to enable this task to publish SVT evalution results to an OMS workspace. Steps to configure OMS credential are explained in Step-4
 <br/>**Aggregate Control Status:** Switch to aggregate the SVTs control output. When this is turned off it would show all the failed individual controls in the task summary output.
+<br/>**Do not auto-update AzSDK:** Switch to toggle auto update of AzSDK and required AzureRM modules on the build server. Keep this un-checked for Hosted agent and Hosted VS2017 and while using SVT task fot the first time and if you want to update AZSDK the version of AzSDK. 
 <br/>**Use Preview Modules of AzSDK:** Switch to toggle use of preview drop of AzSDK SVTs. By default it is configured to use latest bits of AzSDK.
-![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.png)
+![03_IP_Parameter_for_Task](../Images/03_IP_Parameter_for_Task.PNG)
 
 **Step-4:** (Optional) Setup connectivity from CICD to OMS.  
 > **Note:** You can skip this step in a first pass exploration of CICD integration of SVTs. 
@@ -151,8 +154,7 @@ next to it so that it gets masked.
 (You may skip this step in a first-pass exploration of CICD integration of SVTs.) 
 This feature enables you to set up online policies. 
 This enables the CICD extension to use org-specific policies. 
-<!-- #TODO# Clarify. Need IT-specific instructions too! Or it should just work for IT. --> 
-
+To use org-specific policies, you can get your org-specific url from AzSDKSettings.json file under 'OnlinePolicyStoreUrl' parameter. You can find the 'AzSDKSettings.json' file under 'C:\Users\userName\AppData\Local\Microsoft\AzSDK' folder.
 Below, we have added configuration info of 'AzSDKServerURL' used by the AzSDK team.  
 
 The online Policy URL information may be provided using one of the two options below:  
@@ -182,7 +184,7 @@ Linking to the release definition:
 
 **Step-6**: Save the Release Definition.
   
-![03_Save_Release_Defination](../Images/03_Save_Release_Defination.png)  
+![03_Save_Release_Definition](../Images/03_Save_Release_Definition.PNG)  
 
 
 [Back to top...](Readme.md#contents)
@@ -207,6 +209,7 @@ pic below we can see that the release pipeline has failed):
 
 **Step-4:** Look at the "Issues" to see why the release failed.  
 The summary output shows the cause of failure (in this case it is because the AzSDK SVTs have failed).
+
 
 ![03_Issues_Release_Fail](../Images/03_Issues_Release_Fail.png)
 
@@ -234,6 +237,24 @@ is named by the target resource group that we used 'mptestrg').
 Opening/extracting the "AzSDK_Logs" ZIP file will reveal a folder structure and files placement identical to 
 what we have seen in the case of ad hoc SVT runs:
 ![03_AzSDK_Logs](../Images/03_AzSDK_Logs.png)
+
+[Back to top...](Readme.md#contents)
+
+
+### FAQs
+#### I have enabled AzSDK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?
+- Go to ‘AzSDK_SVTs’ task in your release definition.
+- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked. This will ensure to run the Azsdk scan using the latest module from PS Gallery.
+
+This error typically occurs when AzSDK scan identifies non-compatible AzureRm and AzSDK modules present on the machine and tries to install the latest ones. 
+ 
+#### I have enabled AzSDK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?
+- Go to ‘AzSDK_SVTs’ task in your release definition.
+- Mark the check box ‘Do not auto-update AzSDK’ as checked. 
+- This will help you save some time by not re-installing the AzSDK from scratch in every run. This will skip the module check from PS Gallery and continue to use the installed modules for scan.
+> **Note:** For Non-Hosted agent, it is always recommended to check if latest AzSDK module is present on your machine before marking 'Do not auto-update AzSDK' CheckBox as checked, since scan should always use latest AzSDK module.  
+> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
+
 
 [Back to top...](Readme.md#contents)
 
