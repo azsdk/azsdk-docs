@@ -244,17 +244,16 @@ what we have seen in the case of ad hoc SVT runs:
 ### FAQs
 #### I have enabled AzSDK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?
 - Go to ‘AzSDK_SVTs’ task in your release definition.
-- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked.  
+- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked. This will ensure to run the Azsdk scan using the latest module from PS Gallery.
 
-This error is due to the fact that AzSDK module is not getting installed since installation requires installation policy for PSGallery to be made 'Trusted' manually and this CheckBox ammends '-Force' parameter which eliminates the same.
+This error typically occurs when AzSDK scan identifies non-compatible AzureRm and AzSDK modules present on the machine and tries to install the latest ones. 
  
 #### I have enabled AzSDK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?
 - Go to ‘AzSDK_SVTs’ task in your release definition.
 - Mark the check box ‘Do not auto-update AzSDK’ as checked. 
-- This will help you save some time by not re-installing the AzSDK from scratch in every run.  
-
-By keeping this CheckBox as checked, AzSDK and its dependent modules (AzureRm modules) are not reinstallating in every run which saves your time.
-> **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
+- This will help you save some time by not re-installing the AzSDK from scratch in every run. This will skip the module check from PS Gallery and continue to use the installed modules for scan.
+> **Note:** For Non-Hosted agent, it is always recommended to check if latest AzSDK module is present on your machine before marking 'Do not auto-update AzSDK' CheckBox as checked, since scan should always use latest AzSDK module.  
+> > **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
 
 
 [Back to top...](Readme.md#contents)
