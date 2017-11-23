@@ -156,7 +156,7 @@ next to it so that it gets masked.
 (You may skip this step in a first-pass exploration of CICD integration of SVTs.) 
 This feature enables you to set up online policies. 
 This enables the CICD extension to use org-specific policies. 
-To use org-specific policies, you can get your org-specific url from AzSDKSettings.json file under 'OnlinePolicyStoreUrl' parameter. 
+To use org-specific policies, you can get your org-specific url from AzSDKSettings.json file under 'OnlinePolicyStoreUrl' parameter. You can find the 'AzSDKSettings.json' file under 'C:\Users\userName\AppData\Local\Microsoft\AzSDK' folder.
 Below, we have added configuration info of 'AzSDKServerURL' used by the AzSDK team.  
 
 The online Policy URL information may be provided using one of the two options below:  
@@ -246,12 +246,16 @@ what we have seen in the case of ad hoc SVT runs:
 ### FAQs
 #### I have enabled AzSDK_SVTs task in my release pipeline. I am getting an error ‘The specified module 'AzSDK' was not loaded because no valid module file was found in any module directory’. How do I resolve this issue?
 - Go to ‘AzSDK_SVTs’ task in your release definition.
-- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked.
+- Make sure that the check box  ‘Do not auto-update AzSDK’ is unchecked.  
+
+This error is due to the fact that AzSDK module is not getting installed since installation requires installation policy for PSGallery to be made 'Trusted' manually and this CheckBox ammends '-Force' parameter which eliminates the same.
  
 #### I have enabled AzSDK_SVTs task in my release pipeline. It is taking too much time every time I queue a release, how can I reduce that time?
 - Go to ‘AzSDK_SVTs’ task in your release definition.
 - Mark the check box ‘Do not auto-update AzSDK’ as checked. 
-- This will help you save some time by not re-installing the AzSDK from scratch in every run.
+- This will help you save some time by not re-installing the AzSDK from scratch in every run.  
+
+By keeping this CheckBox as checked, AzSDK and its dependent modules (AzureRm modules) are not reinstallating in every run which saves your time.
 > **Note:** You will need to keep the above checkbox unchecked if you are running the AzSDK_SVTs task on any release agent for the first time OR you are running the task on Hosted VS2017 agent OR if non-hosted agent is already running on latest version.
 
 
