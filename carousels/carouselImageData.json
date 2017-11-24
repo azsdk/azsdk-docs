@@ -1,5 +1,11 @@
 var data = [
   { "path": "../Images/CarouselImages/Secure_DevOps_Kit_Azure.png"},
-  { "path": "../Images/CarouselImages/Security_In_CICD.jpg"},
-  { "path": "../Images/CarouselImages/Security_Telemetry.png"}
+  { "path": "../Images/CarouselImages/Spotcheck_Subscription_Resource_Security.png"},
+  { "path": "../Images/CarouselImages/Secure_Code_with_SecIntel.png"},
+  { "path": "../Images/CarouselImages/Security_in_CICD_Pipelines.png"},
+  { "path": "../Images/CarouselImages/Track_Drift_via_CA.png"},
+  { "path": "../Images/CarouselImages/Single_Pane_Monitoring_View.png"},
+  { "path": "../Images/CarouselImages/Aggregate_Risk_Views.png"}
+   
+  
 ]
