@@ -1,15 +1,10 @@
-Version Notes (Current Version: v1.1)
-=======================================
-
-v1.1 (Pre-release)
------------
-1. Added support for a single master command to update multiple security elements in subscriptions (alerts, ASC, ARM policy, CA, etc.)
-2. Upgraded the activity alert support to use the latest PG framework for alert ‘action groups’
-3. Expanded coverage of the ‘fix controls’ feature to tier-1 services
-4. Included a new feature (preview) for scanning multiple subscriptions via a single continuous assurance setup
-5. Bug fixed:NA
-
-v1.0
------------
-1. Released Secure DevOps Kit for Azure
-2. Bug fixed:NA
+[!include[171031]( ReleaseNotes/RN171031.md )]
+[!include[170928]( ReleaseNotes/RN170928.md )]
+[!include[170831]( ReleaseNotes/RN170831.md )]
+[!include[170731]( ReleaseNotes/RN170731.md )]
+[!include[170630]( ReleaseNotes/RN170630.md )]
+[!include[170531]( ReleaseNotes/RN170531.md )]
+[!include[170428]( ReleaseNotes/RN170428.md )]
+[!include[170331]( ReleaseNotes/RN170331.md )]
+[!include[170223]( ReleaseNotes/RN170223.md )]
+[!include[170127]( ReleaseNotes/RN170127.md )]
