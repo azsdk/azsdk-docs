@@ -5,7 +5,5 @@ var data = [
   { "path": "../Images/CarouselImages/CarouselImage04.png"},
   { "path": "../Images/CarouselImages/CarouselImage05.png"},
   { "path": "../Images/CarouselImages/CarouselImage06.png"},
-  { "path": "../Images/CarouselImages/CarouselImage07.png"}
-   
-  
+  { "path": "../Images/CarouselImages/CarouselImage07.png"} 
 ]
