@@ -1,11 +1,9 @@
 var data = [
-  { "path": "../Images/CarouselImages/Secure_DevOps_Kit_Azure.png"},
-  { "path": "../Images/CarouselImages/Spotcheck_Subscription_Resource_Security.png"},
-  { "path": "../Images/CarouselImages/Secure_Code_with_SecIntel.png"},
-  { "path": "../Images/CarouselImages/Security_in_CICD_Pipelines.png"},
-  { "path": "../Images/CarouselImages/Track_Drift_via_CA.png"},
-  { "path": "../Images/CarouselImages/Single_Pane_Monitoring_View.png"},
-  { "path": "../Images/CarouselImages/Aggregate_Risk_Views.png"}
-   
-  
+  { "path": "../Images/CarouselImages/CarouselImage01.png"},
+  { "path": "../Images/CarouselImages/CarouselImage02.png"},
+  { "path": "../Images/CarouselImages/CarouselImage03.png"},
+  { "path": "../Images/CarouselImages/CarouselImage04.png"},
+  { "path": "../Images/CarouselImages/CarouselImage05.png"},
+  { "path": "../Images/CarouselImages/CarouselImage06.png"},
+  { "path": "../Images/CarouselImages/CarouselImage07.png"} 
 ]
