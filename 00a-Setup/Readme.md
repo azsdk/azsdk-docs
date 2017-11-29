@@ -77,7 +77,19 @@ The above error message is an indication that an AzSDK cmdlet is being run in a 
 - Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 4.1.0*" before running anything else (e.g., Login-AzureRmAccount)
 - Close the PS session and open a new one. In the new session, do an "*Import-Module AzSDK*" before running anything else. (This will force-load the correct version of AzureRm that AzSDK needs.). 
   - If you suspect that you may have multiple versions of AzSDK itself installed, then use "*Import-Module AzSDK -RequiredVersion 2.5.0*" (August release).  
+#### Error Message: "PackageManagement\Install-Package : Could not find a part of the path 'C:\Users\<username>\Documents\WindowsPowerShell\Modules..."
+If you receive this error message [Windows 10 controlled folder access](https://docs.microsoft.com/en-us/windows/threat-protection/windows-defender-exploit-guard/controlled-folders-exploit-guard) kicked in and prevented PowerShell to make any modifications to the protected folder 'Documents' under your user profile.
 
+You have two options to anticipate; add the PowerShell executable(s) to the list of applications that is(are) allowed to make modifications to any of the protected folders or run PowerShell in elevated mode to install the AzSDK module and its prerequisites. In an elevated prompt, modules are by default installed in 'C:\Program Files\WindowsPowerShell\Modules'.
+
+To add PowerShell to the list of allowed applications open an elevated prompt and type;
+```PowerShell
+$programs = @(
+     'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe'
+    , 'C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe'
+)
+Add-MpPreference -ControlledFolderAccessAllowedApplications $programs
+```
 #### Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."
 The AzSDK depends upon AzureRm PowerShell modules. AzureRm modules are created/maintained by the Azure product team and provide the core PowerShell libraries to interact with different Azure services. For example, you'd use the AzureRm Storage module to create/work with a storage account, etc.  
 
