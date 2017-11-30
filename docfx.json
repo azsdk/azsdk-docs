@@ -35,7 +35,7 @@
       "searchScope": [ "Azure" ],
       "_gitContribute": {
         "repo": "https://github.com/azsdk/azsdk-docs",
-        "branch": "master",
+        "branch": "azsdksite",
         "apiSpecFolder": "azsdk-docs"
       },
       "_gitUrlPattern": "github",
