@@ -81,7 +81,7 @@ As you can see from the summary description above, the "Secure DevOps Kit for Az
 - AzSDK Module <a href="https://www.powershellgallery.com/packages/AzSDK/">@PSGallery</a>
 - AzSDK Security Controls Portal @https://aka.ms/azsdkosstcp
 - Security IntelliSense <a href="https://marketplace.visualstudio.com/items?itemName=AzSDKTeam.SecurityIntelliSense-Preview">@VisualStudio Marketplace</a>
-- Visual Studio Online CICD Build/Release Extension - Private (Please drop a mail to <a href="mailto:azsdksupext@microsoft.com?subject=Request: Enable AsSDK extension for VSTS">AzSDK Support</a>)
+- Visual Studio Online CICD Build/Release Extension <a href="https://marketplace.visualstudio.com/items?itemName=azsdktm.AzSDK-task">@VisualStudio Marketplace</a>
 - For any other issues or feedback please drop a mail to <a href="mailto:azsdksupext@microsoft.com">AzSDK Support</a>
   
 [Back to top...](README.md#content) 

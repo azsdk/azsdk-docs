@@ -554,10 +554,10 @@ westus
 ```
 This basically tells PS to iterate through the collection returned from the left side of the '|' and, for each object, evaluate 
 the expression within the '{ }'. 
-The key players in the equation are the '|' pipe character, the '%' looping character and the "$_" inside the '{ }'. 
-The $_ basically plays the same role as 'i' in a standard for loop or 'thisObject' in a 'foreach' loop.
+The key players in the equation are the '|' pipe character, the '%' looping character and the "$\_" inside the '{ }'. 
+The $\_ basically plays the same role as 'i' in a standard for loop or 'thisObject' in a 'foreach' loop.
 
-Here are a couple more examples:
+Here are a few more examples:
 ```PowerShell
 # List all resource group names
 PS C:\> Get-AzureRmResourceGroup | % {$_.ResourceGroupName}
@@ -581,6 +581,19 @@ AzSDKWorkshopVNetRG
 AzSDKWSRG
 Wave2RG
 ```
+
+```PowerShell
+# Run a scan command across all subscriptions you have access to
+$subscriptions = (Get-AzureRmSubscription)
+
+$subscriptions | % { 
+    $subId = $_.Id
+    Write-Host "Running cmdlet for subscription: $subid"
+    #Run your command here...
+    #Get-AzSDK... -SubscriptionId $subId
+}
+```
+
 If you want to run a loop and evaluate some expression on only those items which meet a particular criteria, you can 
 use the 'where-object' or 'where' or simply the '?' operator to do so.
 
