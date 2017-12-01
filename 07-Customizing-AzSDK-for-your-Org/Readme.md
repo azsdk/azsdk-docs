@@ -1,4 +1,4 @@
-n# Customizing AzSDK for your organization
+# Customizing AzSDK for your organization
 
 ### [Overview](Readme.md#overview-1)
  - [When and why should I set up Org policy?](Readme.md#when-and-why-should-i-setup-org-policy)
