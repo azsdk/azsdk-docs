@@ -88,7 +88,7 @@ AzSDK CICD extension will always run the scan using latest module of AzSDK from 
 
 You could find more details about CICD [here.](../03-Security-In-CICD/Readme.md)
  
-
+------------------------------------------------
 ### FAQs
 #### Should I run PowerShell ISE as administrator or regular user?
 Please run PowerShell ISE as a regular user. The AzSDK has been thoroughly tested to run in normal user (non-elevated) mode. As much as possible, please do not launch your PS sessions in "Administrator" mode. There is nothing that the AzSDK does that needs elevated privileges on the local system. Even the installation command itself uses a '-Scope CurrentUser' parameter internally.  
