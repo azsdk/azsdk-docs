@@ -46,8 +46,8 @@ Release task in your CICD pipeline or if you setup Continuous Assurance. Also, t
 CDN are based on what we use internally in Core Services Engineering (CSE) at Microsoft. We also keep 
 them up to date from one release to next .
 
-![Org Policy - The big picture](../Images/07_OrgPolicy_Big_Picture.png) 
-
+![Org Policy - The big picture](../Images/07_OrgPolicy_Big_Picture.png){width=80%}  
+ 
  While the out-of-box files on CDN may be good for limited use, in many contexts you may want to "customize" 
 the behavior of the security scans for your environment. You may want to do things such as: (a) enable/disable 
 some controls, (b) changes control settings to better match specific security policies in your organization, 
@@ -147,15 +147,16 @@ to policy store, provided the values for OrgName and DepartmentName are unchange
 
 In this section let us look at typical use cases for org policy customization and how to accomplish them. 
 We will cover the following:
- a) Changing the default 'Running AzSDK using…' message  
- b) Changing a global setting for some control
- c) Changing/customizing a server baseline policy set
- d) Customizing specific controls for a service 
-	i) Turning On/Off
-	ii) Changing Recommendation Text
-	iii) Etc.
- e) Changing ARM policy/Alerts set (coming soon…)
- f) Changing RBAC mandatory/deprecated lists (coming soon…)
+
+1. Changing the default 'Running AzSDK using…' message  
+2. Changing a global setting for some control
+3. Changing/customizing a server baseline policy set
+4. Customizing specific controls for a service 
+   1. Turning On/Off
+   2. Changing Recommendation Text
+   3. Etc.
+5. Changing ARM policy/Alerts set (coming soon…)
+6. Changing RBAC mandatory/deprecated lists (coming soon…)
 
 
 > Note: To edit policy JSON files, use a friendly JSON editor such as Visual Studio Code. It will save you lot of
@@ -197,15 +198,19 @@ within the org about something related to AzSDK that they need to attend to imme
 In this example let us just make a simple change to this message. We will just add '*' characters on either side 
 of the 'Contoso-IT' so it stands out a bit.
 
-Steps:
+###### Steps:
 
  i) Open the AzSdk.json from your local org-policy folder
+
  ii) Edit the value for "Policy Message" field by adding 3 '*' characters on each side of 'Contoso-IT' as under:
 ```
     "PolicyMessage" : "Running AzSDK cmdlet using *** Contoso-IT *** policy"
 ```
  iii) Save the file
+ 
  iv) Run the policy setup command (the same command you ran for the first time setup)
+
+###### Testing:
 
 The updated policy is now on the policy server. You can ask any other person to test by running any AzSDK cmdlet
 (e.g., Get-AzSDKInfo) in a **fresh** PS console. When the command starts, it will show an updated message as in the 
@@ -232,13 +237,15 @@ This folder holds all policy files for AzSDK. We will make copies of files we ne
 the changed versions in the org-policy folder. Note that you should **never** edit any file directly in the local
 AzSDK policy folder. Rather, copy the file to the org-policy folder and edit it there.
 
-Steps:
+###### Steps:
 
  i) Copy the ControlSettings.json from the AzSDK installation to your org-policy folder
+ 
  ii) Remove everything except the "NoOfApprovedAdmins" line while keeping the JSON object hierarchy intact
     ![Edit Number of Admins](../Images/07_OrgPolicy_Chg_Admin_Count.png) 
 
  iii) Save the file
+ 
  iv) Edit the ServerConfigMetadata.json file in the org-policy folder and create an entry for this file (if not already there)
     ![Entry in ServerConfigMetadata.json](../Images/07_OrgPolicy_Chg_SCMD_Entry.png) 
 ```JSON
@@ -253,12 +260,14 @@ Steps:
     ]
 }
 ```
+
  v) Run the policy setup command (the same command you ran for the first time setup)
  
-Testing: 
+###### Testing: 
 
 Anyone in your org can now start a fresh PS console and evaluation of the number of owners/admins control in 
 the subscription security scan (Get-AzSDKSubscriptionSecurityStatus) should reflect that the new setting is in effect.
+
 
 ##### c) Creating a custom control 'baseline' for your org
 Note that a powerful capability of AzSDK is the ability for an org to define a baseline control set on the policy server
@@ -278,9 +287,10 @@ resources are evaluated.
 To support the baseline controls behvior for your org, you will need to define your baseline in the ControlSettings.json
 file. Here are the steps...
 
-Steps: 
-<br>
+###### Steps: 
+
 (We will assume you have done step-b above and edit the ControlSettings.json file directly in your org policy folder.)
+
  i) Edit the ControlSettings.json file to add a 'BaselineControls' object as per below:
  
 ```JSON
@@ -317,13 +327,17 @@ Steps:
 > Notice how, apart from the couple of extra elements at the end, the baseline set is pretty much a list of 'ResourceType'
 and 'ControlIds' for that resource...making it fairly easy to customize/tweak your own org baseline. Here the name and casing of the resource type name must match that of the policy JSON
 file for the corresponding resource's JSON file in the SVT folder and the control ids must match those included in 
-the JSON file.
+the JSON file. 
+> Note: Here we have use a very simple baseline with just a couple of resource types and a very small control set.
+> A more realitic baseline control set will be more expansive. <!-- TODO - add CDN pointer --> 
     
  ii) Save the ControlSettings.json file
+ 
  iii) Confirm that an entry for ControlSettings.json is already there in the ServerConfigMetadata.json file. (Else see step-iii in (c) above.)
+ 
  iv) Run the policy setup command (the same command you ran for the first time setup)
 
-Testing:
+###### Testing:
 
 To test that baseline controls set is in effect, anyone in your org can start a fresh PS console and run the subscription
 and resources security cmdlets with the `-UseBaselineControls` parameter. You will see that regardless of the actual
@@ -331,6 +345,7 @@ types of Azure resources present in their subscriptions, only the ones mentioned
 
 
 ##### d) Customizing specific controls for a service 
+
 In this example, we will make a slightly more involved change. Imagine that you want to turn OFF evaluation of some
 control altogether (regardless of whether people use the `-UseBaselineControls` parameter or not).
 Also, for another control, you want people to use a recommendation which leverages an internal tool the security team
@@ -340,10 +355,14 @@ of `Azure_Storage_Audit_Issue_Alert_AuthN_Req` altogether. We will modify severi
 we will change the recommendation people in our org will follow if they need to address an issue with 
 the `Azure_Storage_Deploy_Use_Geo_Redundant` control.
 
-Steps: 
+###### Steps: 
+ 
  i) Copy the Storage.json from the AzSDK installation to your org-policy folder
+
  ii) Remove everything except the ControlID, the Id and the property we want to modify as discussed above. 
+
  iii) Make changes to the properties of the respective controls so that the final JSON looks like the below. 
+
 ```JSON
 {
   "Controls": [
@@ -365,8 +384,11 @@ Steps:
   ]
 }
 ```
+
  iii) Save the file
+
  iv) Edit the ServerConfigMetadata.json file in the org-policy folder and create an entry for this file (if not already there)
+
  It should look something like the below:
 ```JSON
 {
@@ -383,9 +405,10 @@ Steps:
     ]
 }
 ```  
+
  v) Run the policy setup command (the same command you ran for the first time setup)
  
-Testing: 
+###### Testing: 
 Someone in your org can test this change using the `Get-AzSDKAzureServicesSecurityStatus` command on a target
 resource group which contains a storage account. If run with the `-UseBaselineControls` switch, you will see that
 the anonymous access control shows as `Critical` in the output CSV and the GRS control recommendation has changed to
@@ -412,6 +435,7 @@ as the policy endpoint for your org. Basically, you should be able to do one or 
  - You will be able to do central governance for your org by leveraging the telemetry events that are collecting in the master subscription	 
 
 ## Testing and troubleshooting Org policy
+
 #### Testing the overall policy setup
 The policy setup command is fairly lightweight - both in terms of effort/time and in terms of costs incurred. We recommend that
 you setup a 'Staging' environment where you can do all pre-testing of policy setup, policy changes, etc. A limited number of 
