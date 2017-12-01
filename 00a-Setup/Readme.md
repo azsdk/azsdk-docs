@@ -68,9 +68,9 @@ Going forward, if the latest version of devops kit is released, then during exec
 as shown in the image below:
 ![Install_Autoupdate_Workflow](../Images/00_Install_Autoupdate_Workflow.PNG)
 
-Step 1: It would take user consent before it starts the auto update workflow. (1 in the image above)
-Step 2: User need to close all the displayed PS sessions. Typically open PS sessions would lock the module and fail the installation. (2 in the image above)
-Step 3: Even the current session must be closed. It would again take the user consent before it starts the auto update flow to avoid the loss of any unsaved work. (3 in the image above)
+Step 1: It would take user consent before it starts the auto update workflow. (1 in the image above) <br/>
+Step 2: User need to close all the displayed PS sessions. Typically open PS sessions would lock the module and fail the installation. (2 in the image above) <br/>
+Step 3: Even the current session must be closed. It would again take the user consent before it starts the auto update flow to avoid the loss of any unsaved work. (3 in the image above) 
 
 
 **Continuous Assurance(CA) Scans:**
