@@ -332,7 +332,7 @@ Any control with evaluation result as not passed,
 |Medium| 60|
 |Low| 90|
  
-The detailed matrix of attestation details and its expiry can be found under ![this](Readme.md#how-azsdk-determines-the-effective-control-result) section.
+The detailed matrix of attestation details and its expiry can be found under [this](Readme.md#how-azsdk-determines-the-effective-control-result) section.
 
 [Back to top...](Readme.md#contents)
 

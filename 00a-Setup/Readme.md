@@ -27,44 +27,55 @@ AzSDK depends on a specific version of AzureRM and installs that during the inst
 As Azure features evolve and add more security controls, "Secure DevOpsKit for Azure" also evolve every month respecting the latest security features.
 It is always recommended to run on the latest devops kit module to scan your subscription with the latest rules. 
 
-Users who are still using older modules of devops kit continue to work until N-2 version w.r.t production version e.g. If the current production version is 2.8.x, 
+Users who are still using older modules of devops kit continue to work only until N-2 version w.r.t production version e.g. If the current production version is 2.8.x, 
 then teams can continue to use 2.7.x and 2.6.x. As the version 2.9.x becomes available, automatically 2.6.x would stop working. 
 
 More details on how it impacts each stage of DevOps are shared below:
 
 **Adhoc Scans:**
-Users running the secure devops kit scan from their local machine using N-3 version, will start failing with an error asking to upgrade as shown below:
-![PowerShell Version](../Images/00_Install_OlderVersionWarning.PNG) 
+Users running the devops kit scan using N-3 version from their local machine, will start getting an error asking to upgrade as shown below:
+![Install_OlderVersionWarning](../Images/00_Install_OlderVersionWarning.PNG) 
 > **Note:** This restriction has been put in place from AzSDK version 2.8.x and applicable for all future releases.
 
 **Continuous Assurance(CA) Scans:**
-No impact to CA as it would automatically upgrade to latest version. Before every scan it checks whether there has been a latest release of the devops kit and upgrade itself. And all the further scans would happen using the latest version.
+No impact to CA as it would automatically upgrade to latest version. 
+Before every scan it checks whether there has been a latest release of the devops kit and upgrade itself.
+All the further scans would happen using the latest version.
 
-**AzSDK CICD Extension**
+**AzSDK CICD Extension:**
 No impact to default behavior of CICD. It always runs the scan with the latest version available in the PS Gallery. 
 If teams have overridden the default behavior by specifying a version number during the build, then the same restriction of N-2 applies here as well.
 
 ### Auto Update
 It is always recommended to scan your subscription with the latest devops kit module and thus by ensuring to evaluate latest security controls that are available through the module.
-"Secure DevOps kit for Azure" module provide different auto update capabilities based on the devops stage and its usage. More details are below:
+"Secure DevOps kit for Azure" module provide different auto update capabilities w.r.t different stages of devops. More details are below:
 
 **Adhoc Scans:**
 Users running the older version of AzSDK scan from their local machine will get a warning as shown in the image below.
 It would also provide the user with required instructions to upgrade the module.
-![PowerShell Version](../Images/00_Install_Autoupdate.PNG) 
+![Install_Autoupdate](../Images/00_Install_Autoupdate.PNG) 
 
-If users are running the AzSDK with their own instance setup at their ORG, can also leverage the Autoupdate feature that has been introduced form the version 2.8.x.
+In a scenario where an organization has setup its own instance of "Secure DevOpsKit for Azure", the users can leverage 
+the auto update feature which has been introduced from the version 2.8.x.
 As shown in the image above, user can either sign up for Autoupdate or go with manual update by running the command below:
 
 ```PowerShell
   Set-AzSDKPolicySettings -AutoUpdate On|Off
 ```
 
-> **Note:** This restriction has been put in place from AzSDK version 2.8.x and applicable for all future releases.
+User needs to close and reopen a fresh session once the command is run.
+Going forward, if the latest version of devops kit is released, then during execution of any devops kit command it would start the auto update workflow automatically 
+as shown in the image below:
+![Install_Autoupdate_Workflow](../Images/00_Install_Autoupdate_Workflow.PNG)
+
+Step 1: It would take user consent before it starts the auto update workflow. (1 in the image above)
+Step 2: User need to close all the displayed PS sessions. Typically open PS sessions would lock the module and fail the installation. (2 in the image above)
+Step 3: Even the current session must be closed. It would again take the user consent before it starts the auto update flow to avoid the loss of any unsaved work. (3 in the image above)
+
 
 **Continuous Assurance(CA) Scans:**
-The devops kit module running the scans through CA,  auto updates it self. Every scan would initially check if any new version has been released and auto-upgrade the installed module to the latest version.
-No action required from the user.
+The devops kit module running the scans through CA, auto updates itself. Every scan would initially check if any new version has been released and auto-upgrade the installed module to the latest version.
+No action is required from the user.
 
 Users can also run the command below to confirm the same:
 
@@ -75,7 +86,7 @@ Users can also run the command below to confirm the same:
 **AzSDK CICD Extension**
 AzSDK CICD extension will always run the scan using latest module of AzSDK from the gallery. This is the default behavior in the case of both hosted and non-hosted agents. 
 
-You could find more details about CICD ![here](../03-Security-In-CICD/Readme.md)
+You could find more details about CICD [here.](../03-Security-In-CICD/Readme.md)
  
 
 ### FAQs
