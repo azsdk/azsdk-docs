@@ -186,8 +186,10 @@ Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactE
 |SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
 |SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
-When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
-as alerts, RBAC, ARM policies, etc. It also *overwrites* the contact emails and contact phone previously set in Azure Security Center.
+**Note**: This command *overwrites* the contact emails and contact phone previously set in Azure Security Center.
+
+While running command, you may see message that configuration in your subscription is already up to date. This indicates that you have already provisioned subscription with latest configurations. If you still see any failures for controls in `Get-AzSDKSubscriptionSecurityStatus` command, you can pass `-Force` parameter to the provisioning script and reconfigure AzSDK artifacts (
+Alerts, RBAC, ARM policies, etc.) in the subscription. 
 
 
 [Back to top…](Readme.md#contents)
