@@ -1,22 +1,22 @@
-# Customizing AzSDK for your organization
+n# Customizing AzSDK for your organization
 
-### [Overview](Readme.md#overview)
+### [Overview](Readme.md#overview-1)
  - [When and why should I set up Org policy?](Readme.md#when-and-why-should-i-setup-org-policy)
  - [How does AzSDK use online policy?](Readme.md#how-does-azsdk-use-online-policy)
 
-### [Setting up Org policy](Readme.md#setting-up-org-policy)
+### [Setting up Org policy](Readme.md#setting-up-org-policy-1)
  - [What happens during Org policy setup?](Readme.md#what-happens-during-org-policy-setup)
  - [The Org policy setup command: Install-AzSDKOrganizationPolicy](Readme.md#the-org-policy-setup-command-install-azsdkorganizationpolicy)
- - [First-time policy setup - an example](Readme.md#first-time-policy-setup-an-example)
+ - [First-time policy setup - an example](Readme.md#first-time-policy-setup---an-example)
 
-### [Modifying and customizing Org policy](Readme.md#modifying-and-customizing-org-policy)
- - [Common scenarios for org policy customization](Readme.md#common_scenarios_for_org_policy_customization)  
+### [Modifying and customizing Org policy](Readme.md#modifying-and-customizing-org-policy-1)
+ - [Common scenarios for org policy customization](Readme.md#common-scenarios-for-org-policy-customization)  
  - [Next Steps](Readme.md#next-steps)
 
 
-### [Testing and Troubleshooting Org Policy](Readme.md#testing-and-troubleshooting-org-policy)
+### [Testing and Troubleshooting Org Policy](Readme.md#testing-and-troubleshooting-org-policy-1)
  - [Testing the overall policy setup](Readme.md#testing-the-overall-policy-setup)
- - [Troubleshooting common issues](Readme.md#troubleshooting-commo-issues)
+ - [Troubleshooting common issues](Readme.md#troubleshooting-common-issues)
  
 
 ----------------------------------------------------------------
