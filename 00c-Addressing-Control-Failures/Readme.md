@@ -15,7 +15,8 @@
 - [Overview](Readme.md#overview-1)  
 - [Starting attestation](Readme.md#starting-attestation)  
 - [How AzSDK determines the effective control result](Readme.md#how-azsdk-determines-the-effective-control-result)  
-- [Permissions required for attesting controls](Readme.md#permissions-required-for-attesting-controls)  
+- [Permissions required for attesting controls](Readme.md#permissions-required-for-attesting-controls) 
+- [Attestation expiry](Readme.md#attestation-expiry) 
 - [Bulk attestation](Readme.md#bulk-attestation)  
 ----------------------------------------------------------------
 
