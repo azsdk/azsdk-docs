@@ -472,6 +472,10 @@ Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
 | --------------- | -------- |
 |SubscriptionId 	|Subscription for which AzSDK subscription security baseline would be upgraded	|
 
-> **Note**: This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
+> **Note**: 
+>  - This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
+>  - This command also helps you to recover if any of the base resources are accidentally deleted, like AzSDK resource group, storage account, attestation container, continuous assurance log container etc.
+
+
 
 [Back to top…](Readme.md#contents)

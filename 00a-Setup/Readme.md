@@ -23,7 +23,7 @@ above if you have a different version of AzureRM installed on your machine.
 AzSDK depends on a specific version of AzureRM and installs that during the installation above.  
 
 ------------------------------------------------
-### Backward comaptibility
+### Backward compatibility
 As Azure features evolve and add more security controls, "Secure DevOpsKit for Azure" also evolve every month respecting the latest security features.
 It is always recommended to run on the latest devops kit module to scan your subscription with the latest rules. 
 
@@ -38,14 +38,14 @@ Users running the secure devops kit scan from their local machine using N-3 vers
 > **Note:** This restriction has been put in place from AzSDK version 2.8.x and applicable for all future releases.
 
 **Continuous Assurance(CA) Scans:**
-No impact to CA as it would automatically upgrade to latest version. Before every scan it checks whether there has been a latest realase of the devops kit and upgrade itself. And all the further scans would happen using the latest version.
+No impact to CA as it would automatically upgrade to latest version. Before every scan it checks whether there has been a latest release of the devops kit and upgrade itself. And all the further scans would happen using the latest version.
 
 **AzSDK CICD Extension**
-No impact to default behaviour of CICD. It always runs the scan with the latest version available in the PS Gallery. 
-If teams have overriden the default behavior by specifying a version number during the build, then the same restriction of N-2 applies here as well.
+No impact to default behavior of CICD. It always runs the scan with the latest version available in the PS Gallery. 
+If teams have overridden the default behavior by specifying a version number during the build, then the same restriction of N-2 applies here as well.
 
 ### Auto Update
-It is always recommended to scan your subscription with the latest devops kit module and thus by ensuring to evalute latest security controls that are availble through the module.
+It is always recommended to scan your subscription with the latest devops kit module and thus by ensuring to evaluate latest security controls that are available through the module.
 "Secure DevOps kit for Azure" module provide different auto update capabilities based on the devops stage and its usage. More details are below:
 
 **Adhoc Scans:**
@@ -73,7 +73,7 @@ Users can also run the command below to confirm the same:
 ```
 
 **AzSDK CICD Extension**
-AzSDK CICD extension will always run the scan using latest module of AzSDK from the gallery. This is the default behaviour in the case of both hosted and non-hosted agents. 
+AzSDK CICD extension will always run the scan using latest module of AzSDK from the gallery. This is the default behavior in the case of both hosted and non-hosted agents. 
 
 You could find more details about CICD ![here](../03-Security-In-CICD/Readme.md)
  

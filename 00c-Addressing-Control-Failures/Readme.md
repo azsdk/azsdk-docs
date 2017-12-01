@@ -180,8 +180,7 @@ state is auto-reset if there is any change in 'state' (e.g., someone added a new
 Lastly, due to the governance implications, the ability to attest controls is available to a subset of subscription users. This is described in
 the permissions required section below.  
 
-<!-- TODO - Control Expiry --> 
- 
+
 [Back to top...](Readme.md#contents)
 ### Starting attestation
       
@@ -261,26 +260,35 @@ The columns are described as under:
 - 'Requires Justification' indicates whether the corresponding row requires a justification comment
 - 'Comments' outlines an example scenario that would map to the row
 
-|Control Scan Result  |Attestation Status |Effective Status|Requires Justification |Comments |
-|---|---|---|---|---|
-|Passed |None |Passed |No |No need for attestation. Control has passed outright!|
-|Verify |None |Verify |No |User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.|
-|Verify |NotAnIssue |Passed |Yes |User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.|
-|Verify |WillNotFix |Exception |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
-|Verify |WillFixLater |Remediate |Yes |Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
-|Failed |None |Failed |No |Control has failed but has not been attested. Perhaps a fix is in the works...|	 
-|Failed |NotAnIssue |Passed |Yes |Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service|
-|Failed |WillNotFix |Exception |Yes |Control has failed. The issue is not benign but the user has some other constraint and cannot fix it. E.g., Need an SPN to be in Owner role at subscription scope.|
-|Failed |WillFixLater |Remediate |Yes |Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
-|Error |None |Error |No |There was an error during evaluation. Manual verification is needed and is still pending.|
-|Error |NotAnIssue |Passed |Yes |There was an error during evaluation. However, control has been manually verified by the user.|
-|Error |WillNotFix |Exception |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
-|Error |WillFixLater |Remediate |Yes |There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
-|Manual |None |Manual |No |The control is not automated and has to be manually verified. Verification is still pending.| 
-|Manual |NotAnIssue |Passed |Yes |The control is not automated and has to be manually verified. User has verified that there's no security concern.|
-|Manual |WillNotFix |Exception |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
-|Manual |WillFixLater |Remediate |Yes |The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Control Scan Result  |Attestation Status |Effective Status|Requires Justification | ExpiryInDays| Comments |
+|---|---|---|---|---|---|
+|Passed |None |Passed |No | -NA- |No need for attestation. Control has passed outright!|
+|Verify |None |Verify |No | -NA- |User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.|
+|Verify |NotAnIssue |Passed |Yes | 90 |User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.|
+|Verify |WillNotFix |Exception |Yes | Based on severity table below|Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Verify |WillFixLater |Remediate |Yes| Based on severity table below|Valid security issue but a fix cannot be implemented immediately. E.g., A 'deprecated' account was found in the subscription. However, the user wants to check any dependecies before removal.|
+|Failed |None |Failed |No | -NA- | Control has failed but has not been attested. Perhaps a fix is in the works...|	 
+|Failed |NotAnIssue |Passed |Yes | 90 |Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service|
+|Failed |WillNotFix |Exception |Yes | Based on severity table below| Control has failed. The issue is not benign but the user has some other constraint and cannot fix it. E.g., Need an SPN to be in Owner role at subscription scope.|
+|Failed |WillFixLater |Remediate |Yes | Based on severity table below| Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.|
+|Error |None |Error |No | -NA- | There was an error during evaluation. Manual verification is needed and is still pending.|
+|Error |NotAnIssue |Passed |Yes | 90| There was an error during evaluation. However, control has been manually verified by the user.|
+|Error |WillNotFix |Exception |Yes | Based on severity table below| There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Error |WillFixLater |Remediate |Yes | Based on severity table below| There was an error during evaluation. Manually verification by the user indicates a valid security issue.|
+|Manual |None |Manual |No | -NA-| The control is not automated and has to be manually verified. Verification is still pending.| 
+|Manual |NotAnIssue |Passed |Yes | 90| The control is not automated and has to be manually verified. User has verified that there's no security concern.|
+|Manual |WillNotFix |Exception |Yes | Based on severity table below| The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
+|Manual |WillFixLater |Remediate |Yes | Based on severity table below| The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.|
 
+-NA- => Not Applicable
+
+|ControlSeverity| ExpiryInDays|
+|----|---|
+|Critical| 7|
+|High   | 30|
+|Medium| 60|
+|Low| 90|
+ 
   
 <br>
 The following table describes the possible effective control evaluation results (taking attestation into consideration).
@@ -303,9 +311,29 @@ If this RG is not present (as is possible when none of the scenarios that intern
 
 > **Note**: The attestation data stored in the AzSDKRG is opaque from an end user standpoint. Any attempts to access/change it may impact correctness of security evaluation results.  
 
+[Back to top...](Readme.md#contents)
+
+### Attestation expiry:
+All the control attestations done through devops kit have an expiry. This would force teams to revisit the control attestation at regular intervals. 
+Expiry of an attestation is determined through different parameters like control severity, attestation status etc. 
+There are two simple rules for control attestation expiry. Those are:
+
+Any control with evaluation result as not passed, 
+ 1. and attested as 'NotAnIssue', such controls would expire in 90 days.
+ 2. and attested as 'WillFixLater' or 'WillNotFix', such controls would expire based on the control severity table below.
+
+|ControlSeverity| ExpiryInDays|
+|----|---|
+|Critical| 7|
+|High   | 30|
+|Medium| 60|
+|Low| 90|
+ 
+The detailed matrix of attestation details and its expiry can be found under ![this](Readme.md#how-azsdk-determines-the-effective-control-result) section.
 
 
 [Back to top...](Readme.md#contents)
+
 ### Bulk attestation
 
 In some circumstances, you may have to perform attestation for a specific resource type across several instances. For instance,
