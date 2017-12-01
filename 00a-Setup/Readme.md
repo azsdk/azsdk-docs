@@ -1,8 +1,8 @@
 # Installation Guide
-> <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSDK via instructions at http://aka.ms/azsdkdocs so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
+> <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSDK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
-**Release Version: 2.7.xx**  
+**Release Version: 2.8.xx**  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
 > - AzureRM Version 4.1.0
@@ -23,6 +23,42 @@ above if you have a different version of AzureRM installed on your machine.
 AzSDK depends on a specific version of AzureRM and installs that during the installation above.  
 
 ------------------------------------------------
+### Backward comaptibility
+As Azure features evolve and add more security controls, AzSDK also evolve every month respecting the latest security features.
+It is always recommended to run on the latest version of AzSDK to scan your subscription with latest rules. And to provide teams with certain time to update to latest modules,
+we currently support until N-2 version from the current Production version e.g. if the current production version is 2.8.x, then teams can continue to use 2.7.x and 2.6.x. 
+As we release 2.9.x, automatically 2.6.x would stop to work. You could find more details below on how it impacts each stage of DevOps
+
+**Adhoc Scans:**
+Users running the AzSDK scan from their local machine with N-3 version, it would block the user. As those scan results are no more relevant with the latest feature of Azure.
+It would show a warning the customers asking to auto update as shown below:
+<!--TODO image -->
+> **Note:** This restriction has been put in place from AzSDK version 2.8.x and applicable for all future releases.
+
+**Continuous Assurance(CA) Scans:**
+No impact to CA scans. CA would automatically upgrade to latest version. Before every scan it checks whether there has been a latest realase and upgrade itself to start scan with the latest module of AzSDK.
+
+**AzSDK CICD Extension**
+No impact to default behaviour of CICD. CICD by defualt always run the scan with the latest version available in the PS Gallery. If teams have overriden the default behavior, then the same restriction of N-2 applies here as well.
+
+### Autoupdate of AzSDK
+It is always recommended to scan your subscription with the latest AzSDK module and thus by ensuring to evalute latest security controls that are availble through the module.
+To make this better for the users, we have tried to autoupdate where ever it is possible and show warning while scanning their subscription.
+
+Details about how AzSDK auto update itself seamlessly at the different stages of DevOps are provided below:
+**Adhoc Scans:**
+Users running the older version of AzSDK scan from their local machine will get a warning like below. with N-3 version, it would block the user. As those scan results are no more relevant with the latest feature of Azure.
+It would show a warning the customers asking to auto update as shown below:
+<!--TODO image -->
+> **Note:** This restriction has been put in place from AzSDK version 2.8.x and applicable for all future releases.
+
+**Continuous Assurance(CA) Scans:**
+No impact to CA scans. CA would automatically upgrade to latest version. Before every scan it checks whether there has been a latest realase and upgrade itself to start scan with the latest module of AzSDK.
+
+**AzSDK CICD Extension**
+No impact to default behaviour of CICD. CICD by defualt always run the scan with the latest version available in the PS Gallery. If teams have overriden the default behavior, then the same restriction of N-2 applies here as well.
+ 
+
 ### FAQs
 #### Should I run PowerShell ISE as administrator or regular user?
 Please run PowerShell ISE as a regular user. The AzSDK has been thoroughly tested to run in normal user (non-elevated) mode. As much as possible, please do not launch your PS sessions in "Administrator" mode. There is nothing that the AzSDK does that needs elevated privileges on the local system. Even the installation command itself uses a '-Scope CurrentUser' parameter internally.  
