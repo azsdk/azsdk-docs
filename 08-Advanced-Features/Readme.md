@@ -48,7 +48,7 @@ Run below command to get information about Azure services security control(s) i.
 
 |Param Name|Purpose|Required?|Default value|
 |----|----|----|----|
-|ResourceTypeName|Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|FALSE|All|
+|ResourceTypeName|Friendly name of resource type. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|FALSE|All|
 |ControlIds|Comma-separated list of Control Ids|FALSE|None|
 |UseBaselineControls|The flag used to get details of controls defined in baseline|FALSE|None|
 |FilterTags|Comma-seperated tags to filter the security controls. E.g., RBAC, AuthN, etc.|FALSE|None|
@@ -76,7 +76,7 @@ Run below command to get information about attested security control(s) in user'
 |Param Name|Purpose|Required?|Default value|
 |----|----|----|----|
 |SubscriptionId|Subscription ID is the identifier of your Azure subscription|TRUE|   |  
-|ResourceTypeName|Friendly name of resource type. E.g.: KeyVault. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|FALSE|All|   
+|ResourceTypeName|Friendly name of resource type. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|FALSE|All|   
 |ResourceGroupNames|Comma-separated list of resource groups that hold related resources for an Azure subscription|FALSE|   |  
 |ResourceNames|Comma-separated list of the name of the resources|FALSE|   |
 |ControlIds|Comma-separated list of Control Ids|FALSE|None|
