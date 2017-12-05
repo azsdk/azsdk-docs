@@ -1,0 +1,9 @@
+var data = [
+  { "path": "../../Images/CarouselImages/CarouselImage01.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage02.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage03.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage04.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage05.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage06.png"},
+  { "path": "../../Images/CarouselImages/CarouselImage07.png"} 
+]
