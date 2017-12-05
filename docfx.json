@@ -1,16 +1,17 @@
 {
   "build": {
-    "content": [
-      {
+    "content":
+       [ {
         "files": [
           "**.md",
+
           "**/toc.yml",
+          "**/**.md",
           "toc.yml",
           "*.md"
         ],
         "exclude": [
-          "obj/**",
-		      "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
+          "obj/**"
         ]
       }
     ],
@@ -18,12 +19,12 @@
       {
         "files": [
           "Images/**",
-          "carousels/**",
-          "content/**"
+          "Videos/**",
+          "WebsiteContent/carousels/**",
+          "WebsiteContent/content/**"
         ],
         "exclude": [
-          "obj/**",
-		      "../AzSDkWebSiteRelease/_AzSDKWebSite/**"
+          "obj/**"
         ]
       }
     ],
