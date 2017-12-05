@@ -126,7 +126,7 @@ The parameters required are:
 ### Execute SVTs for a specific resource
 The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:
 ```PowerShell
-Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupName> -ResourceName <ResourceName>
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceGroupNames <ResourceGroupNames> -ResourceName <ResourceName>
 ```
 	
 The parameters required are:
@@ -153,7 +153,7 @@ The parameters required are:
 
 2. Using a user-friendly resource type name
 ```PowerShell
- Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupName>] -ResourceTypeName <ResourceTypeName>
+ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> [-ResourceGroupNames <ResourceGroupNames>] -ResourceTypeName <ResourceTypeName>
 ```
 	
 The parameters required are:
@@ -355,10 +355,9 @@ Additionally the following other 'protective' checks are also done:
 
 # Security IntelliSense (Dev-SecIntel)
 --------------------------------------------------------------
-> Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later
+> Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later and Visual Studio 2017
 
 
-<!-- #TODO# check links at top of each main page. --> 
  
 ### Basics:
 
@@ -402,7 +401,7 @@ The screenshots below show the core functionality at work:
 If you don't have Git setup in your machine, please visit https://git-scm.com/downloads to download it.
 	
 ``` 
-    git clone https://github.com/azsdk/azsdk-secintel-samples
+    git clone https://github.com/azsdk/azsdk-secintel-samples.git
 ```
 	
 - After cloning the repo, navigate to **azsdk-secintel-samples** -> **SecIntelSample** and 
@@ -417,7 +416,6 @@ extension installation per steps from above).
 - Note: In the currently implemented behavior of the extension, 'errors' don’t actually fail the build. 
 We will change this behavior in an upcoming sprint. After that anything that is considered an 'error' will start failing 
 the build. This will be a useful feature when integrating with CICD pipelines.
-<!-- #TODO# is it controllable by clients? -->
 
 [Back to top…](Readme.md#contents)
 
