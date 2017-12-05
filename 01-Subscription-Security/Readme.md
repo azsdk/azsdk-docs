@@ -47,7 +47,6 @@
 
 
 ----------------------------------------------------------
-<!-- #TODO# Use single file with #Includes for other content. -->
 ## AzSDK: Subscription Health Scan
 
 ### Overview
@@ -139,7 +138,6 @@ Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> [-ControlId
 These different parameters would enable you to execute different 'flavors' of subscription health scan. 
 For example, they will let you scan only SOX relevant controls or AuthZ related controls or 
 exclude best practices or even execute one specifc control. 
-<!-- #TODO# Ability to check for High and Critical only controls-->
 Here are some examples:
 
 1. Execute only SOX related controls

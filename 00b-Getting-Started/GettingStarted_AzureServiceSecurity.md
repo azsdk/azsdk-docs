@@ -28,7 +28,6 @@ a specific tag value. More details can be found [here.](../02-Secure-Development
 When the command runs, you will start seeing output such as the following in the PowerShell console. 
 Time required for execution will depend on the number of resources that are being scanned.    
 
-<!--#TODO# RG-based JPG-->
 ![00_AzSDK_ServicesSecurity_Status](../Images/00_AzSDK_ServicesSecurity_Status.png)  
 
 **So what's happening?** 
@@ -42,7 +41,6 @@ relevant to the resource are evaluated.
 As each control is processed, the command prints out information about the specific security check being 
 performed. 
 
-<!--#TODO# Use #Include for this part..except for the pic (can the img names be parameterized?)-->
 
 **Understanding the ouputs** 
 

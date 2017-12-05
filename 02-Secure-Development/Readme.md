@@ -355,10 +355,9 @@ Additionally the following other 'protective' checks are also done:
 
 # Security IntelliSense (Dev-SecIntel)
 --------------------------------------------------------------
-> Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later
+> Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later and Visual Studio 2017
 
 
-<!-- #TODO# check links at top of each main page. --> 
  
 ### Basics:
 
@@ -417,7 +416,6 @@ extension installation per steps from above).
 - Note: In the currently implemented behavior of the extension, 'errors' don’t actually fail the build. 
 We will change this behavior in an upcoming sprint. After that anything that is considered an 'error' will start failing 
 the build. This will be a useful feature when integrating with CICD pipelines.
-<!-- #TODO# is it controllable by clients? -->
 
 [Back to top…](Readme.md#contents)
 
