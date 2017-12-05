@@ -70,7 +70,7 @@ Let us look at how policy files are leveraged in a little more detail.
 
 When you install AzSDK, it downloads the latest AzSDK module from the PS Gallery. Along with this module there
 is an *offline* set of policy files that go in a sub-folder under the %userprofile%\documents\WindowsPowerShell\Modules\AzSDK\<version> folder. 
-It also places (or updates) an AzSDKSettings.JSON file in your %LocalAppData%\AzSDK folder. It is this latter 
+It also places (or updates) an AzSDKSettings.JSON file in your %LocalAppData%\Microsoft\AzSDK folder. It is this latter 
 file that contains the policy endpoint (or policy server) URL that is used by all local commands. 
 
 Whenever any command is run, AzSDK uses the policy server URL to access the policy endpoint. It first downloads 
