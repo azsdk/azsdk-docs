@@ -7,7 +7,7 @@ var bottomcontentdata = [
   },
   {
     "categoryHeading": "Videos",
-    "href": "/videos.html",
+    "href": "/Videos/videos.html",
     "content": "../WebsiteContent/landingContent/bottomContent/VideosSection",
     "readMoreButtonLabel": "Watch More"
   }

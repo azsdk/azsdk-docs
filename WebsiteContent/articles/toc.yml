@@ -20,6 +20,10 @@
     - name: Control Coverage
       href: ../../02-Secure-Development/ControlCoverage/README.md
       items:
+	    - name: AzSDK ARM PolicyList
+          href: ../../02-Secure-Development/ControlCoverage/Feature/ARMPolicyList.md
+        - name: AzSDK Alert List
+          href: ../../02-Secure-Development/ControlCoverage/Feature/ARMPolicyList.md
         - name: Analysis Services
           href: ../../02-Secure-Development/ControlCoverage/Feature/AnalysisServices.md
         - name: App Service
@@ -86,3 +90,7 @@
   href: ../../05-Alerting-and-Monitoring/Readme.md
 - name: Security Telemetry
   href: ../../06-Security-Telemetry/Readme.md
+- name: Customizing AzSDK for your organization
+  href: ../../07-Customizing-AzSDK-for-your-Org/Readme.md
+- name: Advanced features
+  href: ../../08-Advanced-Features/Readme.md
