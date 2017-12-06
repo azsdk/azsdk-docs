@@ -411,7 +411,7 @@ the Select-AzureRmSubscription or Set-AzureRmContext commands (both take either 
 ```PowerShell
 PS C:\> Select-AzureRmSubscription -SubscriptionName 'MSFT-SRA-04'
 Environment           : AzureCloud
-Account               : mprabhu@microsoft.com
+Account               : abc@contoso.com
 TenantId              : 7fedcba0-1234-8765-abcd-f01234567897
 SubscriptionId        : 2feabcde-f012-3456-7890-abcdef012349
 SubscriptionName      : MSFT-SRA-04
@@ -420,7 +420,7 @@ CurrentStorageAccount :
 
 PS C:\> Set-AzureRmContext -SubscriptionId '2feabcde-f012-3456-7890-abcdef012349'
 Environment           : AzureCloud
-Account               : mprabhu@microsoft.com
+Account               : abc@contoso.com
 TenantId              : 7fedcba0-1234-8765-abcd-f01234567897
 SubscriptionId        : 2feabcde-f012-3456-7890-abcdef012349
 SubscriptionName      : MSFT-SRA-04
@@ -431,7 +431,7 @@ CurrentStorageAccount :
 You can use the 'Get-AzureRmContext' command to find out which subscription is currently active (target) in the AzureRm context.
 PS C:\> Get-AzureRmContext
 Environment           : AzureCloud
-Account               : mprabhu@microsoft.com
+Account               : abc@contoso.com
 TenantId              : 7fedcba0-1234-8765-abcd-f01234567897
 SubscriptionId        : 2feabcde-f012-3456-7890-abcdef012349
 SubscriptionName      : MSFT-SRA-04
