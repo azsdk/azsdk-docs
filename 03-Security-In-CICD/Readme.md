@@ -251,7 +251,7 @@ that are supported by the VSTS task:
 |Variable Name| Usage| Examples|
 |-------------|------|---------|
 |OMSWorkspaceID| Log analytics workspace to continuously monitor progressive release/deployment health| e.g. c18xxxxx-xxxx-abcd-efgh-12345613489c Refer to step-4 in the above section|
-|OMSSharedKey| Log analytics workspace sharedkey for extension to push the scan results from CICD| Refer to step-4 in the above section|
+|OMSSharedKey| Log analytics workspace sharedkey for extension to push the scan results from CICD| Refer step-4 from the above section for detail steps|
 |AzSDKServerURL| Org policy url for hosting the central policy configuration| Refer step-5 from the above section for detail steps |
 |AzSDKVersion| You could specify which version of toolkit you want to use in your CICD scan. And version specified should be >= N-2 where N is latest prod version. If variable is not provided, it uses the latest version available| e.g. 2.8.1|
 |AzSDKModuleName| This variable enable use to participate in the Preview testing. If you want to participate in preview, Provide the module name as "AzSDKPreview". If not used, it would by default uses AzSDK as module name| e.g. AzSDKPreview|
