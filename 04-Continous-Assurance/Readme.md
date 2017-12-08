@@ -10,7 +10,7 @@
 - [Update existing Continuous Assurance Automation Account](Readme.md#update-existing-continuous-assurance-automation-account)
 - [Remove Continuous Assurance Automation Account](Readme.md#remove-continuous-assurance-automation-account)
 - [Fetch details of an existing Continuous Assurance Automation Account](Readme.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
-- [Continuous Assurance through central scanning model (Preview) - Step by Step](Readme.md#continuous-assurance-through-central-scanning-model-preview-step-by-step)
+- [Continuous Assurance through central scanning mode (Preview) - Step by Step](Readme.md#continuous-assurance-through-central-scanning-mode-preview---step-by-step)
 - [FAQ](Readme.md#faq)
 
 -----------------------------------------------------------------
@@ -252,7 +252,7 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 
 [Back to top…](Readme.md#contents)
 
-### Continuous Assurance through central scanning model (Preview) - Step by Step
+### Continuous Assurance through central scanning mode (Preview) - Step by Step
 
 In scenarios where central team wants to monitor a group of subscriptions from a single and more controlled central subscription, this command would help to achieve such scenarios.
 #### Pre-requisites:
