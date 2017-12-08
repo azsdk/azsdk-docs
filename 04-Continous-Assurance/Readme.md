@@ -10,6 +10,7 @@
 - [Update existing Continuous Assurance Automation Account](Readme.md#update-existing-continuous-assurance-automation-account)
 - [Remove Continuous Assurance Automation Account](Readme.md#remove-continuous-assurance-automation-account)
 - [Fetch details of an existing Continuous Assurance Automation Account](Readme.md#fetch-details-of-an-existing-continuous-assurance-automation-account)
+- [Continuous Assurance through central scanning model (Preview) - Step by Step](Readme.md#continuous-assurance-through-central-scanning-model-preview-step-by-step)
 - [FAQ](Readme.md#faq)
 
 -----------------------------------------------------------------
@@ -235,8 +236,8 @@ Remove-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>  [-DeleteStorag
 ```
 |Param Name |Purpose |Required?	|Default value	|Comments|
 |-----|-----|-----|----|-----|
-|SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |TRUE |None||	 
-|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |FALSE |None||  
+|SubscriptionId	|Subscription ID of the Azure subscription in which Automation Account exists |True |None||	 
+|DeleteStorageReports |Add this switch to delete AzSDK execution reports from storage account. This will delete the storage container where reports are stored. Generally you will not want to use this option as all previous scan reports will be purged. |False |None||  
 
 [Back to top…](Readme.md#contents)
 ### Fetch details of an existing Continuous Assurance Automation Account
@@ -250,6 +251,110 @@ Get-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId>
 **Note:** This command is compatible only for Automation Account installed after 5th May, 2017 AzSDK release.
 
 [Back to top…](Readme.md#contents)
+
+### Continuous Assurance through central scanning model (Preview) - Step by Step
+
+In scenarios where central team wants to monitor a group of subscriptions from a single and more controlled central subscription, this command would help to achieve such scenarios.
+#### Pre-requisites:
+- The user executing this command should have "Owner" access on all the subscriptions that are being enabled for central scanning mode including the central subscription.
+- User should have the latest version of the kit installed on the machine (>= v2.8.1)
+- Optional: Have the own instance of AzSDK setup for your org. This would provide more capabilities to control the scanning behavior
+
+#### Setup Continuous Assurance (CA) in central mode:
+> **Note:** This feature is still in preview. 
+
+This can be achieved by adding extra params to the existing CA command. You can run the command below:
+
+```PowerShell
+$SubscriptionId = '<subscriptionId>'
+$ResourceGroupNames = '*' 
+$OMSWorkspaceId = '<omsWorkspaceId>'
+$OMSSharedKey = '<omsSharedKey>' 
+$TargetSubscriptionIds = '<TargetSubscriptionId>' #Need to provide comma separated list of all subscriptionId that needs to be scanned.
+
+Install-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -ResourceGroupNames $ResourceGroupNames -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -LoggingOption IndividualSubs -Preview
+```
+</br>
+
+|Param Name| Purpose| Required?| DefaultValue| Comments|
+|----------|--------|----------|-------------|---------|
+|SubscritionId| Central subscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
+|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription| True | The user executing this command should be owner on these subscriptions. |
+|ResourceGroupNames| Comma separated list of ResourceGroupNames| True | Since you are planning to run in the central mode, you should use * as its value. This is because you need not have the same RG across all the subscriptions|
+|OMSWorkspaceId| All the scanning events will be send to this OMSWorkspace. This will act as central monitoring dashboard | True | |
+|OMSSharedKey| OMSSharedKey for the central monitoring dashboard| True | |
+|LoggingOption| "IndividualSubs/CentralSub". In the preview mode use the IndividualSubs option for setup. If you want to enable central mode. You could use the update command below to change it. | True | |
+|Preview| It is mandatory to use preview switch| True | |
+
+#### Append/modify/fix the central CA setup
+
+In case you want to 
+</br>(a) add new subscriptions to central scanning mode, or 
+</br>(b) CA is not using the latest runbook, or 
+</br>(c) OMS workspace needs to be updated, or
+</br>(d) OMS keys have been rotated and you want to use the latest keys, or
+</br>(e) the scanning account credential needs to be rotated as part of hygiene/ expiry, or
+</br>(f) modify the logging option to central mode
+
+In all such scenarios, you could run the command below:
+
+```PowerShell
+$SubscriptionId = '<subscriptionId>'
+$OMSWorkspaceId = '<omsWorkspaceId>'
+$OMSSharedKey = '<omsSharedKey>' 
+$TargetSubscriptionIds = '<TargetSubscriptionId>' #Need to provide comma separated list of all subscriptionId that needs to be scanned.
+
+Update-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -FixRuntimeAccount -LoggingOption CentralSub -Preview
+```
+</br>
+
+|Param Name| Purpose| Required?| DefaultValue| Comments|
+|----------|--------|----------|-------------|---------|
+|SubscritionId| Central subscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
+|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription| True | The user executing this command should be owner on these subscriptions. |
+|OMSWorkspaceId| All the scanning events will be send to this OMSWorkspace. This will act as central monitoring dashboard | False | Only provide if you want to change the workspace details |
+|OMSSharedKey| OMSSharedKey for the central monitoring dashbaord| False | Only provide if you want to update the OMS Sharedkey along with workspaceId param |
+|LoggingOption| "IndividualSubs/CentralSub" | False | Only provide if you want to change the logging option from individualSub mode to central mode|
+|FixRuntimeAccount| This will correct all the permissions issues related to the scanning account| False | Provide this switch only when you want to add new subscriptions for central scanning mode or if scanning account credential needs to be updated |
+|Preview| It is mandatory to use preview switch| True | |
+
+#### Diagnose the health of central CA
+
+You could run the command below. It would diagnose the Continuous Assurance Automation account running under central subscription
+
+```PowerShell
+$SubscriptionId = '<subscriptionId>'
+
+Get-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -Preview -ExhaustiveCheck
+```
+</br>
+
+|Param Name| Purpose| Required?| DefaultValue| Comments|
+|----------|--------|----------|-------------|---------|
+|SubscritionId| Central SubscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
+|Preview| It is mandatory to use preview switch| True | |
+|ExhaustiveCheck| By appending this switch it would check whether all the modules installed in central automation account are up to date| False | Only include if default diagnosis is not resulting in any issue |
+
+#### Remove CA from the central subscription
+
+If you are using CentralMode as logging option, you could run the command below:
+> **Note:** DeleteStorageReports option would cleanup all the scan results from the storage account
+
+```PowerShell
+$SubscriptionId = '<subscriptionId>'
+
+Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports  
+```
+If you are using IndividualSubs as logging option, you could run the command below:
+
+```PowerShell
+$SubscriptionId = '<subscriptionId>'
+
+Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports -Preview 
+```
+
+[Back to top…](Readme.md#contents)
+
 ### FAQ
 
 #### What permission do I need to setup CA?
