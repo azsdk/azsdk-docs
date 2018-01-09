@@ -66,8 +66,10 @@ Run below command to get information about Azure services security control(s). C
 
 Below is the sample output:
 
-
+Output of control details summary
 ![08_Info_ControlInfo_Summary_PS](../Images/08_Info_ControlInfo_Summary_PS.PNG)  
+
+Output of control details verbose
 ![08_Info_ControlInfo_Verbose_PS](../Images/08_Info_ControlInfo_Verbose_PS.PNG)  
 [Back to top…](Readme.md#contents)
 
