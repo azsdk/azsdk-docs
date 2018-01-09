@@ -3,39 +3,43 @@
 ### [Fetch information about various AzSDK components](Readme.md#fetch-information-about-various-azsdk-components)
 
 - [Overview](Readme.md#overview)
-- [Basic information](Readme.md#basic-information)
+- [Subscription information](Readme.md#subscription-information)
 - [Control information](Readme.md#control-information)
 - [Attestation information](Readme.md#attestation-information)
-- [Environment information](Readme.md#environment-information)
+- [Host information](Readme.md#host-information)
 
 ### Overview
 
-This command provides overall information about the AzSDK which includes basic information (module version, policies version etc.), security controls information (severity, description, rationale etc.), attestation information (statistics, attetstation justification, expiry etc.), environment information (subscription details etc.). 'Get-AzSDKInfo' command can be used with 'InfoType' parameter to fetch information.
+This command provides overall information about the AzSDK which includes subscription information (alert/policies/ASC/CA version etc.), security controls information (severity, description, rationale etc.), attestation information (statistics, attetstation justification, expiry etc.), host information (AzSDK settings/configuration, AzureRM Context etc.). 'Get-AzSDKInfo' command can be used with 'InfoType' parameter to fetch information.
 
-### Basic information
+### Subscription information
 
 Run below command to get information about,
+- Subscriptions user is having access to
 - Version of currently installed AzSDK module 
-- Latest available baseline configuration for different features (ARM Policies, Alerts, ASC, Access control) 
+- Latest available configuration for AzSDK Component (DevOpsKit, ARM Policies, Alerts, ASC, Access control, CA) 
 - Baseline configuration setup in user's subscription 
+- Baseline configuration supported versions and recommendation for AzSDK Component
 
 ```PowerShell
-	Get-AzSDKInfo -InfoType 'BasicInfo' 
+	Get-AzSDKInfo -InfoType 'SubscriptionInfo' -SubscriptionId <SubscriptionId> 
 ```
 Below is the sample output: 
 
-![08_Info_BasicInfo_PS](../Images/08_Info_BasicInfo_PS.PNG)  
+![08_Info_SubscriptionInfo_PS](../Images/08_Info_SubscriptionInfo_PS.PNG)  
 
 [Back to top…](Readme.md#contents)
 ### Control information 
 
-Run below command to get information about Azure services security control(s) i.e.
+Run below command to get information about Azure services security control(s). Control summary will be displayed on PS console by default. To get control information on PS console use -Verbose argument. Following information 
 - Feature Name
 - ControlID
 - Description
 - ControlSeverity
 - Rationale
 - Recommendation
+- Automated
+- SupportsAutoFix
 - Tags
 
 ```PowerShell
@@ -43,20 +47,28 @@ Run below command to get information about Azure services security control(s) i.
                 [-ResourceTypeName <ResourceTypeName>] `
                 [-ControlIds <ControlIds>] `
                 [-UseBaselineControls] `
-                [-FilterTags] `
+                [-FilterTags <FilterTags>] `
+		[-ControlSeverity <ControlSeverity>] `
+		[-ControlIdContains <ControlIdContains>] `
+		[-Verbose]
 ```
 
 |Param Name|Purpose|Required?|Default value|
 |----|----|----|----|
-|ResourceTypeName|Friendly name of resource type. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|FALSE|All|
+|ResourceTypeName|Friendly name of resource type. Run command 'Get-AzSDKSupportedResourceTypes' to get the list of supported values. E.g. AppService, KeyVault|TRUE|All|
 |ControlIds|Comma-separated list of Control Ids|FALSE|None|
 |UseBaselineControls|The flag used to get details of controls defined in baseline|FALSE|None|
 |FilterTags|Comma-seperated tags to filter the security controls. E.g., RBAC, AuthN, etc.|FALSE|None|
+|ControlSeverity|Filter by severity of control E.g., Critical, High, Medium, Low|FALSE|None|
+|ControlIdContains|Filter by ControlId(s) contains keyword|FALSE|None|
+|Verbose|Get information on PS console|FALSE|None|
 
 
 Below is the sample output:
 
-![08_Info_ControlInfo_PS](../Images/08_Info_ControlInfo_PS.PNG)  
+
+![08_Info_ControlInfo_Summary_PS](../Images/08_Info_ControlInfo_Summary_PS.PNG)  
+![08_Info_ControlInfo_Verbose_PS](../Images/08_Info_ControlInfo_Verbose_PS.PNG)  
 [Back to top…](Readme.md#contents)
 
 ### Attestation information
@@ -97,17 +109,19 @@ Below is the sample output:
 ![08_Info_AttestationInfo_DetailedCSV](../Images/08_Info_AttestationInfo_DetailedCSV.PNG)  
 [Back to top…](Readme.md#contents)
 
-### Environment information  
+### Host information  
 
 Run below command to get information about,
 * Loaded PS modules in PS session
 * Logged in user's details
-* Azure subscription details
+* AzSDK settings
+* AzSDK configurations
+* AzureRM context
 
 ```PowerShell
-	Get-AzSDKInfo -InfoType 'EnvironmentInfo'
+	Get-AzSDKInfo -InfoType 'HostInfo'
 ```
 
 Below is the sample output:
 
-![08_Info_EnvironmentInfo_PS](../Images/08_Info_EnvironmentInfo_PS.PNG) 
+![08_Info_HostInfo_PS](../Images/08_Info_HostInfo_PS.PNG) 
