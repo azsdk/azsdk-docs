@@ -310,10 +310,10 @@ Install-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscrip
 |AltOMSWorkspaceId|(Optional) Alternate Workspace ID of OMS to monitor security scan results|FALSE|None||
 |AltOMSSharedKey|(Optional) Shared key of Alternate OMS which is used to monitor security scan results|FALSE|None||
 |WebhookUrl|(Optional) All the scan results shall be posted to this configured webhook |FALSE|None||
-|WebhookAuthZHeaderName|(Optional) Name of the AuthZ header (typically 'Authorization')|FALSE|None||
-|WebhookAuthZHeaderValue|(Optional) Value of the AuthZ heade |FALSE|None||
+|WebhookAuthZHeaderName|(Optional) Name of the AuthZ header (typically 'Authorization')|FALSE|'Authorization'||
+|WebhookAuthZHeaderValue|(Optional) Value of the AuthZ heade |FALSE|24 hrs||
 |ScanIntervalInHours|(Optional) Overrides the default scan interval (24hrs) with the custom provided value |FALSE|None||
-|LoggingOption| "IndividualSubs/CentralSub". This provides the capability to users to store the CA scan logs on central subscription or on individual subscriptions| True | |
+|LoggingOption| "IndividualSubs/CentralSub". This provides the capability to users to store the CA scan logs on central subscription or on individual subscriptions| False |CentralSub |
 |Preview| It is mandatory to use preview switch| True | |
 
 #### Append/modify/fix the central CA setup
@@ -347,7 +347,7 @@ Update-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscript
 |TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription. It would always append the values provided in this param to the current scanning list.| True | The user executing this command should be owner on these subscriptions. |
 |OMSWorkspaceId| All the scanning events will be send to this OMSWorkspace. This will act as central monitoring dashboard | False | Only provide if you want to change the workspace details |
 |OMSSharedKey| OMSSharedKey for the central monitoring dashbaord| False | Only provide if you want to update the OMS Sharedkey along with workspaceId param |
-|LoggingOption| "IndividualSubs/CentralSub" | False | Only provide if you want to change the logging option from individualSub mode to central mode|
+|LoggingOption| "IndividualSubs/CentralSub" | False | Only provide if you want to change the logging option|
 |FixRuntimeAccount| This will correct all the permissions issues related to the scanning account| False | Provide this switch only when you want to add new subscriptions for central scanning mode or if scanning account credential needs to be updated |
 |Preview| It is mandatory to use preview switch| True | |
 
