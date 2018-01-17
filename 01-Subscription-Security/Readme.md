@@ -47,7 +47,6 @@
 
 
 ----------------------------------------------------------
-<!-- #TODO# Use single file with #Includes for other content. -->
 ## AzSDK: Subscription Health Scan
 
 ### Overview
@@ -139,7 +138,6 @@ Get-AzSDKSubscriptionSecurityStatus -SubscriptionId <SubscriptionId> [-ControlId
 These different parameters would enable you to execute different 'flavors' of subscription health scan. 
 For example, they will let you scan only SOX relevant controls or AuthZ related controls or 
 exclude best practices or even execute one specifc control. 
-<!-- #TODO# Ability to check for High and Critical only controls-->
 Here are some examples:
 
 1. Execute only SOX related controls
@@ -186,8 +184,12 @@ Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactE
 |SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
 |SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
-When the script starts, it removes existing/previously configured AzSDK artifacts in the subscription such 
-as alerts, RBAC, ARM policies, etc. It also *overwrites* the contact emails and contact phone previously set in Azure Security Center.
+> **Note**: 
+>  - This command *overwrites* the contact emails and phone number previously configured in Azure Security Center.
+>  - This command also helps you to recover if any of the base resources are accidentally deleted, like AzSDK resource group, storage account, attestation container, continuous assurance log container etc.
+
+While running command, you may see message that configuration in your subscription is already up to date. This indicates your subscription already have latest security configurations. If you still see any failures for controls in `Get-AzSDKSubscriptionSecurityStatus` command, you can pass `-Force` parameter to the provisioning script and reconfigure AzSDK artifacts (
+Alerts, RBAC, ARM policies, etc.) in the subscription. 
 
 
 [Back to top…](Readme.md#contents)
@@ -472,6 +474,10 @@ Update-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionid>
 | --------------- | -------- |
 |SubscriptionId 	|Subscription for which AzSDK subscription security baseline would be upgraded	|
 
-> **Note**: This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
+> **Note**: 
+>  - This command is useful only for updating AzSDK subscription security baseline. If you have never setup baseline, then you can set it up using Set-AzSDKSubscriptionSecurity command.
+>  - This command also helps you to recover if any of the base resources are accidentally deleted, like AzSDK resource group, storage account, attestation container, continuous assurance log container etc.
+
+
 
 [Back to top…](Readme.md#contents)

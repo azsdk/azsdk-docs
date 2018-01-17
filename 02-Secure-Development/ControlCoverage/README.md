@@ -1,5 +1,39 @@
-﻿<body><h2>Security controls covered by the Secure DevOps Kit for Azure </h2>
+## Security controls covered by the Secure DevOps Kit for Azure
 
 This page displays security controls that are automated via the devops kit and also controls that have to manually verified. Controls have a 'Severity' field to help distinguish issues by degree of risk. Apart from that the automated flag indicates whether a particular control is automated and 'Fix Script' provides the availability of  a 'control fix' script that the user can review and run to apply the fixes. 
-<h3> Azure Services supported by AzSDK</h3>
-<table><tr><th>FeatureName</th><th>Resource Type</th></tr><tr><td><a href =Feature/SubscriptionCore.md>Subscription</a></td><td></td></tr><tr><td><a href =Feature/AlertList.md>Alerts List</a></td><td></td></tr><tr><td><a href =Feature/ARMPolicyList.md>ARMPolicy List</a></td><td></td></tr><tr><td><a href =Feature/AnalysisServices.md>AnalysisServices</a></td><td>Microsoft.AnalysisServices/servers</td></tr><tr><td><a href =Feature/AppService.md>AppService</a></td><td>Microsoft.Web/sites</td></tr><tr><td><a href =Feature/Automation.md>Automation</a></td><td>Microsoft.Automation/automationAccounts</td></tr><tr><td><a href =Feature/Batch.md>Batch</a></td><td>Microsoft.Batch/batchAccounts</td></tr><tr><td><a href =Feature/CDN.md>CDN</a></td><td>Microsoft.Cdn/profiles</td></tr><tr><td><a href =Feature/CloudService.md>CloudService</a></td><td>Microsoft.ClassicCompute/domainNames</td></tr><tr><td><a href =Feature/CosmosDB.md>CosmosDB</a></td><td>Microsoft.DocumentDb/databaseAccounts</td></tr><tr><td><a href =Feature/DataFactory.md>DataFactory</a></td><td>Microsoft.DataFactory/dataFactories</td></tr><tr><td><a href =Feature/DataLakeAnalytics.md>DataLakeAnalytics</a></td><td>Microsoft.DataLakeAnalytics/accounts</td></tr><tr><td><a href =Feature/DataLakeStore.md>DataLakeStore</a></td><td>Microsoft.DataLakeStore/accounts</td></tr><tr><td><a href =Feature/ERvNet.md>ERvNet</a></td><td>Microsoft.Network/virtualNetworks</td></tr><tr><td><a href =Feature/EventHub.md>EventHub</a></td><td>Microsoft.Eventhub/namespaces</td></tr><tr><td><a href =Feature/KeyVault.md>KeyVault</a></td><td>Microsoft.KeyVault/vaults</td></tr><tr><td><a href =Feature/LoadBalancer.md>LoadBalancer</a></td><td>Microsoft.Network/loadBalancers</td></tr><tr><td><a href =Feature/LogicApps.md>LogicApps</a></td><td>Microsoft.Logic/Workflows</td></tr><tr><td><a href =Feature/NotificationHub.md>NotificationHub</a></td><td>Microsoft.NotificationHubs/namespaces/notificationHubs</td></tr><tr><td><a href =Feature/ODG.md>ODG</a></td><td>Microsoft.Web/connectionGateways</td></tr><tr><td><a href =Feature/RedisCache.md>RedisCache</a></td><td>Microsoft.Cache/Redis</td></tr><tr><td><a href =Feature/Search.md>Search</a></td><td>Microsoft.Search/searchServices</td></tr><tr><td><a href =Feature/ServiceBus.md>ServiceBus</a></td><td>Microsoft.ServiceBus/namespaces</td></tr><tr><td><a href =Feature/ServiceFabric.md>ServiceFabric</a></td><td>Microsoft.ServiceFabric/clusters</td></tr><tr><td><a href =Feature/SQLDatabase.md>SQLDatabase</a></td><td>Microsoft.Sql/servers</td></tr><tr><td><a href =Feature/Storage.md>Storage</a></td><td>Microsoft.Storage/storageAccounts</td></tr><tr><td><a href =Feature/StreamAnalytics.md>StreamAnalytics</a></td><td>Microsoft.StreamAnalytics/streamingjobs</td></tr><tr><td><a href =Feature/TrafficManager.md>TrafficManager</a></td><td>Microsoft.Network/trafficmanagerprofiles</td></tr><tr><td><a href =Feature/VirtualMachine.md>VirtualMachine</a></td><td>Microsoft.Compute/virtualMachines</td></tr><tr><td><a href =Feature/VirtualNetwork.md>VirtualNetwork</a></td><td>Microsoft.Network/virtualNetworks</td></tr></table></body>
+### Azure Services supported by AzSDK
+
+|FeatureName|Resource Type|
+|---|---|
+|[Subscription](Feature/SubscriptionCore.md)||
+|[Alerts List](Feature/AlertList.md)||
+|[ARMPolicy List](Feature/ARMPolicyList.md)||
+|[AnalysisServices](Feature/AnalysisServices.md)|Microsoft.AnalysisServices/servers|
+|[AppService](Feature/AppService.md)|Microsoft.Web/sites|
+|[Automation](Feature/Automation.md)|Microsoft.Automation/automationAccounts|
+|[Batch](Feature/Batch.md)|Microsoft.Batch/batchAccounts|
+|[CDN](Feature/CDN.md)|Microsoft.Cdn/profiles|
+|[CloudService](Feature/CloudService.md)|Microsoft.ClassicCompute/domainNames|
+|[CosmosDB](Feature/CosmosDB.md)|Microsoft.DocumentDb/databaseAccounts|
+|[DataFactory](Feature/DataFactory.md)|Microsoft.DataFactory/dataFactories|
+|[DataLakeAnalytics](Feature/DataLakeAnalytics.md)|Microsoft.DataLakeAnalytics/accounts|
+|[DataLakeStore](Feature/DataLakeStore.md)|Microsoft.DataLakeStore/accounts|
+|[ERvNet](Feature/ERvNet.md)|Microsoft.Network/virtualNetworks|
+|[EventHub](Feature/EventHub.md)|Microsoft.Eventhub/namespaces|
+|[KeyVault](Feature/KeyVault.md)|Microsoft.KeyVault/vaults|
+|[LoadBalancer](Feature/LoadBalancer.md)|Microsoft.Network/loadBalancers|
+|[LogicApps](Feature/LogicApps.md)|Microsoft.Logic/Workflows|
+|[NotificationHub](Feature/NotificationHub.md)|Microsoft.NotificationHubs/namespaces/notificationHubs|
+|[ODG](Feature/ODG.md)|Microsoft.Web/connectionGateways|
+|[RedisCache](Feature/RedisCache.md)|Microsoft.Cache/Redis|
+|[Search](Feature/Search.md)|Microsoft.Search/searchServices|
+|[ServiceBus](Feature/ServiceBus.md)|Microsoft.ServiceBus/namespaces|
+|[ServiceFabric](Feature/ServiceFabric.md)|Microsoft.ServiceFabric/clusters|
+|[SQLDatabase](Feature/SQLDatabase.md)|Microsoft.Sql/servers|
+|[Storage](Feature/Storage.md)|Microsoft.Storage/storageAccounts|
+|[StreamAnalytics](Feature/StreamAnalytics.md)|Microsoft.StreamAnalytics/streamingjobs|
+|[TrafficManager](Feature/TrafficManager.md)|Microsoft.Network/trafficmanagerprofiles|
+|[VirtualMachine](Feature/VirtualMachine.md)|Microsoft.Compute/virtualMachines|
+|[VirtualNetwork](Feature/VirtualNetwork.md)|Microsoft.Network/virtualNetworks|
+
+
