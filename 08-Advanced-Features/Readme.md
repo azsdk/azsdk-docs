@@ -10,7 +10,7 @@
 
 ### Overview
 
-This command provides overall information about the AzSDK which includes subscription information (alert/policies/ASC/CA version etc.), security controls information (severity, description, rationale etc.), attestation information (statistics, attetstation justification, expiry etc.), host information (AzSDK settings/configuration, AzureRM Context etc.). 'Get-AzSDKInfo' command can be used with 'InfoType' parameter to fetch information.
+This command provides overall information about the AzSDK which includes subscription information (alert/policies/ASC/CA version etc.), security controls information (severity, description, rationale etc.), attestation information (statistics, attestation justification, expiry etc.), host information (AzSDK settings/configuration, AzureRM Context etc.). 'Get-AzSDKInfo' command can be used with 'InfoType' parameter to fetch information.
 
 ### Subscription information
 
@@ -22,7 +22,7 @@ Run below command to get information about,
 - Baseline configuration supported versions and recommendation for AzSDK Component
 
 ```PowerShell
-	Get-AzSDKInfo -InfoType 'SubscriptionInfo' -SubscriptionId <SubscriptionId> 
+	Get-AzSDKInfo -InfoType 'SubscriptionInfo' [-SubscriptionId <SubscriptionId>]
 ```
 Below is the sample output: 
 
@@ -75,7 +75,7 @@ Output of control details verbose
 
 ### Attestation information
 
-Run below command to get information about attested security control(s) in user's subscription i.e. Attestation status, attested by, attestation date, atestation expiry date, justification, attested data. It also provides different attestation statistics which includes distribution of attested controls by actual scan result (Failed/Verify), ControlId, Control severity, Expiry date (next 30 days).
+Run below command to get information about attested security control(s) in user's subscription i.e. Attestation status, attested by, attestation date, attestation expiry date, justification, attested data. It also provides different attestation statistics which includes distribution of attested controls by actual scan result (Failed/Verify), ControlId, Control severity, Expiry date (next 30 days).
 
 ```PowerShell
 	Get-AzSDKInfo -InfoType 'AttestationInfo' `
