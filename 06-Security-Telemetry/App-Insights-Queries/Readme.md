@@ -4,14 +4,16 @@
 - [Subscriptions monitoring](#subscriptions-monitoring)
 
 ## Overview
+[TODO]
 
 ## Subscriptions monitoring
+[TODO]
 
 #### Attestation conflicts in different versions 
 
 ``` AIQL
-let newVersion = "2.9.0";
-let oldVersion = "2.8.1";
+let newVersion = <newVersion>; //e.g. "2.9.0"
+let oldVersion = <oldVersion>; //e.g. "2.8.1"
 
 let combinedResult = customEvents
 | where timestamp >= ago(3d)
@@ -40,31 +42,34 @@ oldScan | join (newScan) on customDimensions_ControlId,$left.oldresult==$right.n
 
 ```
 
-#### CA job errors occurred after specific timestamp
+#### CA job errors occurred after specific date
 
 ``` AIQL
-let notBeforeTimestamp = datetime(2018-01-16T05:30:00);
+let notBeforeTimestamp = <notBeforeTimestamp>; //e.g. datetime(2018-01-16T05:30:00)
+
 customEvents 
 | where timestamp >= notBeforeTimestamp
 | where name has "CA" and name has "Error"
 | distinct tostring(customDimensions.SubscriptionId),name,tostring(customDimensions.ErrorRecord)
 ```
 
-#### CA job errors occurred after specific timestamp
+#### CA job errors occurred after specific date
 
 ``` AIQL
-let notBeforeTimestamp = datetime(2018-01-16T05:30:00);
+let notBeforeTimestamp = <notBeforeTimestamp>; //e.g. datetime(2018-01-16T05:30:00)
+
 customEvents 
 | where timestamp >= notBeforeTimestamp
 | where name has "CA" and name has "Error"
 | distinct tostring(customDimensions.SubscriptionId),name,tostring(customDimensions.ErrorRecord)
 ```
 
-#### Controls reporting 'Error' status
+#### Controls reporting 'Error' status in last 24 hours
 
 ``` AIQL
-let moduleVersion = "2.9.0";
+let moduleVersion = <moduleVersion>; //e.g. "2.9.0"
 let controlResult = "Error";
+
 customEvents 
 | where customDimensions.ScannerVersion == moduleVersion
 | where customDimensions.VerificationResult == controlResult
@@ -75,9 +80,9 @@ customEvents 
 #### Discrepancy in control scan results between different versions
 
 ``` AIQL
-let notBeforeTimestamp = datetime(2018-01-13T05:30:00);
-let oldVersion = "2.8.1";
-let newVersion = "2.9.0";
+let notBeforeTimestamp = <notBeforeTimestamp>; //e.g. datetime(2018-01-16T05:30:00)
+let oldVersion = <oldVersion>; //e.g. "2.8.1"
+let newVersion = <newVersion>; //e.g. "2.9.0"
 
 let combinedResult = customEvents
 | where timestamp >= notBeforeTimestamp
@@ -108,7 +113,7 @@ oldScan | join (newScan) on customDimensions_ControlId,$left.ControlResult==$rig
 #### Subscriptions in which CA upgrade to newer version is successful
 
 ``` AIQL
-let moduleVersion = "2.9.0";
+let moduleVersion = <moduleVersion>; //e.g. "2.9.0"
 customEvents
 | where timestamp >= ago(2d)
 | where name == "Control Scanned"
@@ -119,8 +124,8 @@ customEvents
 #### CA certificate expiry check
 
 ``` AIQL
-let startDate = datetime(2018-01-1);
-let endDate = datetime(2018-01-15);
+let startDate = <startDate>; //e.g. datetime(2018-01-1)
+let endDate = <endDate>; //e.g. datetime(2018-01-15)
 
 customEvents
 | where  name contains "Error" and timestamp between (startDate..endDate)
