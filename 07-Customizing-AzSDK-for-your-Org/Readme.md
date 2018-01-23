@@ -148,7 +148,6 @@ It will also create a very basic 'customized' policy involving just a single cha
 in AzSdk.json) and upload AzSdk.json, ServerConfigMetadata.json files to the storage account. It will also
 upload an org-specific installation script called AzSDK-EasyInstaller.ps1 to another container within the same 
 storage account and another file called ScanAgent.ps1 which is used to support the Continuous Assurance feature.
-
 At the end of execution, an 'iwr' command line will be printed to the console. This command leverages the org-specific
  installation script from the storage account for installing AzSDK. The org-specific installer will ensure that 
 anyone who installs AzSDK using your 'iwr' command not only gets the core AzSDK module but their local installation 
@@ -162,7 +161,7 @@ iwr 'https://azsdkcontosoitsa.blob.core.windows.net/installer/AzSDK-EasyInstalle
 
 To set up policy in your release definition with CICD task, please follow below steps:
 1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../03-Security-In-CICD#adding-svts-in-the-release-pipeline) .
-2. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the UPL from iwr command
+2. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the URL from iwr command
 ```	
 E.g.: iwr 'https://azsdkxxx.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex
 ```
