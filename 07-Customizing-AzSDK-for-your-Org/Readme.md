@@ -8,7 +8,7 @@
  - [What happens during org policy setup?](Readme.md#what-happens-during-org-policy-setup)
  - [The org policy setup command: Install-AzSDKOrganizationPolicy](Readme.md#the-org-policy-setup-command-install-azsdkorganizationpolicy)
  - [First-time policy setup - an example](Readme.md#first-time-policy-setup---an-example)
- - [Policy-setup with CICD-Extension](Readme.md#Policy---setup-with-CICD---Extension)
+ - [Policy-setup with CICD-Extension](Readme.md#policy-setup-with-cicd-extension)
 
 ### [Modifying and customizing org policy](Readme.md#modifying-and-customizing-org-policy-1)
  - [Common scenarios for org policy customization](Readme.md#common-scenarios-for-org-policy-customization)  
@@ -150,7 +150,7 @@ upload an org-specific installation script called AzSDK-EasyInstaller.ps1 to ano
 storage account and another file called ScanAgent.ps1 which is used to support the Continuous Assurance feature.
 
 At the end of execution, an 'iwr' command line will be printed to the console. This command leverages the org-specific
-installation script from the storage account for installing AzSDK. The org-specific installer will ensure that 
+ installation script from the storage account for installing AzSDK. The org-specific installer will ensure that 
 anyone who installs AzSDK using your 'iwr' command not only gets the core AzSDK module but their local installation 
 of AzSDK is also configured to use org-specific policy settings (e.g., policy server URL, telemetry key, etc.)
 
@@ -161,7 +161,7 @@ iwr 'https://azsdkcontosoitsa.blob.core.windows.net/installer/AzSDK-EasyInstalle
 ### Policy-setup with CICD-Extension
 
 To set up policy in your release definition with CICD task, please follow below steps:
-1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../master/03-Security-In-CICD#adding-svts-in-the-release-pipeline).
+1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../03-Security-In-CICD#adding-svts-in-the-release-pipeline) .
 2. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the UPL from iwr command
 ```	
 E.g.: iwr 'https://azsdkxxx.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex
