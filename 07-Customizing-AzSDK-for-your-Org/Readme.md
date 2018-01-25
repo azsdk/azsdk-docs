@@ -8,10 +8,10 @@
  - [What happens during org policy setup?](Readme.md#what-happens-during-org-policy-setup)
  - [The org policy setup command: Install-AzSDKOrganizationPolicy](Readme.md#the-org-policy-setup-command-install-azsdkorganizationpolicy)
  - [First-time policy setup - an example](Readme.md#first-time-policy-setup---an-example)
- - [Policy-setup with CICD-Extension](Readme.md#policy-setup-with-cicd-extension)
-
+ 
 ### [Modifying and customizing org policy](Readme.md#modifying-and-customizing-org-policy-1)
  - [Common scenarios for org policy customization](Readme.md#common-scenarios-for-org-policy-customization)  
+ - [Using CICD Extension with custom org-policy](Readme.md#)
  - [Next Steps](Readme.md#next-steps)
 
 
@@ -156,23 +156,6 @@ of AzSDK is also configured to use org-specific policy settings (e.g., policy se
 ```PowerShell
 iwr 'https://azsdkcontosoitsa.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex 
 ```
-
-### Policy-setup with CICD-Extension
-
-To set up policy in your release definition with CICD task, please follow below steps:
-1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../03-Security-In-CICD#adding-svts-in-the-release-pipeline) .
-2. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the URL from iwr command
-```	
-E.g.: iwr 'https://azsdkxxx.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex
-```
-3. Open the downloaded file and copy the URL as highlighted below. 
-```	
-[string] $OnlinePolicyStoreUrl = "https://azsdkxxx.blob.core.windows.net/policies/`$(`$Version)/`$(`$FileName)?sv=2016-05-	31&sr=c&sig=xxx&spr=https&st=2018-01-02T11%3A18%3A37Z&se=2018-07-03T11%3A18%3A37Z&sp=rl" , 
-```
-4. Remove the 4 backtick (\`) characters from URL.
-5. Add following variables in the release definition in which ‘AzSDK Security Verification Tests’ task is added. 
-	1. AzSDKServerURL = <Modified URL from step 4>.
-	2. EnableServerAuth = false
 
 ## Modifying and customizing org policy 
 
@@ -479,6 +462,30 @@ from a baseline scan after this change:
 
 Likewise, if you run without the `-UseBaselineControls` parameter, you will see that the anon-alert control does not get evaluated and does not
 appear in the resulting CSV file. 
+
+
+## Using CICD Extension with custom org-policy
+
+To set up CICD when using custom org-policy, please follow below steps:
+1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../03-Security-In-CICD#adding-svts-in-the-release-pipeline) .
+2. Obtain the policy store URl by :
+	1. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the URL from iwr command.
+	```	
+	E.g.: iwr 'https://azsdkxxx.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex
+	```
+	2.  Open the downloaded file, find the following variable and copy the URL as below. 
+	```	
+	[string] $OnlinePolicyStoreUrl = "https://azsdkxxx.blob.core.windows.net/policies/`$(`$Version)/`$(`$FileName)?sv=2016-05-		31&sr=c&sig=xxx&spr=https&st=2018-01-02T11%3A18%3A37Z&se=2018-07-03T11%3A18%3A37Z&sp=rl" , 
+	```
+3. Remove the 4 backtick (\`) characters from URL.
+```
+E.g. https://azsdkxxx.blob.core.windows.net/policies/$($Version)/$($FileName)?sv=2016-05-31&sr=c&sig=xxx&spr=https&st=2018-01-02T11%3A18%3A37Z&se=2018-07-03T11%3A18%3A37Z&sp=rl
+```
+4. Add following variables in the release definition in which ‘AzSDK Security Verification Tests’ task is added. 
+	1. AzSDKServerURL = <Modified URL from step 4>.
+	2. EnableServerAuth = false 
+	
+Having set the policy URL along with AzSDK_SVTs Task, you can verify if your CICD task has been properly setup by following steps [here](../03-Security-In-CICD#verifying-that-the-svts-have-been-added-and-configured-correctly) .
 
 
 ## Next Steps:
