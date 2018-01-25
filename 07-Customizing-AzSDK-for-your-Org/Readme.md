@@ -11,7 +11,7 @@
  
 ### [Modifying and customizing org policy](Readme.md#modifying-and-customizing-org-policy-1)
  - [Common scenarios for org policy customization](Readme.md#common-scenarios-for-org-policy-customization)  
- - [Using CICD Extension with custom org-policy](Readme.md#)
+ - [Using CICD Extension with custom org-policy](Readme.md#using-cicd-extension-with-custom-org-policy)
  - [Next Steps](Readme.md#next-steps)
 
 
@@ -496,7 +496,7 @@ or more of the following using AzSDK:
 
  - People will be able to install AzSDK using your special org-specific installer (the 'iwr' install command)
  - Developers will be able to run manual scans for security of their subscriptions and resources (GRS, GSS commands)
- - (Coming soon) Teams will be able to configure the AzSDK SVT release task in their CICD pipelines
+ - Teams will be able to configure the AzSDK SVT release task in their CICD pipelines
  - Subscription owners will be able to setup Continuous Assurance (CA) from their local machines (**after** they've installed
  AzSDK using your org-specific 'iwr' installer locally)
  - Monitoring teams will be able to setup AzSDK OMS view and see scan results from CA (and also manual scans and CICD if configured) 
