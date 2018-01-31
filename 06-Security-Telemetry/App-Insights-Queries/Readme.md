@@ -1,12 +1,13 @@
 ### Contents
 
-#### [Overview](#overview)
-#### [Subscriptions monitoring](#subscriptions-monitoring)
-- [Controls statistics](#Controls-statistics)
-- [Continuous Assurance statistics](#Continuous-Assurance-statistics)
+- [Overview](#overview)
+- [Subscriptions monitoring](#subscriptions-monitoring)
+    - [Controls statistics](#Controls-statistics)
+    - [Continuous Assurance statistics](#Continuous-Assurance-statistics)
 
 ## Overview
-[TODO]
+
+The telemetry data can be leveraged by subscription owners to understand AzSDK usage, monitor compliance, troubleshooting etc. using querying capabilities provided by App Insights.
 
 ## Subscriptions monitoring
 [TODO]
