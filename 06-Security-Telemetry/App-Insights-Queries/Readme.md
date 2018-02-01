@@ -4,7 +4,7 @@
 - [Usage statistics](#usage-statistics) 
     - [Subscriptions evaluated by AzSDK](#subscriptions-evaluated-by-azsdk)
     - [Resources evaluated by AzSDK](#resources-evaluated-by-azsdk)
-    - [AzSDK Version statistics](#azsdk-module-version-statistics)
+    - [AzSDK Version statistics](#azsdk-version-statistics)
 - [Controls statistics](#Controls-statistics)
     - [Controls scan result distribution on daily basis](#controls-scan-result-distribution-on-daily-basis)
     - [Drift in failed controls](#drift-in-failed-controls)
