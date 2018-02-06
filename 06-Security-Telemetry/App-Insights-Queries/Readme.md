@@ -9,6 +9,13 @@
     - [Controls scan result distribution on daily basis](#controls-scan-result-distribution-on-daily-basis)
     - [Drift in failing controls](#drift-in-failing-controls)
     - [Drift in attested controls](#drift-in-attested-controls)
+- [Release Monitoring](#release-monitoring)
+    - [Subscriptions with successful upgrade to released version](#subscriptions-with-successful-upgrade-to-released-version)
+    - [Subscriptions with unsuccessful upgrade to released version](#subscriptions-with-unsuccessful-upgrade-to-released-version)
+    - [Subscriptions manually scanned by older version](#subscriptions-manually-scanned-by-older-version])
+    - [Drift in controls status](#drift-in-controls-status])
+    - [Drift in attestation](#drift-in-attestation])
+      
 
 ## Overview
 
