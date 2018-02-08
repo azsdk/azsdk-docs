@@ -10,7 +10,7 @@
 - [Walkthrough](Readme.md#walkthrough)
   - [Adding SVTs in the release pipeline](Readme.md#adding-svts-in-the-release-pipeline)
   - [Verifying that SVTs have been added and configured correctly](Readme.md#verifying-that-the-svts-have-been-added-and-configured-correctly)
-- [Advance CICD scanning capabilities](Readme.md#advance-cicd-scanning-capabilities) 
+- [Advanced CICD scanning capabilities](Readme.md#advanced-cicd-scanning-capabilities) 
 - [FAQs](Readme.md#faqs)  
 
 ## [Security Verification Tests (SVTs) in Jenkins pipeline (Preview)](Readme.md#security-verification-tests-svts-in-jenkins-pipeline-preview-1)
