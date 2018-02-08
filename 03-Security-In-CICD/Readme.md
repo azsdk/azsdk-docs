@@ -243,7 +243,7 @@ what we have seen in the case of ad hoc SVT runs:
 
 [Back to top...](Readme.md#contents)
 
-### Advance CICD scanning capabilities
+### Advanced CICD scanning capabilities
 DevOps kit CICD extension enables you to leverage all the advance capabilities of toolkit while running in adhoc mode.
 You could scan for specific controlIds in your build pipeline, or you could just scan for specific resources,
 or you could also run a specific version of kit etc.
