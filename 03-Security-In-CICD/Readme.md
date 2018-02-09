@@ -153,14 +153,14 @@ Important: Ensure that the variable names used are exactly as above and the valu
 to *your* OMS workspace. Moreover, when you specify the OMS shared key, click on the 'lock' icon 
 next to it so that it gets masked.
 
-**Step-5:** (Optional) Setup Online Policies URL  
-(You may skip this step in a first-pass exploration of CICD integration of SVTs.) 
-This feature enables you to set up online policies. 
-This enables the CICD extension to use org-specific policies. 
-To use org-specific policies, you can get your org-specific url from AzSDKSettings.json file under 'OnlinePolicyStoreUrl' parameter. You can find the 'AzSDKSettings.json' file under 'C:\Users\userName\AppData\Local\Microsoft\AzSDK' folder.
-Below, we have added configuration info of 'AzSDKServerURL' used by the AzSDK team.  
+**Step-5:** Setup Online Policy URL  
+(You may skip this step in a first-pass exploration of CICD integration of SVTs and come back to it later when setting the extension up for a real project.) 
+This feature enables you to set up the CICD task to use your organization's AzSDK policies. 
+To use org-specific policies, you can get your org-specific url by (a) running Get-AzSDKInfo -InfoType HostInfo and looking at the value of OnlinePolicyStoreUrl or (b) getting it from the AzSDKSettings.json file on your machine under 'C:\Users\<userName>\AppData\Local\Microsoft\AzSDK' folder.
 
-The online Policy URL information may be provided using one of the two options below:  
+Below, we have added configuration info of 'AzSDKServerURL' used by the AzSDK team. The URL at your org can be different assuming there is an org-policy setup unique to your org.  
+
+The online policy URL can be configured for the CICD extension using one of the two options below:  
 
 **Option-1**: Use a 'variable group'  
 In this option, a single variable group may be defined at a VSTS level to represent the Policy URL that 
