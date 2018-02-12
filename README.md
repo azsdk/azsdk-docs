@@ -1,5 +1,7 @@
 
 # Secure DevOps Kit for Azure (AzSDK)
+### **_Note: AzSDK shall be renamed to AzSK (DevSecOps Kit for Azure) in future._**
+
 ## Content
 - [Overview](README.md#overview)  
 - [Setting up `Secure DevOps Kit for Azure`](README.md#setting-up-secure-devops-kit-for-azure)
