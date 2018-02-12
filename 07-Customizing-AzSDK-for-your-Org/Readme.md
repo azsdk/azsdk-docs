@@ -8,9 +8,10 @@
  - [What happens during org policy setup?](Readme.md#what-happens-during-org-policy-setup)
  - [The org policy setup command: Install-AzSDKOrganizationPolicy](Readme.md#the-org-policy-setup-command-install-azsdkorganizationpolicy)
  - [First-time policy setup - an example](Readme.md#first-time-policy-setup---an-example)
-
+ 
 ### [Modifying and customizing org policy](Readme.md#modifying-and-customizing-org-policy-1)
  - [Common scenarios for org policy customization](Readme.md#common-scenarios-for-org-policy-customization)  
+ - [Using CICD Extension with custom org-policy](Readme.md#using-cicd-extension-with-custom-org-policy)
  - [Next Steps](Readme.md#next-steps)
 
 
@@ -147,16 +148,14 @@ It will also create a very basic 'customized' policy involving just a single cha
 in AzSdk.json) and upload AzSdk.json, ServerConfigMetadata.json files to the storage account. It will also
 upload an org-specific installation script called AzSDK-EasyInstaller.ps1 to another container within the same 
 storage account and another file called ScanAgent.ps1 which is used to support the Continuous Assurance feature.
-
 At the end of execution, an 'iwr' command line will be printed to the console. This command leverages the org-specific
-installation script from the storage account for installing AzSDK. The org-specific installer will ensure that 
+ installation script from the storage account for installing AzSDK. The org-specific installer will ensure that 
 anyone who installs AzSDK using your 'iwr' command not only gets the core AzSDK module but their local installation 
 of AzSDK is also configured to use org-specific policy settings (e.g., policy server URL, telemetry key, etc.)
 
 ```PowerShell
 iwr 'https://azsdkcontosoitsa.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex 
 ```
-
 
 ## Modifying and customizing org policy 
 
@@ -465,6 +464,30 @@ Likewise, if you run without the `-UseBaselineControls` parameter, you will see 
 appear in the resulting CSV file. 
 
 
+## Using CICD Extension with custom org-policy
+
+To set up CICD when using custom org-policy, please follow below steps:
+1. Add Security Verification Tests (SVTs) in VSTS pipeline by following the main steps [here](../03-Security-In-CICD#adding-svts-in-the-release-pipeline) .
+2. Obtain the policy store URl by :
+	1. Download the installer file (ps1) from Org specific iwr command.To  download file, just open the URL from iwr command.
+	```	
+	E.g.: iwr 'https://azsdkxxx.blob.core.windows.net/installer/AzSDK-EasyInstaller.ps1' -UseBasicParsing | iex
+	```
+	2.  Open the downloaded file, find the following variable and copy the URL as below. 
+	```	
+	[string] $OnlinePolicyStoreUrl = "https://azsdkxxx.blob.core.windows.net/policies/`$(`$Version)/`$(`$FileName)?sv=2016-05-		31&sr=c&sig=xxx&spr=https&st=2018-01-02T11%3A18%3A37Z&se=2018-07-03T11%3A18%3A37Z&sp=rl" , 
+	```
+3. Remove the 4 backtick (\`) characters from URL.
+```
+E.g. https://azsdkxxx.blob.core.windows.net/policies/$($Version)/$($FileName)?sv=2016-05-31&sr=c&sig=xxx&spr=https&st=2018-01-02T11%3A18%3A37Z&se=2018-07-03T11%3A18%3A37Z&sp=rl
+```
+4. Add following variables in the release definition in which ‘AzSDK Security Verification Tests’ task is added. 
+	1. AzSDKServerURL = <Modified URL from step 4>.
+	2. EnableServerAuth = false 
+	
+Having set the policy URL along with AzSDK_SVTs Task, you can verify if your CICD task has been properly setup by following steps [here](../03-Security-In-CICD#verifying-that-the-svts-have-been-added-and-configured-correctly) .
+
+
 ## Next Steps:
 
 Once your org policy is setup, all scenarios/use cases of AzSDK should work seamlessly with your org policy server
@@ -473,7 +496,7 @@ or more of the following using AzSDK:
 
  - People will be able to install AzSDK using your special org-specific installer (the 'iwr' install command)
  - Developers will be able to run manual scans for security of their subscriptions and resources (GRS, GSS commands)
- - (Coming soon) Teams will be able to configure the AzSDK SVT release task in their CICD pipelines
+ - Teams will be able to configure the AzSDK SVT release task in their CICD pipelines
  - Subscription owners will be able to setup Continuous Assurance (CA) from their local machines (**after** they've installed
  AzSDK using your org-specific 'iwr' installer locally)
  - Monitoring teams will be able to setup AzSDK OMS view and see scan results from CA (and also manual scans and CICD if configured) 
