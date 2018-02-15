@@ -230,7 +230,8 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
     [-ScanIntervalInHours <ScanIntervalInHours>] `
     [-AzureADAppName <AzureADAppName>] `
     [-FixRuntimeAccount] ` 
-    [-FixModules] 
+    [-FixModules] `
+    [-RenewCertificate]
 ```
 
 |Param Name|Purpose|Required?|Default value|Comments
@@ -248,7 +249,7 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
 |FixRuntimeAccount|Use this switch to fix CA runtime account in case of below issues.<ol><li>Runtime account deleted<br>(Permissions required: Subscription owner)</li><li>Runtime account permissions missing<br>(Permissions required: Subscription owner and AD App owner)</li><li>Certificate deleted/expired<br>(Permissions required: Subscription owner and AD App owner)</li></ol>|FALSE|None||
 |FixModules|Use this switch in case 'AzureRm.Automation' module extraction fails in CA Automation Account.|FALSE|None||
-
+|RenewCertificate|Renew the CA certificate credential|FALSE|None|To renew existing certificate SPN owner permission is required. If you are not owner in that case it will create altogether new application in AAD (owned by you), create an SPN and a certificate credential for it.|
 
 [Back to top…](Readme.md#contents)
 ### Remove Continuous Assurance Automation Account
