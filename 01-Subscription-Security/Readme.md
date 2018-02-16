@@ -28,6 +28,7 @@
 - [Configure alerts in your subscription](Readme.md#configure-alerts-for-your-subscription)
 - [Remove previously configured alerts from your subscription](Readme.md#remove-previously-configured-alerts-from-your-subscription)
 - [Configure alerts scoped to specific resource groups](Readme.md#configure-alerts-scoped-to-specific-resource-groups)
+- [Activity Alert Monitoring](Readme.md#activity-alert-monitoring)
 - [FAQs](Readme.md#faqs-2)
 
 ### [AzSDK: Azure Security Center (ASC) configuration](Readme.md#azsdk-azure-security-center-asc-configuration-1)
@@ -296,7 +297,7 @@ As noted above, by default alerts are configured for activities that are deemed 
 | ----------------  | --------- | ------ |
 |SubscriptionId 	|Subscription ID against which the alerts would be setup| |
 |SecurityContactEmails	|Email address of Security Point of Contact, can be a mail enabled security group or a distribution list |abc@contoso.com, xyz@contoso.net|
-|SecurityPhoneNumbers	|Phone numbers of Security Point of Contact. Note that only the country code '1' is currently supported for SMS. |425-1234567,425-1234568|
+|SecurityPhoneNumbers	|Phone numbers of Security Point of Contact.You need to provide contact no. with country code.|for e.g. '+91-98765-43210' or '+1-425-882-8080'|
 
 [Back to top…](Readme.md#contents)
 ### Remove previously configured alerts from your subscription
@@ -329,12 +330,37 @@ These parameters above has to be updated with the appropriate values. See the ta
 |TargetResourceGroup 	|Target resource group on which alerts needs to be configured	|
 
 [Back to top…](Readme.md#contents)
+### Activity Alert Monitoring
+In latest release we have enabled real time monitoring of alerts (for CSE tenant).So that we can fine tune AzSDK Alert feature. Now we will receive alerts data in our central telemetry.
+This feature will be enabled by default for every Subscription (CSE), If you have CA setup and Alerts are configured in your subscription. If you want to disable Alert Monitoring in your subscription, you have to create an automation variable "DisableAlertRunbook" in the AzSDKContinuousAssurance automation account either manually or by using following cmdlet:
+```PowerShell
+New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
+``` 
+If you have customized AzSDK for your organization, this feature will be enabled by default and alert logs will be sent to your central telemetry in the master subscription from all the AzSDK activity alert across your org. You can leverage this feature to get insights into the activity alerts getting triggered across your organization. For e.g.
+- Which activity alert is getting triggered most of the time?
+- Is any critical activity alert is fired too frequently?
+
+If you want to disable in a particular subscription, You can use following cmdlet :-
+```PowerShell
+New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
+``` 
+Or If you want to disable this feature for your organization , you need to set “IsAlertMonitoringEnabled” flag to “false” in AzSDK.Json file.
+```json
+{
+  "IsAlertMonitoringEnabled": false
+}
+```
+
+[Back to top…](Readme.md#contents)
 ### FAQs
 #### Can I get the alert emails to go to a distribution group instead of an individual email id?
 Yes it is possible. While setting up the alerts you are asked to provide the SecurityContactEmails. It supports individual point of contact or mail enabled security group or a distribution list.  
 
 #### How can I find out more once I receive an alert email?
 You should visit portal with the details data provided in the Alert Email. For example, you could visit the resource id and look for the action that has been called out in the email, or to get more details about the alert, visit the Activity Log in the portal and look for this resource type, you should find more details on the action performed.  
+
+#### How Alert Monitoring works? 
+Once Alert Monitoring is enabled it will setup a Runbook in Automation account which will be triggered when any AzSDK activity alert is fired. This Runbook will then send alert logs to central telemetry. 
 
 **Note:** 
 These alerts template and the generation is completely controlled through Azure Application Insights framework. 
