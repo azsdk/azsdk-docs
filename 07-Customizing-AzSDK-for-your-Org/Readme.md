@@ -529,20 +529,19 @@ a few known cases but we may have missed the odd one.)
 that, you may have to keep a separate copy and upload it. (We will revisit this in future sprints.)
 
 
-### Activity Alert Monitoring
-In latest release we have enabled real time monitoring of alerts (for CSE tenant).So that we can fine tune AzSDK Alert feature. Now we will receive alerts data in our central telemetry.
-This feature will be enabled by default for every Subscription (CSE), If you have CA setup and Alerts are configured in your subscription. If you want to disable Alert Monitoring in your subscription, you have to create an automation variable "DisableAlertRunbook" in the AzSDKContinuousAssurance automation account either manually or by using following cmdlet:
-```PowerShell
-New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
-``` 
+## Activity Alert Monitoring
+In latest release we have enabled real time monitoring of alerts. This feature will be enabled by default for every Subscription, if you have CA setup and Alerts are configured in your subscription.
 If you have customized AzSDK for your organization, this feature will be enabled by default and alert logs will be sent to your central telemetry in the master subscription from all the AzSDK activity alert across your org. You can leverage this feature to get insights into the activity alerts getting triggered across your organization. For e.g.
 - Which activity alert is getting triggered most of the time?
 - Is any critical activity alert is fired too frequently?
 
-If you want to disable in a particular subscription, You can use following cmdlet :-
+#### How to disable Alert Monitoring? 
+If you want to disable Alert Monitoring in your subscription, you have to create an automation variable "DisableAlertRunbook" in the AzSDKContinuousAssurance automation account either manually or by using following cmdlet:
+
 ```PowerShell
 New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
 ``` 
+
 Or If you want to disable this feature for your organization , you need to set “IsAlertMonitoringEnabled” flag to “false” in AzSDK.Json file.
 ```json
 {
