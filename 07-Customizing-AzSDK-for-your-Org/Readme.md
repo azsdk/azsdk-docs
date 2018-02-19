@@ -20,6 +20,9 @@
  - [Troubleshooting common issues](Readme.md#troubleshooting-common-issues)
  
 ### [Activity alert monitoring](Readme.md#activity-alert-monitoring)
+ - [How to disable alert monitoring?](Readme.md#how-to-disable-alert-monitoring)
+ - [How alert monitoring works?](Readme.md#how-alert-monitoring-works)
+
 
 ----------------------------------------------------------------
 
