@@ -61,5 +61,5 @@ in the table below:
 |Uninstall-AzSDKOMSetup|This command can be used to uninstall the old AzSDK OMS solution (setup using AzSDK version 2.4.0 or before) from the OMS subscription. From version 2.5.0 onwards, the AzSDK OMS solution just deploys a view which can be directly deleted from the OMS workspace.|Reader on subscription.|
 |Update-AzSDKContinuousAssurance (UCA)|Updates various parameters that were used when CA was originally setup. This command can be used to change things like target resource groups that were scanned, OMS workspaceID and sharedKey, run as account used by CA for scanning, update/renew certificate credential as run as account. | Owner on subscription.|
 |Update-AzSDKSubscriptionSecurity (USS)|This command can be used to update various security baseline elements and bring your subscription up to speed from a baseline policy compliance of subscription security controls. It updates one or more of the following elements after checking the ones that are out of date - alerts, Security Center, ARM policy, RBAC (mandatory accounts and deprecated accounts), continuous assurance runbook, etc.|Owner on subscription.|
-
+|Set-AzSKUserPreference|This command can be used to set user preferences (e.g.: output folder path) for AzSK commands.|NA|
 
