@@ -7,10 +7,10 @@
 -	Save your work (in script, not TXT files)
 -	Use auto-complete
 -   Use backtick for long command lines
--	Search for commands…
--	Look for loaded modules…
+-	Search for commandsâ€¦
+-	Look for loaded modulesâ€¦
 -	Variables..
--	Strings, “ “ v ‘ ‘ 
+-	Strings, â€œ â€œ v â€˜ â€˜ 
 -	List Subscriptions
 -	Switch context
 -	Find resources/resource groups
@@ -182,17 +182,17 @@ PS C:\> Get-Command -Module AzSDK
 
 CommandType     Name                                               Version    Source 
 -----------     ----                                               -------    ------ 
-Function        Get-AzSDKAccessToken                               2.6.0      AzSDK  
-Function        Get-AzSDKAzureServicesSecurityStatus               2.6.0      AzSDK  
-Function        Get-AzSDKContinuousAssurance                       2.6.0      AzSDK  
-Function        Get-AzSDKControlsStatus                            2.6.0      AzSDK  
-Function        Get-AzSDKExpressRouteNetworkSecurityStatus         2.6.0      AzSDK  
-Function        Get-AzSDKSubscriptionSecurityStatus                2.6.0      AzSDK  
-Function        Get-AzSDKSupportedResourceTypes                    2.6.0      AzSDK  
-Function        Install-AzSDKContinuousAssurance                   2.6.0      AzSDK  
-Function        Install-AzSDKOMSSolution                           2.6.0      AzSDK  
-Function        Remove-AzSDKAlerts                                 2.6.0      AzSDK  
-Function        Remove-AzSDKARMPolicies                            2.6.0      AzSDK  
+Function        Get-AzSKAccessToken                                2.10.0     AzSDK 
+Function        Get-AzSKAzureServicesSecurityStatus                2.10.0     AzSDK 
+Function        Get-AzSKContinuousAssurance                        2.10.0     AzSDK 
+Function        Get-AzSKControlsStatus                             2.10.0     AzSDK 
+Function        Get-AzSKExpressRouteNetworkSecurityStatus          2.10.0     AzSDK 
+Function        Get-AzSKInfo                                       2.10.0     AzSDK 
+Function        Get-AzSKSubscriptionSecurityStatus                 2.10.0     AzSDK 
+Function        Get-AzSKSupportedResourceTypes                     2.10.0     AzSDK 
+Function        Install-AzSKContinuousAssurance                    2.10.0     AzSDK 
+Function        Install-AzSKOMSSolution                            2.10.0     AzSDK 
+Function        Install-AzSKOrganizationPolicy                     2.10.0     AzSDK  
 ... 
 (truncated)
 ```
@@ -202,13 +202,14 @@ PS C:\> Get-Command -Name Get* -Module AzSDK
 
 CommandType     Name                                               Version    Source 
 -----------     ----                                               -------    ------ 
-Function        Get-AzSDKAccessToken                               2.6.0      AzSDK  
-Function        Get-AzSDKAzureServicesSecurityStatus               2.6.0      AzSDK  
-Function        Get-AzSDKContinuousAssurance                       2.6.0      AzSDK  
-Function        Get-AzSDKControlsStatus                            2.6.0      AzSDK  
-Function        Get-AzSDKExpressRouteNetworkSecurityStatus         2.6.0      AzSDK  
-Function        Get-AzSDKSubscriptionSecurityStatus                2.6.0      AzSDK  
-Function        Get-AzSDKSupportedResourceTypes                    2.6.0      AzSDK  
+Function        Get-AzSKAccessToken                                2.10.0     AzSDK 
+Function        Get-AzSKAzureServicesSecurityStatus                2.10.0     AzSDK 
+Function        Get-AzSKContinuousAssurance                        2.10.0     AzSDK 
+Function        Get-AzSKControlsStatus                             2.10.0     AzSDK 
+Function        Get-AzSKExpressRouteNetworkSecurityStatus          2.10.0     AzSDK 
+Function        Get-AzSKInfo                                       2.10.0     AzSDK 
+Function        Get-AzSKSubscriptionSecurityStatus                 2.10.0     AzSDK 
+Function        Get-AzSKSupportedResourceTypes                     2.10.0     AzSDK
 ```
 
 ###### Get all AzSDK commands have 'Subscription' anywhere in the name
@@ -217,13 +218,13 @@ PS C:\> Get-Command -Name *Subscription* -Module AzSDK
 
 CommandType     Name                                               Version    Source 
 -----------     ----                                               -------    ------ 
-Function        Get-AzSDKSubscriptionSecurityStatus                2.6.0      AzSDK  
-Function        Remove-AzSDKSubscriptionRBAC                       2.6.0      AzSDK  
-Function        Remove-AzSDKSubscriptionSecurity                   2.6.0      AzSDK  
-Function        Repair-AzSDKSubscriptionSecurity                   2.6.0      AzSDK  
-Function        Set-AzSDKSubscriptionRBAC                          2.6.0      AzSDK  
-Function        Set-AzSDKSubscriptionSecurity                      2.6.0      AzSDK  
-Function        Update-AzSDKSubscriptionSecurity                   2.6.0      AzSDK  
+Function        Get-AzSKSubscriptionSecurityStatus                 2.10.0     AzSDK 
+Function        Remove-AzSKSubscriptionRBAC                        2.10.0     AzSDK 
+Function        Remove-AzSKSubscriptionSecurity                    2.10.0     AzSDK 
+Function        Repair-AzSKSubscriptionSecurity                    2.10.0     AzSDK 
+Function        Set-AzSKSubscriptionRBAC                           2.10.0     AzSDK 
+Function        Set-AzSKSubscriptionSecurity                       2.10.0     AzSDK 
+Function        Update-AzSKSubscriptionSecurity                    2.10.0     AzSDK  
 ```
 
 ###### Get all commands from *any* available module (not just AzSDK) that start with 'Backup'
@@ -232,18 +233,13 @@ PS C:\> Get-Command -name Backup*
 
 CommandType     Name                                               Version    Source               
 -----------     ----                                               -------    ------               
-Function        Backup-BitLockerKeyProtector                       1.0.0.0    BitLocker            
-Cmdlet          Backup-AzureKeyVaultKey                            4.1.0      AzureRM              
-Cmdlet          Backup-AzureKeyVaultKey                            3.1.0      AzureRM.KeyVault     
-Cmdlet          Backup-AzureKeyVaultSecret                         4.1.0      AzureRM              
-Cmdlet          Backup-AzureKeyVaultSecret                         3.1.0      AzureRM.KeyVault     
-Cmdlet          Backup-AzureRmApiManagement                        4.1.0      AzureRM              
-Cmdlet          Backup-AzureRmApiManagement                        4.1.0      AzureRM.ApiManagement
-Cmdlet          Backup-AzureRmBackupItem                           4.1.0      AzureRM              
-Cmdlet          Backup-AzureRmBackupItem                           3.1.0      AzureRM.Backup       
-Cmdlet          Backup-AzureRmRecoveryServicesBackupItem           4.1.0      AzureRM              
-Cmdlet          Backup-AzureRmRecoveryServicesBackupItem           3.1.0      AzureRM.RecoverySe...
-Cmdlet          Backup-WebConfiguration                            1.0.0.0    WebAdministration    
+Function        Backup-BitLockerKeyProtector                       1.0.0.0    BitLocker             
+Function        BackupToAAD-BitLockerKeyProtector                  1.0.0.0    BitLocker             
+Cmdlet          Backup-AzureKeyVaultKey                            4.1.0      AzureRM.KeyVault      
+Cmdlet          Backup-AzureKeyVaultSecret                         4.1.0      AzureRM.KeyVault      
+Cmdlet          Backup-AzureRmApiManagement                        5.1.0      AzureRM.ApiManagement 
+Cmdlet          Backup-AzureRmBackupItem                           4.0.2      AzureRM.Backup        
+Cmdlet          Backup-AzureRmRecoveryServicesBackupItem           4.1.0      AzureRM.RecoverySer...   
 ```
 
 [Back to top...](GettingStarted_PowerShellTipsAzSDK.md#list-of-tips)
@@ -301,15 +297,13 @@ PS C:\> get-module
 
 ModuleType Version    Name                                ExportedCommands                       
 ---------- -------    ----                                ----------------                       
-Script     2.6.0      AzSDK                               {Get-AzSDKAccessToken, Get-AzSDKAzur...
-Script     4.1.0      AzureRM                             {Add-AzureAnalysisServicesAccount, A...
-Script     1.0.0.0    ISE                                 {Get-IseSnippet, Import-IseSnippet, ...
-Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoi...
-Manifest   3.0.0.0    Microsoft.PowerShell.Security       {ConvertFrom-SecureString, ConvertTo...
-Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variabl...
-Manifest   3.0.0.0    Microsoft.WSMan.Management          {Connect-WSMan, Disable-WSManCredSSP...
-Binary     1.1.0.0    PSScheduledJob                      {Add-JobTrigger, Disable-JobTrigger,...
-Manifest   2.0.0.0    PSWorkflow                          {New-PSWorkflowExecutionOption, New-...
+Script     2.10.0     AzSDK                               {Get-AzSKAccessToken, Get-AzSKAzureServ...
+Script     4.1.0      Azure.Storage                       {Get-AzureStorageBlob, Get-AzureStorage...
+Script     5.2.0      AzureRM                                                                       
+Script     4.2.0      AzureRM.Profile                     {Add-AzureRmAccount, Add-AzureRmEnviron...
+Script     1.0.0.0    ISE                                 {Get-IseSnippet, Import-IseSnippet, New...
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-...
+Manifest   3.1.0.0    Microsoft.PowerShell.Utility        {Add-Member, Add-Type, Clear-Variable, ...
 
 ```
 
@@ -319,7 +313,7 @@ PS C:\> get-module azsdk
 
 ModuleType Version    Name                                ExportedCommands                       
 ---------- -------    ----                                ----------------                       
-Script     2.6.0      AzSDK                               {Get-AzSDKAccessToken, Get-AzSDKAzur...
+Script     2.10.0     AzSDK                               {Get-AzSKAccessToken, Get-AzSKAzureServ...
 ```
 Version conflicts happen if, due to some action, multiple versions of the same module get loaded within a single session.
 For example, you may notice that a new version of AzSDK is available (based on a warning from a scan command)
@@ -349,7 +343,7 @@ issue will pop up soon as you start using AzSDK commands.
 An easy remedy for this is to ensure that the correct version of AzureRm gets loaded by using any of these options: 
 1) Just do an "import-module AzSDK" first thing after opening a new PS session. This will internally load the correct AzureRm.
 2) Else, run any AzSDK command (e.g., Get-AzSDKSubscriptionSecurityStatus). This will trigger the Azure login flow and cause the correct AzureRm to get loaded.
-3) Else, explicitly load the AzureRm version required for AzSDK (currently it is 4.1.0) using 'import-module AzureRm -Version 4.1' first thing in a new session.
+3) Else, explicitly load the AzureRm version required for AzSDK (currently it is 5.2.0) using 'import-module AzureRm -Version 4.1' first thing in a new session.
 
 [Back to top...](GettingStarted_PowerShellTipsAzSDK.md#list-of-tips)
 <!-------------------------------------------------------------------------------------------------->
@@ -449,7 +443,7 @@ As a simple example, because subscriptionId is required in many places we can do
 ```PowerShell
 $subId = '2feabcde-f012-3456-7890-abcdef012349'
 
-Set-AzureRmContext -SubscriptionId $subId
+Set-AzureRmContext -Subscription $subId
 Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subId
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subId
 ```
@@ -471,7 +465,7 @@ $s3 = '8feabcde-f012-3456-7890-abcdef012345'
 $subId = $s2  
 
 # Run one or more of the below lines as needed...
-Set-AzureRmContext -SubscriptionId $subId
+Set-AzureRmContext -Subscription $subId
 Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subId
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subId
 ```
