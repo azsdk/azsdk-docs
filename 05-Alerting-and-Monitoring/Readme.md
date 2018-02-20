@@ -201,7 +201,40 @@ are the same fields that display in the CSV file when you run the AzSDK manually
 ![05_Setting_OMS_Workspace_Solution_View](../Images/05_OMS_Control_Failure.png)
 	
 [Back to top…](Readme.md#contents)
+### Query Guide for AzSK OMS Solution Pack 
+This section walks you through the queries present in the AzSK OMS solution pack.There are few updates in the existing OMS solution queries.To get the updated OMS solution you need to re-install the OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above.The updated queries  show the control status of baseline controls based on last scan done in last three days with required access for your: a) subscription, b) express route networks and c) other cloud resources (shown with various pivots).Any status except "Passed" for any control is shown as "Failed" in various blades of Azure Security Health View .Details of various blades of Azure Security Health View are as follows:
 
+**1 Subsciption Security Status** 
+This blade displays the  control status of baseline Subsciption Security Control of your subscription based on the last scan data for these controls. This blade consists of a donut and a list. Following are their descriptions along with the queries used:
+
+	* Donut :The below query results in aggregated control status of baseline Subscription Security controls for each subscription based on the last scan done with required access in last three days.
+		* Query 
+		``` AIQL
+			AzSDK_CL 
+			| where TimeGenerated > ago(3d)  
+			| summarize arg_max(TimeGenerated, *) by SubscriptionId,ControlId_s 
+			| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
+			| where FeatureName_s == "SubscriptionCore"  
+			| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
+			| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
+			| summarize AggregatedValue = count() by ControlStatus 
+			| sort by AggregatedValue desc
+	* List :The query results in count of failed baseline Subscription Security controls if any for every subscription whose data is sent to OMS for monitoring.
+		* Query
+		``` AIQL
+			AzSDK_CL 
+			| where TimeGenerated > ago(3d)  
+			| summarize arg_max(TimeGenerated, *) by SubscriptionName_s,ControlId_s 
+			| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
+			| where FeatureName_s == "SubscriptionCore"  
+			| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
+			| where ControlStatus=="Failed"
+			| summarize  count() by SubscriptionName_s,ControlId_s,ControlStatus_s 
+			| summarize AggregatedValue = count() by SubscriptionName_s 
+			| sort by AggregatedValue desc
+		
+
+[Back to top…](Readme.md#contents)
 ### Next Steps
 Assuming that you have setup the OMS solution and configured AzSDK control event routing from one or more of 
 the dev ops stages (developer machines (SDL stage), your build environment (CICD stage) and operational environment (CA)) 
