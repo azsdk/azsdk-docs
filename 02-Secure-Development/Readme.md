@@ -185,6 +185,19 @@ Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -UsePartia
 		
 [Back to top…](Readme.md#contents)
 
+### Execute Config Controls
+The Get-AzSDKAzureServicesSecurityStatus command now supports scanning of subscription using Config controls. These controls makes sure AzSDK components which are of utmost importance as far as security is considered, are present in your subscription.E.g. The controls scan for presence of CA account and its health check, presence of latest AzSDK etc. By default, these controls are switched off, You can enable them by setting up your own org-specific instance of AzSDK and enabling 'EnableDevOpsKitSetupCheck' variable in AzSDK.json equals true.These controls runs by default with each scan. But you can also run just these controls specifically. The cmdlet below scans only Config controls:   
+
+```PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId <SubscriptionId> -ResourceTypeName 'AzSDKCfg'
+```
+
+Steps for enabling scaning of config control: 
+- Set up your own org-specific instance of AzSDK. To set up your own org-specific instance, refer [here](../07-Customizing-AzSDK-for-your-Org). 
+-  Modify 'AzSDK.json' in Config folder of your organizational policy by adding 'EnableDevOpsKitSetupCheck' equals 'true'.
+		
+[Back to top…](Readme.md#contents)
+
 ### Understand the scan reports
 Each AzSDK cmdlet writes output to a folder whose location is determined as below:
 - AzSDK-Root-Output-Folder = %LocalAppData%\Microsoft\AzSDKLogs  
