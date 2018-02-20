@@ -112,8 +112,7 @@ If you have installed AzureRM PowerShell using Azure SDK in your machine, it typ
 ```
 If this is the case, then you need to remove the Azure PowerShell modules installed through Azure SDK completely from the Program Files. You could also take back up in case if you need. 
 AzSDK also need AzureRM modules. But it would download from PSGallery instead of from Azure SDK. This downloading of AzureRM modules from PS Gallery would conflict with AzureRM modules installed through Azure SDK. 
-After cleanup, If you again the run the below command, it would fetch AzureRM version 5.
-.0 by default into the current user scope instead of in Program Files. 
+After cleanup, If you again the run the below command, it would fetch AzureRM version 5.2.0 by default into the current user scope instead of in Program Files. 
 ```PowerShell
 Install-Module AzSDK -Scope CurrentUser -AllowClobber 
 ```
