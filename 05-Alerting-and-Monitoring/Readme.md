@@ -207,29 +207,31 @@ This section walks you through the queries present in the AzSK OMS solution pack
 **1 Subsciption Security Status** 
 This blade displays the  control status of baseline Subsciption Security Control of your subscription based on the last scan data for these controls. This blade consists of a donut and a list. Following are their descriptions along with the queries used:
 
-	* Donut :The below query results in aggregated control status of baseline Subscription Security controls for each subscription based on the last scan done with required access in last three days.
-		 	AzSDK_CL 
-			| where TimeGenerated > ago(3d)  
-			| summarize arg_max(TimeGenerated, *) by SubscriptionId,ControlId_s 
-			| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
-			| where FeatureName_s == "SubscriptionCore"  
-			| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
-			| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
-			| summarize AggregatedValue = count() by ControlStatus 
-			| sort by AggregatedValue desc
-	* List :The query results in count of failed baseline Subscription Security controls if any for every subscription whose data is sent to OMS for monitoring.
+- Donut :The below query results in aggregated control status of baseline Subscription Security controls for each subscription based on the last scan done with required access in last three days.
+	``` AIQL
+	AzSDK_CL 
+	| where TimeGenerated > ago(3d)  
+	| summarize arg_max(TimeGenerated, *) by SubscriptionId,ControlId_s 
+	| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
+	| where FeatureName_s == "SubscriptionCore"  
+	| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
+	| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
+	| summarize AggregatedValue = count() by ControlStatus 
+	| sort by AggregatedValue desc
+
+- List :The query results in count of failed baseline Subscription Security controls if any for every subscription whose data is sent to OMS for monitoring.
+	``` AIQL
+	AzSDK_CL 
+	| where TimeGenerated > ago(3d)  
+	| summarize arg_max(TimeGenerated, *) by SubscriptionName_s,ControlId_s 
+	| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
+	| where FeatureName_s == "SubscriptionCore"  
+	| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
+	| where ControlStatus=="Failed"
+	| summarize  count() by SubscriptionName_s,ControlId_s,ControlStatus_s 
+	| summarize AggregatedValue = count() by SubscriptionName_s 
+	| sort by AggregatedValue desc
 			
-			AzSDK_CL 
-			| where TimeGenerated > ago(3d)  
-			| summarize arg_max(TimeGenerated, *) by SubscriptionName_s,ControlId_s 
-			| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
-			| where FeatureName_s == "SubscriptionCore"  
-			| extend ControlStatus=iff(ControlStatus_s!= "Passed","Failed","Passed") 
-			| where ControlStatus=="Failed"
-			| summarize  count() by SubscriptionName_s,ControlId_s,ControlStatus_s 
-			| summarize AggregatedValue = count() by SubscriptionName_s 
-			| sort by AggregatedValue desc
-		
 
 [Back to top…](Readme.md#contents)
 ### Next Steps
