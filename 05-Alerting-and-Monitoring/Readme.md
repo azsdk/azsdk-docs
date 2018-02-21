@@ -208,9 +208,7 @@ This section walks you through the queries present in the AzSK OMS solution pack
 This blade displays the  control status of baseline Subsciption Security Control of your subscription based on the last scan data for these controls. This blade consists of a donut and a list. Following are their descriptions along with the queries used:
 
 	* Donut :The below query results in aggregated control status of baseline Subscription Security controls for each subscription based on the last scan done with required access in last three days.
-		* Query 
-		``` AIQL
-			AzSDK_CL 
+		 	AzSDK_CL 
 			| where TimeGenerated > ago(3d)  
 			| summarize arg_max(TimeGenerated, *) by SubscriptionId,ControlId_s 
 			| where HasRequiredAccess_b == true and IsBaselineControl_b == true  
@@ -220,8 +218,7 @@ This blade displays the  control status of baseline Subsciption Security Control
 			| summarize AggregatedValue = count() by ControlStatus 
 			| sort by AggregatedValue desc
 	* List :The query results in count of failed baseline Subscription Security controls if any for every subscription whose data is sent to OMS for monitoring.
-		* Query
-		``` AIQL
+			
 			AzSDK_CL 
 			| where TimeGenerated > ago(3d)  
 			| summarize arg_max(TimeGenerated, *) by SubscriptionName_s,ControlId_s 
