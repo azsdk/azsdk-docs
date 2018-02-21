@@ -204,7 +204,7 @@ are the same fields that display in the CSV file when you run the AzSDK manually
 ### Query Guide for AzSK OMS Solution Pack 
 This section walks you through the queries present in the AzSK OMS solution pack.There are few updates in the existing OMS solution queries.To get the updated OMS solution you need to re-install the OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above.The updated queries  show the control status of baseline controls based on last scan done in last three days with required access for your: a) subscription, b) express route networks and c) other cloud resources (shown with various pivots).Any status except "Passed" for any control is shown as "Failed" in various blades of Azure Security Health View .Details of various blades of Azure Security Health View are as follows:
 
-**1 Subsciption Security Status** 
+**1) Subsciption Security Status** 
 This blade displays the  control status of baseline Subsciption Security Control of your subscription based on the last scan data for these controls. This blade consists of a donut and a list. Following are their descriptions along with the queries used:
 
 - Donut :The below query results in aggregated control status of baseline Subscription Security controls for each subscription based on the last scan done with required access in last three days.
