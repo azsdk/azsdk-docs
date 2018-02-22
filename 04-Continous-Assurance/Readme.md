@@ -330,7 +330,7 @@ In case you want to
 </br>(h) the scanning account credential needs to be rotated as part of hygiene/ expiry, or
 </br>(i) modify the logging option to central mode
 
-In all such scenarios, you could run the command below:
+In all such scenarios, you can run the command below:
 
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
