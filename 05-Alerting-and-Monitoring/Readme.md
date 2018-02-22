@@ -210,7 +210,7 @@ This section walks you through the queries present in AzSDK OMS solution. Make s
 
 Details of various blades of Azure Security Health View are as follows:
 
-**1) Subsciption Security Status:** This blade displays the status of baseline Subsciption Security Control of your subscription(s). This blade consists of a donut and a list.
+**1) Subsciption Security Status:** This blade shows the status of baseline Subsciption Security Control of your subscription(s). This blade consists of a donut and a list.
 
 - Donut: The below query shows the aggregated control status of baseline Subscription Security controls.
 	``` AIQL
@@ -236,7 +236,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize AggregatedValue = count() by SubscriptionName_s 
 	| sort by AggregatedValue desc
 	
-**2) EXPRESSROUTE VNET SECURITY (ER) Status:** This blade displays the status of baseline ERvNet Controls for virtual networks in your subscription that have Express Route connectivity setup. This blade consists of a donut and a list.
+**2) EXPRESSROUTE VNET SECURITY (ER) Status:** This blade shows the status of baseline ERvNet Controls for virtual networks in your subscription that have Express Route connectivity setup. This blade consists of a donut and a list.
 
 - Donut: The below query shows the aggregated control status of baseline ERvNet controls.
 	``` AIQL
@@ -260,7 +260,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize AggregatedValue = count() by SubscriptionName_s 
 	| sort by AggregatedValue desc
 
-**3) Resource Security (RS-1):** This shows the overall status of baseline control for all resources on your subscription(s). This blade consists of a donut and a list.
+**3) Resource Security (RS-1):** This blade shows the overall status of baseline control for all resources on your subscription(s). This blade consists of a donut and a list.
 
 - Donut: The below query shows the aggregated status of baseline controls for all the resources present on your subscription(s).
 	``` AIQL
@@ -309,7 +309,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 **5) Resource Security (RS-3):** This blade shows the number of failing controls for each resource group. This blade has a tile and a list.
 
-- Tile: This shows the number of unique resource group that contain resources that are failing baseline controls on your subscription(s).
+- Tile: This shows the number of unique resource groups containing resources that are failing baseline controls on your subscription(s).
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -331,9 +331,9 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup
 
-**6) Resource Security (RS-4):** This blade shows how many different unique baseline security controls are failing. This blade has a tile and a list.
+**6) Resource Security (RS-4):** This blade shows different unique baseline security controls are failing. This blade has a tile and a list.
 
-- Tile: This shows the  number of unique baseline controls that are failing on your subscription(s).
+- Tile: This shows the number of unique baseline controls that are failing on your subscription(s).
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
