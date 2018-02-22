@@ -212,8 +212,8 @@ This section walks you through the queries present in the AzSDK OMS solution. To
 
 Details of various blades of Azure Security Health View are as follows:
 
-**1) Subsciption Security Status:** This blade shows the status of baseline Subsciption Security Control of your subscription(s). The  below image depicts the blade:
-!(.../Images/OMS_Blade_SS.PNG)
+**1) Subsciption Security Status:** This blade shows the status of baseline Subsciption Security Control of your subscription(s). 
+![The  below image depicts the blade:](.../Images/OMS_Blade_SS.PNG)
 
 - Donut: The below query shows the aggregated control status of baseline Subscription Security controls.
 	``` AIQL
@@ -265,7 +265,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| sort by AggregatedValue desc
 
 **3) Resource Security (RS-1):** This blade shows the overall status of baseline control for all resources on your subscription(s). The below image depicts the blade:
-!(.../Images/OMS_Blade_RS1.PNG)
+![The  below image depicts the blade:](.../Images/OMS_Blade_RS1.PNG)
 
 - Donut: The below query shows the aggregated status of baseline controls for all the resources present on your subscription(s).
 	``` AIQL
@@ -289,7 +289,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| sort by AggregatedValue desc	
 
 **4) Resource Security (RS-2):** This blade shows the resources on your subscriptions that are failing for baseline controls. The below image depicts the blade:
-!(.../Images/OMS_Blade_RS2.PNG)
+![The  below image depicts the blade:](.../Images/OMS_Blade_RS2.PNG)
 
 - Tile: The below shows the number of unique resource types that have at least one baseline security control failure on your subscription(s).
 	``` AIQL
@@ -314,7 +314,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  AggregatedValue = count() by ResourceName_s 
 
 **5) Resource Security (RS-3):** This blade shows the number of failing controls for each resource group. The below image depicts the blade:
-![RS-3](.../Images/OMS_Blade_RS3.PNG)
+![The  below image depicts the blade:](.../Images/OMS_Blade_RS3.PNG)
 
 - Tile: The below queryshows the number of unique resource groups containing resources that are failing baseline controls on your subscription(s).
 	``` AIQL
@@ -339,7 +339,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  AggregatedValue = count() by ResourceGroup
 
 **6) Resource Security (RS-4):** This blade shows different unique baseline security controls are failing. The below image depicts the blade:
-!(.../Images/OMS_Blade_RS4.PNG)
+![The  below image depicts the blade:](.../Images/OMS_Blade_RS4.PNG)
 
 - Tile: The below query shows the number of unique baseline controls that are failing on your subscription(s).
 	``` AIQL
