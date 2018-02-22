@@ -7,6 +7,7 @@
 - [Overview](Readme.md#overview)
 - [Components of the AzSDK OMS Solution](Readme.md#components-of-the-azsdk-oms-solution)
 - [Setting up the AzSDK OMS Solution (Step by Step)](Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)
+- [Guide to AzSDK OMS Solution queries](Readme.md#guide-to-azsdk-oms-solution-queries) 
 - [Next Steps](Readme.md#next-steps)
 - [Appendix](Readme.md#appendix)
   - [Creating an OMS workspace](Readme.md#a-creating-an-oms-workspace)
@@ -201,7 +202,7 @@ are the same fields that display in the CSV file when you run the AzSDK manually
 ![05_Setting_OMS_Workspace_Solution_View](../Images/05_OMS_Control_Failure.png)
 	
 [Back to top…](Readme.md#contents)
-### Guide to queries on AzSDK OMS Solution
+### Guide to AzSDK OMS Solution queries
 This section walks you through the queries present in AzSDK OMS solution. Make sure that you have the latest solution installed on your OMS workspace. To get the latest OMS solution you need to re-install OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above, but before that make sure to take a backup of the changes that you made on the previous AzSDK OMS solution as they will be lost on re-installing OMS Solution. The latest queries show the status of controls based on the following criterias.
 - Every blade shows the status of controls for all subscription whose data is sent to the OMS workspace.
 - The queries show the count based on status of baseline controls in the last scan done with required access with in last three days.
