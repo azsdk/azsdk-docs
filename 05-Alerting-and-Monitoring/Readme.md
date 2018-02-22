@@ -247,7 +247,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated,*) by SubscriptionName_s,ResourceId,ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The query shows the count of failed baseline ERvNet controls based on subscription.
+- List: The query shows the list of subscriptions that have one or more baseline ERvNet control failing.
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -271,7 +271,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated, *) by SubscriptionId, ResourceId, ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The query shows the count of failed baseline controls of all the resources on your subscription aggregated by the type of resource.
+- List: The query shows the list of resource type on your subscription that have one or more baseline control failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d) 
@@ -295,7 +295,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceName_s  
 	| count 
-- List: The query shows the the number of the controls failing for each resource on your subscription that are failing for baseline controls.
+- List: The query shows the the list of resources that have one or more baseline control failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -319,7 +319,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup 
 	| count
-- List: The query shows number of the failing controls for each resource group the list of resource groups on your subscription(s) containing resources that are failing for baseline controls along with the .
+- List: The query shows list of resource groups that have one or more baseline controls failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
