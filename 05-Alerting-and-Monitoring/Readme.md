@@ -223,7 +223,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The query shows the count of failed baseline Subscription Security controls based on subscription. 
+- List: The below query shows the count of failed baseline Subscription Security controls based on subscription. 
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -248,7 +248,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated,*) by SubscriptionName_s,ResourceId,ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The query shows the list of subscriptions that have one or more baseline ERvNet control failing.
+- List: The below query shows the list of subscriptions that have one or more baseline ERvNet control failing.
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -272,7 +272,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated, *) by SubscriptionId, ResourceId, ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The query shows the list of resource type on your subscription that have one or more baseline control failing.
+- List: The below query shows the list of resource type on your subscription that have one or more baseline control failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d) 
@@ -285,7 +285,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 **4) Resource Security (RS-2):** This blade shows the resources on your subscriptions that are failing for baseline controls. This blade has a tile and a list.
 
-- Tile: This shows the number of unique resource types that have at least one baseline security control failure on your subscription(s).
+- Tile: The below shows the number of unique resource types that have at least one baseline security control failure on your subscription(s).
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -296,7 +296,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceName_s  
 	| count 
-- List: The query shows the the list of resources that have one or more baseline control failing.
+- List: The below query shows the the list of resources that have one or more baseline control failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -309,7 +309,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 **5) Resource Security (RS-3):** This blade shows the number of failing controls for each resource group. This blade has a tile and a list.
 
-- Tile: This shows the number of unique resource groups containing resources that are failing baseline controls on your subscription(s).
+- Tile: The below queryshows the number of unique resource groups containing resources that are failing baseline controls on your subscription(s).
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -320,7 +320,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup 
 	| count
-- List: The query shows list of resource groups that have one or more baseline controls failing.
+- List: The below query shows list of resource groups that have one or more baseline controls failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -333,7 +333,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 **6) Resource Security (RS-4):** This blade shows different unique baseline security controls are failing. This blade has a tile and a list.
 
-- Tile: This shows the number of unique baseline controls that are failing on your subscription(s).
+- Tile: The below query shows the number of unique baseline controls that are failing on your subscription(s).
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -344,7 +344,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ControlId_s 
 	| count 
-- List: The query shows the list of baseline controls that are failing on your subscription along with the number of failures.
+- List: The below query shows the list of baseline controls that are failing on your subscription along with the number of failures.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
