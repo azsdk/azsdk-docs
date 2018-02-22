@@ -203,14 +203,17 @@ are the same fields that display in the CSV file when you run the AzSDK manually
 	
 [Back to top…](Readme.md#contents)
 ### Guide to AzSDK OMS Solution queries
-This section walks you through the queries present in AzSDK OMS solution. Make sure that you have the latest solution installed on your OMS workspace. To get the latest OMS solution you need to re-install OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above, but before that make sure to take a backup of the changes that you made on the previous AzSDK OMS solution as they will be lost on re-installing OMS Solution. The latest queries show the status of controls based on the following criterias.
-- Every blade shows the status of controls for all subscriptions whose data is sent to the OMS workspace.
-- The queries show the count based on status of baseline controls in the last scan done with required access with in last three days.
-- Any control status except "Passed" including "Verify" is treated as "Failed" in queries for calculating failure counts.
+This section walks you through the queries present in the AzSDK OMS solution. To get the latest queries make sure that you have the latest solution installed in your OMS workspace. To get the latest version of solution you need to re-install OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above. The queries show the status of controls based on the following criteria.
+- Each blade shows the aggregated controls status for all subscriptions whose data is sent to the OMS workspace.
+- By default,each blade shows the status of baseline controls.
+- The queries show counts based on last scan(done with required access) control status received by the OMS workspace.
+- The queries show the count based on status of baseline controls in the last scan done with required access with in last 3 days.
+- Any control status other than "Passed" is treated as "Failed"(including "Verify",Manual,etc.) in queries for calculating failure counts.
 
 Details of various blades of Azure Security Health View are as follows:
 
-**1) Subsciption Security Status:** This blade shows the status of baseline Subsciption Security Control of your subscription(s). This blade consists of a donut and a list.
+**1) Subsciption Security Status:** This blade shows the status of baseline Subsciption Security Control of your subscription(s). The  below image depicts the blade:
+!(.../Images/OMS_Blade_SS.PNG)
 
 - Donut: The below query shows the aggregated control status of baseline Subscription Security controls.
 	``` AIQL
@@ -223,7 +226,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The below query shows the count of failed baseline Subscription Security controls based on subscription. 
+- List: The below query shows the count of failed baseline Subscription Security controls by subscription. 
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -236,7 +239,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize AggregatedValue = count() by SubscriptionName_s 
 	| sort by AggregatedValue desc
 	
-**2) EXPRESSROUTE VNET SECURITY (ER) Status:** This blade shows the status of baseline ERvNet Controls for virtual networks in your subscription that have Express Route connectivity setup. This blade consists of a donut and a list.
+**2) Express Route vNet Security Status:** This blade shows the status of baseline ERvNet Controls for virtual networks in your subscription that have Express Route connectivity setup.The below image depicts the blade:
+!(.../Images/OMS_Blade_ERvNet.PNG)
 
 - Donut: The below query shows the aggregated control status of baseline ERvNet controls.
 	``` AIQL
@@ -260,7 +264,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize AggregatedValue = count() by SubscriptionName_s 
 	| sort by AggregatedValue desc
 
-**3) Resource Security (RS-1):** This blade shows the overall status of baseline control for all resources on your subscription(s). This blade consists of a donut and a list.
+**3) Resource Security (RS-1):** This blade shows the overall status of baseline control for all resources on your subscription(s). The below image depicts the blade:
+!(.../Images/OMS_Blade_RS1.PNG)
 
 - Donut: The below query shows the aggregated status of baseline controls for all the resources present on your subscription(s).
 	``` AIQL
@@ -283,7 +288,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" | summarize AggregatedValue = count() by FeatureName_s 
 	| sort by AggregatedValue desc	
 
-**4) Resource Security (RS-2):** This blade shows the resources on your subscriptions that are failing for baseline controls. This blade has a tile and a list.
+**4) Resource Security (RS-2):** This blade shows the resources on your subscriptions that are failing for baseline controls. The below image depicts the blade:
+!(.../Images/OMS_Blade_RS2.PNG)
 
 - Tile: The below shows the number of unique resource types that have at least one baseline security control failure on your subscription(s).
 	``` AIQL
@@ -307,7 +313,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceName_s 
 
-**5) Resource Security (RS-3):** This blade shows the number of failing controls for each resource group. This blade has a tile and a list.
+**5) Resource Security (RS-3):** This blade shows the number of failing controls for each resource group. The below image depicts the blade:
+![RS-3](.../Images/OMS_Blade_RS3.PNG)
 
 - Tile: The below queryshows the number of unique resource groups containing resources that are failing baseline controls on your subscription(s).
 	``` AIQL
@@ -331,7 +338,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup
 
-**6) Resource Security (RS-4):** This blade shows different unique baseline security controls are failing. This blade has a tile and a list.
+**6) Resource Security (RS-4):** This blade shows different unique baseline security controls are failing. The below image depicts the blade:
+!(.../Images/OMS_Blade_RS4.PNG)
 
 - Tile: The below query shows the number of unique baseline controls that are failing on your subscription(s).
 	``` AIQL
@@ -355,7 +363,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ControlId_s
 	
-**7) Useful Queries:** In this last blade, we have included a small bundle of queries that you can use as is or tweak to create your own custom queries. These queries are similar to the queries for various other blades except that they will show the status of all controls for the last scan done with required access in last three days. These can be used as a starting point for setting up your own alerts, doing auto-heal, etc.	
+**7) Useful Queries:** In this last blade, we have included a few queries that you can use as is or tweak to create your own custom queries. These queries are similar to the queries for various other blades except that they will show the status of all controls (opposed to baseline controls only). These can be used as a starting point for setting up your own alerts, doing auto-heal, etc.	
 
 
 [Back to top…](Readme.md#contents)
