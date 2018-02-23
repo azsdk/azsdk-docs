@@ -533,7 +533,7 @@ that, you may have to keep a separate copy and upload it. (We will revisit this 
 
 
 ## Activity alert monitoring
-In latest release we have enabled real time monitoring of alerts. This feature will be enabled by default for every Subscription, if you have CA setup and Alerts are configured in your subscription.
+In latest release we have enabled real time monitoring of alerts.
 If you have customized AzSDK for your organization, this feature will be enabled by default and alert logs will be sent to your central telemetry in the master subscription from all the AzSDK activity alert across your org. You can leverage this feature to get insights into the activity alerts getting triggered across your organization. For e.g.
 - Which activity alert is getting triggered most of the time?
 - Is any critical activity alert is fired too frequently?
