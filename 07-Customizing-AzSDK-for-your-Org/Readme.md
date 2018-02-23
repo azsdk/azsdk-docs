@@ -552,4 +552,4 @@ Or If you want to disable this feature for your organization , you need to set â
 }
 ```
 #### How Alert Monitoring works? 
-Once Alert Monitoring is enabled it will setup a Runbook in Automation account which will be triggered when any AzSDK activity alert is fired. This Runbook will then send alert logs to central telemetry. 
+Once Alert Monitoring is enabled it will setup a runbook in Automation account which will be triggered when any AzSDK_Registered activity alert is fired. This runbook will then send alert logs to central telemetry. 
