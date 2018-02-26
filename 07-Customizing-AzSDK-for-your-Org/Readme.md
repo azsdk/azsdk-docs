@@ -545,7 +545,7 @@ If you want to disable Alert Monitoring in your subscription, you have to create
 New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
 ``` 
 
-Or If you want to disable this feature for your organization , you need to set “IsAlertMonitoringEnabled” flag to “false” in AzSDK.Json file.
+Or if you want to disable this feature for your organization, you need to set “IsAlertMonitoringEnabled” flag to “false” in AzSDK.Json file.
 ```json
 {
   "IsAlertMonitoringEnabled": false
