@@ -357,7 +357,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ControlId_s 
 	| count 
-- List: The below query shows the list of baseline controls that are failing on your subscription along with the number of failure for each control.
+- List: The below query shows the list of baseline controls that are failing along with the number of failure for each control.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
