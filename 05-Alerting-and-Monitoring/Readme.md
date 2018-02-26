@@ -241,7 +241,7 @@ Details of various blades of Azure Security Health View are as follows:
 	
 **2) Express Route vNet Security Status:** This blade shows the status of baseline ERvNet Controls for virtual networks in your subscription that have Express Route connectivity setup.The below image depicts the blade:
 
-![](.../Images/OMS_Blade_ERvNet.PNG)
+![](/Images/OMS_Blade_ERvNet.PNG)
 
 - Donut: The below query shows the aggregated control status of ERvNet controls.
 	``` AIQL
@@ -266,7 +266,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| sort by AggregatedValue desc
 
 **3) Resource Security (RS-1):** This blade shows the status of baseline controls for all resources present on your subscription(s). The below image depicts the blade:
-![](.../Images/OMS_Blade_RS1.PNG)
+
+![](/Images/OMS_Blade_RS1.PNG)
 
 - Donut: The below query shows the aggregated status of controls for all the resources present on your subscription(s).
 	``` AIQL
@@ -290,7 +291,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| sort by AggregatedValue desc	
 
 **4) Resource Security (RS-2):** This blade shows resources present on your subscription(s) that failed baseline controls. The below image depicts the blade:
-![](.../Images/OMS_Blade_RS2.PNG)
+
+![](/Images/OMS_Blade_RS2.PNG)
 
 - Tile: The below shows the number of unique resource types that have at least one baseline security control failing. 
 	``` AIQL
@@ -315,7 +317,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  AggregatedValue = count() by ResourceName_s 
 
 **5) Resource Security (RS-3):** This blade shows resource groups present on your subscription(s) that failed baseline controls. The below image depicts the blade:
-![](.../Images/OMS_Blade_RS3.PNG)
+
+![](/Images/OMS_Blade_RS3.PNG)
 
 - Tile: The below query shows the number of unique resource groups containing resources that are failing.
 	``` AIQL
@@ -340,7 +343,8 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  AggregatedValue = count() by ResourceGroup
 
 **6) Resource Security (RS-4):** This blade shows baseline security controls are failed on your subscription(s). The below image depicts the blade:
-![](.../Images/OMS_Blade_RS4.PNG)
+
+![](/Images/OMS_Blade_RS4.PNG)
 
 - Tile: The below query shows the number of unique baseline controls that are failing.
 	``` AIQL
