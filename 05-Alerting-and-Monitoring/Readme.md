@@ -204,9 +204,9 @@ are the same fields that display in the CSV file when you run the AzSDK manually
 [Back to top…](Readme.md#contents)
 ### Guide to AzSDK OMS Solution queries
 This section walks you through the queries present in the AzSDK OMS solution. To get the latest queries make sure that you have the latest solution installed in your OMS workspace. To get the latest version of solution you need to re-install OMS solution using step **[[1-c]](https://github.com/azsdk/azsdk-docs/blob/master/05-Alerting-and-Monitoring/Readme.md#setting-up-the-azsdk-oms-solution-step-by-step)** mentioned above. The queries show the status of controls based on the following criteria.
-- Each blade shows the aggregated controls status for all subscriptions whose data is sent to the OMS workspace.
+- Each blade shows the aggregated control status for all subscriptions whose data is sent to the OMS workspace.
 - By default, each blade shows the status of baseline controls.
-- The queries show counts based on control status of last scan data(done with required access) received by the OMS workspace.
+- The queries show counts based on control status recieved for last scan data(done with required access) received by the OMS workspace.
 - Any control status other than "Passed" is treated as "Failed"(including "Verify",Manual,etc.) in queries for calculating failure counts.
 
 Details of various blades of Azure Security Health View are as follows:
@@ -226,7 +226,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize  count() by SubscriptionId,ControlId_s,ControlStatus 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The below query shows the list of subscriptions that have one or more Subscription Security controls failing and number of failed controls for each subscription. 
+- List: The below query shows the list of subscriptions that have one or more Subscription Security controls failing along with the number of controls failing on each subscription. 
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -253,7 +253,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated,*) by SubscriptionName_s,ResourceId,ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The below query shows the list of subscriptions that have one or more baseline ERvNet control failing and number of failures on each subscription.
+- List: The below query shows the list of subscriptions that have one or more ERvNet control failing and number of failures on each subscription.
 	``` AIQL
 	AzSDK_CL 
 	| where TimeGenerated > ago(3d)  
@@ -279,7 +279,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| summarize arg_max(TimeGenerated, *) by SubscriptionId, ResourceId, ControlId_s 
 	| summarize AggregatedValue = count() by ControlStatus 
 	| sort by AggregatedValue desc
-- List: The below query shows the list of resource type that have one or more baseline control failing.
+- List: The below query shows the list of resource type that have one or more control failing along with the number of controls failing for each resource type.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d) 
@@ -290,11 +290,11 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" | summarize AggregatedValue = count() by FeatureName_s 
 	| sort by AggregatedValue desc	
 
-**4) Resource Security (RS-2):** This blade shows resources present on your subscription(s) that failed baseline controls. The below image depicts the blade:
+**4) Resource Security (RS-2):** This blade shows resources present on your subscription(s) that have some baseline controls failing. The below image depicts the blade:
 
 ![](/Images/OMS_Blade_RS2.PNG)
 
-- Tile: The below shows the number of unique resource types that have at least one baseline security control failing. 
+- Tile: The below shows the number of unique resource types that have at least one control failing. 
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -305,7 +305,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceName_s  
 	| count 
-- List: The below query shows the the list of resources that have one or more baseline control failing along with the number of failed controls for each resource.
+- List: The below query shows the the list of resources that have one or more control failing along with the number of failed controls for each resource.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -331,7 +331,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup 
 	| count
-- List: The below query shows list of resource groups that have one or more baseline controls failing along with the number of failed controls for each resource group.
+- List: The below query shows list of resource groups that have one or more controls failing along with the number of failed controls for each resource group.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -346,7 +346,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 ![](/Images/OMS_Blade_RS4.PNG)
 
-- Tile: The below query shows the number of unique baseline controls that are failing.
+- Tile: The below query shows the number of unique controls that are failing.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
@@ -357,7 +357,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ControlId_s 
 	| count 
-- List: The below query shows the list of baseline controls that are failing along with the number of failure for each control.
+- List: The below query shows the list of controls that are failing along with the number of failures for each control.
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated > ago(3d)  
