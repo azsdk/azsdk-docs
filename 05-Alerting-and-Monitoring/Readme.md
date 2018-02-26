@@ -368,7 +368,9 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ControlId_s
 	
-**7) Useful Queries:** In this last blade, we have included a few queries that you can use as is or tweak to create your own custom queries. These queries are similar to the queries for various other blades except that they will show the status of **all controls** (opposed to baseline controls only). These can be used as a starting point for setting up your own alerts, doing auto-heal, etc.	
+**7) Useful Queries:** In this last blade, we have included a few queries that you can use as is or tweak to create your own custom queries. These queries are similar to the queries for various other blades except that they will show the status of **all controls** (opposed to baseline controls only). These can be used as a starting point for setting up your own alerts, doing auto-heal, etc. The below image depicts the blade:
+
+![](/Images/OMS_Blade_Useful Queries.PNG)
 
 
 [Back to top…](Readme.md#contents)
