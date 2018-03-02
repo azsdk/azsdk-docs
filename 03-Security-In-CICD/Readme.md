@@ -256,7 +256,7 @@ that are supported by the VSTS task:
 |AzSKServerURL| Org policy url for hosting the central policy configuration| Refer step-5 from the above section for detail steps |
 |EnableServerAuth| Specifies whether Org policy URL (AzSKServerURL) is protected by AAD authentication.| e.g. true - protected by AAD authentication, false - not protected by AAD authentication|
 |AzSKVersion| You could specify which version of toolkit you want to use in your CICD scan. And version specified should be >= N-2 where N is latest prod version. If variable is not provided, it uses the latest version available| e.g. 2.8.1|
-|AzSKModuleName| This variable enable use to participate in the Preview testing. If you want to participate in preview, Provide the module name as "AzSDKPreview". If not used, it would by default uses AzSK as module name| e.g. AzSDKPreview|
+|AzSKModuleName| This variable enable use to participate in the Preview testing. If you want to participate in preview, Provide the module name as "AzSDKPreview". If not used, it would by default uses AzSDK as module name| e.g. AzSDKPreview|
 |ExtendedCommand| Enables you to provide other switches supported by the Get-AzSKAzureServicesSecurityStatus command to perform focused scanning in the CICD pipeline | e.g. -ControlIds "Azure_Storage_DP_Encrypt_In_Transit,</br>Azure_Storage_DP_Encrypt_At_Rest_Blob" or -UseBaselineControls|
 
 
