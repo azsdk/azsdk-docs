@@ -2,10 +2,10 @@
 > <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSDK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
-**Release Version: 2.8.xx**  
+**Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x **  
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
-> - AzureRM Version 4.1.0
+> - AzureRM Version 5.2.0
 	
 1. First verify that prerequisites are already installed:  
     Ensure that you have PowerShell version 5.0 or higher by typing **$PSVersionTable** in the PowerShell ISE console window and looking at the PSVersion in the output as shown below.) 
@@ -112,7 +112,7 @@ If you have installed AzureRM PowerShell using Azure SDK in your machine, it typ
 ```
 If this is the case, then you need to remove the Azure PowerShell modules installed through Azure SDK completely from the Program Files. You could also take back up in case if you need. 
 AzSDK also need AzureRM modules. But it would download from PSGallery instead of from Azure SDK. This downloading of AzureRM modules from PS Gallery would conflict with AzureRM modules installed through Azure SDK. 
-After cleanup, If you again the run the below command, it would fetch AzureRM version 4.1.0 by default into the current user scope instead of in Program Files. 
+After cleanup, If you again the run the below command, it would fetch AzureRM version 5.2.0 by default into the current user scope instead of in Program Files. 
 ```PowerShell
 Install-Module AzSDK -Scope CurrentUser -AllowClobber 
 ```
@@ -140,7 +140,7 @@ This is typically caused by a version mis-match for underlying AzureRm PowerShel
 PowerShell works with the concept of 'sessions'. Each PowerShell ISE or command prompt window is its own independent session. By default, when any cmdlet is run, PS will load the corresponding module (code) in the memory for that session. After that, subsequent references to cmdlets in that module will use the loaded module. Usually, the module loading follows a particular heuristic (based on version number, PS module path order, admin v. non-admin PS launch mode, etc.)  
 
 The above error message is an indication that an AzSDK cmdlet is being run in a PowerShell session that already had an older version of AzureRm loaded in memory (which may be due to something as simple as doing a Login-AzureRmAccount and *then* installing AzSDK in that session). In most circumstances, one of the following remedies should work:
-- Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 4.1.0*" before running anything else (e.g., Login-AzureRmAccount)
+- Close the PS session and open a new one. In the new session, do an "*Import-Module AzureRm -RequiredVersion 5.2.0*" before running anything else (e.g., Login-AzureRmAccount)
 - Close the PS session and open a new one. In the new session, do an "*Import-Module AzSDK*" before running anything else. (This will force-load the correct version of AzureRm that AzSDK needs.). 
   - If you suspect that you may have multiple versions of AzSDK itself installed, then use "*Import-Module AzSDK -RequiredVersion 2.5.0*" (August release).  
 
