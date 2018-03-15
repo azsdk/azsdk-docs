@@ -1,6 +1,7 @@
 ## Migrating from 'AzSDK' to 'AzSK'
-> <h4><font color="blue">IMPORTANT:</font></h4> 
-> 
+
+<h4><font color="blue">IMPORTANT:</font></h4> 
+
 > 1) If you are from Microsoft CSE, please use the steps [here](https://aka.ms/devopskit/migration). 
 > <u>**Do not**</u> use the migration instructions on this page.
 >> 
