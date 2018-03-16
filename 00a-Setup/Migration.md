@@ -6,7 +6,7 @@
 > <u>**Do not**</u> use the migration instructions on this page.
 >> 
 > 2) If you are external to Microsoft **and** you have setup your own org-policy server for AzSDK (using 
-> `Install-AzSDKOrgPolicy` as covered [here](https://github.com/azsdk/azsdk-docs/tree/master/07-Customizing-AzSDK-for-your-Org)), 
+> `Install-AzSDKOrganizationPolicy` as covered [here](https://github.com/azsdk/azsdk-docs/tree/master/07-Customizing-AzSDK-for-your-Org)), 
 please **do not** migrate your subscription(s) yet. Support for migrating org-policy based setups will be in the next sprint release. 
 (Please watch this page for updates.) 
 >
