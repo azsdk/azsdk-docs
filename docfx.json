@@ -28,10 +28,10 @@
         ]
       }
     ],
-    "dest": "../AzSDkWebSiteRelease/_AzSDKWebSite",
+    "dest": "../AzSkWebSiteRelease/_AzSKWebSite",
     "overwrite": [],
     "globalMetadata": {
-      "_appTitle": "AzSDK website",
+      "_appTitle": "AzSK website",
       "brand": "azure",
       "searchScope": [ "Azure" ],
       "_gitContribute": {
@@ -47,7 +47,7 @@
     "globalMetadataFiles":[],
     "fileMetadataFiles": [],
     "template": [
-       "../Artifacts/_exported_templates/AzSDKTemplate"
+       "../Artifacts/_exported_templates/AzSKTemplate"
     ],
     "postProcessors": [],
     "noLangKeyword": false,
