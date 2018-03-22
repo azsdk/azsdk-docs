@@ -22,7 +22,6 @@
 ----------------------------------------------------------------
 
 ## Overview
-
 #### When and why should I setup org policy
 
 When you run any scan command from the AzSDK, it relies on JSON-based policy files to determine various 
