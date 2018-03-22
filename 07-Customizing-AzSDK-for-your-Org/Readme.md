@@ -19,7 +19,6 @@
  - [Testing the overall policy setup](Readme.md#testing-the-overall-policy-setup)
  - [Troubleshooting common issues](Readme.md#troubleshooting-common-issues)
  
- 
 ----------------------------------------------------------------
 
 ## Overview
