@@ -1,8 +1,16 @@
 # FAQs
 
+- ### Setup
+  - [Should I run PowerShell ISE as administrator or regular user?](../00a-Setup/Readme.md#should-i-run-powershell-ise-as-administrator-or-regular-user)
+  - [Error message: "Running scripts is disabled on this system..."](../00a-Setup/Readme.md#error-message-running-scripts-is-disabled-on-this-system)
+  - [Error message: "PackageManagement\Install-Package: cannot process argument transformation on parameter 'InstalledModuleInfo'..."](../00a-Setup/Readme.md#error-message-packagemanagementinstall-package-cannot-process-argument-transformation-on-parameter-installedmoduleinfo)
+  - [Error message: "WARNING: The version '3.x.y' of module 'AzureRM.Profile' is currently in use. Retry the operation after closing..."](../00a-Setup/Readme.md#error-message-warning-the-version-3xy-of-module-azurermprofile-is-currently-in-use-retry-the-operation-after-closing)
+  - [Error message: "The property 'Id' cannot be found on this object. Verify that the property exists..."](../00a-Setup/Readme.md#error-message-the-property-id-cannot-be-found-on-this-object-verify-that-the-property-exists)
+  - [Message: "Warning : Microsoft Azure PowerShell collects data about how users use PowerShell cmdlets..."](../00a-Setup/Readme.md#message-warning--microsoft-azure-powershell-collects-data-about-how-users-use-powershell-cmdlets)
+  
 - ### Subscription-Security
   - #### AzSDK: Subscription Security Provisioning
-    - [Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?](../01-Subscription-Security/Readme.md#faqs-1)
+    - [Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?](../01-Subscription-Security/Readme.md#is-it-possible-to-setup-an-individual-feature-eg-just-alerts-or-just-arm-policy)
   - #### AzSDK: Subscription Activity Alerts  
     - [Can I get the alert emails to go to a distribution group instead of an individual email id?](../01-Subscription-Security/Readme.md#can-i-get-the-alert-emails-to-go-to-a-distribution-group-instead-of-an-individual-email-id)
     - [How can I find out more once I receive an alert email?](../01-Subscription-Security/Readme.md#how-can-i-find-out-more-once-i-receive-an-alert-email)
