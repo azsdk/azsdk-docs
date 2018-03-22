@@ -2,7 +2,7 @@
 
 - ### Subscription-Security
   - #### AzSDK: Subscription Security Provisioning
-    - [Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?](01-Subscription-Security/Readme.md#faqs-1)
+    - [Is it possible to setup an individual feature (e.g., just alerts or just ARM Policy)?](../01-Subscription-Security/Readme.md#faqs-1)
   - #### AzSDK: Subscription Activity Alerts  
     - [Can I get the alert emails to go to a distribution group instead of an individual email id?](01-Subscription-Security/Readme.md#can-i-get-the-alert-emails-to-go-to-a-distribution-group-instead-of-an-individual-email-id)
     - [How can I find out more once I receive an alert email?](01-Subscription-Security/Readme.md#how-can-i-find-out-more-once-i-receive-an-alert-email)
