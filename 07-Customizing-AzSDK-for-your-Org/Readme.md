@@ -18,12 +18,6 @@
 ### [Testing and troubleshooting org Policy](Readme.md#testing-and-troubleshooting-org-policy-1)
  - [Testing the overall policy setup](Readme.md#testing-the-overall-policy-setup)
  - [Troubleshooting common issues](Readme.md#troubleshooting-common-issues)
- 
-### [Activity alert monitoring](Readme.md#activity-alert-monitoring)
- - [How to disable alert monitoring?](Readme.md#how-to-disable-alert-monitoring)
- - [How alert monitoring works?](Readme.md#how-alert-monitoring-works)
-
-
 ----------------------------------------------------------------
 
 ## Overview
@@ -530,26 +524,3 @@ a few known cases but we may have missed the odd one.)
 - Don't forget to make entries in ServerConfigMetadata.json for all files you have changed.
 - Note that the policy upload command always generates a fresh installer.ps1 file for upload. If you want to make changes to 
 that, you may have to keep a separate copy and upload it. (We will revisit this in future sprints.)
-
-
-## Activity alert monitoring
-In latest release we have enabled real time monitoring of alerts.
-If you have customized AzSDK for your organization, this feature will be enabled by default and alert logs will be sent to your central telemetry in the master subscription from all the AzSDK activity alert across your org. You can leverage this feature to get insights into the activity alerts getting triggered across your organization. For e.g.
-- Which activity alert is getting triggered most of the time?
-- Is any critical activity alert is fired too frequently?
-
-#### How to disable Alert Monitoring? 
-If you want to disable Alert Monitoring in your subscription, you have to create an automation variable "DisableAlertRunbook" in the AzSDKContinuousAssurance automation account either manually or by using following cmdlet:
-
-```PowerShell
-New-AzureRMAutomationVariable -ResourceGroupName "AzSDKRG" -AutomationAccountName "AzSDKContinuousAssurance" -Name "DisableAlertRunbook" -Encrypted $False -Value "True" 
-``` 
-
-Or if you want to disable this feature for your organization, you need to set “IsAlertMonitoringEnabled” flag to “false” in AzSDK.Json file.
-```json
-{
-  "IsAlertMonitoringEnabled": false
-}
-```
-#### How Alert Monitoring works? 
-Once Alert Monitoring is enabled it will setup a runbook in Automation account which will be triggered when any AzSDK_Registered activity alert is fired. This runbook will then send alert logs to central telemetry. 
