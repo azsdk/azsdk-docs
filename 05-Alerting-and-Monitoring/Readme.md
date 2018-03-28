@@ -294,7 +294,7 @@ Details of various blades of Azure Security Health View are as follows:
 
 ![](/Images/OMS_Blade_RS2.PNG)
 
-- Tile: The below shows the number of unique resource types that have at least one control failing. 
+- Tile: The below query shows the number of unique resource types that have at least one control failing. 
 	``` AIQL
 	AzSDK_CL  
 	| where TimeGenerated >ago(3d)  
@@ -342,7 +342,7 @@ Details of various blades of Azure Security Health View are as follows:
 	| where ControlStatus == "Failed" 
 	| summarize  AggregatedValue = count() by ResourceGroup
 
-**6) Resource Security (RS-4):** This blade shows baseline security controls are failed on your subscription(s). The below image depicts the blade:
+**6) Resource Security (RS-4):** This blade shows baseline security controls that are failing on your subscription(s). The below image depicts the blade:
 
 ![](/Images/OMS_Blade_RS4.PNG)
 
