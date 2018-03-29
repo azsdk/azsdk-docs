@@ -28,15 +28,15 @@
         ]
       }
     ],
-    "dest": "../AzSDkWebSiteRelease/_AzSDKWebSite",
+    "dest": "../AzSkWebSiteRelease/_AzSKWebSite",
     "overwrite": [],
     "globalMetadata": {
-      "_appTitle": "AzSDK website",
+      "_appTitle": "AzSK website",
       "brand": "azure",
       "searchScope": [ "Azure" ],
       "_gitContribute": {
         "repo": "https://github.com/azsdk/azsdk-docs",
-        "branch": "azsdksite",
+        "branch": "master",
         "apiSpecFolder": "azsdk-docs"
       },
       "_gitUrlPattern": "github",
@@ -47,7 +47,7 @@
     "globalMetadataFiles":[],
     "fileMetadataFiles": [],
     "template": [
-       "../Artifacts/_exported_templates/AzSDKTemplate"
+       "../Artifacts/_exported_templates/AzSKTemplate"
     ],
     "postProcessors": [],
     "noLangKeyword": false,

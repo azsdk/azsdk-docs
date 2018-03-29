@@ -2,7 +2,8 @@
 > <h4><font color="blue">IMPORTANT:</font></h4> If you are from CSE, please install the AzSDK via instructions at https://aka.ms/devopskit so that CSE-specific policies are configured for your installation. <u>Do not</u> use the installation instructions on this page.
 
 
-**Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x ** 
+**Release Version: AzSDK 2.11.xx <=> AzSK 3.0.x **  
+
 >**Pre-requisites**:
 > - PowerShell 5.0 or higher. 
 > - AzureRM Version 5.2.0

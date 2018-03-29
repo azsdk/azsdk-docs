@@ -184,7 +184,9 @@ Set-AzSDKSubscriptionSecurity -SubscriptionId <subscriptionId> -SecurityContactE
 |SecurityContactEmails 	|Comma-separated list of emails (e.g., 'abc@microsoft.com, def.microsoft.com')	for contact preference|
 |SecurityPhoneNumber 	|Single phone number (e.g., '425-882-8080' or '+91-98765-43210' or '+1-425-882-8080')	for contact preference|
 
-**Note**: This command *overwrites* the contact emails and phone number previously configured in Azure Security Center.
+> **Note**: 
+>  - This command *overwrites* the contact emails and phone number previously configured in Azure Security Center.
+>  - This command also helps you to recover if any of the base resources are accidentally deleted, like AzSDK resource group, storage account, attestation container, continuous assurance log container etc.
 
 While running command, you may see message that configuration in your subscription is already up to date. This indicates your subscription already have latest security configurations. If you still see any failures for controls in `Get-AzSDKSubscriptionSecurityStatus` command, you can pass `-Force` parameter to the provisioning script and reconfigure AzSDK artifacts (
 Alerts, RBAC, ARM policies, etc.) in the subscription. 
@@ -294,7 +296,7 @@ As noted above, by default alerts are configured for activities that are deemed 
 | ----------------  | --------- | ------ |
 |SubscriptionId 	|Subscription ID against which the alerts would be setup| |
 |SecurityContactEmails	|Email address of Security Point of Contact, can be a mail enabled security group or a distribution list |abc@contoso.com, xyz@contoso.net|
-|SecurityPhoneNumbers	|Phone numbers of Security Point of Contact. Note that only the country code '1' is currently supported for SMS. |425-1234567,425-1234568|
+|SecurityPhoneNumbers	|Phone numbers of Security Point of Contact, provide contact no. with country code.|'+91-98765-43210' or '+1-425-882-8080'|
 
 [Back to top…](Readme.md#contents)
 ### Remove previously configured alerts from your subscription

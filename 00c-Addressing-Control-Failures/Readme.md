@@ -353,7 +353,7 @@ $bulkAttestControlId = 'AzSDK ControlId string'     # You can get this from the 
 $justificationText = 'Rationale behind your choice of AttestationStatus here...'
 
 Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId `
-                -ResourceGroupNames $resourceGroupName `
+                -ResourceGroupNames $resourceGroupNames `
                 -ResourceNames $resourceNames `
                 -AttestControls NotAttested `
                 -BulkAttestControlId $bulkAttestControlId `                 # ControlId to be attested

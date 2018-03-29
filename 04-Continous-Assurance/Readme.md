@@ -70,6 +70,12 @@ for your application.)
 	        -ResourceGroupNames <ResourceGroupNames> `
 	        -OMSWorkspaceId <OMSWorkspaceId> `
 	        -OMSSharedKey <OMSSharedKey> `
+	        [-AltOMSWorkspaceId <AltOMSWorkspaceId>] `
+	        [-AltOMSSharedKey <AltOMSSharedKey>] `
+	        [-WebhookUrl <WebhookUrl>] `
+	        [-WebhookAuthZHeaderName <WebhookAuthZHeaderName>] `
+	        [-WebhookAuthZHeaderValue <WebhookAuthZHeaderValue>] `
+	        [-ScanIntervalInHours <ScanIntervalInHours>] `
 	        [-AzureADAppName <AzureADAppName>]
 ```
 
@@ -80,6 +86,12 @@ for your application.)
 |ResourceGroupNames|Comma separated list of resource groups within which the application resources are contained.|TRUE|None||
 |OMSWorkspaceId|Workspace ID of OMS which is used to monitor security scan results|TRUE|None||
 |OMSSharedKey|Shared key of OMS which is used to monitor security scan results|TRUE|None||
+|AltOMSWorkspaceId|(Optional) Alternate Workspace ID of OMS to monitor security scan results|FALSE|None||
+|AltOMSSharedKey|(Optional) Shared key of Alternate OMS which is used to monitor security scan results|FALSE|None||
+|WebhookUrl|(Optional) All the scan results shall be posted to this configured webhook |FALSE|None||
+|WebhookAuthZHeaderName|(Optional) Name of the AuthZ header (typically 'Authorization')|FALSE|None||
+|WebhookAuthZHeaderValue|(Optional) Value of the AuthZ heade |FALSE|None||
+|ScanIntervalInHours|(Optional) Overrides the default scan interval (24hrs) with the custom provided value |FALSE|None||
 |AzureADAppName|(Optional) Name for the Azure Active Directory(AD) Application that will be created in the subscription for running the runbooks. |FALSE|None||
 
 **More about the 'AzureAdAppName' parameter:**
@@ -210,9 +222,16 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
     [-ResourceGroupNames <ResourceGroupNames>] `
     [-OMSWorkspaceId <OMSWorkspaceId>] `
     [-OMSSharedKey <OMSSharedKey>] `
+    [-AltOMSWorkspaceId <AltOMSWorkspaceId>] `
+    [-AltOMSSharedKey <AltOMSSharedKey>] `
+    [-WebhookUrl <WebhookUrl>] `
+    [-WebhookAuthZHeaderName <WebhookAuthZHeaderName>] `
+    [-WebhookAuthZHeaderValue <WebhookAuthZHeaderValue>] `
+    [-ScanIntervalInHours <ScanIntervalInHours>] `
     [-AzureADAppName <AzureADAppName>] `
     [-FixRuntimeAccount] ` 
-    [-FixModules] 
+    [-FixModules] `
+    [-RenewCertificate]
 ```
 
 |Param Name|Purpose|Required?|Default value|Comments
@@ -221,10 +240,16 @@ Update-AzSDKContinuousAssurance -SubscriptionId <SubscriptionId> `
 |ResourceGroupNames|Use this parameter if you want to update the comma separated list of resource groups within which the application resources are contained. The previously configured list of RGs will be replaced with the one provided here.|FALSE|None||
 |OMSWorkspaceId|Use this parameter if you want to update the workspace ID of OMS which is used to monitor security scan results|FALSE|None||
 |OMSSharedKey|Use this parameter if you want to update the shared key of OMS which is used to monitor security scan results|FALSE|None||
+|AltOMSWorkspaceId|(Optional) Alternate Workspace ID of OMS to monitor security scan results|FALSE|None||
+|AltOMSSharedKey|(Optional) Shared key of Alternate OMS which is used to monitor security scan results|FALSE|None||
+|WebhookUrl|(Optional) All the scan results shall be posted to this configured webhook |FALSE|None||
+|WebhookAuthZHeaderName|(Optional) Name of the AuthZ header (typically 'Authorization')|FALSE|None||
+|WebhookAuthZHeaderValue|(Optional) Value of the AuthZ heade |FALSE|None||
+|ScanIntervalInHours|(Optional) Overrides the default scan interval (24hrs) with the custom provided value |FALSE|None||
 |AzureADAppName|Use this parameter if you want to update the connection (used for running the runbook) with new AD App and Service principal|FALSE|None|This is useful if existing connection is changed/removed by mistake|
 |FixRuntimeAccount|Use this switch to fix CA runtime account in case of below issues.<ol><li>Runtime account deleted<br>(Permissions required: Subscription owner)</li><li>Runtime account permissions missing<br>(Permissions required: Subscription owner and AD App owner)</li><li>Certificate deleted/expired<br>(Permissions required: Subscription owner and AD App owner)</li></ol>|FALSE|None||
 |FixModules|Use this switch in case 'AzureRm.Automation' module extraction fails in CA Automation Account.|FALSE|None||
-
+|RenewCertificate|Renews certificate credential of CA SPN if the caller is Owner of the AAD Application (SPN). If the caller is not Owner, a new application is created with a corresponding SPN and a certificate owned by the caller. CA uses the updated credential going forward.|FALSE|None||
 
 [Back to top…](Readme.md#contents)
 ### Remove Continuous Assurance Automation Account
@@ -272,18 +297,24 @@ $OMSWorkspaceId = '<omsWorkspaceId>'
 $OMSSharedKey = '<omsSharedKey>' 
 $TargetSubscriptionIds = '<TargetSubscriptionId>' #Need to provide comma separated list of all subscriptionId that needs to be scanned.
 
-Install-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -ResourceGroupNames $ResourceGroupNames -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -LoggingOption IndividualSubs -Preview
+Install-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscriptionIds $TargetSubscriptionIds -ResourceGroupNames $ResourceGroupNames -OMSWorkspaceId $OMSWorkspaceId -OMSSharedKey $OMSSharedKey -Preview
 ```
 </br>
 
 |Param Name| Purpose| Required?| DefaultValue| Comments|
 |----------|--------|----------|-------------|---------|
 |SubscritionId| Central subscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
-|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription| True | The user executing this command should be owner on these subscriptions. |
+|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription. Host subscription is always appended by default. No need to pass that value in this param| True | The user executing this command should be owner on these subscriptions. |
 |ResourceGroupNames| Comma separated list of ResourceGroupNames| True | Since you are planning to run in the central mode, you should use * as its value. This is because you need not have the same RG across all the subscriptions|
 |OMSWorkspaceId| All the scanning events will be send to this OMSWorkspace. This will act as central monitoring dashboard | True | |
 |OMSSharedKey| OMSSharedKey for the central monitoring dashboard| True | |
-|LoggingOption| "IndividualSubs/CentralSub". In the preview mode use the IndividualSubs option for setup. If you want to enable central mode. You could use the update command below to change it. | True | |
+|AltOMSWorkspaceId|(Optional) Alternate Workspace ID of OMS to monitor security scan results|FALSE|None||
+|AltOMSSharedKey|(Optional) Shared key of Alternate OMS which is used to monitor security scan results|FALSE|None||
+|WebhookUrl|(Optional) All the scan results shall be posted to this configured webhook |FALSE|None||
+|WebhookAuthZHeaderName|(Optional) Name of the AuthZ header (typically 'Authorization')|FALSE|'Authorization'||
+|WebhookAuthZHeaderValue|(Optional) Value of the AuthZ heade |FALSE|24 hrs||
+|ScanIntervalInHours|(Optional) Overrides the default scan interval (24hrs) with the custom provided value |FALSE|None||
+|LoggingOption| "IndividualSubs/CentralSub". This provides the capability to users to store the CA scan logs on central subscription or on individual subscriptions| False |CentralSub |
 |Preview| It is mandatory to use preview switch| True | |
 
 #### Append/modify/fix the central CA setup
@@ -293,10 +324,13 @@ In case you want to
 </br>(b) CA is not using the latest runbook, or 
 </br>(c) OMS workspace needs to be updated, or
 </br>(d) OMS keys have been rotated and you want to use the latest keys, or
-</br>(e) the scanning account credential needs to be rotated as part of hygiene/ expiry, or
-</br>(f) modify the logging option to central mode
+</br>(e) AltOMS workspace details needs to updated, or
+</br>(f) Webhook details needs to updated, or
+</br>(g) ScanInterval needs to updated, or
+</br>(h) the scanning account credential needs to be rotated as part of hygiene/ expiry, or
+</br>(i) modify the logging option to central mode
 
-In all such scenarios, you could run the command below:
+In all such scenarios, you can run the command below:
 
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
@@ -311,10 +345,10 @@ Update-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -TargetSubscript
 |Param Name| Purpose| Required?| DefaultValue| Comments|
 |----------|--------|----------|-------------|---------|
 |SubscritionId| Central subscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
-|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription| True | The user executing this command should be owner on these subscriptions. |
+|TargetSubscriptionIds| Comma separated list of subscriptionIds that needs to be scanned by the central subscription. It would always append the values provided in this param to the current scanning list.| True | The user executing this command should be owner on these subscriptions. |
 |OMSWorkspaceId| All the scanning events will be send to this OMSWorkspace. This will act as central monitoring dashboard | False | Only provide if you want to change the workspace details |
 |OMSSharedKey| OMSSharedKey for the central monitoring dashbaord| False | Only provide if you want to update the OMS Sharedkey along with workspaceId param |
-|LoggingOption| "IndividualSubs/CentralSub" | False | Only provide if you want to change the logging option from individualSub mode to central mode|
+|LoggingOption| "IndividualSubs/CentralSub" | False | Only provide if you want to change the logging option|
 |FixRuntimeAccount| This will correct all the permissions issues related to the scanning account| False | Provide this switch only when you want to add new subscriptions for central scanning mode or if scanning account credential needs to be updated |
 |Preview| It is mandatory to use preview switch| True | |
 
@@ -325,33 +359,36 @@ You could run the command below. It would diagnose the Continuous Assurance Auto
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
 
-Get-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -Preview -ExhaustiveCheck
+Get-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -ExhaustiveCheck
 ```
 </br>
 
 |Param Name| Purpose| Required?| DefaultValue| Comments|
 |----------|--------|----------|-------------|---------|
 |SubscritionId| Central SubscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
-|Preview| It is mandatory to use preview switch| True | |
 |ExhaustiveCheck| By appending this switch it would check whether all the modules installed in central automation account are up to date| False | Only include if default diagnosis is not resulting in any issue |
 
 #### Remove CA from the central subscription
 
-If you are using CentralMode as logging option, you could run the command below:
-> **Note:** DeleteStorageReports option would cleanup all the scan results from the storage account
-
-```PowerShell
-$SubscriptionId = '<subscriptionId>'
-
-Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports  
-```
-If you are using IndividualSubs as logging option, you could run the command below:
+In case you want to 
+</br>(a) unregister some subs from central scanning mode, or 
+</br>(b) to delete the scan logs, or 
+</br>(c) to remove the whole automation account
 
 ```PowerShell
 $SubscriptionId = '<subscriptionId>'
 
 Remove-AzSDKContinuousAssurance -SubscriptionId $SubscriptionId -DeleteStorageReports -Preview 
 ```
+
+
+|Param Name| Purpose| Required?| DefaultValue| Comments|
+|----------|--------|----------|-------------|---------|
+|SubscritionId| Central SubscriptionId which is responsible for scanning all the other subscriptions| True | This subscription would host the Automation account which is responsible for scanning all the other subscriptions|
+|TargetSubscriptionIds| Comma separated list of target subIds which will be un-registered from the central scanning mode. | False | |
+|DeleteStorageReports| Deletes all the scan logs from the azsdk storage account based on the logging option and value provided in the target subscription. If used with out preview switch, it would remove all logs from the host sub central storage account.| False | Only include if default diagnosis is not resulting in any issue |
+
+>**Note** If just subscrptionId is passed, then it would check if the host sub is in central scanning mode, if so, user needs to pass Preview switch. In these scenarios, it would remove the whole automation account from host sub.
 
 [Back to top…](Readme.md#contents)
 
@@ -383,8 +420,8 @@ Run the Get-AzSDKContinuousAssurance and confirm that the output tells you as in
 Verify that the runbooks have actually started scanning your subscription and resource groups. You can check for this in OMS.
   
 #### Is providing resource groups mandatory?
-We would like teams to, at a minimum, provide the list of resource groups that cover the most critical components of their application. It is unlikely that you will just have a subscription but no important resources inside it. Still, if you absolutely can't provide a resource group, then specify the "AzSDKR"' as the resource group when setting up CA. This resource group is used internally by AzSDK for CA so is guaranteed to exist in each subscription.
-Note that you can also provide **"*"** as an option (to request CA to scan all resource groups). However, there are some hard limits for automation runbook run times... so this option may not quite work if you have more than 100 resources in the subscription. If you do provide **"*"** as an option, CA will automatically grow/shrink the resource group list as you add/delete resource groups in your subscription.
+We would like teams to, at a minimum, provide the list of resource groups that cover the most critical components of their application. It is unlikely that you will just have a subscription but no important resources inside it. Still, if you absolutely can't provide a resource group, then specify the "*"* as the resource group when setting up CA. 
+If you do provide **"*"** as an option, CA will automatically grow/shrink the resource group list as you add/delete resource groups in your subscription.
   
 #### What if I need to change the resource groups after a few weeks?
 That is easy! Just run the Update-AzSDKContinuousAssurance cmdlet with the new list of resource groups you would like monitored.
