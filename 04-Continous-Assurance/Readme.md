@@ -60,7 +60,7 @@ for your application.)
 
 
 **Step-1: Setup**  
-0. Setup the latest version of the AzSDK following the installation instructions for your organization. (For MSIT use http://aka.ms/azsdkdocs).
+0. Setup the latest version of the AzSDK following the installation instructions for your organization. (For MSIT use https://aka.ms/azsdkdocs).
 1. Open the PowerShell ISE and login to your Azure account (using **Login-AzureRmAccount**).  
 2. Run the '**Install-AzSDKContinuousAssurance**' command with required parameters given in below table. 
 
