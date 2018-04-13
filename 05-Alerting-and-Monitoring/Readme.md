@@ -87,7 +87,7 @@ involved. Indeed, most dev ops teams will have dev rotating to support ops and v
 to get the details about your OMS workspace:
 
 ```PowerShell
- Set-AzureRmContext -SubscriptionId '<subscriptionId here>'   #switch to the OMS subscription
+ Set-AzureRmContext -Subscription '<subscriptionId here>'   #switch to the OMS subscription
  Get-AzureRmOperationalInsightsWorkspace #get info about the OMS workspace (we'll need that below)
 ```
 
