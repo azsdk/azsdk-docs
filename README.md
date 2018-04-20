@@ -1,6 +1,7 @@
 
 # Secure DevOps Kit for Azure
 
-   Hello, this content is deprecated. Please go to the latest content at: https://github.com/azsk/DevOpsKit-docs
+   The Secure DevOps Kit Git repo has moved to a new location.
+   Please go here for source: https://github.com/azsk/DevOpsKit and here for docs: https://github.com/azsk/DevOpsKit-docs
 
 
